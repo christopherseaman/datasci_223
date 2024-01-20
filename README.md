@@ -1,4 +1,4 @@
-Hi,my namne is Amber(Hailiang Wu). 
+Hi, my name is Amber(Hailiang Wu). 
 
 I got my PhD in bioengineering from the University of Tokyo, then worked a few years in academia before working as a bioinformatic scientist in biotech companies focusing on precision medicine in oncology.
 Ñow I am pursuing my master’s degree in health data science to gain a systematic knowledge in data science. 
