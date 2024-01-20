@@ -4,7 +4,7 @@ I got my PhD in bioengineering from the University of Tokyo, then worked a few y
 Ñow I am pursuing my master’s degree in health data science to gain a systematic knowledge in data science. 
 In my previous position, I developed several automated NGS pipelines including WES and WGS.
 
-For this course, I collaborate with Nien Yeh Daphne Yu and Chenyu Wang.
+I collaborate with _Nien Yeh Daphne Yu_ and _Chenyu Wang_.
 
-For what I hope to get from this course:
-I have been using pythin for years and still
+For what I hope to get out of this course:
+I aim to systematically learn Python and prepare myself for a technical interview at a LeetCode medium difficulty level.
