@@ -5,6 +5,7 @@ Hi, my name is Daphne (Nien Yeh Daphne Yu). I have have a background in genetic 
 Hailiang Wu, Chenyu Wang
 
 ## Instructions to open exercises
+### Exercise 1 - Making the Grade 
 Open [Exercism link](https://exercism.org/tracks/python/exercises/making-the-grade/solutions/10331333) to view my code on the Exercism website.
 
 OR 
