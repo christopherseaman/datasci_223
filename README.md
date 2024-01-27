@@ -5,9 +5,19 @@ In my previous position, I developed several automated NGS pipelines including W
 I aim to systematically learn Python and prepare myself for a technical interview at a LeetCode medium difficulty level.
 
 # Collaborators
-_Nien Yeh Daphne Yu_ , _Chenyu Wang_.
+_Nien Yeh Daphne Yu_ , _Chenyu Wang_, _Yukari Katsuhara_
 
 # Instructions
+My answers to exercise 2 is a jupiter notebook file with extention ".ipynb", which is the default format of the original assignment file. 
+link: https://github.com/ambwhl/datasci_223/blob/main/exercise_answers/exercise-dirty_emnist.ipynb
+
+It is supposed to work either ways:
+1.Download #exercise_1.ipynb file and run it on a tool such as VScode
+2.Run it on cloud tool such as Google Colab 
+
+Uncomment the 1st cell lines the first time running this notebook in your environment to install pandas, numpy, emnist, matplotlib, emnist packages
+
+History:
 My answers to exercise 1 is a jupiter notebook file with extention ".ipynb", which is the default format of the original assignment file. 
 
 link: https://github.com/ambwhl/datasci_223/blob/main/exercise_answers/exercise_1.ipynb
@@ -16,3 +26,4 @@ The code was edited using Google Colab online with case testing below the code.
 It is supposed to work either ways:
 1.Download #exercise_1.ipynb file and run it on a tool such as VScode
 2.Run it on cloud tool such as Google Colab 
+
