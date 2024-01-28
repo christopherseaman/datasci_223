@@ -12,3 +12,5 @@ OR
 
 Open [exercise.ipynb](https://github.com/10331333/datasci_223/blob/main/exercises/1-foundations/exercise.ipynb) to review my code. Run each code block to return the results of calling the function created in each block with an example. 
 
+### Exercise 2 - Cleaning Data
+Open [exercise-dirty_emnist.ipynb](https://github.com/10331333/datasci_223/blob/main/exercises/2-data-munging/exercise-dirty_emnist.ipynb) to review my code. Download this file to see required packages: [requirements.txt](https://github.com/10331333/datasci_223/blob/main/exercises/2-data-munging/requirements.txt) or follow instructions in the jupyter notebook to install and run packages. 
