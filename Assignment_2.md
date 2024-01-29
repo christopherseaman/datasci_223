@@ -1,6 +1,6 @@
 ## Assignment 2 Exercise- Data cleaning
 
-This is a link to assignment 1: [Link](https://github.com/Kcole3/datasci_223/blob/exercise2_katherine/exercises/2-data-munging/exercise-dirty_emnist.ipynb)
+This is a link to assignment 1: [Link](https://github.com/Kcole3/datasci_223/tree/exercise2_katherine/exercises/2-data-munging)
 
 # Collaborators:
 
