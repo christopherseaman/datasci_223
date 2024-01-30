@@ -7,3 +7,5 @@
 
 #Aboout me
 I am Chenyu Wang, who graduated in Statistics from UBC.
+
+#Work with Daphne Yu
