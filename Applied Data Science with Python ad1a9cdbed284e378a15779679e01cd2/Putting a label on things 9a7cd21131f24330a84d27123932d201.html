@@ -1,0 +1,679 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Putting a label on things</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="9a7cd211-31f2-4330-a84d-27123932d201" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">⛳</span></div><h1 class="page-title">Putting a label on things</h1><p class="page-description"></p></header><div class="page-body"><ul id="894ea089-58ff-434f-8684-b81120a32d6b" class="bulleted-list"><li style="list-style-type:disc">Quick example</li></ul><ul id="2639ea1c-cf86-434d-9c63-4a52a7514fe6" class="bulleted-list"><li style="list-style-type:disc">Classification model types and how to evaluate them</li></ul><ul id="98130347-0c53-464e-828a-ed990f3ee8da" class="bulleted-list"><li style="list-style-type:disc">How things can go wrong…</li></ul><ul id="dee6dda2-d0fa-4fa2-abc2-047df0ee7f6d" class="bulleted-list"><li style="list-style-type:disc">… and how to fix it</li></ul><ul id="be6f78d8-7915-45ce-a44b-eda924b3f226" class="bulleted-list"><li style="list-style-type:disc">Hands-on with code</li></ul><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">🤖 <strong><strong>Accelerate Your Models with GPUs</strong></strong></summary><div class="indented"><p id="aedde9ad-8222-448f-bb8f-78cb26a91dea" class="">The models we’ll build today require significant computational power, which might make them run slowly on your laptop. <strong>Don&#x27;t panic!</strong> There are free cloud services you can use to leverage GPU-based computing:</p><ul id="a62e65fe-e582-47bf-b1ce-6aad1841ebe6" class="bulleted-list"><li style="list-style-type:disc"><a href="https://colab.research.google.com"><strong>Google Colab</strong></a> - easiest to use with excellent GitHub integration, but completely public (okay for today, but <strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>NEVER USE COLAB WITH SENSITIVE/PHI DATA</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong>)</li></ul><ul id="56d9f6ab-db2d-4404-8ad7-b68bf31f8eb7" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.paperspace.com"><strong>Paperspace</strong></a> - (my weapon of choice) provides customizable private virtual computing with GPUs, but that customization comes at the cost of added complexity. Easy-ish to use, but not as easy as Colab</li></ul><ul id="31ac25e8-9fd7-4523-856c-c8a1db685966" class="bulleted-list"><li style="list-style-type:disc"><strong>UCSF&#x27;s internal service</strong> - The university provides a service for this but, as a guest lecturer, I have no idea which. The services have funny names, but they all provide Jupyter notebooks: <a href="https://aws.amazon.com/sagemaker/">AWS Sagemaker</a>, <a href="https://visualstudio.microsoft.com/vs/features/notebooks-at-microsoft/#:~:text=Azure%20Machine%20Learning,-Azure%20Machine%20Learning">Azure Machine Learning Notebooks</a>, and <a href="https://cloud.google.com/vertex-ai-workbench">Google’s Vertex AI Workbench</a> </li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">👁️ Which animal is this?</summary><div class="indented"><figure id="855fbc00-c5e0-44fa-8a62-d7f61c92eb24"><div class="source">https://github.com/christopherseaman/datasci-seminar</div></figure><p id="7df34cee-f338-4da8-8fef-55ca1702f5ed" class="">Building a neural network from scratch to classify images of animals!</p><ul id="0112196f-a919-48ac-aa9f-0d8e15afb4d7" class="bulleted-list"><li style="list-style-type:disc">Folder: Seminar 3 - Image Classification</li></ul><ul id="dc9c871a-ea69-437d-9fcb-f605909a6f7c" class="bulleted-list"><li style="list-style-type:disc">Notebook: “1 - What is this?”</li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">💥 Crash course in classification</summary><div class="indented"><figure id="81c62c18-c0a7-431b-b473-a075d5f6a13d" class="image"><a href="Putting%20a%20label%20on%20things%209a7cd21131f24330a84d27123932d201/Untitled.png"><img style="width:450px" src="Putting%20a%20label%20on%20things%209a7cd21131f24330a84d27123932d201/Untitled.png"/></a></figure><p id="e40e3190-a12a-4657-93f7-0391b72ccbf6" class="">The building blocks of ML are algorithms for <strong>regression</strong> and <strong>classification:</strong></p><ul id="e784537a-3f6c-429d-af5b-2ce38a0d1084" class="bulleted-list"><li style="list-style-type:disc"><strong>Regression</strong>: predicting continuous quantities</li></ul><ul id="f6c8396d-35a9-467e-b1b5-b4e57fd6b8e7" class="bulleted-list"><li style="list-style-type:disc"><strong>Classification</strong>: predicting <em>discrete class labels </em>(categories)</li></ul><h2 id="31b4ebfd-9f4c-4e1c-b659-0df102c4662e" class=""><strong>Classification methods</strong></h2><p id="4e088b51-275b-4834-93c2-517ae94b8057" class="">Classification algorithms aim to learn a function that maps input features to class labels. The most popular classification methods are:</p><ul id="3c5e8d24-9714-4529-b038-6f79ffc0411c" class="bulleted-list"><li style="list-style-type:disc"><strong>Logistic Regression</strong>: a simple linear model that models the probability of each class based on the input features. It&#x27;s easy to interpret and works well for binary classification problems.</li></ul><ul id="89caeb90-4c74-4f47-bf20-46606a0a0628" class="bulleted-list"><li style="list-style-type:disc"><strong>Decision Trees</strong>: builds a tree-like model that maps features to class labels. It&#x27;s easy to interpret, but prone to overfitting.</li></ul><ul id="ebaf1577-3d3a-4628-a296-ecd853737a40" class="bulleted-list"><li style="list-style-type:disc"><strong>Random Forest</strong>: an ensemble model that builds multiple decision trees and averages their predictions. It&#x27;s more accurate than a single decision tree and less prone to overfitting.</li></ul><ul id="bfab3b14-652b-437f-bba5-e9a9405d22a4" class="bulleted-list"><li style="list-style-type:disc"><strong>Support Vector Machines (SVM)</strong>: constructs a hyperplane that separates the classes with the maximum margin. It works well for high-dimensional data.</li></ul><ul id="4190acde-6bab-4581-8173-637b2643b509" class="bulleted-list"><li style="list-style-type:disc"><strong>Naive Bayes</strong>: applies Bayes&#x27; theorem with strong independence assumptions between the features. It&#x27;s easy to train and performs well for small datasets.</li></ul><ul id="d73df33b-431e-4e86-a0b5-9c9c1ce38f7d" class="bulleted-list"><li style="list-style-type:disc"><strong>Neural Networks</strong>: models the mapping between inputs and outputs using an interconnected network of nodes. It can capture complex, non-linear relationships between features.</li></ul><p id="a6fe3a3c-007d-4c76-971d-bb875404d3a6" class="">
+</p><ul id="87d2231a-2c74-4620-823f-11a2f6d432e2" class="toggle"><li><details open=""><summary>Some links to dive deeper:</summary><ul id="8d754a68-5461-438c-97d9-f6606991fe93" class="bulleted-list"><li style="list-style-type:disc">A nice tour of methods: <a href="https://github.com/bagheri365/ML-Models-for-Classification"><strong>https://github.com/bagheri365/ML-Models-for-Classification</strong></a></li></ul><ul id="5c2726ac-0b95-443e-8519-ed2c8e62d249" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.kaggle.com/code/nandita711/cancer-classification-eda-pca-random-forest"><strong>Cancer classification</strong></a> (Kaggle)</li></ul><ul id="23e8cf75-6472-4b2b-8fb5-5fac8409b44d" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.frontiersin.org/articles/10.3389/fcimb.2022.819267/full"><strong>Comparison of XGBoost, Random Forest, and Nomograph for Prediction of Disease Severity</strong></a></li></ul><ul id="a256c587-e4bc-4c97-ba71-a214b06497d2" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6963807/"><strong>Prediction Method for Hypertension</strong></a> (Diagnostics Journal)</li></ul><ul id="a898102f-c548-430f-a576-2e58bc475ad2" class="bulleted-list"><li style="list-style-type:disc"><a href="https://towardsai.net/p/l/a-guide-to-predictive-lead-scoring-using-machine-learning"><strong>Guide to Predictive Lead Scoring using ML</strong></a> (Towards AI)</li></ul><ul id="e1bca963-aaa5-4253-8f4a-f7871b9ea835" class="bulleted-list"><li style="list-style-type:disc"><a href="https://towardsdatascience.com/a-true-end-to-end-ml-example-lead-scoring-f5b52e9a3c80"><strong>True end-to-end ML example: Lead Scoring</strong></a> (Towards Data Science)</li></ul></details></li></ul><h2 id="7fb7a295-2234-4773-a34c-752253d9fd4e" class="">Model evaluation</h2><p id="480a897d-7add-45e7-ac46-ea8169cd24b0" class="">There are many more classification approaches than data scientists, so choosing the best one for your application can be daunting. Thankfully, all of them output predicted classes for each data point. We can use this similarity to define objective performance criteria based on how often the predicted class matches the underlying truth.</p><p id="1647cc77-1bc8-4fa3-86f3-f117c8675ba9" class="">I get in trouble with the data science police if I don’t include something about confusion matrices:</p><figure id="bba567c2-9f95-4f2a-80bf-6283d6fc80ce" class="image"><a href="Putting%20a%20label%20on%20things%209a7cd21131f24330a84d27123932d201/Untitled%201.png"><img style="width:754px" src="Putting%20a%20label%20on%20things%209a7cd21131f24330a84d27123932d201/Untitled%201.png"/></a></figure><ul id="10b074df-70bf-44f9-a187-27a750257979" class="bulleted-list"><li style="list-style-type:disc"><strong><strong><strong><strong><strong><strong><strong><strong><strong>Precision</strong></strong></strong></strong></strong></strong></strong></strong></strong> (Positive Predictive Value) = <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>T</mi><mi>P</mi></mrow><mrow><mi>T</mi><mi>P</mi><mo>+</mo><mi>F</mi><mi>P</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{TP}{TP + FP}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2757em;vertical-align:-0.4033em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8723em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">TP</span><span class="mbin mtight">+</span><span class="mord mathnormal mtight" style="margin-right:0.13889em;">FP</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">TP</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.4033em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span><span>﻿</span></span><blockquote id="e17e6a82-db43-46d5-9bce-141081a547bb" class=""><em>How well it performs when it predicts positive</em></blockquote></li></ul><ul id="09b840cf-efc6-4699-b73d-416a8fa1ad6e" class="bulleted-list"><li style="list-style-type:disc"><strong><strong><strong><strong><strong><strong>Recall</strong></strong></strong></strong></strong></strong> (Sensitivity, True Positive Rate) = <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>T</mi><mi>P</mi></mrow><mrow><mi>T</mi><mi>P</mi><mo>+</mo><mi>F</mi><mi>N</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{TP}{TP+FN}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2757em;vertical-align:-0.4033em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8723em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">TP</span><span class="mbin mtight">+</span><span class="mord mathnormal mtight" style="margin-right:0.10903em;">FN</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">TP</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.4033em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span><span>﻿</span></span><blockquote id="7c4add1b-9a74-461c-add1-c1c80dcedd21" class=""><em>How well it performs among actual positives</em></blockquote></li></ul><ul id="f66d83dd-65c4-4ecd-84ab-aa41d504f7f0" class="bulleted-list"><li style="list-style-type:disc"><strong><strong>F1 score</strong></strong> = 2(Recall * Precision)/(Recall + Precision)<blockquote id="494f67eb-837b-4796-b586-8b505c593fc8" class=""><em>Balanced score for overall model performance</em></blockquote></li></ul><ul id="0762b1bc-5463-485f-9514-83f88df7d99c" class="bulleted-list"><li style="list-style-type:disc"><strong><strong>Specificity </strong></strong>(Selectivity, True Negative Rate) = <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>T</mi><mi>N</mi></mrow><mrow><mi>T</mi><mi>N</mi><mo>+</mo><mi>F</mi><mi>P</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{TN}{TN + FP}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2757em;vertical-align:-0.4033em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8723em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.10903em;">TN</span><span class="mbin mtight">+</span><span class="mord mathnormal mtight" style="margin-right:0.13889em;">FP</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.10903em;">TN</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.4033em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span><span>﻿</span></span><blockquote id="7ccf3273-2244-4b6d-9e8a-82d4cbcfb428" class=""><em>Similar to</em> <strong><strong><strong><strong><strong><strong>Recall</strong></strong></strong></strong></strong></strong>, <em>how well it performs among actual negatives</em></blockquote></li></ul><ul id="7ab709d4-997a-4fd8-9c97-30731bcfa2c7" class="bulleted-list"><li style="list-style-type:disc"><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>Miss Rate</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong> (False Negative Rate) = <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>F</mi><mi>N</mi></mrow><mrow><mi>T</mi><mi>P</mi><mo>+</mo><mi>F</mi><mi>N</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{FN}{TP + FN}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2757em;vertical-align:-0.4033em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8723em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">TP</span><span class="mbin mtight">+</span><span class="mord mathnormal mtight" style="margin-right:0.10903em;">FN</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.10903em;">FN</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.4033em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span><span>﻿</span></span><blockquote id="125722c3-d18e-46f8-9622-638aa4f8998c" class=""><em>Proportion of positives that were incorrectly classified, good measure when missing a positive has a high cost</em></blockquote></li></ul><ul id="c27e191a-48c6-4b58-95d4-e324b3d76c92" class="bulleted-list"><li style="list-style-type:disc"><strong>Receiver-Operator Curve (ROC Curve) and Area Under the Curve (AUC)</strong><blockquote id="d43de496-5053-4aee-ad3e-f260b353faac" class=""><em>Plot the True Positive vs. False Positive rates, which provides a scale-invariant measure of performance. A random model on balanced class data will have a score of 0.5, while a perfect model will always have a score of 1</em> </blockquote></li></ul><figure id="8d9c64c0-8f03-41dd-80bf-8a4a53c516ae" class="image"><a href="Putting%20a%20label%20on%20things%209a7cd21131f24330a84d27123932d201/Untitled%202.png"><img style="width:1200px" src="Putting%20a%20label%20on%20things%209a7cd21131f24330a84d27123932d201/Untitled%202.png"/></a></figure><ul id="c2a1469c-e757-4c6c-a05b-f01fd55039a3" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.edlitera.com/en/blog/posts/evaluating-classification-models">How to evaluate classification models</a> (edlitera)</li></ul><h2 id="da6f0368-4415-4e4e-af9a-d243fa0f59a6" class="">Supervised vs. unsupervised</h2><p id="cdebcb4b-f26d-42ee-a417-3612e34c5745" class="">There are two-ish overarching categories of classification algorithms: <strong>supervised</strong> and <strong>unsupervised</strong>. There are many possible approaches in each category, and some that work well in both (deep learning, for example).</p><ul id="ce23a139-3f7c-4929-a3d1-ff60610b1dd7" class="bulleted-list"><li style="list-style-type:disc"><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>Supervised </strong></strong></strong></strong></strong></strong></strong></strong></strong></strong>- uses labeled datasets with known classes for the data points</li></ul><ul id="3ff6c293-f984-4c31-9a53-dd107af92d09" class="bulleted-list"><li style="list-style-type:disc"><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>Unsupervised</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong> - uses unlabeled data to uncover organizational patterns</li></ul><ul id="44773f2c-d496-4713-90ab-44e7664ac9f3" class="bulleted-list"><li style="list-style-type:disc"><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>Semi-supervised</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong> - some data with labels is used to extract relevant features, while others without can amplify that signal; e.g., medical images (x-ray, CT)</li></ul><figure id="bc7ff9c3-1522-467c-9eca-344f33584fd9" class="image"><a href="Putting%20a%20label%20on%20things%209a7cd21131f24330a84d27123932d201/Untitled%203.png"><img style="width:600px" src="Putting%20a%20label%20on%20things%209a7cd21131f24330a84d27123932d201/Untitled%203.png"/></a></figure><h2 id="40b32867-7ff7-4d9e-a8c5-f054c37517b9" class="">Supervised models</h2><p id="3c6b9bc8-d062-4822-a21e-fb1dfd536fd1" class="">To fairly evaluate each model, we must <strong><strong><strong><strong>test</strong></strong></strong></strong> its performance on different data than it was <strong><strong><strong><strong><strong><strong>train</strong></strong></strong></strong></strong></strong>ed on. So we split our dataset into two partitions: <strong><strong><strong><strong>test</strong></strong></strong></strong> and <strong><strong>train</strong></strong>:</p><ul id="3884addc-3294-424a-8989-b865f869a2ab" class="bulleted-list"><li style="list-style-type:disc"><strong><strong><strong><strong><strong>Train</strong></strong></strong></strong></strong> - the model is built using this data, which includes class labels</li></ul><ul id="f84b6d88-2c0a-4307-bf64-c64ceba9071c" class="bulleted-list"><li style="list-style-type:disc"><strong><strong>Test</strong></strong> -  the model is tested using this data, withholding class labels</li></ul><h3 id="9f5982b2-5f1a-4494-8909-58e1033606f9" class="">Quick supervised model review</h3><p id="b77cb9fe-21ce-4ecb-ac8d-d111843b8b3b" class="">Let’s look at a few tools that you should get a lot of use out of:</p><ul id="5a439f07-5e7d-49f0-bc16-1a349a05939d" class="bulleted-list"><li style="list-style-type:disc"><strong>Logistic Regression </strong>shouldn’t be overlooked! It’s not as new as some other models, but it’s simple and works.</li></ul><ul id="17d92db4-80d5-41b0-9809-017908bb6389" class="bulleted-list"><li style="list-style-type:disc"><strong>Random Forest</strong> is an ensemble model that makes many decision trees using bagging, then takes a simple vote across them to assign a class</li></ul><ul id="ee484868-d55d-4e5f-b304-06ede7b13f5e" class="bulleted-list"><li style="list-style-type:disc"><strong>XGBoost</strong> is another ensemble and arguably the most widely used (and useful) algorithm in tabular ML (it can do regression, classification, and julienne fries!)</li></ul><ul id="8d645932-fa7b-4190-a144-049c3f115f1c" class="bulleted-list"><li style="list-style-type:disc"><strong>Deep Learning</strong> uses artificial neural networks with multiple layers to learn complex patterns from data. These models have performed well in a variety of tasks: image recognition, speech recognition, and natural language processing.<p id="8fa29a9b-d277-49dc-913b-ceda06d957cd" class=""><em><em><em><em><em><em><em><em><em><em><em><em><em><em><em><em><em><em><em><em><em>Deep Learning models may also be used in unsupervised settings</em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></p></li></ul><h3 id="2213ebfd-5430-4c51-9d5a-661ec76470cb" class="">Logistic regression</h3><p id="aba242c9-2699-4c6b-bde1-ab0df5807f10" class="">Logistic regression works similarly to linear regression but uses a sigmoid curve that squeezes our straight line into an S-curve.</p><figure id="e6cb2937-c0cf-4ee8-8b02-4d5de83dbd24" class="image"><a href="Putting%20a%20label%20on%20things%209a7cd21131f24330a84d27123932d201/Untitled%204.png"><img style="width:725px" src="Putting%20a%20label%20on%20things%209a7cd21131f24330a84d27123932d201/Untitled%204.png"/></a></figure><p id="708807ae-d685-4ec1-a56d-e8a85df9ff2e" class="">Additionally, it uses <strong><strong><strong><strong><strong><strong><strong><strong>log loss</strong></strong></strong></strong></strong></strong></strong></strong> in place of our usual mean-squared error cost function. This provides a convex curve for approximating variable weights using gradient descent.</p><figure id="4e008721-8d00-4644-925f-134afa308693" class="image"><a href="Putting%20a%20label%20on%20things%209a7cd21131f24330a84d27123932d201/Untitled%205.png"><img style="width:618px" src="Putting%20a%20label%20on%20things%209a7cd21131f24330a84d27123932d201/Untitled%205.png"/></a></figure><ul id="c6380f18-687f-460a-a427-9a60a7837f35" class="bulleted-list"><li style="list-style-type:disc"><a href="https://christophm.github.io/interpretable-ml-book/logistic.html">Logistic regression</a> (interpretable ml)</li></ul><ul id="76244436-9d45-4c0e-9770-3b657becfa9e" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.kaggle.com/general/192255">Logistic Regression using Gradient descent</a> (kaggle)</li></ul><h3 id="61272d30-2776-4b24-815d-139d0913cf32" class="">Random forest</h3><p id="8f59340c-f24a-4e76-853f-f84bc7241373" class="">Each of the steps can be tweaked, but the general flow goes:</p><ol type="1" id="1ce280f6-9cbe-40ba-be02-5ca98d483770" class="numbered-list" start="1"><li><strong>Bagging </strong>- create <em>k</em> random samples from the data set</li></ol><ol type="1" id="b034631b-1fae-4fcc-b02c-912309177344" class="numbered-list" start="2"><li><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>Grow trees</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong> - individual decision trees are constructed by choosing the best features and cutpoints to separate the classes</li></ol><ol type="1" id="e1d4119d-2702-4e11-a739-546824a482b5" class="numbered-list" start="3"><li><strong><strong><strong><strong><strong><strong><strong><strong>Classify</strong></strong></strong></strong></strong></strong></strong></strong> - instances are run through all trees and assigned a class by majority vote</li></ol><figure id="2f823924-202d-45f0-904e-598182c1e4c1" class="image"><a href="Putting%20a%20label%20on%20things%209a7cd21131f24330a84d27123932d201/Untitled%206.png"><img style="width:1400px" src="Putting%20a%20label%20on%20things%209a7cd21131f24330a84d27123932d201/Untitled%206.png"/></a></figure><h3 id="0fb457ee-8baf-4e42-b20e-d64160725dfc" class="">XGBoost</h3><p id="49716f90-a8d4-411f-82c1-d2b33a96c498" class="">XGBoost stands for <strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>Extreme Gradient Boosting</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong>. Like other tree algorithms, XGBoost considers each instance with a series of <code>if</code> statements, resulting in a leaf with associated class assignment scores. Where XGBoost differs is that it uses gradient boosting to focus on weak-performing areas of the previous tree.</p><ul id="2112d929-2704-44a0-9174-b4cdb249c1b6" class="bulleted-list"><li style="list-style-type:disc"><strong>Boosting </strong>- sequentially choosing models by minimizing errors from previous models while increasing the influence of high-performing models; i.e., each model tries to improve where the last was wrong</li></ul><ul id="31842ebe-1894-4d28-a504-b502d39a7d36" class="bulleted-list"><li style="list-style-type:disc"><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>Gradient boosting</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong> - a stagewise additive algorithm sequentially adding trees to improve performance measured by a <strong>loss function</strong> until some threshold is met. It’s a greedy algorithm prone to overfitting but often proves useful when focused on poor-performing areas.</li></ul><figure id="e1289263-4b49-4e4d-b793-52f894485372" class="image"><a href="Putting%20a%20label%20on%20things%209a7cd21131f24330a84d27123932d201/Untitled%207.png"><img style="width:788px" src="Putting%20a%20label%20on%20things%209a7cd21131f24330a84d27123932d201/Untitled%207.png"/></a></figure><p id="ae70494c-76c0-4e7e-8ca1-79db8707057b" class="">
+</p><ul id="3e86fcc6-85c2-4c5c-beed-b3db3e0ff2dd" class="bulleted-list"><li style="list-style-type:disc"><a href="https://medium.com/geekculture/xgboost-versus-random-forest-898e42870f30">XGBoost vs Random Forest</a> (geek culture)</li></ul><ul id="38a675e3-01b1-4ebb-b525-3e9364187211" class="bulleted-list"><li style="list-style-type:disc"><a href="https://towardsdatascience.com/interpretable-machine-learning-with-xgboost-9ec80d148d27">Interpretable machine learning with XGBoost</a> (towardsdatascience)</li></ul><h2 id="ec4a918d-b19a-48c2-8caf-915daa618c53" class="">Deep learning</h2><p id="1794e78b-eee8-46e2-bbd3-fdc11369339f" class=""><strong>Deep learning</strong> is a subfield of machine learning that uses artificial neural networks with multiple layers to learn complex patterns from data. These models use back-propagation to adjust the weights in each layer during training, allowing them to model very large and complex datasets.</p><p id="50fda539-c7cf-46ab-8069-c39ad6fd15f8" class="">Deep learning models are especially useful for handling large datasets with high dimensionality, and they can be used for both supervised and unsupervised learning tasks. However, they often require a large amount of data and computation power to train effectively. </p><p id="c6972874-85b5-47fa-a83c-d1a10e23d89d" class="">These models have performed well in a variety of tasks such as image recognition, speech recognition, and natural language processing.</p><ul id="4b736ea2-5ac6-45e7-b894-6f6359bfad20" class="bulleted-list"><li style="list-style-type:disc"><strong>Artificial neural networks</strong> - a computational model inspired by biological neural networks that learn by adjusting the weights between neurons through training data</li></ul><ul id="162a7a1e-7fea-4605-b9f3-71350bc1aea7" class="bulleted-list"><li style="list-style-type:disc"><strong>Deep neural networks</strong> - an artificial neural network with more than one hidden layer; these additional layers enable the model to learn more complex patterns from the input data</li></ul><ul id="ff98e3d9-842a-40ff-90e9-f35672775721" class="bulleted-list"><li style="list-style-type:disc"><strong>Convolutional neural networks</strong> - a type of deep neural network designed for image and video recognition tasks that use convolutional layers to detect features in the input data</li></ul><ul id="5dea4059-4611-44b7-ae1e-323c80b6eea5" class="bulleted-list"><li style="list-style-type:disc"><strong>Recurrent neural networks</strong> - a type of deep neural network designed for sequence data that uses recurrent connections to remember previous inputs and outputs</li></ul><ul id="903e1f54-9f5e-423a-8fa3-6a24a557cf65" class="bulleted-list"><li style="list-style-type:disc"><strong>Popular frameworks</strong> - TensorFlow, PyTorch, and Keras are commonly used deep learning frameworks for building and training deep learning models. Each framework maintains a list of tutorials/examples for getting started (and plenty more on the web + youtube):<ul id="f26ad8a1-2841-43d7-8493-1f7b1bf4e776" class="bulleted-list"><li style="list-style-type:circle"><strong>Keras</strong><ul id="fbb99b75-3b8e-4082-93f1-38652b2be991" class="bulleted-list"><li style="list-style-type:square"><a href="https://keras.io/getting_started/">https://keras.io/getting_started/</a> </li></ul><ul id="72bda245-c339-4523-8673-0c34e9d46c35" class="bulleted-list"><li style="list-style-type:square"><em>Deep Learning with Python </em>(free pdf)</li></ul></li></ul><ul id="5e8483bd-3854-45cb-8999-b05b0eebba29" class="bulleted-list"><li style="list-style-type:circle"><strong>Pytorch</strong><ul id="8502e2e2-b823-48a5-84e7-dbbadfa62a23" class="bulleted-list"><li style="list-style-type:square"><a href="https://pytorch.org/tutorials/">https://pytorch.org/tutorials/</a></li></ul><ul id="c60916f1-1de8-4c7d-b3e5-8a3e59f2ebe9" class="bulleted-list"><li style="list-style-type:square"><a href="https://github.com/ritchieng/the-incredible-pytorch">https://github.com/ritchieng/the-incredible-pytorch</a></li></ul></li></ul><ul id="576e676c-d4e4-42bb-8357-3fd270587cb8" class="bulleted-list"><li style="list-style-type:circle"><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>Tensorflow</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong><ul id="28438923-a79f-4287-957a-42a73ce9cf13" class="bulleted-list"><li style="list-style-type:square"><a href="https://www.tensorflow.org/tutorials/quickstart/beginner">https://www.tensorflow.org/tutorials/quickstart/beginner</a></li></ul><ul id="41501605-7d77-4bd1-a17a-52fc9d95f779" class="bulleted-list"><li style="list-style-type:square">Tensorflow <a href="https://github.com/tensorflow/examples">https://github.com/tensorflow/examples</a></li></ul></li></ul><ul id="21d36f3f-4487-41f1-a33d-dcec5bb8d62d" class="bulleted-list"><li style="list-style-type:circle"><strong><strong><strong>JAX</strong></strong></strong><ul id="9d93c3e9-79c2-45fc-851f-4d4bb8057f9e" class="bulleted-list"><li style="list-style-type:square"><a href="https://jax.readthedocs.io/en/latest/notebooks/quickstart.html">https://jax.readthedocs.io/en/latest/notebooks/quickstart.html</a></li></ul><ul id="8158b5a9-502e-4b0b-8a2b-39024a1dbe53" class="bulleted-list"><li style="list-style-type:square"><a href="https://github.com/gordicaleksa/get-started-with-JAX">https://github.com/gordicaleksa/get-started-with-JAX</a></li></ul></li></ul></li></ul><h2 id="d439f7af-bc0e-44e3-b851-43bf33a8f5de" class="">Unsupervised models</h2><p id="bb9d819d-851b-4901-8e94-b80ee060e2a5" class="">Unsupervised models come in a few flavors: </p><ul id="862d4fc5-7b98-4aea-a5da-d9e71fe89caf" class="bulleted-list"><li style="list-style-type:disc"><strong>Clustering</strong>: grouping points based on similarities/differences; e.g., proximity and separability of data, market segmentation, image compression<ul id="23aadc2b-1d1d-43b5-8163-9ae396f485d7" class="bulleted-list"><li style="list-style-type:circle">K-means (and Fuzzy K-means)</li></ul><ul id="2ee68c63-b923-4c95-bb7e-b85b9dd7dbaf" class="bulleted-list"><li style="list-style-type:circle">Hierarchical clustering (e.g., BIRCH)</li></ul><ul id="3ba1aa8e-30e8-4d2f-87c3-052e05639556" class="bulleted-list"><li style="list-style-type:circle">Gaussian mixture</li></ul><ul id="9f79a643-525e-48fe-be7c-df625f8600fd" class="bulleted-list"><li style="list-style-type:circle">Affinity Propagation</li></ul><ul id="528af020-52a3-4e28-95b0-f065a61fe0bd" class="bulleted-list"><li style="list-style-type:circle">Anomaly detection<ul id="6f51927c-86bb-423e-8e19-015363cb5be5" class="bulleted-list"><li style="list-style-type:square">Isolation Forest</li></ul><ul id="afb59d2a-69c1-4b66-be3f-e01f054eea98" class="bulleted-list"><li style="list-style-type:square">Local Outlier Factor</li></ul><ul id="76c5d356-d29d-4941-8d05-5d26aeeeacca" class="bulleted-list"><li style="list-style-type:square">Min Covariant Determinant</li></ul></li></ul></li></ul><ul id="e3d621ac-1794-4d2e-bf48-9055c737ad40" class="bulleted-list"><li style="list-style-type:disc"><strong>Association</strong>: reveals relationships between variables; e.g., A goes up and B goes down, people who buy X also buy Y<ul id="55b67d78-7658-4303-b1be-ae6b7ee7e28f" class="bulleted-list"><li style="list-style-type:circle">Apriori</li></ul><ul id="b5baa467-afad-4f34-b573-d535d599bf51" class="bulleted-list"><li style="list-style-type:circle">Equivalence Class Transformation (eclat)</li></ul><ul id="4dfea45b-0530-4103-ba13-76fa8670e400" class="bulleted-list"><li style="list-style-type:circle">Frequent-Pattern (F-P) Growth</li></ul></li></ul><ul id="046bdd70-c8f3-4600-bfb9-1266769a9916" class="bulleted-list"><li style="list-style-type:disc"><strong>Dimensionality</strong> reduction: reduces the inputs to a smaller size while attempting to preserve predictive power; e.g., removing noise and collinearity<ul id="f2bcb82e-480c-4371-a82d-69d4875c4613" class="bulleted-list"><li style="list-style-type:circle">Principal Component Analysis</li></ul><ul id="5e2d292c-b901-412d-afff-69d23b8825fb" class="bulleted-list"><li style="list-style-type:circle">Manifold Learning — LLE, Isomap, t-SNE</li></ul><ul id="44167b68-44e5-4f5b-8f55-6555663fe55d" class="bulleted-list"><li style="list-style-type:circle">Autoencoders</li></ul></li></ul><p id="2d369779-8b5a-4d88-b2b5-393e30f5268b" class="">
+</p><p id="e0b0ec79-de79-4985-bfcc-07d9977e58f9" class="">Links to learn more:</p><ul id="81791283-b207-4a24-ab19-bddb9485a12b" class="bulleted-list"><li style="list-style-type:disc">Unsupervised Learning: Algorithms and Examples (<a href="https://www.altexsoft.com/blog/unsupervised-machine-learning/">altexsoft</a>)</li></ul><h2 id="2856552f-f0a1-4213-88cc-77dadec7077f" class="">Topics cut for time</h2><ul id="1dcc1225-22ec-49f8-aa24-5edf333ed2da" class="bulleted-list"><li style="list-style-type:disc">Bias and fairness: How models can produce biased results and unfairly disadvantage certain groups of people. This could include a discussion on how to detect and mitigate bias in classification models.</li></ul><ul id="0b059529-bf30-41ed-a3f7-822f715f60a0" class="bulleted-list"><li style="list-style-type:disc">Interpretability and explainability: How to interpret and explain the decisions made by classification models. This could include a discussion on the methods used to create interpretable models, such as decision trees and rule-based systems.</li></ul><ul id="9b920a96-6d48-4202-b90e-71d724576869" class="bulleted-list"><li style="list-style-type:disc">Handling imbalanced data: Techniques for dealing with datasets where one class is significantly more prevalent than others. This could include a discussion on methods such as oversampling, undersampling, and class weighting.</li></ul><ul id="0711aa38-6799-46b4-a096-eb4be21a5d40" class="bulleted-list"><li style="list-style-type:disc">Transfer learning: How to leverage pre-trained models for classification tasks where limited labeled data is available. This could include a discussion on fine-tuning pre-trained models and using transfer learning to improve classification performance.</li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">📉 How models fail</summary><div class="indented"><h2 id="b24801f1-3543-4991-b893-6bde9b258a68" class="">Labeling</h2><p id="090d91a8-651e-42a8-b384-22b46f2c35fd" class="">Oh, labeling…</p><p id="e1f1e790-fbb0-4555-85d7-ee77135032b3" class="">Labeling issues can arise when the data is not labeled correctly or consistently, which can lead to biased or inaccurate models. Examples of labeling issues include:</p><ul id="d3b687f1-f305-45c3-8612-cfc04eb9176d" class="bulleted-list"><li style="list-style-type:disc"><strong>Mislabeling</strong>: Labels that are assigned to data points are incorrect.</li></ul><ul id="10247d7b-9a14-477e-9e74-e7e1fdddba03" class="bulleted-list"><li style="list-style-type:disc"><strong>Ambiguous labeling</strong>: Labels that are assigned to data points are not clear or specific.</li></ul><ul id="597a6d9b-e201-4c4e-ad2d-92f7854e9a9b" class="bulleted-list"><li style="list-style-type:disc"><strong>Inconsistent labeling</strong>: Labels that are assigned to similar data points are not the same</li></ul><h2 id="03ab7564-32c0-47f2-8ec2-10f70d2d940e" class="">Fit</h2><p id="0712658c-9a38-4f30-b6b9-9a46ebf27b06" class="">A model may fail to fit the data in one of two ways: under-fitting or over-fitting:</p><ul id="22332a45-7f3d-45fb-8304-1509a7f2c552" class="bulleted-list"><li style="list-style-type:disc"><strong>Under-fitting</strong>: The model fails to capture the the differences between the classes. The model may be too simple, lack the necessary features, or the classes may not easily divide based on existing data.</li></ul><ul id="06081fe3-2be3-47ff-8118-3d16a3a6cb45" class="bulleted-list"><li style="list-style-type:disc"><strong>Over-fitting</strong>: The model fits the training data too closely, leading to poor generalization. This can be the case when the model is overly complex or the data may have “too many features”.<blockquote id="a71f7d42-3720-4e98-bc50-87a5b1c3aebc" class=""><strong>Note</strong>: <em>With enough variables you can build a perfect predictor for anything (at least in the training set). That doesn’t mean the model will perform well in the wild</em></blockquote></li></ul><h2 id="0b859a8e-ec42-4b45-a79a-804ba64f6823" class=""><strong>Dataset Shift</strong></h2><p id="b8e959c2-2572-4b33-854e-8ffbd893985f" class="">Dataset shift occurs when the distribution of the data changes between the training and test sets. Dataset shift can be divided into three types:</p><ol type="1" id="d0be6635-1cec-43bb-88fe-db7056beb131" class="numbered-list" start="1"><li><strong>Covariate Shift</strong>: A change in the distribution of the independent variables between the training and test sets.</li></ol><ol type="1" id="8bb9e7b9-f9b0-4651-af63-41c6e4465ef6" class="numbered-list" start="2"><li><strong>Prior Probability Shift</strong>: A change in the distribution of the target variable between the training and test sets.</li></ol><ol type="1" id="16f4ee64-fa2d-4d49-8088-910ad5a9d137" class="numbered-list" start="3"><li><strong>Concept Shift</strong>: A change in the relationship between the independent and target variables between the training and test sets.</li></ol><p id="589d4e34-4da0-45d7-a2c8-95f1e981bb35" class="">See: <a href="https://d2l.ai/chapter_linear-classification/environment-and-distribution-shift.html">https://d2l.ai/chapter_linear-classification/environment-and-distribution-shift.html</a></p><h2 id="44b8abac-0f96-4a5d-8250-0c0fe3336465" class="">Simpson’s Paradox</h2><p id="b5a256d8-40bd-428f-9edf-5f17cf33fb76" class=""><strong>Simpson&#x27;s paradox</strong> occurs when a trend appears in several different groups of data, but disappears or reverses when these groups are combined. It is a common problem in statistics and machine learning that can occur when there are confounding variables that affect the relationship between the independent and dependent variables.</p><figure id="534c7c86-d06e-4904-a32e-9d3e4a3f49f7" class="image"><a href="Putting%20a%20label%20on%20things%209a7cd21131f24330a84d27123932d201/Untitled%208.png"><img style="width:813px" src="Putting%20a%20label%20on%20things%209a7cd21131f24330a84d27123932d201/Untitled%208.png"/></a></figure><h2 id="533a543c-5bed-4dc4-98e1-87f9cc0f8414" class="">Troublesome classes</h2><p id="537b1754-97ac-4d9f-89eb-4e08fde27ec8" class="">Certain classes or categories in a dataset may be more difficult to classify accurately than others. This can be due to imbalanced class distribution, noisy data, or other factors. Identifying and addressing troublesome classes is an important step in building effective classification models.</p><p id="e1381b2f-aade-4865-a870-15c654dd348c" class="">Additional topics that could be added to this section include:</p><ul id="2ef81931-81c8-47d7-8d15-69e3785f17c7" class="bulleted-list"><li style="list-style-type:disc">Bias and fairness in classification models</li></ul><ul id="dcbf6332-c886-4bc5-9439-ec22a75e057a" class="bulleted-list"><li style="list-style-type:disc">Lack of interpretability in black-box models</li></ul><ul id="c17427cd-24d3-47ab-abe7-ba16bdd0c490" class="bulleted-list"><li style="list-style-type:disc">Adversarial attacks and robustness of classification models</li></ul><ul id="054dbeee-7e98-4dbe-8dfa-db65ef5db994" class="bulleted-list"><li style="list-style-type:disc">Transfer learning and domain adaptation in classification models</li></ul><ul id="820cc4e9-c3fe-4050-9c0f-795e90be3520" class="bulleted-list"><li style="list-style-type:disc">Active learning and semi-supervised learning for classification.</li></ul><figure id="b5e6ccf1-b855-4afe-8432-3fb3735e0b60" class="image"><a href="Putting%20a%20label%20on%20things%209a7cd21131f24330a84d27123932d201/Untitled%209.png"><img style="width:679px" src="Putting%20a%20label%20on%20things%209a7cd21131f24330a84d27123932d201/Untitled%209.png"/></a></figure></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">🎛️ Model tuning (teaser)</summary><div class="indented"><p id="e809641e-4eb5-4279-bb9b-9da9bf20f18e" class="">Fixing poor-performing models can take many forms</p><ul id="43d3f44f-aeb4-4c7a-979e-306b1f701cb5" class="bulleted-list"><li style="list-style-type:disc">Additional data or data preparation<ul id="6b8d5357-c4d3-4a4d-afda-68a5f2125f38" class="bulleted-list"><li style="list-style-type:circle"><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>FEATURE ENGINEERING!</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong> (worth a whole lecture or even a course)</li></ul></li></ul><ul id="75b93fcd-4243-4a79-8e64-c6f88b7fd92e" class="bulleted-list"><li style="list-style-type:disc">Change algorithm or parameters</li></ul><ul id="4a7934ee-5566-4d47-bd31-5bd2c447a856" class="bulleted-list"><li style="list-style-type:disc">Train specialized model for poor-classes</li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">🙌 Hands-on</summary><div class="indented"><figure id="87f55442-67c7-4be6-bad8-b9e46b55e3fe"><div class="source">https://github.com/christopherseaman/datasci-seminar</div></figure><p id="b076a288-5228-444c-8f40-41dbbd884179" class="">Classifying a clean version of EMNIST</p><h2 id="2d24e98b-60a5-49ee-8028-17c8e46d7455" class="">Setup</h2><h3 id="f7df16a8-0c98-42b3-bc5e-4bd184941505" class="">Install/import libraries</h3><p id="a93f2f9c-5280-4571-9d50-2ba442b4f296" class="">As usual, remember to use a virtual environment!</p><h3 id="f768e314-46b1-450e-a2c3-542a5098f684" class="">Download data</h3><p id="d992be93-8291-49d3-b754-03924274382b" class="">You can download the EMNIST dataset from the official website. Make sure to provide clear instructions on how to download and extract the data.</p><h3 id="9e2606cf-fcf7-48d2-ba4c-701001af64b3" class="">Define helper functions</h3><p id="a55d7798-b7b9-4a51-be42-c0c8a8183c25" class="">It&#x27;s a good idea to preprocess the data to make it easier to work with. You can create subsets of the data for training, validation, and testing. Also, since the labels in the original dataset are encoded as integers, it may be helpful to create a dictionary that maps the integer labels to their corresponding characters.</p><h2 id="97d02beb-6ac7-4ff3-8867-f1c73c514211" class="">Example: Classify 0 vs 1</h2><h3 id="bfc606c6-bb2c-4b3b-8515-9a076a45e879" class="">Pre-built models classifying 0/1</h3><ul id="3dfc5c5e-a2f9-4902-b448-cb33983e6d4f" class="bulleted-list"><li style="list-style-type:disc">Logistic regression</li></ul><ul id="9353aed0-0597-4531-9b54-289a28033c86" class="bulleted-list"><li style="list-style-type:disc">RandomForest</li></ul><ul id="d7201fda-a45e-4e67-8731-1f4cbb2b4786" class="bulleted-list"><li style="list-style-type:disc">XGBoost</li></ul><ul id="0b391893-5f7c-46e2-99a0-145f2ca79dc6" class="bulleted-list"><li style="list-style-type:disc">Neural network</li></ul><h3 id="af0c14e7-a7cd-4094-a2ee-b21ab796b463" class="">Evaluate/compare model performance</h3><ul id="c17e3409-9dda-416a-9152-7f230760f77d" class="bulleted-list"><li style="list-style-type:disc">Confusion matrix: A table that shows the number of true positives, true negatives, false positives, and false negatives for a binary classification problem.</li></ul><ul id="198585e1-2401-4d52-9337-04bc11e6905a" class="bulleted-list"><li style="list-style-type:disc">Accuracy: The proportion of correct predictions over the total number of predictions.</li></ul><ul id="c58bd914-b2fb-470f-83b7-595248685097" class="bulleted-list"><li style="list-style-type:disc">Precision: The proportion of true positives over the total number of positive predictions.</li></ul><ul id="c3c668ad-0f4b-4aa5-a86a-598a4226595f" class="bulleted-list"><li style="list-style-type:disc">Recall: The proportion of true positives over the total number of actual positives.</li></ul><ul id="d1428478-8429-4976-80da-bec30627c34b" class="bulleted-list"><li style="list-style-type:disc">F1 score: The harmonic mean of precision and recall, which balances both metrics and gives equal weight to both.</li></ul><h2 id="b38f9eea-6024-441d-88c7-d013d0a8adef" class="">Self-guided: Classify digits</h2><p id="73998efd-def7-4460-91b2-1038f010b56e" class="">DIY baseline model (your choice - logistic regression? decision tree? CNN?) as a starting point. Try out different options, hyperparameters, and feature representations to improve the performance of their classifier. Any opportunity for <code>feature engineering</code>?</p><h2 id="b9a63f25-6b40-4e3e-8284-8eff059a6d75" class="">Self-guided: Classify all symbols</h2><h3 id="8b7039ee-9eba-4fe4-bc45-8b1815b69ae1" class="">Evaluate the model</h3><p id="31c78a3d-e610-4e92-bb26-16030f33143b" class="">Evaluate the models on the test set, analyze the confusion matrix to see where the model performs well and where it struggles.</p><h3 id="838aa17c-aad5-4fac-868e-85442b970dd5" class="">Investigate subsets</h3><p id="8b5cce0a-0c84-47e7-9521-2b5d15b64c94" class="">On which classes does the model perform well? Poorly? Evaluate again, excluding easily confused symbols (such as &#x27;O&#x27; and &#x27;0&#x27;).</p><h3 id="32c4d52d-af7b-41a2-808f-095d0b6c46c7" class="">Improve performance</h3><p id="1963530c-5ac4-4e91-8ad8-1e6a0866862e" class="">Brainstorm for improving the performance. This could include trying different architectures, adding more layers, changing the loss function, or using data augmentation techniques.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">🚶‍♀️Self-guided topics</summary><div class="indented"><ul id="7c8abd7f-3a02-469d-b3fe-94da8cb3351f" class="bulleted-list"><li style="list-style-type:disc">Lots of awesome applications: <a href="https://github.com/ritchieng/the-incredible-pytorch">https://github.com/ritchieng/the-incredible-pytorch</a></li></ul><h2 id="63d3615f-54c8-46cd-9854-e180e2683b88" class="">Extended MNIST</h2><p id="6bbb46d6-af46-4ace-ab66-17aa40b5b8fa" class="">We’ll start a bit smaller, with classifying hand-written symbols as numbers and letters. This is the “Hello, World!” of image ML.</p><ul id="c498c788-45d8-414d-850d-84e5ae85c312" class="bulleted-list"><li style="list-style-type:disc">K-means - <a href="https://github.com/sharmaroshan/MNIST-Using-K-means">https://github.com/sharmaroshan/MNIST-Using-K-means</a></li></ul><ul id="c5d0aea8-7cbd-4eca-9bf1-ee93460f2f74" class="bulleted-list"><li style="list-style-type:disc">MNIST, the Hello World of Deep Learning (<a href="https://medium.com/fenwicks/tutorial-1-mnist-the-hello-world-of-deep-learning-abd252c47709">medium</a>)</li></ul><h2 id="97a1b3bf-7e51-43bc-b1ba-b3ce319d06e6" class="">Fashion MNIST</h2><ul id="548a4ce1-0bd4-425c-929e-d4a289a499f5" class="bulleted-list"><li style="list-style-type:disc"><code>torchvision</code> <a href="https://pytorch.org/vision/stable/datasets.html">provides this dataset</a> and is a great tool for image classification</li></ul><ul id="b74742d9-86f4-4afd-b81a-93ec3409082f" class="bulleted-list"><li style="list-style-type:disc"><a href="https://colab.research.google.com/github/tensorflow/docs/blob/master/site/en/tutorials/keras/classification.ipynb">Fashion MNIST</a> example using Colab</li></ul><ul id="a2fbf89e-4d5a-4576-a506-f652e22a9925" class="bulleted-list"><li style="list-style-type:disc">TensorFlow - <a href="https://jobcollinsdulo.medium.com/part-one-image-classification-with-tensorflow-python-f92f94121ec1">https://jobcollinsdulo.medium.com/part-one-image-classification-with-tensorflow-python-f92f94121ec1</a></li></ul><ul id="5c36d512-3c22-43cc-a44b-d7ac5e668713" class="bulleted-list"><li style="list-style-type:disc">PyTorch - <a href="https://medium.com/ml2vec/intro-to-pytorch-with-image-classification-on-a-fashion-clothes-dataset-e589682df0c5">https://medium.com/ml2vec/intro-to-pytorch-with-image-classification-on-a-fashion-clothes-dataset-e589682df0c5</a></li></ul><h2 id="67018b5c-b01f-4b32-abfc-74bc8d476174" class="">Tabular data </h2><ul id="cec695cd-9e70-4ce4-b601-18626fed6a27" class="bulleted-list"><li style="list-style-type:disc"><a href="https://github.com/ThisIsJohnnyLau/dirty_data_project">https://github.com/ThisIsJohnnyLau/dirty_data_project</a> (6 datasets for cleaning)</li></ul><ul id="24bc473d-7a3a-4306-8fec-6d94f2a278ef" class="bulleted-list"><li style="list-style-type:disc">Using Unsupervised Learning to optimise Children’s T-shirt Sizing (<a href="https://towardsdatascience.com/using-unsupervised-learning-to-optimise-childrens-t-shirt-sizing-d919d3cbc1f6">towardsdatascience</a>)</li></ul><h2 id="363d7082-6dc4-4ea2-b331-e818ca6cdd11" class="">Panoramic dental x-rays</h2><p id="931a0489-d24c-4a30-a012-0c12bbdfa8d3" class="">Example flow:</p><ul id="02f00a89-7365-4ea4-ab06-cff766bceddd" class="bulleted-list"><li style="list-style-type:disc"><a href="https://github.com/clemkoa/tooth-detection">https://github.com/clemkoa/tooth-detection</a></li></ul><ul id="9dd54f46-d661-4c65-9b33-2abc3b483d23" class="bulleted-list"><li style="list-style-type:disc"><a href="https://github.com/Nirzu97/PROJECT-Dental-Disease-Detection">https://github.com/Nirzu97/PROJECT-Dental-Disease-Detection</a></li></ul><ul id="9ffa10f7-d5ec-40f8-9bbb-70bcdc65dd3b" class="bulleted-list"><li style="list-style-type:disc">X-ray imaging available at the <a href="http://tdd.ece.tufts.edu">Tufts Dental Database</a></li></ul><h2 id="bbf5e9cb-2d29-492e-b5bd-81056992fd32" class="">Data cleaning for images</h2><ul id="0728ef19-89a1-43e2-983d-9dbad9971cda" class="bulleted-list"><li style="list-style-type:disc">Introduction to Image Pre-processing | What is Image Pre-processing? (<a href="https://www.mygreatlearning.com/blog/introduction-to-image-pre-processing/">Great Learning</a>)</li></ul><ul id="110ead3b-7c76-42a4-acdd-31e8c7469607" class="bulleted-list"><li style="list-style-type:disc"><a href="https://github.com/Nirzu97/PROJECT-Dental-Disease-Detection">https://github.com/Nirzu97/PROJECT-Dental-Disease-Detection</a> (see pptx for a good slide on this)</li></ul><h2 id="d5e5d649-b934-490c-bb0d-d777718b2e9a" class="">Publications on X-ray classification</h2><ul id="678d0f79-6160-4565-8f27-d6d270b56ad6" class="bulleted-list"><li style="list-style-type:disc">Supervised and unsupervised language modelling in Chest X-Ray (<a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0229963">PLOS ONE</a>)</li></ul><ul id="140eebfb-625a-47b1-928e-b8d273b53dd5" class="bulleted-list"><li style="list-style-type:disc">Unsupervised Clustering of COVID-19 Chest X-Ray Images with a Self-Organizing Feature Map (<a href="https://ieeexplore.ieee.org/document/9184493">IEEE Xplore</a>)</li></ul><ul id="79890320-71ec-417d-8c41-288222cfeeb4" class="bulleted-list"><li style="list-style-type:disc">A benchmark for comparison of dental radiography analysis algorithms (<a href="https://www.sciencedirect.com/science/article/pii/S1361841516000190">ScienceDirect</a>)</li></ul></div></details></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
