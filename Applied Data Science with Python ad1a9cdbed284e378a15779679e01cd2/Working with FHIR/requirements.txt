@@ -1,0 +1,8 @@
+annotated-types==0.6.0
+dnspython==2.5.0
+email-validator==2.1.0.post1
+fhir.resources==7.1.0
+idna==3.6
+pydantic==2.6.0
+pydantic_core==2.16.1
+typing_extensions==4.9.0
