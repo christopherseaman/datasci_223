@@ -2,3 +2,5 @@
 .venv/
 data/
 .vscode/
+animals/
+models/
