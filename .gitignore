@@ -1,2 +1,7 @@
 .DS_Store
 .venv/
+data/
+.vscode/
+animals/
+models/
+checkpoints/
