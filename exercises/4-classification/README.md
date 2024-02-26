@@ -31,7 +31,7 @@ https://github.com/kiar24/datasci_223/blob/main/exercises/4-classification/exerc
 11. This was rerun on entire 68795 rows with updated parameters to reevaluate. Accuracy was 0.961 so it improved. This took over an hour to run.
 
 ### Task 3
-This is here: run code up until Problem 1 Part 1: Subset, Cleaning, and Choosing a Model title (this is Task 2). Start running the code when the Task 3 header shows up. You can run Task 2 again if you want, but it just takes time because of the rows.
+This is here: run code up until Task 2 starts. Skip Task 2 blocks of code and start running the code when the Task 3 header shows up. You can run Task 2 again if you want, but it just takes time because of the rows of data.
 
 https://github.com/kiar24/datasci_223/blob/main/exercises/4-classification/exercise4_5assignmentTask3.ipynb
 
@@ -41,4 +41,4 @@ https://github.com/kiar24/datasci_223/blob/main/exercises/4-classification/exerc
 
 3. Grid search used again. Best parameter chosen score was 0.82. Evaluated on validation set to 0.81. Binary confusion matrix shown.
 
-4. This was then repeated to predict each character the same as as Task 2. Accuracy 0.794 was best score when fitting, and 0.78 on validation set evaluation.
+4. This was then repeated to predict each character the same as in Task 2. Accuracy 0.794 was best score when fitting, and 0.78 on validation set evaluation.
