@@ -1,6 +1,6 @@
 ## For Exercise 4 - Krish Rai and Taimoor Qureshi
 
-### Task 2
+### Task 2 (May be Labeled as Problem 1 Part 1 in file)
 
 Sorry if it's a bit messy! Was jumping between two files because the fitting took long to run so some labels or lines may be unclear.
 
