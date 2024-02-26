@@ -8,15 +8,25 @@ This is here: run from top and stop where the title says Task 3. That is a diffe
 https://github.com/kiar24/datasci_223/blob/main/exercises/4-classification/exercise4_5Task2.ipynb
 
 1.Run everything from top and make sure all packages (including classification) are installed or loaded. Uncomment if a package is hidden
+
 2.This was done in Google Colab, so this may need to be done everytime it disconnects. Otherwise, download and open directly on computer.
+
 3. Load provided code. 
+
 4. For Task2, model training was difficult because even the subset data (68795 rows of a-g lowercase data) took forever to run through grid search.
+
 5. In order to speed it up it was run on 6,000 and 20,000 rows. The code is set to 20,000 currently. If you want to reduce rows, change a2gagain = a2g.iloc[:20000,:] to another number instead of 20,000. The smaller it is the faster it will run, but it will be less data.
+
 6. Went with random forest because it tends to do well and the parameters are easy to adjust. Logistic regression works better with binary and boost and other methods were not used as forest did well.
+
 7.Random_state was set when splitting data. Change this if you want to play around.' Grid search was used.
+
 8. Accuracy for this model was 0.949. 
+
 9. On test it did very well, virtually all correct (0.99). This may also be due to the random_state split. But the testing did well per confusion matrix and accuracy.
+
 10. Since there were few errors, there was not much to improve. Also, since it is subset there were no clear letters that were that similar (maybe b and d but this did not get misclassified).
+
 11. This was rerun on entire 68795 rows with updated parameters to reevaluate. Accuracy was 0.961 so it improved. This took over an hour to run.
 
 ### Task 3
