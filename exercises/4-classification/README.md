@@ -5,6 +5,7 @@
 Sorry if it's a bit messy! Was jumping between two files because the fitting took long to run so some labels or lines may be unclear.
 
 This is here: run from top and stop where the title says Task 3. That is a different file.
+
 https://github.com/kiar24/datasci_223/blob/main/exercises/4-classification/exercise4_5Task2.ipynb
 
 1.Run everything from top and make sure all packages (including classification) are installed or loaded. Uncomment if a package is hidden
@@ -31,8 +32,13 @@ https://github.com/kiar24/datasci_223/blob/main/exercises/4-classification/exerc
 
 ### Task 3
 This is here: run code up until Problem 1 Part 1: Subset, Cleaning, and Choosing a Model title (this is Task 2). Start running the code when the Task 3 header shows up. You can run Task 2 again if you want, but it just takes time because of the rows.
+
 https://github.com/kiar24/datasci_223/blob/main/exercises/4-classification/exercise4_5assignmentTask3.ipynb
-1.1. Tried using logistic regression because of binary classification, but it failed to converge. When I tried scaling, there were many errors.
-2. 2. So Random forest was chosen as described in Task 2. This was done two ways, binary (upper vs lower case prediction) and character prediction (similar to Task 2).
+
+1. Tried using logistic regression because of binary classification, but it failed to converge. When I tried scaling, there were many errors.
+
+2. So Random forest was chosen as described in Task 2. This was done two ways, binary (upper vs lower case prediction) and character prediction (similar to Task 2).
+
 3. Grid search used again. Best parameter chosen score was 0.82. Evaluated on validation set to 0.81. Binary confusion matrix shown.
+
 4. This was then repeated to predict each character the same as as Task 2. Accuracy 0.794 was best score when fitting, and 0.78 on validation set evaluation.
