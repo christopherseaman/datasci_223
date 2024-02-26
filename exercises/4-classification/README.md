@@ -1,6 +1,6 @@
-##For Exercise 4 - Krish Rai and Taimoor Qureshi
+## For Exercise 4 - Krish Rai and Taimoor Qureshi
 
-###Task 2
+### Task 2
 
 Sorry if it's a bit messy! Was jumping between two files because the fitting took long to run so some labels or lines may be unclear.
 
@@ -19,7 +19,7 @@ https://github.com/kiar24/datasci_223/blob/main/exercises/4-classification/exerc
 10. Since there were few errors, there was not much to improve. Also, since it is subset there were no clear letters that were that similar (maybe b and d but this did not get misclassified).
 11. This was rerun on entire 68795 rows with updated parameters to reevaluate. Accuracy was 0.961 so it improved. This took over an hour to run.
 
-###Task 3
+### Task 3
 This is here: run code up until Problem 1 Part 1: Subset, Cleaning, and Choosing a Model title (this is Task 2). Start running the code when the Task 3 header shows up. You can run Task 2 again if you want, but it just takes time because of the rows.
 https://github.com/kiar24/datasci_223/blob/main/exercises/4-classification/exercise4_5assignmentTask3.ipynb
 1.1. Tried using logistic regression because of binary classification, but it failed to converge. When I tried scaling, there were many errors.
