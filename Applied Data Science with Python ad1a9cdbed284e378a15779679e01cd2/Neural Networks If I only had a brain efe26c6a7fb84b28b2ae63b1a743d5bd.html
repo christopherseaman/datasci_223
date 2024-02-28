@@ -1,0 +1,750 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Neural Networks: If I only had a brain</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="efe26c6a-7fb8-4b28-b2ae-63b1a743d5bd" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">🌾</span></div><h1 class="page-title">Neural Networks: If I only had a brain</h1><p class="page-description"></p></header><div class="page-body"><h1 id="29b40d91-153d-4b66-a85d-a60a0228e124" class="">Before we begin</h1><ol type="1" id="d75ce9f4-95b0-4f58-a497-9ee87a487196" class="numbered-list" start="1"><li>No more homework! <a href="Project%200a46c078fb2748f8acfea388b216fddd.html">Project</a> <blockquote id="e36ac6d4-68cf-4605-baa5-02d363d893a3" class="">Fun example: 20 Questions bot <a href="https://github.com/earthtojake/20q">https://github.com/earthtojake/20q</a></blockquote></li></ol><ol type="1" id="b3b89fbe-a4b2-4e7b-9528-96a838ab23c8" class="numbered-list" start="2"><li>Tips for using the shell (terminal, command line)<figure id="01a8ae60-6db2-4bc6-9937-7bf79b7ea6d4"><div class="source"><a href="Neural%20Networks%20If%20I%20only%20had%20a%20brain%20efe26c6a7fb84b28b2ae63b1a743d5bd/ShellIntro.pdf">ShellIntro.pdf</a></div></figure></li></ol><p id="2e653372-c2eb-4f2b-95a8-19fcd8475784" class="">
+</p><h1 id="110e2c51-e023-4267-877a-cd7512e96d7f" class=""><strong>Neural networks overview</strong></h1><figure id="d608b303-91ec-4889-8cd8-12570610658d" class="image"><a href="Neural%20Networks%20If%20I%20only%20had%20a%20brain%20efe26c6a7fb84b28b2ae63b1a743d5bd/70wnk5kfr5hc1.jpeg"><img style="width:931px" src="Neural%20Networks%20If%20I%20only%20had%20a%20brain%20efe26c6a7fb84b28b2ae63b1a743d5bd/70wnk5kfr5hc1.jpeg"/></a></figure><h2 id="5a1ec565-784b-4c2f-9ad5-e26a5d831234" class="">Biological inspiration</h2><figure id="7962c37b-3b57-4ea3-867e-9d970fd4f53f" class="image"><a href="Neural%20Networks%20If%20I%20only%20had%20a%20brain%20efe26c6a7fb84b28b2ae63b1a743d5bd/Untitled.png"><img style="width:422px" src="Neural%20Networks%20If%20I%20only%20had%20a%20brain%20efe26c6a7fb84b28b2ae63b1a743d5bd/Untitled.png"/></a></figure><p id="d267a94c-203f-42b2-95e7-4d6c0e49ce57" class="">A <strong>neuron</strong> has:</p><ul id="07986c25-bf53-46b5-bed0-0ba186f94468" class="bulleted-list"><li style="list-style-type:disc">Branching input (dendrites)</li></ul><ul id="1043e414-4574-4687-8cf5-aec1e3d2dd1f" class="bulleted-list"><li style="list-style-type:disc">Branching output (the axon)</li></ul><p id="e90c82ef-79f8-483d-a952-5627b5fe7af1" class="">The information circulates from the dendrites to the axon via the cell body</p><p id="2f172874-b8fd-44ec-9cd9-da22d2fe55a4" class="">Axon connects to dendrites via synapses</p><ul id="982c5a8e-ce9a-4d1f-9825-dc6d192b015d" class="bulleted-list"><li style="list-style-type:disc">Synapses vary in strength</li></ul><ul id="d65804eb-fb47-474a-a279-15e049be65d0" class="bulleted-list"><li style="list-style-type:disc">Synapses may be excitatory or inhibitory</li></ul><h3 id="bf88a5c6-97aa-4e63-a050-4d8ef0178b2d" class=""><em>Pigeons as art experts</em> (Watanabe <em>et al.</em> 1995)</h3><p id="e05e2a87-9952-4460-8cb3-be9f6f43e1ee" class="">Experiment:</p><ul id="e6cfcf30-3789-437f-9e62-c88bbe0c9746" class="bulleted-list"><li style="list-style-type:disc">Pigeon in Skinner box</li></ul><ul id="d428bea7-5e2b-47d9-be16-80dff568d430" class="bulleted-list"><li style="list-style-type:disc">Present paintings of two different artists (e.g. Chagall / Van Gogh)</li></ul><ul id="d2de343e-1309-4446-b72c-c7e6251c3cb3" class="bulleted-list"><li style="list-style-type:disc">Reward for pecking when presented a particular artist (e.g. Van Gogh)</li></ul><figure id="275321e9-f9a5-4971-8628-afc3133ea632" class="image"><a href="Neural%20Networks%20If%20I%20only%20had%20a%20brain%20efe26c6a7fb84b28b2ae63b1a743d5bd/Untitled%201.png"><img style="width:570px" src="Neural%20Networks%20If%20I%20only%20had%20a%20brain%20efe26c6a7fb84b28b2ae63b1a743d5bd/Untitled%201.png"/></a></figure><div id="147ea530-2892-4191-a0b0-166106884daf" class="column-list"><div id="e8916fe0-145a-4764-b7d2-3a6c6a6d5118" style="width:50%" class="column"><figure id="e2ff3b2e-fde5-4166-9f52-32d52324aceb" class="image"><a href="Neural%20Networks%20If%20I%20only%20had%20a%20brain%20efe26c6a7fb84b28b2ae63b1a743d5bd/Untitled%202.png"><img style="width:378px" src="Neural%20Networks%20If%20I%20only%20had%20a%20brain%20efe26c6a7fb84b28b2ae63b1a743d5bd/Untitled%202.png"/></a></figure></div><div id="fdc0df30-d4d2-4033-8b60-ed33a1a9fd24" style="width:50%" class="column"><figure id="a889bbf1-b3b1-462c-b526-ce60edf05f39" class="image"><a href="Neural%20Networks%20If%20I%20only%20had%20a%20brain%20efe26c6a7fb84b28b2ae63b1a743d5bd/Untitled%203.png"><img style="width:706px" src="Neural%20Networks%20If%20I%20only%20had%20a%20brain%20efe26c6a7fb84b28b2ae63b1a743d5bd/Untitled%203.png"/></a></figure></div></div><p id="94b72652-4610-4b05-8cef-cafbc6ab248f" class="">Pigeons were able to discriminate between Van Gogh and Chagall with 95% accuracy (when presented with pictures they had been trained on). Discrimination still 85% successful for previously unseen paintings of the artists</p><p id="18e49afa-6cec-4a50-8e09-c8b78f0fb207" class="">Pigeons do not simply memorise the pictures!</p><ul id="6526a1e5-d9ec-424c-86d0-222e24610270" class="bulleted-list"><li style="list-style-type:disc">They can extract and recognise patterns (the ‘style’)</li></ul><ul id="e7e81712-4fec-4091-9bae-8da4b6ca8d75" class="bulleted-list"><li style="list-style-type:disc">They generalise from the already seen to make predictions</li></ul><p id="d744df51-90c6-4e52-95d8-5ae886b75de1" class="">This is what neural networks (biological and artificial) are good at (unlike conventional computer)</p><h2 id="edd8d34c-6f0d-490b-8d22-d59e968ca35f" class="">Artificial neural networks</h2><p id="6de60fd6-ff5e-4186-8e06-1ce46a9edfcf" class="">Neural networks draw inspiration from the biological neural networks that constitute animal brains. Just as biological neurons transmit signals to each other via synapses, artificial neural networks (ANNs) consist of interconnected nodes or &quot;neurons&quot; that process and pass on information. This design allows ANNs to learn and make decisions, mimicking some level of natural intelligence.</p><p id="2ed759a4-e743-4830-8d97-650f578f512e" class=""><strong>Artificial neurons: </strong>Non-linear, parameterized function with restricted output range</p><div id="28cba1d3-ca7a-45f0-a29b-4a7ad5c69ad5" class="column-list"><div id="83dccb01-ca10-4e8a-8f33-3d979fe2d55e" style="width:50%" class="column"><figure id="1d20d612-2072-4d04-9969-c4bf5098cabb" class="image"><a href="Neural%20Networks%20If%20I%20only%20had%20a%20brain%20efe26c6a7fb84b28b2ae63b1a743d5bd/Screenshot_2024-02-26_at_1.02.39_PM.png"><img style="width:1390px" src="Neural%20Networks%20If%20I%20only%20had%20a%20brain%20efe26c6a7fb84b28b2ae63b1a743d5bd/Screenshot_2024-02-26_at_1.02.39_PM.png"/></a></figure></div><div id="61e65ef0-15ff-42ef-820e-f3057042ef92" style="width:50%" class="column"><figure id="04c64807-b2b5-4a91-b0bf-524c46e7d126" class="image"><a href="Neural%20Networks%20If%20I%20only%20had%20a%20brain%20efe26c6a7fb84b28b2ae63b1a743d5bd/ann.png"><img style="width:268px" src="Neural%20Networks%20If%20I%20only%20had%20a%20brain%20efe26c6a7fb84b28b2ae63b1a743d5bd/ann.png"/></a></figure></div></div><figure id="0c88dcbc-7089-4df9-b83a-155e726080e7" class="image"><a href="Neural%20Networks%20If%20I%20only%20had%20a%20brain%20efe26c6a7fb84b28b2ae63b1a743d5bd/nn_overview.png"><img style="width:1318px" src="Neural%20Networks%20If%20I%20only%20had%20a%20brain%20efe26c6a7fb84b28b2ae63b1a743d5bd/nn_overview.png"/></a></figure><h2 id="4e1c9835-d3ea-48eb-ba59-e3a16293edba" class="">Famous application: tank or not-a-tank</h2><p id="4edd1ae1-d6d3-46bf-b36b-87bf43faf052" class="">In the 1980s, the Pentagon wanted to harness computer technology to make their tanks harder to attack.</p><p id="bd3f3877-ddf4-4c18-bf07-ec76e53cee68" class="">The preliminary plan was to fit each tank with a digital camera hooked up to a computer. The computer would continually scan the environment outside for possible threats - such as an enemy tank hiding behind a tree - and alert the tank crew to anything suspicious.</p><p id="63fd77a7-aced-46a5-aa8a-df5604effbd7" class="">Computers are really good at doing repetitive tasks without taking a break, but they are generally bad at interpreting images. The only possible way to solve the problem was to employ a neural network.</p><p id="db9be15d-4034-46e5-b8ed-64e858de9a03" class="">The research team went out and took 100 photographs of tanks hiding behind trees, and then took 100 photographs of trees - with no tanks. They took 50 photos from each group and put them in a vault for safe-keeping. They scanned the remaining 100 photos into their mainframe computer.</p><div id="9d76adfc-76ce-440e-ab5c-e47ab62de2e5" class="column-list"><div id="119e4cc6-8f2d-4bba-9426-0f7b5894933c" style="width:50%" class="column"><figure id="61e1d7ec-49a8-4474-a98d-df485d411220" class="image"><a href="Neural%20Networks%20If%20I%20only%20had%20a%20brain%20efe26c6a7fb84b28b2ae63b1a743d5bd/Untitled%204.png"><img style="width:300px" src="Neural%20Networks%20If%20I%20only%20had%20a%20brain%20efe26c6a7fb84b28b2ae63b1a743d5bd/Untitled%204.png"/></a></figure></div><div id="101bffc4-2485-4804-8ee7-07cab401b658" style="width:50%" class="column"><figure id="df300678-2c24-4772-b8c2-0ce139d16877" class="image"><a href="Neural%20Networks%20If%20I%20only%20had%20a%20brain%20efe26c6a7fb84b28b2ae63b1a743d5bd/Untitled%205.png"><img style="width:318px" src="Neural%20Networks%20If%20I%20only%20had%20a%20brain%20efe26c6a7fb84b28b2ae63b1a743d5bd/Untitled%205.png"/></a></figure></div></div><h3 id="ef0d9de8-8fbc-4b4e-8b3e-e27557852719" class="">Success!</h3><p id="4a5f0da6-ff6d-4a08-b1a2-ec931c016194" class="">The huge neural network was fed each photo one at a time and asked if there was a tank hiding behind the trees. Of-course at the beginning its answers were completely random since the network didn&#x27;t know what was going on or what it was supposed to do. But each time it was fed a photo and it generated an answer, the scientists told it if it was right or wrong. If it was wrong it would randomly change the weightings in its network until it gave the correct answer.</p><p id="d422da88-101c-4923-aef4-38fe66c38c5d" class="">But the scientists were worried: <em>had it actually found a way to recognize if there was a tank in the photo, or had it merely memorized which photos had tanks and which did not?</em></p><p id="860dc10d-e9a7-4c0c-ab46-d6fea33a3bcf" class="">This is a big problem with neural networks, after they have trained themselves you have no idea how they arrive at their answers, they just do. The question was did it understand the concept of tanks vs. no tanks, or had it merely memorized the answers? So the scientists took out the photos they had been keeping in the vault and fed them through the computer. The computer had never seen these photos before - this would be the big test. <strong>To their immense relief the neural net correctly identified each photo as either having a tank or not having one.</strong></p><h3 id="c7bedd74-3490-43f2-afc6-611f5f10d011" class="">Testing with new data</h3><p id="3968cb3e-93f7-42cb-920e-82eb50ca831c" class="">The Pentagon was very pleased with this, but a little bit suspicious, they wanted to see this marvel of modern technology for themselves. They took another set of photos (half with tanks and half without) and scanned them into the computer and through the neural network.</p><p id="a8018af9-0cba-4b9d-b663-00b7f9c174c8" class=""><strong>The results were completely random</strong>. For a long time nobody could figure out why. After all nobody understood how the neural had trained itself.</p><p id="14c7251e-badd-44d7-9209-7e058df8dfc2" class=""><strong>The military was now the proud owner of a multi-million dollar mainframe computer that could tell you if it was sunny or not!</strong></p><h2 id="1fdb203c-98bc-4f1f-b9de-0f31d0920271" class="">Applications in Machine Learning</h2><p id="a9a81b0c-bb39-467c-92ed-81633cd6404f" class="">Neural networks have revolutionized the field of machine learning, providing the backbone for a myriad of applications:</p><ul id="c2df6329-12c9-4ccb-adbc-6fd1b3da9c36" class="bulleted-list"><li style="list-style-type:disc"><strong>Image Recognition:</strong> ANNs, particularly Convolutional Neural Networks (CNNs), have become instrumental in image analysis, powering applications from facial recognition systems to medical imaging diagnostics.</li></ul><ul id="cf271836-caee-4084-b7a5-059c485f4dae" class="bulleted-list"><li style="list-style-type:disc"><strong>Natural Language Processing (NLP):</strong> Through models like Recurrent Neural Networks (RNNs) and more recently, Transformers, neural networks have significantly advanced the ability of computers to understand and generate human language, enabling technologies such as language translation services, chatbots, and voice-activated assistants.</li></ul><ul id="99857cea-29f0-4022-919c-1e20996c7470" class="bulleted-list"><li style="list-style-type:disc"><strong>Autonomous Driving:</strong> Neural networks are at the heart of autonomous vehicle systems, enabling them to interpret sensor data, make decisions, and learn from vast amounts of driving data to navigate safely.</li></ul><h2 id="9a7b38c0-180b-4295-b210-5836e778b889" class="">Simulating Complex Functions</h2><p id="592df86a-a1fd-40fa-8abe-3f9d8da911d4" class="">One of the most profound aspects of neural networks is their ability to approximate virtually any complex function, a property known as the <strong>Universal Approximation Theorem</strong>. This theorem suggests that a feedforward network with a single hidden layer containing a finite number of neurons can approximate continuous functions on compact subsets of <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi mathvariant="double-struck">R</mi><mi>n</mi></msup></mrow><annotation encoding="application/x-tex">\mathbb{R}^n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6889em;"></span><span class="mord"><span class="mord mathbb">R</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span></span></span></span></span></span></span></span><span>﻿</span></span>, given appropriate activation functions.</p><p id="357ec642-b918-4128-b785-0ddf42115848" class="">The <strong>layered composition</strong> of neural networks, where each layer&#x27;s output serves as the input to the next, allows these models to learn hierarchies of features. In the context of image recognition, for instance, initial layers might learn to recognize edges and basic textures, while deeper layers can identify more complex structures like shapes or specific objects. This hierarchical learning makes neural networks particularly adept at handling data with complex, hierarchical structures, such as images, sound, and text.</p><figure id="4f358616-441e-45c7-a8b1-f9881c42c8dd" class="image"><a href="Neural%20Networks%20If%20I%20only%20had%20a%20brain%20efe26c6a7fb84b28b2ae63b1a743d5bd/approximation.png"><img style="width:822px" src="Neural%20Networks%20If%20I%20only%20had%20a%20brain%20efe26c6a7fb84b28b2ae63b1a743d5bd/approximation.png"/></a></figure><h1 id="fac67807-884a-4700-9abf-d733f03ffec0" class=""><strong>Activation functions</strong></h1><p id="28ed9467-3fa4-4d29-af3c-68153a2c8881" class="">Activation functions play a crucial role in neural networks by introducing non-linearity. Without these functions, a neural network, regardless of its depth, would essentially behave like a linear model, unable to capture the complex patterns found in real-world data. Non-linearity allows neural networks to learn and model complex relationships between input and output data, making them capable of performing tasks like image recognition, language translation, and many others beyond the scope of simple linear models.</p><p id="a66c3cc8-1ed9-481a-a068-5cf0c014f19e" class="">In essence, activation functions enable neural networks to solve non-linear problems, expanding their applicability far beyond linear models. Coupled with careful input preparation, neural networks can model complex functions and discover intricate patterns in vast and varied datasets.</p><h2 id="fc17961d-ccba-45fe-a94c-4e90cc5fc7e1" class="">Similarity to Logistic Regression</h2><p id="6e97fb60-129e-4b13-a467-b56ae77f306f" class="">The concept of activation functions in neural networks bears a resemblance to logistic regression in several ways:</p><ul id="bd9ddac0-2a97-4199-95dc-7bebe2c07db2" class="bulleted-list"><li style="list-style-type:disc"><strong>Weighted Sum Inputs:</strong> Both neural networks and logistic regression models compute a weighted sum of the input features. In neural networks, this sum is then passed through an activation function.</li></ul><ul id="5970a2b3-acac-41c7-92c1-b1b2427ab5de" class="bulleted-list"><li style="list-style-type:disc"><strong>Activation Output:</strong> The activation function&#x27;s output can be seen as a decision, similar to the logistic function in logistic regression, which maps the weighted sum (plus bias term) to a probability score indicating the likelihood of a particular class or outcome. In short, the output is always a score in the interval <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>∈</mo><mo stretchy="false">[</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">]</mo><mo>=</mo><mi>f</mi><mo stretchy="false">(</mo><mo stretchy="false">{</mo><msub><mi>x</mi><mi>i</mi></msub><mo stretchy="false">}</mo><mo stretchy="false">)</mo><mo>=</mo><mo>∑</mo><mrow><msub><mi>w</mi><mi>i</mi></msub><msub><mi>x</mi><mi>i</mi></msub></mrow><mo>+</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">y \in [0,1] = f(\{x_i\}) = \sum{w_i x_i} + b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7335em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mopen">({</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">})</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop op-symbol small-op" style="position:relative;top:0em;">∑</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0269em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span></span></span></span></span><span>﻿</span></span></li></ul><h2 id="90d7cee8-f250-4c2f-9cb5-4a15459fffd5" class="">Introducing: ReLU</h2><p id="1daba9e6-cb57-439e-ac9c-db0dd5e10eaf" class="">The <strong>Rectified Linear Unit (ReLU)</strong> has become one of the most widely used activation functions in neural networks, especially in deep learning architectures. ReLU is defined as <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>max</mi><mo>⁡</mo><mo stretchy="false">(</mo><mn>0</mn><mo separator="true">,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f(x) = \max(0,x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop">max</span><span class="mopen">(</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">x</span><span class="mclose">)</span></span></span></span></span><span>﻿</span></span>, effectively replacing all negative values in the activation map with zero.</p><p id="732ea3c0-4447-4209-9336-455df34b2da3" class=""><strong>Note:</strong> There are other common activation functions, including sigmoid, tanh, and Leaky ReLU</p><figure id="dfc147e1-c078-4b77-a404-813e2ca72131" class="image"><a href="Neural%20Networks%20If%20I%20only%20had%20a%20brain%20efe26c6a7fb84b28b2ae63b1a743d5bd/relu.png"><img style="width:726px" src="Neural%20Networks%20If%20I%20only%20had%20a%20brain%20efe26c6a7fb84b28b2ae63b1a743d5bd/relu.png"/></a></figure><h3 id="d5259fd0-846f-4b12-90af-d4e223db2237" class="">Advantages of ReLU:</h3><p id="5e678c08-79d6-473b-908f-51239e625b1e" class="">Its popularity stems from its simplicity and efficiency, offering several advantages:</p><ul id="ac825107-8dca-456b-9ab1-d816f310be70" class="bulleted-list"><li style="list-style-type:disc"><strong>Simplicity:</strong> The ReLU function is computationally efficient, allowing neural networks to train faster and perform better, especially in deep learning architectures. Its simple max operation is much less computationally expensive than functions like sigmoid or tanh.</li></ul><ul id="3401e5b4-8adc-4f0e-b820-bb917e3dd4e2" class="bulleted-list"><li style="list-style-type:disc"><strong>Mitigating Vanishing Gradient Problem:</strong> ReLU helps in mitigating the vanishing gradient problem, which is prevalent in deep networks with saturating activation functions. Since the gradient of ReLU for positive inputs is always 1, it ensures that the gradient does not vanish during backpropagation, facilitating deeper network training.</li></ul><ul id="967854a6-1213-4472-b723-b4fbd7f84cb6" class="bulleted-list"><li style="list-style-type:disc"><strong>Sparse Activation:</strong> In ReLU, only positive values have non-zero outputs, leading to sparse activations within neural networks. This sparsity can lead to more efficient and less overfitting-prone models, as not all neurons are activated simultaneously.</li></ul><ul id="f33a9045-cc53-468b-a996-bb0615f2289c" class="bulleted-list"><li style="list-style-type:disc"><strong>Improved Gradient Flow:</strong> For positive input values, the derivative of ReLU is constant (1), which means that the gradient flow during backpropagation is not hindered by the activation function. This allows for more effective learning, especially in deeper layers of a network.</li></ul><p id="a5302233-1703-48bc-824b-421b5f77ca6a" class="">Overall, ReLU&#x27;s introduction marked a significant advancement in neural network activation functions, contributing to the rapid development of deep learning by enabling the training of much deeper networks than was previously feasible.</p><h1 id="354a14dd-2562-4e53-b251-b73a1f85c066" class="">Preparing Inputs</h1><p id="7689bcdb-af40-463c-9d8b-53f53cda2433" class="">Proper input preparation is crucial for the efficient and effective training of neural networks. </p><p id="cdfef9cd-3fce-48d0-9fb0-68f7dd46ebc3" class="">Typically, the initial layer of a neural network assigns individual neurons to specific inputs, which, with the <strong>Universal Approximation Theorem</strong>, provides a degree of resilience to inputs that vary widely in scale. However, preparing inputs through meticulous cleaning, transformation, and feature engineering remains vital. This preparation streamlines the problem the network must solve by consolidating co-linear inputs, harmonizing scales, and merging inputs that might have significant interactions. </p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="2e8211bb-d43f-4a9e-a627-ef0cb2636be9"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><strong>Consider the neurons as a finite resource:</strong> data preparation can spare capacity that would otherwise be used to approximate these preprocessing steps</div></figure><h2 id="e750b98f-f284-40c0-9e78-716cca236bc2" class="">Data cleaning &amp; transformation</h2><ul id="a3bf49ab-c756-4fb4-a26c-24a0158062c5" class="bulleted-list"><li style="list-style-type:disc"><strong>Normalization:</strong> Scaling input features so they are on a similar scale can prevent certain features from dominating due to their scale. Normalization adjusts the data to fall within a smaller, specified range, such as -1 to 1 or 0 to 1.</li></ul><ul id="673f5ad7-d7c8-484c-9a92-c87527e3dccc" class="bulleted-list"><li style="list-style-type:disc"><strong>Standardization:</strong> This involves transforming the data to have a mean of zero and a standard deviation of one. Standardization ensures that the feature distribution is centered around 0, with a standard deviation that scales the distribution. This is particularly useful for inputs to activation functions that are sensitive to magnitude, such as sigmoid or tanh.</li></ul><ul id="17013b4f-0680-4556-a3f9-de9118a1cf53" class="bulleted-list"><li style="list-style-type:disc"><strong>Handling Missing Values:</strong> Missing data can significantly impact the performance of neural networks. Techniques such as imputation (filling missing values with the mean, median, or mode), or using a model to predict missing values, can be employed to address this issue.</li></ul><h2 id="b37796c3-1b81-486e-8570-b83597b3a846" class="">Input Shape Importance</h2><ul id="4d0c6e23-6136-41e3-a4b7-bbe5e514729c" class="bulleted-list"><li style="list-style-type:disc"><strong>Consistent Dimensions:</strong> Neural networks require a fixed size of input; thus, it&#x27;s crucial to preprocess the data to ensure consistent dimensions. For images, this might involve cropping or padding to achieve uniform dimensions. For text or sequences, this could mean padding shorter sequences or truncating longer ones to a fixed length.</li></ul><ul id="4ced6014-229a-412d-9439-dbefc1025876" class="bulleted-list"><li style="list-style-type:disc"><strong>Batch Size:</strong> The choice of batch size can affect both the speed and stability of the training process. Larger batches provide a more accurate estimate of the gradient, but they require more memory and might lead to slower convergence.</li></ul><h2 id="a8a771d8-a7fc-43aa-9259-7bfe8c490993" class="">Feature Engineering</h2><ul id="86d83fc3-acee-4a87-9cb0-27181caf99b3" class="bulleted-list"><li style="list-style-type:disc"><strong>Feature Selection:</strong> Identifying and selecting the most informative features can reduce the dimensionality of the data and improve model performance. Techniques such as correlation analysis, principal component analysis (PCA), or model-based selection can be used to identify the most relevant features.</li></ul><ul id="77fb4a35-5fa6-40db-b739-cbd0e00da958" class="bulleted-list"><li style="list-style-type:disc"><strong>Feature Encoding:</strong> Proper encoding of categorical variables is crucial. Techniques like one-hot encoding or embedding layers for deep learning models can transform categorical variables into a format that neural networks can work with effectively.</li></ul><ul id="28f49474-c4ea-435c-88d6-a4a403a3a862" class="bulleted-list"><li style="list-style-type:disc"><strong>Feature Construction:</strong> Creating new features through domain knowledge or by combining existing features can provide additional information to the model, potentially improving its performance. For example, creating polynomial features or interaction terms might expose new patterns to the model.</li></ul><ul id="4163a14b-0c2b-4e48-aaf9-ea94a8c118f6" class="bulleted-list"><li style="list-style-type:disc"><strong>Temporal and Spatial Features:</strong> For time series data, deriving features like rolling averages or time lags can capture temporal dynamics. For spatial data, features that capture spatial relationships or clustering can be beneficial.</li></ul><h1 id="8cfc5553-ebbf-4181-81a2-413750b6c127" class=""><strong>Training Neural Networks</strong></h1><p id="0ca514f2-738a-4b73-a06e-37242a0355c1" class="">Training neural networks involves adjusting the weights and biases of the network to minimize the difference between the predicted output and the actual output. This process is guided by several key components and techniques:</p><h2 id="abfbcdea-1ca0-4778-b94c-344b22a8d102" class="">Back-propagation</h2><p id="db61eeb6-2377-4f9e-ba27-5b0d016ef51a" class=""><strong>Back-propagation</strong> is the cornerstone of neural network training, allowing the adjustment of weights in the network based on the error rate obtained in the previous epoch (i.e., iteration). It effectively distributes the error back through the network layers, providing insight into the responsibility of each weight towards the error.</p><figure id="466273dc-6435-421a-bd59-da7ee790ddd9" class="image"><a href="Neural%20Networks%20If%20I%20only%20had%20a%20brain%20efe26c6a7fb84b28b2ae63b1a743d5bd/backpropagation.png"><img style="width:1050px" src="Neural%20Networks%20If%20I%20only%20had%20a%20brain%20efe26c6a7fb84b28b2ae63b1a743d5bd/backpropagation.png"/></a></figure><h2 id="e49da3fb-5f78-4117-82a5-df695819c18d" class="">Gradient descent</h2><p id="7cfef8db-f612-4214-8e0b-4dc1cdfe3d6b" class=""><strong>Gradient descent</strong> is the optimization algorithm used to minimize the cost function, which represents the difference between the network&#x27;s predicted output and the actual output. By calculating the gradient of the cost function, gradient descent adjusts the weights in the direction that most reduces the cost.</p><h2 id="45562ad5-78a3-49f7-8893-5769cf570789" class="">Cost Functions</h2><p id="c6fa5254-6829-48d1-9eae-97e8cbadf03c" class="">In neural network training, selecting an appropriate cost function is crucial as it guides the optimization process.</p><p id="ffb56262-92b6-4cfb-9c87-9a9cf2ec1a3e" class="">Each cost function has its specific use cases and considerations. The choice depends on the particular problem, the type of neural network being trained, and the desired properties of the model (e.g., robustness to outliers, probabilistic output).</p><p id="452fc502-5730-43a8-aa02-fa8f31baad84" class="">Here are some commonly used cost functions along with their strengths and weaknesses:</p><ul id="90dbc613-5400-4df2-a6b2-b7e31b59f767" class="bulleted-list"><li style="list-style-type:disc"><strong>Mean Squared Error (MSE):</strong><ul id="9307fae8-8683-4445-a2a8-ad032db56e0d" class="bulleted-list"><li style="list-style-type:circle"><strong>Strengths:</strong> Intuitive, widely used for regression tasks; heavily penalizes large errors due to squaring, leading to robust models.</li></ul><ul id="f048ef44-58fe-47a4-9cb0-03b7d53e36f3" class="bulleted-list"><li style="list-style-type:circle"><strong>Weaknesses:</strong> Can be overly sensitive to outliers; assumes a Gaussian distribution of errors.</li></ul></li></ul><ul id="3b3fcc03-fdc5-464f-928d-49604794a40c" class="bulleted-list"><li style="list-style-type:disc"><strong>Cross-Entropy Loss:</strong><ul id="b85ca90b-6461-404e-9175-a726bbe72e05" class="bulleted-list"><li style="list-style-type:circle"><strong>Strengths:</strong> Ideal for classification tasks; well-suited for models outputting probabilities (e.g., models with a softmax final layer).</li></ul><ul id="cddfbaaf-485a-46e7-ac61-3bc816852c93" class="bulleted-list"><li style="list-style-type:circle"><strong>Weaknesses:</strong> Can lead to numerical instability if not implemented with care (e.g., log(0) situations).</li></ul></li></ul><ul id="71063ed3-4171-46df-bd18-dd964668ce99" class="bulleted-list"><li style="list-style-type:disc"><strong>Binary Cross-Entropy Loss:</strong><ul id="6844b54a-2ddb-4b02-9e45-a6a28b9c664a" class="bulleted-list"><li style="list-style-type:circle"><strong>Strengths:</strong> Special case of cross-entropy for binary classification tasks; aligns well with models outputting a probability between 0 and 1.</li></ul><ul id="60f026c5-a9cc-4c3d-b3ca-13d8393453ed" class="bulleted-list"><li style="list-style-type:circle"><strong>Weaknesses:</strong> Not suitable for multi-class classification tasks.</li></ul></li></ul><ul id="5a8d7d6b-4a19-4964-ae81-44143a598aa9" class="bulleted-list"><li style="list-style-type:disc"><strong>Hinge Loss:</strong><ul id="a42dc6c5-8535-476c-b0d1-6e60ebe895d2" class="bulleted-list"><li style="list-style-type:circle"><strong>Strengths:</strong> Commonly used for Support Vector Machines and &quot;maximum-margin&quot; classification, encouraging examples to be on the correct side of the margin.</li></ul><ul id="6407d8dd-d728-46b1-9db2-11a7928d3ebc" class="bulleted-list"><li style="list-style-type:circle"><strong>Weaknesses:</strong> Not as interpretable as probabilistic losses like cross-entropy; less common in neural networks.</li></ul></li></ul><ul id="968cb46f-8e0e-4df8-97ff-926014228e37" class="bulleted-list"><li style="list-style-type:disc"><strong>Kullback-Leibler Divergence (KL Divergence):</strong><ul id="31402b54-bc0b-4a4d-a0d8-9f1c0b39596d" class="bulleted-list"><li style="list-style-type:circle"><strong>Strengths:</strong> Measures how one probability distribution diverges from a second, expected distribution; useful in unsupervised learning, reinforcement learning, and models like autoencoders.</li></ul><ul id="d2c39216-94db-47d2-abcd-359a683603b2" class="bulleted-list"><li style="list-style-type:circle"><strong>Weaknesses:</strong> Asymmetric, which can be a limitation depending on the application; requires careful handling of zero probabilities.</li></ul></li></ul><ul id="848e623e-b87c-474b-ba75-14d6ccc9786e" class="bulleted-list"><li style="list-style-type:disc"><strong>Huber Loss:</strong><ul id="79fae44a-8361-453e-a44f-9953ee71328b" class="bulleted-list"><li style="list-style-type:circle"><strong>Strengths:</strong> Combines the best of MSE and absolute loss by being quadratic for small errors and linear for large errors, reducing sensitivity to outliers compared to MSE.</li></ul><ul id="7ccb187e-7d59-4c98-a5ff-219b29b6b0d8" class="bulleted-list"><li style="list-style-type:circle"><strong>Weaknesses:</strong> The transition between quadratic and linear (controlled by the δ parameter) can be arbitrary and may need tuning.</li></ul></li></ul><ul id="c056b0f4-b7b1-4a75-a2f9-59b90ea0465a" class="bulleted-list"><li style="list-style-type:disc"><strong>Log-Cosh Loss:</strong><ul id="40d811c3-9fce-46e6-a707-7e963a4dc9a4" class="bulleted-list"><li style="list-style-type:circle"><strong>Strengths:</strong> Smooth approximation of the MSE that remains numerically stable; behaves like MSE for small errors and like absolute loss for large errors.</li></ul><ul id="6349be55-4bec-4b86-9080-bcfcf79250fc" class="bulleted-list"><li style="list-style-type:circle"><strong>Weaknesses:</strong> Not as commonly used or understood as MSE or cross-entropy; may require more computational resources due to the use of hyperbolic cosine function.</li></ul></li></ul><h3 id="e7cd73d6-29a3-4ed5-94d6-b7e592cf5376" class=""><strong>Advanced Optimization Techniques</strong></h3><p id="c396fdfc-b27f-4b12-a9c5-b5593bd81eaf" class="">Beyond basic gradient descent, there are several optimization algorithms like SGD (Stochastic Gradient Descent), Adam (Adaptive Moment Estimation), and RMSprop (Root Mean Square Propagation), each with its own advantages in terms of speed and convergence stability.</p><h2 id="5e02fe83-fc27-4757-a01a-ad6b86c30a03" class="">Evaluation Metrics</h2><p id="fcc40e05-ed8d-4f1a-8c2f-2ceb3d4ce041" class="">Evaluation metrics are crucial for assessing the performance of neural networks.</p><p id="6b7a3f79-da2e-495d-af4c-615babae0584" class="">Each metric offers unique insights into model performance, and the choice of metric should align with the specific objectives and constraints of the task at hand. In practice, it&#x27;s often beneficial to consider multiple metrics to gain a comprehensive understanding of a model&#x27;s strengths and weaknesses.</p><ul id="9fd5c050-38ad-4b44-8836-682b68eee89c" class="bulleted-list"><li style="list-style-type:disc"><strong>Accuracy:</strong><ul id="967283ca-71b1-48ff-a283-0b7327ec0d83" class="bulleted-list"><li style="list-style-type:circle"><strong>Strengths:</strong> Intuitive and straightforward; measures the proportion of correct predictions.</li></ul><ul id="0046f4fc-9d83-45b5-a2d5-81fc392152bd" class="bulleted-list"><li style="list-style-type:circle"><strong>Weaknesses:</strong> Can be misleading in imbalanced datasets where one class dominates.</li></ul></li></ul><ul id="96ef8a0a-631e-44fc-8155-610c3b664ac0" class="bulleted-list"><li style="list-style-type:disc"><strong>Precision and Recall:</strong><ul id="dfbed7a8-a082-47d5-803c-35ddcfb20c8f" class="bulleted-list"><li style="list-style-type:circle"><strong>Strengths:</strong> Useful in imbalanced datasets; precision focuses on the quality of positive predictions, while recall emphasizes the coverage of actual positive cases.</li></ul><ul id="778455b3-b585-4568-971a-930f742fb715" class="bulleted-list"><li style="list-style-type:circle"><strong>Weaknesses:</strong> Trade-off between the two (improving one can worsen the other); doesn&#x27;t provide a single metric for optimization.</li></ul></li></ul><ul id="fd4bc4b1-6535-4677-afcc-8eb59d951840" class="bulleted-list"><li style="list-style-type:disc"><strong>F1 Score:</strong><ul id="b20ddb35-2a00-4abb-b1a3-8640188062de" class="bulleted-list"><li style="list-style-type:circle"><strong>Strengths:</strong> Harmonic mean of precision and recall, providing a single metric that balances the two; useful in imbalanced datasets.</li></ul><ul id="ea1bde7b-ff27-4ac8-8f69-510f9adb8a25" class="bulleted-list"><li style="list-style-type:circle"><strong>Weaknesses:</strong> May not capture the nuances in cases where one aspect (precision or recall) is more important than the other.</li></ul></li></ul><ul id="94ec5b52-7347-46f0-b5d6-186a156aa8b6" class="bulleted-list"><li style="list-style-type:disc"><strong>Mean Squared Error (MSE) and Root Mean Squared Error (RMSE):</strong><ul id="1bd9994c-cdf0-43e2-9ca3-894c576d7e4b" class="bulleted-list"><li style="list-style-type:circle"><strong>Strengths:</strong> Directly corresponds to the cost function used in many regression tasks; easy to interpret in terms of the data scale.</li></ul><ul id="45ba1cc1-c686-47b3-9bc5-7d2473c4673b" class="bulleted-list"><li style="list-style-type:circle"><strong>Weaknesses:</strong> Highly sensitive to outliers; may not accurately reflect performance in non-Gaussian distributions.</li></ul></li></ul><ul id="3e11ac21-d569-47cb-b7d8-50d4c04ad31c" class="bulleted-list"><li style="list-style-type:disc"><strong>Mean Absolute Error (MAE):</strong><ul id="bbd3c6e7-ca34-43de-abc5-9fdc892e80bc" class="bulleted-list"><li style="list-style-type:circle"><strong>Strengths:</strong> Intuitive, represents average error magnitude without considering direction; less sensitive to outliers than MSE.</li></ul><ul id="8711bdc2-40f0-4203-85ed-631da0874430" class="bulleted-list"><li style="list-style-type:circle"><strong>Weaknesses:</strong> May not fully capture the impact of large errors as MSE does.</li></ul></li></ul><ul id="fc9c8b56-64a9-4628-b542-acfc18a0c032" class="bulleted-list"><li style="list-style-type:disc"><strong>Area Under the ROC Curve (AUC-ROC):</strong><ul id="e6bd43c1-f037-4394-9606-4f8014e5ab18" class="bulleted-list"><li style="list-style-type:circle"><strong>Strengths:</strong> Represents model&#x27;s ability to discriminate between classes; robust to imbalanced datasets; can be used to choose decision thresholds.</li></ul><ul id="c47238ef-b1c7-4ebf-86a8-8ac8f549fbda" class="bulleted-list"><li style="list-style-type:circle"><strong>Weaknesses:</strong> May be less informative in highly imbalanced situations or when different costs are associated with different types of errors.</li></ul></li></ul><ul id="d4305a3e-5f71-456a-b7b2-b99e32011eab" class="bulleted-list"><li style="list-style-type:disc"><strong>Confusion Matrix:</strong><ul id="78defe4b-8da0-4e3d-9cd6-7b4de352bb20" class="bulleted-list"><li style="list-style-type:circle"><strong>Strengths:</strong> Provides a detailed breakdown of predictions vs. actual values, allowing for in-depth analysis of type I and type II errors.</li></ul><ul id="e641db24-d4d2-4bcf-aba7-d5e5f4cd5359" class="bulleted-list"><li style="list-style-type:circle"><strong>Weaknesses:</strong> More complex to interpret at a glance than a single metric; doesn&#x27;t summarize performance into a single number.</li></ul></li></ul><ul id="f840471d-7329-454a-9b98-504bb3db5fd8" class="bulleted-list"><li style="list-style-type:disc"><strong>Log Loss (for classification):</strong><ul id="1817ebde-079e-46ff-8343-133134086d53" class="bulleted-list"><li style="list-style-type:circle"><strong>Strengths:</strong> Penalizes confidence in wrong predictions; useful for probabilistic outputs.</li></ul><ul id="2a4aba32-bcb3-437d-982b-44500dda9e31" class="bulleted-list"><li style="list-style-type:circle"><strong>Weaknesses:</strong> Can be heavily influenced by small probabilities; less intuitive than accuracy or error rate.</li></ul></li></ul><h2 id="be0abb1f-d9f4-4691-991f-d6bc0d9d7205" class="">Regularization and Overfitting</h2><p id="6425f515-19db-4120-91fe-54ec3ae10c6d" class="">Overfitting occurs when a model learns the training data too well, including its noise, resulting in poor performance on unseen data. Techniques to combat overfitting include simplifying the model, using more training data, and employing regularization techniques.</p><p id="847023f0-0058-4227-b5d5-57b143fd222c" class=""><strong>Regularization methods</strong> like L1 and L2 regularization, dropout, and early stopping add constraints to the network or its training process to prevent overfitting by discouraging overly complex models.</p><h3 id="142b1d1c-0a37-41d1-86d1-65d960334d40" class=""><strong>Ethics of Overfitting</strong></h3><p id="fac01677-ed3a-4537-99bd-22e218bf8ddd" class="">Overfitting can also lead to biased models, especially if the training data is not representative of the general population. Ethical considerations necessitate careful examination of the data and model to ensure biases are not perpetuated.</p><h2 id="8aaf62af-f2b2-4f53-b1f9-358ed4fc68b3" class="">Monitoring the training process with TensorBoard</h2><p id="202cc5f6-65ce-46b7-a3a8-b078dd76d9e9" class="">In our examples we monitor training via text output, but more sophisticated tools exist to visualize the training process. One popular tool is <strong>TensorBoard</strong>, which can be useful when training large models using parallelization across multiple GPUs.</p><p id="70fc1f14-978b-4589-bafc-7eddfc0d661e" class="">Incorporating TensorBoard into the training process not only aids in model development and tuning but also enhances transparency and understanding of the model&#x27;s learning dynamics, making it an invaluable tool in the neural network training toolkit.</p><ul id="f80e12ef-ea55-464d-bb33-c120bd1a7808" class="bulleted-list"><li style="list-style-type:disc"><strong>Real-time Monitoring:</strong> TensorBoard provides a user-friendly interface to monitor the training process in real time, allowing for the visualization of metrics like loss and accuracy across epochs, which is crucial for understanding model performance and convergence.</li></ul><ul id="8aa8541a-41f3-4f5f-ad7d-37ad6024e878" class="bulleted-list"><li style="list-style-type:disc"><strong>Hyperparameter Tuning:</strong> It offers tools for hyperparameter tuning, enabling the comparison of model performance across different sets of hyperparameters, which is essential for optimizing model configurations.</li></ul><ul id="c609d673-9a1b-479b-b1bd-20229eceadf0" class="bulleted-list"><li style="list-style-type:disc"><strong>Model Architecture Visualization:</strong> TensorBoard can visualize the neural network&#x27;s architecture, offering insights into the model&#x27;s structure and helping identify potential areas for improvement or optimization.</li></ul><ul id="4cb573f0-0038-48c2-8681-9ddefb2ae270" class="bulleted-list"><li style="list-style-type:disc"><strong>Gradient and Weight Visualization:</strong> It allows for the inspection of gradients and weights during training, helping to diagnose issues related to learning, such as vanishing or exploding gradients.</li></ul><ul id="a80cfa7d-c386-43c7-adbe-1cb4799f82c9" class="bulleted-list"><li style="list-style-type:disc"><strong>Embedding Visualization:</strong> TensorBoard provides functionalities to visualize high-dimensional data embeddings, which can be particularly useful for tasks involving complex data representations, such as NLP or image processing.</li></ul><h2 id="b0ff03c5-307d-47f8-9cdb-9f451c05aded" class="">Interpretability and Explainability</h2><p id="e7e8cdff-afa7-49bb-834d-6b85a5635915" class="">Interpretability and explainability are crucial for understanding how machine learning models, especially neural networks, arrive at their predictions.</p><p id="122121bb-cfd5-483c-bcd1-bc415882136a" class=""><strong>Interpretability </strong>refers to the degree to which a human can understand the cause of a decision, and <strong>explainability</strong> involves the clarity with which a model can describe its functioning. Techniques for enhancing these aspects include feature importance, model simplification, and visualization tools. Ensuring models are interpretable and explainable is crucial, especially in sensitive applications like healthcare and finance, where decisions need to be justified and understood by stakeholders.</p><p id="8d48341c-436f-4c9b-9fc4-97e51f49b914" class="">When selecting tools for interpretability and explainability, it&#x27;s essential to consider the model type, the complexity of the dataset, the computational resources available, and the specific needs of the stakeholders who will be using the explanations. Combining multiple approaches can often provide a more comprehensive understanding of the model&#x27;s behavior.</p><h3 id="a84b18d1-ae69-4719-b9ae-a82bb1d4399c" class="">Tools and Libraries for Interpretability and Explainability</h3><ul id="a0fac7e9-14ac-4138-9d90-d834929513d7" class="bulleted-list"><li style="list-style-type:disc"><strong>LIME (Local Interpretable Model-agnostic Explanations):</strong><ul id="6019a341-facb-4207-bae0-0b65da93dcac" class="bulleted-list"><li style="list-style-type:circle"><strong>Features:</strong> Generates explanations for individual predictions, showing how different features influence the output.</li></ul><ul id="a4c15a83-d669-473f-9bde-baced345dc81" class="bulleted-list"><li style="list-style-type:circle"><strong>Strengths:</strong> Model-agnostic; can be used with any model type.</li></ul><ul id="487be8c0-f494-4651-ad19-f970e2055223" class="bulleted-list"><li style="list-style-type:circle"><strong>Weaknesses:</strong> Local explanations may not provide a complete picture of the model&#x27;s overall behavior.</li></ul></li></ul><ul id="4eea1b51-b32a-4d25-9b57-7671ba6e27a0" class="bulleted-list"><li style="list-style-type:disc"><strong>SHAP (SHapley Additive exPlanations):</strong><ul id="962e8afa-7203-48b7-a577-7643598263e8" class="bulleted-list"><li style="list-style-type:circle"><strong>Features:</strong> Uses game theory to explain the output of any model by computing the contribution of each feature to the prediction.</li></ul><ul id="c5e18103-d4aa-4a80-85e8-de120503d577" class="bulleted-list"><li style="list-style-type:circle"><strong>Strengths:</strong> Considers feature interactions; provides both local and global explanations.</li></ul><ul id="04e908c7-423f-47b6-b546-2af2fab764de" class="bulleted-list"><li style="list-style-type:circle"><strong>Weaknesses:</strong> Can be computationally expensive, especially for complex models and large datasets.</li></ul></li></ul><ul id="1919ae88-e481-4745-934b-f392d382dd13" class="bulleted-list"><li style="list-style-type:disc"><strong>Feature Importance:</strong><ul id="e798daa8-b96e-452d-b523-e03d374aeab9" class="bulleted-list"><li style="list-style-type:circle"><strong>Features:</strong> Ranks features based on their importance in the model, often derived from the model itself (e.g., coefficients in linear models, feature importance in tree-based models).</li></ul><ul id="5103029d-2102-4719-8b95-ee2c4b9df405" class="bulleted-list"><li style="list-style-type:circle"><strong>Strengths:</strong> Provides a straightforward, global view of feature relevance.</li></ul><ul id="16fd8bb3-a158-469e-a8ed-1ec26118ab25" class="bulleted-list"><li style="list-style-type:circle"><strong>Weaknesses:</strong> May not capture nonlinear relationships or interactions between features effectively.</li></ul></li></ul><ul id="70d5d2fe-1e13-4c0e-b2e2-3f16379b1260" class="bulleted-list"><li style="list-style-type:disc"><strong>Partial Dependence Plots (PDPs) and Individual Conditional Expectation (ICE) Plots:</strong><ul id="06c79bdc-f410-41b3-a19a-3b3dcd830288" class="bulleted-list"><li style="list-style-type:circle"><strong>Features:</strong> PDPs show the average effect of a feature on the prediction, while ICE plots show this effect for individual instances.</li></ul><ul id="33dd8c1d-e3bb-4a66-96c1-24f461072ef1" class="bulleted-list"><li style="list-style-type:circle"><strong>Strengths:</strong> Offers insights into the model&#x27;s behavior over a range of feature values.</li></ul><ul id="ec3904ed-01e2-4e49-b664-83a7091b51f9" class="bulleted-list"><li style="list-style-type:circle"><strong>Weaknesses:</strong> PDPs can be misleading if features are correlated; ICE plots can become cluttered with many instances.</li></ul></li></ul><ul id="a4ed5e97-bc22-4d2e-87e1-3231ee22aba6" class="bulleted-list"><li style="list-style-type:disc"><strong>Integrated Gradients:</strong><ul id="e001691a-7a2d-4237-91d1-3ccaa3a211b3" class="bulleted-list"><li style="list-style-type:circle"><strong>Features:</strong> Attribute the prediction of a deep network to its input features, based on gradients.</li></ul><ul id="1e96d884-3ccf-45f6-a864-8127830ce7d0" class="bulleted-list"><li style="list-style-type:circle"><strong>Strengths:</strong> Provides detailed explanations suitable for complex models like deep neural networks.</li></ul><ul id="e0e12137-d6c8-406c-9c2c-3797c23f9b1c" class="bulleted-list"><li style="list-style-type:circle"><strong>Weaknesses:</strong> Interpretation of the results can be challenging, especially with high-dimensional data.</li></ul></li></ul><ul id="92d7f9eb-7f5a-47b5-86dc-c71d23832b8b" class="bulleted-list"><li style="list-style-type:disc"><strong>Counterfactual Explanations:</strong><ul id="f3adadaf-f454-4c58-a1fb-7192e90108c1" class="bulleted-list"><li style="list-style-type:circle"><strong>Features:</strong> Explains model decisions by showing how slight changes in input features could lead to different predictions.</li></ul><ul id="0c733d5d-af7d-46e2-ad9d-5f490f37c11f" class="bulleted-list"><li style="list-style-type:circle"><strong>Strengths:</strong> Intuitive and actionable insights; user-friendly explanations.</li></ul><ul id="e8192d87-0df2-4727-8e15-7391d4e2e094" class="bulleted-list"><li style="list-style-type:circle"><strong>Weaknesses:</strong> Generating relevant and realistic counterfactuals can be complex.</li></ul></li></ul><ul id="5af2bd55-bd65-4497-8352-79a0c01621ce" class="bulleted-list"><li style="list-style-type:disc"><strong>Grad-CAM (Gradient-weighted Class Activation Mapping):</strong><ul id="f41af903-0587-4d08-bcbb-311388891650" class="bulleted-list"><li style="list-style-type:circle"><strong>Features:</strong> Uses gradients flowing into the final convolutional layer of CNNs to produce a heatmap highlighting important regions in the input image for predicting the concept.</li></ul><ul id="dbcf562f-2f71-4875-b798-4fbf52e7af93" class="bulleted-list"><li style="list-style-type:circle"><strong>Strengths:</strong> Offers visual explanations that are easy to interpret.</li></ul><ul id="2bf2c146-31c9-403d-8cdc-55d24bed0406" class="bulleted-list"><li style="list-style-type:circle"><strong>Weaknesses:</strong> Specific to convolutional neural networks; may not be applicable to other model types.</li></ul></li></ul><h1 id="b646700c-9341-4e63-810d-63ef1bdaff67" class=""><strong>Model Architecture</strong></h1><p id="bfce5801-abbb-4610-9594-50b474aa6a1f" class="">The architecture of a neural network is a critical factor that defines its ability to learn and solve complex problems. It encompasses the layout of neurons and layers, how they&#x27;re interconnected, and the flow of data through the network. This section explores various architectural designs, their unique features, and their suitability for different tasks in machine learning.</p><h2 id="38bbad33-7bbe-4d15-89d7-d9474af61f0c" class="">Network Depth &amp; Connectedness</h2><h3 id="8aa7802c-4bd8-428e-a5e8-6bb84ac11bde" class="">Shallow vs. Deep</h3><ul id="d5330a01-8597-4e8d-9782-4d165e8a3fb4" class="bulleted-list"><li style="list-style-type:disc"><strong>Shallow Networks:</strong> Typically consist of a few layers, including input and output layers, and perhaps one or two hidden layers. Shallow networks are suited for simpler problems where the relationship between the input and output is not overly complex.</li></ul><ul id="5345336e-34bb-4169-86f9-74f915416986" class="bulleted-list"><li style="list-style-type:disc"><strong>Deep Networks:</strong> Contain many layers, sometimes hundreds or thousands, enabling them to learn features at multiple levels of abstraction. Deep networks are more suited for complex problems like image recognition, where higher-level features (like shapes) are built from lower-level features (like edges and corners).</li></ul><h3 id="18b5435e-5e44-490e-a7da-3928fa085e48" class="">Depth Challenges</h3><ul id="bb64d29b-7038-48e1-bdb3-e5374ba2c93d" class="bulleted-list"><li style="list-style-type:disc">Deep networks can be more challenging to train due to issues like vanishing and exploding gradients. Advanced techniques like residual connections (ResNets), batch normalization, and advanced optimizers have been developed to address these challenges, allowing for successful training of deep networks.</li></ul><h3 id="aa77103d-2cf4-46ba-9b16-71e1cea149e8" class="">Connectedness: Dense vs. Sparse</h3><p id="f44c0785-1858-4909-821b-1f1de8e4231d" class="">The connectedness of a neural network refers to how neurons within layers are linked to each other and to neurons in adjacent layers. This structure significantly influences the network&#x27;s capacity to capture patterns and relationships in the data.</p><ul id="563fe1e1-6eaa-40b3-a74b-ccfd50bcd7a4" class="bulleted-list"><li style="list-style-type:disc"><strong>Fully Connected Layers:</strong> In a fully connected (or dense) layer, every neuron is connected to every neuron in the previous and following layers. This setup is powerful for capturing complex relationships but can be computationally expensive and prone to overfitting, especially in deep networks with a large number of parameters.</li></ul><ul id="330c31cc-793a-4de7-a7e0-4a5fd076d1e8" class="bulleted-list"><li style="list-style-type:disc"><strong>Sparse Connectivity:</strong> To reduce computational demands and overfitting, some architectures employ sparse connectivity, where neurons are only connected to a subset of neurons in adjacent layers. Convolutional layers in CNNs are an example, where each neuron is connected only to a local region of the input.</li></ul><ul id="c49f1050-cbf4-4dce-98d2-3fba3a45d319" class="bulleted-list"><li style="list-style-type:disc"><strong>Skip Connections:</strong> An innovation to improve training in deep networks, skip connections, as used in ResNet architectures, allow the gradient to flow directly through the network by skipping one or more layers. This design helps mitigate the vanishing gradient problem and supports the training of very deep networks.</li></ul><ul id="7470b557-cdff-4a8a-b059-27640e011ce0" class="bulleted-list"><li style="list-style-type:disc"><strong>Recurrent Connections:</strong> In RNNs, connections between neurons form loops, creating a &#x27;memory&#x27; of previous inputs. This structure is ideal for sequential data, allowing the network to maintain information across time steps, which is crucial for tasks like language modeling and time series prediction.</li></ul><p id="714f101a-1028-42d4-96c6-76ac5d298039" class="">The connectedness within a neural network&#x27;s architecture is pivotal in defining its learning capabilities, computational efficiency, and applicability to different tasks. By carefully designing the network&#x27;s structure, it&#x27;s possible to balance the model&#x27;s expressiveness with its generalizability and computational demands.</p><h2 id="05ab929a-7a7e-452e-9c84-55dfa4f734b9" class="">Convolution and Recurrence: Architectures for Specific Data Types</h2><p id="225b86aa-cebf-49ba-9c52-2d59ba442980" class="">By understanding the unique characteristics and strengths of CNNs and RNNs, neural network designers can choose or craft architectures that are best suited to the specific requirements of their machine learning tasks, whether they involve analyzing visual data, decoding language, predicting future events, or any other application that relies on understanding spatial or temporal data.</p><h3 id="1c9a2f0e-ee14-431c-bb51-39dbd07f1f27" class="">Convolutional Neural Networks (CNNs)</h3><p id="ca308cbb-0a1c-47ee-94b4-42bd730ab168" class="">CNNs are specialized for processing data with a known grid-like structure, exemplified by image data.</p><ul id="7a3220d0-cbc3-4a07-9673-d52c30764be3" class="bulleted-list"><li style="list-style-type:disc"><strong>Convolutional Layers:</strong> The core building blocks of CNNs, these layers apply a convolution operation to the input, passing the result to the next layer. This process allows the network to build a complex hierarchy of features from simple patterns to more abstract concepts, making CNNs highly effective for tasks like image and video recognition, image classification, and more.</li></ul><ul id="f05be49a-f036-45ba-bd8a-df7f06ddc961" class="bulleted-list"><li style="list-style-type:disc"><strong>Pooling Layers:</strong> Often follow convolutional layers and are used to reduce the spatial dimensions (width and height) of the input volume for the next convolutional layer. Pooling helps in reducing the number of parameters and computation in the network, and hence also helps in controlling overfitting.</li></ul><h3 id="b6c77c81-0761-4e7e-9937-442e8040b0b6" class="">Recurrent Neural Networks (RNNs)</h3><p id="567cde8c-573e-4279-8818-356c9e665fe3" class="">RNNs are designed to handle sequential data, where the order of the data points is significant.</p><ul id="09209fe1-1859-44a8-8196-aa51c0b276b1" class="bulleted-list"><li style="list-style-type:disc"><strong>Sequence Processing:</strong> Unlike feedforward neural networks, RNNs have loops in them, allowing information to persist. This architecture makes them ideal for tasks where context from previous inputs is crucial, such as in language modeling or time series prediction.</li></ul><ul id="5f1e0500-4ba7-403b-92c8-822ec8df9007" class="bulleted-list"><li style="list-style-type:disc"><strong>Long Short-Term Memory (LSTM) and Gated Recurrent Units (GRU):</strong> Variants of RNNs designed to solve the vanishing gradient problem associated with standard RNNs. LSTMs and GRUs introduce gates that regulate the flow of information, allowing the network to retain or forget information over long sequences effectively.<figure id="e0ae8005-e997-4a15-9d50-3557526b0398" class="image"><a href="Neural%20Networks%20If%20I%20only%20had%20a%20brain%20efe26c6a7fb84b28b2ae63b1a743d5bd/rnn.png"><img style="width:553px" src="Neural%20Networks%20If%20I%20only%20had%20a%20brain%20efe26c6a7fb84b28b2ae63b1a743d5bd/rnn.png"/></a></figure></li></ul><figure id="b02a3436-80ad-498e-8a69-ec925b70bcec" class="image"><a href="Neural%20Networks%20If%20I%20only%20had%20a%20brain%20efe26c6a7fb84b28b2ae63b1a743d5bd/LSTMvsGRU.png"><img style="width:960px" src="Neural%20Networks%20If%20I%20only%20had%20a%20brain%20efe26c6a7fb84b28b2ae63b1a743d5bd/LSTMvsGRU.png"/></a></figure><figure id="2df368fd-9a62-44fd-a889-8378c91df6a2" class="image"><a href="Neural%20Networks%20If%20I%20only%20had%20a%20brain%20efe26c6a7fb84b28b2ae63b1a743d5bd/lstmvsgru2.png"><img style="width:945px" src="Neural%20Networks%20If%20I%20only%20had%20a%20brain%20efe26c6a7fb84b28b2ae63b1a743d5bd/lstmvsgru2.png"/></a></figure><h3 id="e1175648-c68d-4b60-8e1a-a84c678c83f6" class="">Architectural Considerations</h3><ul id="dfab85f5-308b-4342-aa68-b5d3859db403" class="bulleted-list"><li style="list-style-type:disc"><strong>Spatial vs. Temporal Data:</strong> CNNs excel at capturing spatial hierarchies in data (like images), where the location of features within the data is key. RNNs, on the other hand, shine with temporal data (like text or time series), where the sequence of data points is crucial.</li></ul><ul id="d1ebe474-639e-4b05-9085-4230a3a76fab" class="bulleted-list"><li style="list-style-type:disc"><strong>Parameter Sharing:</strong> CNNs use parameter sharing (the same filter applied across the image), which significantly reduces the number of parameters in the network, making them computationally efficient. RNNs share parameters across time steps, allowing them to process sequences of any length.</li></ul><ul id="0e6e138e-b4bd-4b2d-bfcc-99e64c50c6e1" class="bulleted-list"><li style="list-style-type:disc"><strong>Applicability:</strong> The choice between CNNs and RNNs (and their variants) depends heavily on the nature of the problem at hand. For mixed data types or complex tasks, <strong>hybrid models</strong> that combine aspects of CNNs and RNNs might be used to leverage the strengths of both architectures.</li></ul><h2 id="d18c2d10-e933-402f-b312-9dfedb5e2bac" class="">Transformers and Attention</h2><p id="8e75c1cb-462c-4bf7-9729-a67f569b4a73" class=""><strong>Transformers </strong>have redefined the landscape of neural network architectures, particularly in the field of Natural Language Processing (NLP) and beyond. By introducing a novel structure that leverages the power of attention mechanisms, transformers offer a significant departure from traditional recurrent models. </p><p id="02d03a96-ed12-4fc2-9e0f-d125202ce1f7" class="">The first appearance of transformers is in the paper <a href="https://arxiv.org/abs/1706.03762"><strong>Attention is All You Need</strong></a>, published by researchers at Google.</p><p id="364eeeba-ed5c-4e06-9d7d-a07933a93a2d" class="">Transformers have rapidly become the architecture of choice for a wide range of NLP tasks, achieving state-of-the-art results in machine translation, text generation, sentiment analysis, and more. Their flexibility and efficiency have also inspired adaptations of the transformer architecture to other domains, such as computer vision and audio processing, marking a significant evolution in the field of deep learning.</p><figure id="490925f9-4828-493b-ba6b-1089a1731881" class="image"><a href="Neural%20Networks%20If%20I%20only%20had%20a%20brain%20efe26c6a7fb84b28b2ae63b1a743d5bd/tx_basic.png"><img style="width:1262px" src="Neural%20Networks%20If%20I%20only%20had%20a%20brain%20efe26c6a7fb84b28b2ae63b1a743d5bd/tx_basic.png"/></a></figure><figure id="635c7d5e-e557-45f5-bae7-4892a81b57c1" class="image"><a href="Neural%20Networks%20If%20I%20only%20had%20a%20brain%20efe26c6a7fb84b28b2ae63b1a743d5bd/tx_moderate.png"><img style="width:1148px" src="Neural%20Networks%20If%20I%20only%20had%20a%20brain%20efe26c6a7fb84b28b2ae63b1a743d5bd/tx_moderate.png"/></a></figure><figure id="94da5d0f-ab1f-401c-bae6-c5eb23fbaff6" class="image"><a href="Neural%20Networks%20If%20I%20only%20had%20a%20brain%20efe26c6a7fb84b28b2ae63b1a743d5bd/1_vrSX_Ku3EmGPyqF_E-2_Vg.png"><img style="width:975px" src="Neural%20Networks%20If%20I%20only%20had%20a%20brain%20efe26c6a7fb84b28b2ae63b1a743d5bd/1_vrSX_Ku3EmGPyqF_E-2_Vg.png"/></a></figure><h3 id="c06e386f-b5e7-4356-afe1-f4beb9d65693" class="">Transformer Architecture</h3><ul id="55170540-f8b2-4143-8c90-3f7cdae51891" class="bulleted-list"><li style="list-style-type:disc"><strong>Parallel Processing:</strong> Unlike their recurrent predecessors, transformers process entire sequences simultaneously, which eliminates the sequential computation inherent in RNNs and LSTMs. This characteristic allows for substantial improvements in training efficiency and model scalability.</li></ul><ul id="6486a618-dd00-4156-b391-569640db087a" class="bulleted-list"><li style="list-style-type:disc"><strong>Self-Attention:</strong> At the heart of the transformer architecture is the self-attention mechanism, which computes the representation of a sequence by relating different positions of a single sequence. This mechanism enables the model to dynamically weigh the importance of each part of the input data, enhancing its ability to capture complex relationships within the data.</li></ul><ul id="1b3d09ea-f4af-4d21-8c30-dfade39336f5" class="bulleted-list"><li style="list-style-type:disc"><strong>Layered Structure:</strong> Transformers are composed of stacked layers of self-attention and position-wise feedforward networks. Each layer in the transformer processes the entire input data in parallel, which contributes to the model&#x27;s exceptional efficiency and effectiveness.</li></ul><h3 id="70a7bb6e-2fe4-4658-b08c-77b2f98d68ad" class="">Attention Mechanism</h3><p id="e9183eeb-ebcb-42d3-aaa8-d1c72f8cf99f" class="">The <strong>attention</strong> mechanism allows transformers to consider the entire context of the input sequence, or any subset of it, regardless of the distance between elements in the sequence. This global view is particularly advantageous for tasks that require understanding long-range dependencies, such as document summarization or question-answering.</p><figure id="30cddcca-c01f-4c70-a1ef-a890d0338217" class="image"><a href="Neural%20Networks%20If%20I%20only%20had%20a%20brain%20efe26c6a7fb84b28b2ae63b1a743d5bd/attention.png"><img style="width:946px" src="Neural%20Networks%20If%20I%20only%20had%20a%20brain%20efe26c6a7fb84b28b2ae63b1a743d5bd/attention.png"/></a><figcaption>The left and center figures represent different layers / attention heads. The right figure depicts the same layer/head as the center figure, but with the token <em>lazy</em> selected</figcaption></figure><figure id="4eccea2c-0d57-46e5-8447-09e3f90adad5" class="image"><a href="Neural%20Networks%20If%20I%20only%20had%20a%20brain%20efe26c6a7fb84b28b2ae63b1a743d5bd/simple-pretty-gif.gif"><img style="width:678px" src="Neural%20Networks%20If%20I%20only%20had%20a%20brain%20efe26c6a7fb84b28b2ae63b1a743d5bd/simple-pretty-gif.gif"/></a></figure><ul id="94f7da7b-6edc-498a-9a27-037ebd5ecc0c" class="bulleted-list"><li style="list-style-type:disc"><strong>Scaled Dot-Product Attention:</strong> The most commonly used attention mechanism in transformers involves computing the dot product of the query with all keys, dividing each by the square root of the dimension of the keys, applying a softmax function to obtain the weights on the values. This approach efficiently captures the relevance of different parts of the input data to each other.</li></ul><ul id="4b3a7528-4e50-4d02-94af-6568ce5c2900" class="bulleted-list"><li style="list-style-type:disc"><strong>Multi-Head Attention:</strong> Transformers further extend the capabilities of the attention mechanism through the use of multi-head attention. This involves running multiple attention operations in parallel, with each &quot;head&quot; focusing on different parts of the input data. This diversity allows the model to attend to different aspects of the data, enhancing its representational power.</li></ul><h2 id="d222f83f-22ba-4200-858f-933a91580b82" class="">Specialized Architectures</h2><ul id="48fb445e-8cfc-4931-9297-9a507fb6d412" class="bulleted-list"><li style="list-style-type:disc"><strong>Generative Adversarial Networks (GANs)</strong> consist of two networks, a generator and a discriminator, that are trained simultaneously. The generator learns to generate data similar to the input data, while the discriminator learns to distinguish between the generated data and the real data.</li></ul><ul id="31a23a8b-c8e7-41b4-bd49-5e1f91b4a4d4" class="bulleted-list"><li style="list-style-type:disc"><strong>Graph Neural Networks (GNNs)</strong> extend neural network methods to graph data, enabling the modeling of relationships and interactions in data structured as graphs. They are particularly useful in social network analysis, chemical molecule study, and recommendation systems.</li></ul><ul id="ed362b1d-34a4-4b9f-aa03-80db0613a2b2" class="bulleted-list"><li style="list-style-type:disc"><strong>Capsule Networks </strong>offer an alternative to traditional convolutional networks by grouping neurons into “capsules” that represent various properties of the same entity, allowing the network to learn part-whole relationships. This architecture is designed to preserve spatial hierarchies between features, making it beneficial for tasks that require a high level of interpretability, such as object detection and recognition in images</li></ul><ul id="96fcb996-a454-4f7d-b939-dcb6bdbde868" class="bulleted-list"><li style="list-style-type:disc"><strong>Autoencoders </strong>are designed for unsupervised learning tasks, such as dimensionality reduction or feature learning. They work by compressing the input into a latent-space representation and then reconstructing the output from this representation.</li></ul><ul id="1da7e440-8b54-401d-8978-79bbc05e0f7e" class="bulleted-list"><li style="list-style-type:disc"><strong>Variational Autoencoders (VAEs) </strong>are generative models similar to autoencoders that learn to encode data into a latent space and reconstruct it. However, VAEs introduce a probabilistic twist, modeling the latent space as a distribution, which allows for the generation of new data points by sampling from this space</li></ul><ul id="2db22207-07f8-4642-8c0e-908712300f3e" class="bulleted-list"><li style="list-style-type:disc"><strong>Diffusion Models</strong> gradually add noise to data until it becomes indistinguishable from random noise and then learn to reverse this noising process to generate data. While they don&#x27;t use a latent space in the traditional sense, the intermediate noisy states during the reverse process can be viewed as a form of high-dimensional latent representation.</li></ul><h2 id="8afefe92-9b77-4274-a032-c7f235cbb64f" class="">Interlude: Latent Space</h2><p id="42aea5fc-91d9-4b37-95cb-0c3925b888d4" class="">The concept of latent space is particularly relevant in the context of autoencoders and generative models within neural network architectures. You can introduce latent space in a subsection under these topics, explaining its significance in learning compact, meaningful representations of data. Here&#x27;s a suggestion on where and how to incorporate it:</p><p id="37ac9db9-8865-4b77-95ca-8ce8f83ad091" class="">In the realm of autoencoders and generative models, such as Variational Autoencoders (VAEs) and Generative Adversarial Networks (GANs), the concept of latent space plays a central role. Latent space refers to the compressed representation that these models learn, which captures the essential information of the input data in a lower-dimensional form.</p><ul id="578cd7c5-ebbe-4155-ac21-0371a731b1d7" class="bulleted-list"><li style="list-style-type:disc"><strong>Role in Autoencoders:</strong> In autoencoders, the encoder part of the model compresses the input into a latent space representation, and the decoder part attempts to reconstruct the input from this latent representation. The latent space thus acts as a bottleneck, forcing the autoencoder to learn the most salient features of the data.</li></ul><ul id="04ac8dc6-7904-4a40-83a5-25549c8f6a02" class="bulleted-list"><li style="list-style-type:disc"><strong>Generative Model Applications:</strong> In generative models like VAEs and GANs, the latent space representation can be sampled to generate new data points that are similar to the original data. For example, in the case of images, by sampling different points in the latent space, a model can generate new images that share characteristics with the training set but are not identical replicas.</li></ul><h3 id="f3316fff-8bef-4be9-8a74-1f4726721007" class="">Significance of Latent Space</h3><ul id="a1bbb2ee-8f41-40d6-8fb6-982bcf0dcca6" class="bulleted-list"><li style="list-style-type:disc"><strong>Data Compression:</strong> Latent space representations allow for efficient data compression, reducing the dimensionality of the data while retaining its critical features. This aspect is particularly useful in tasks that involve high-dimensional data, such as images or complex sensor data.</li></ul><ul id="09d47b58-548f-4c77-adeb-f83a393e4445" class="bulleted-list"><li style="list-style-type:disc"><strong>Feature Learning:</strong> The process of learning a latent space encourages the model to discover and encode meaningful patterns and relationships in the data, often leading to representations that can be useful for other machine learning tasks.</li></ul><ul id="218e61af-e7c1-4b8a-9d4e-9ca0130313eb" class="bulleted-list"><li style="list-style-type:disc"><strong>Interpretability and Exploration:</strong> Examining the latent space can provide insights into the data&#x27;s underlying structure. In some cases, latent space representations can be manipulated to explore variations of the generated data, offering a tool for understanding how different features contribute to the data generation process.</li></ul><h2 id="a7e42d9b-7cab-44df-8d3a-af2a27cc4bad" class="">Embeddings</h2><p id="f4cae02e-e9b0-4a69-b9a9-198f9ba8049e" class=""><strong>Embeddings </strong>are a natural extension of the latent space, particularly in the context of handling high-dimensional categorical data. They transform sparse, discrete input features into a continuous, lower-dimensional space, much like the latent representations in autoencoders and generative models.</p><p id="240229b8-becf-4382-8531-691cfa31a519" class="">Embeddings map high-dimensional data, such as words or categorical variables, to a dense vector space where semantically similar items are positioned closely together. This transformation facilitates the neural network&#x27;s task of discerning patterns and relationships in the data.</p><ul id="7743ec3e-b12a-47f2-a145-22885131fdb6" class="bulleted-list"><li style="list-style-type:disc"><strong>Application in NLP:</strong> In the realm of Natural Language Processing, embeddings like Word2Vec and GloVe have transformed the way text is represented, enabling models to capture and utilize the semantic and syntactic nuances of language. Each word is represented as a vector, encapsulating its meaning based on the context in which it appears.</li></ul><ul id="a98c8478-9b91-4599-8450-2b8f3278be3e" class="bulleted-list"><li style="list-style-type:disc"><strong>Categorical Data Representation:</strong> Beyond text, embeddings are instrumental in representing categorical data in tasks beyond NLP. For example, in recommendation systems, embeddings can represent users and items in a shared vector space, capturing preferences and item characteristics that drive personalized recommendations.</li></ul><h3 id="0770a64a-a09a-40a2-b85e-c5fc804c910d" class="">Advantages</h3><ul id="fe221460-3541-4caa-8ff6-8230d938aa6d" class="bulleted-list"><li style="list-style-type:disc"><strong>Efficiency and Dimensionality Reduction:</strong> Embeddings reduce the computational burden on neural networks by condensing high-dimensional data into more manageable forms without sacrificing the richness of the data&#x27;s semantic and syntactic properties.</li></ul><ul id="603d8533-d194-47de-b87c-97551adb12fe" class="bulleted-list"><li style="list-style-type:disc"><strong>Enhanced Semantic Understanding:</strong> By embedding high-dimensional data into a continuous space, neural networks can more easily capture and leverage the inherent similarities and differences within the data, leading to more accurate and nuanced predictions.</li></ul><ul id="691c4baa-6284-4543-920a-8c450a255a53" class="bulleted-list"><li style="list-style-type:disc"><strong>Facilitating Transfer Learning:</strong> Similar to latent space representations, embeddings can be employed in a transfer learning context, where knowledge from one domain can enhance performance in related but distinct tasks.</li></ul><h2 id="ec79a2ac-0c20-4881-89b5-174911a30e51" class="">LLMs and the Rise of General-Purpose Models</h2><p id="895bb883-7af5-45fd-98c1-8aebdf502709" class="">Recent years have seen the emergence of large language models (LLMs) like GPT-3, BERT, and their successors, which represent a paradigm shift towards training massive, <strong>general-purpose models</strong>. These models are capable of understanding and generating human-like text and can be adapted to a wide range of tasks, from translation and summarization to question-answering and creative writing.</p><h3 id="b663e147-8b9d-4f30-9521-deaf0f81b754" class="">Fine-Tuning</h3><p id="62a8a905-0601-4186-9e73-3df76021b7fb" class="">Training an existing transformer-based model on new data is called <strong>fine-tuning</strong>. It is one possible way to extend its capability.</p><ul id="fde607be-43b6-4b37-932f-eb82592162c0" class="bulleted-list"><li style="list-style-type:disc"><strong>Adaptability:</strong> Fine-tuning involves taking a model that has been pre-trained on a vast corpus of data and adjusting its parameters slightly to specialize in a more narrow task. This process leverages the broad understanding these models have developed to achieve high performance on specific tasks with relatively minimal additional training.</li></ul><ul id="3b75dd45-afff-44ee-be69-2e3f66238429" class="bulleted-list"><li style="list-style-type:disc"><strong>Efficiency:</strong> By starting with a pre-trained model, researchers and practitioners can bypass the need for extensive computational resources required to train large models from scratch. Fine-tuning allows for the customization of these powerful models to specific needs while retaining the general knowledge they have already acquired.</li></ul><ul id="5528f582-0cc1-4b46-850c-0bcd53581951" class="toggle"><li><details open=""><summary>Fine-tuning a GPT using PyTorch</summary><h3 id="9d5477d7-5be0-4c6c-9938-46ee8d71035a" class=""><strong>Step 1: Install Transformers and PyTorch</strong></h3><p id="911a9e4c-bc09-4ad9-a686-3fcd623ef604" class="">Ensure you have the <code><strong>transformers</strong></code> and <code><strong>torch</strong></code> libraries installed. You can install them using pip if you haven&#x27;t already:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="454ece1d-2684-46ba-8019-f8bac4992f35" class="code"><code class="language-Shell" style="white-space:pre-wrap;word-break:break-all">pip install transformers torch</code></pre><h3 id="fd73a5d4-0e70-4b41-b0fa-d8c8c0f2835f" class=""><strong>Step 2: Load a Pre-Trained Model and Tokenizer</strong></h3><p id="ef73977a-b24c-4102-83ae-987e5a438164" class="">First, import the necessary modules and load a pre-trained model along with its corresponding tokenizer. We&#x27;ll use GPT-2 as an example.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="57addb67-1446-4944-bb21-d57179ffd950" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">from transformers import GPT2Tokenizer, GPT2LMHeadModel
+
+tokenizer = GPT2Tokenizer.from_pretrained(&#x27;gpt2&#x27;)
+model = GPT2LMHeadModel.from_pretrained(&#x27;gpt2&#x27;)</code></pre><h3 id="8341fa47-3ae0-4133-996a-e5c206b2d13a" class=""><strong>Step 3: Prepare Your Dataset</strong></h3><p id="695b7d35-3563-4018-b75d-4effa89dd209" class="">Prepare your text data for training. This involves tokenizing your text corpus and creating a dataset that the model can process.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="69dcf06e-a33d-49ac-980d-c3e7090b3d47" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">texts = [&quot;Your text data&quot;, &quot;More text data&quot;]  # Replace with your text corpus
+inputs = tokenizer(texts, padding=True, truncation=True, return_tensors=&quot;pt&quot;)</code></pre><h3 id="ab4621d6-f8a0-4904-a33e-6659a787aba7" class=""><strong>Step 4: Fine-Tune the Model</strong></h3><p id="738003dc-aee8-41f2-a833-8010df725467" class="">Use the Hugging Face <code><strong>Trainer</strong></code> class or a custom training loop to fine-tune the model on your dataset. For simplicity, we&#x27;ll use the <code><strong>Trainer</strong></code>.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="515bcbb4-fa0c-42c8-a7b0-dd249d6b47c2" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">from transformers import Trainer, TrainingArguments
+
+training_args = TrainingArguments(
+    output_dir=&quot;./results&quot;,           # Output directory
+    num_train_epochs=3,               # Total number of training epochs
+    per_device_train_batch_size=4,    # Batch size per device during training
+    per_device_eval_batch_size=4,     # Batch size for evaluation
+    warmup_steps=500,                 # Number of warmup steps for learning rate scheduler
+    weight_decay=0.01,                # Strength of weight decay
+)
+
+trainer = Trainer(
+    model=model,
+    args=training_args,
+    train_dataset=inputs,  # Assuming `inputs` is your processed dataset
+    # eval_dataset=eval_dataset,  # If you have a validation set
+)
+
+trainer.train()</code></pre><h3 id="d26fc4f0-2f5e-4195-825a-f0edc943b1a1" class=""><strong>Step 5: Save and Use the Fine-Tuned Model</strong></h3><p id="066bd5c2-4faa-478f-a2de-dd642f3302f2" class="">After fine-tuning, save your model for future use and inference.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="96ff7c39-4371-473e-9f67-768580d0c36d" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">pythonCopy code
+trainer.save_model(&quot;./fine_tuned_model&quot;)
+
+# To use the model for generation:
+prompt = &quot;Your prompt here&quot;
+input_ids = tokenizer.encode(prompt, return_tensors=&quot;pt&quot;)
+generated_text_ids = model.generate(input_ids, max_length=100)
+generated_text = tokenizer.decode(generated_text_ids[0], skip_special_tokens=True)
+
+print(generated_text)</code></pre></details></li></ul><h3 id="ab455c30-c57e-4f2e-81ce-023d324fc32a" class="">Prompt Engineering and One-Shot Learning</h3><p id="c17bf5a8-50c7-4b57-80d2-d28cb7352156" class="">Prompt engineering is the art of crafting input prompts that guide the model to generate desired outputs. This technique exploits the model&#x27;s ability to understand context and generate relevant responses, making it possible to &quot;program&quot; the model for new tasks without explicit retraining.</p><h3 id="5ea17a27-4945-454e-a5c3-edd1bd566005" class=""><strong>One-Shot and Few-Shot Learning</strong></h3><p id="e5b29351-f9b7-43fa-b812-18f5192a88cd" class="">One of the most remarkable capabilities of modern LLMs is their ability to perform tasks with minimal examples — sometimes just <strong>one or a few (few-shot learning)</strong>. This ability stems from their extensive pre-training, which provides a rich context for understanding and generating text.</p><h1 id="91298bd7-995f-4a14-960c-156d3b6b4aff" class=""><strong>Neural Networks in Practice</strong></h1><h2 id="faf93d2e-e3c3-4764-9c42-df8051ecc660" class="">Areas of Active Research</h2><p id="3ef91bcb-2af7-4a1f-b549-b6e038a5d5c2" class="">The field of neural networks is vibrant with research activity, exploring both foundational theories and innovative applications:</p><ul id="4e4aa7b0-d8eb-4616-b84a-cf0ab5d44b80" class="bulleted-list"><li style="list-style-type:disc"><strong>Few-Shot Learning:</strong> This research area focuses on designing models that can learn from a very limited amount of data, akin to human learning efficiency.</li></ul><ul id="35961349-b5ed-4288-9c8d-263246e0b388" class="bulleted-list"><li style="list-style-type:disc"><strong>Generative Models:</strong> Innovations in models like GANs and diffusion models are pushing the boundaries of content creation, from realistic images to synthetic data for training other models.</li></ul><ul id="77eee6cd-4517-45cd-8027-9f8ea5cd6d30" class="bulleted-list"><li style="list-style-type:disc"><strong>Reinforcement Learning:</strong> Combining neural networks with reinforcement learning principles is leading to breakthroughs in autonomous systems, game playing, and decision-making processes.</li></ul><ul id="87566248-dd26-4bb5-a69a-8bf0181ee7d4" class="bulleted-list"><li style="list-style-type:disc"><strong>Explainability and Ethics:</strong> As neural networks become more integral to critical applications, understanding their decision-making process and ensuring ethical usage are paramount.</li></ul><h2 id="e81092e2-1697-431c-9468-416762debdd8" class="">Current Limitations</h2><p id="901ec1d4-26a6-4bb6-a58f-b1496ba55397" class="">Despite significant advancements, neural networks still face several limitations:</p><ul id="9c49e603-9a1e-4fe8-8443-d4af8805d7cb" class="bulleted-list"><li style="list-style-type:disc"><strong>Interpretability:</strong> The &quot;black-box&quot; nature of deep neural networks makes it challenging to understand and trust their decisions, especially in critical applications.</li></ul><ul id="1c2f793e-ac04-41f3-ae08-bf174170b472" class="bulleted-list"><li style="list-style-type:disc"><strong>Data Dependency:</strong> High-performing neural networks often require vast amounts of labeled data, which can be expensive or infeasible to obtain for many problems.</li></ul><ul id="f7295ad3-0878-40ae-8aac-7ef95c8c72db" class="bulleted-list"><li style="list-style-type:disc"><strong>Computational Resources:</strong> Training state-of-the-art models requires significant computational power, often necessitating specialized hardware like GPUs or TPUs.</li></ul><ul id="be040ea8-0f01-49d6-88cb-250d76c067ad" class="bulleted-list"><li style="list-style-type:disc"><strong>Hallucination:</strong> A phenomenon where generative models, such as GPT or large-scale image generators, produce outputs that are plausible but factually incorrect or nonsensical. This issue is particularly prevalent in models trained on vast, uncurated datasets and can lead to misleading or false outputs.</li></ul><h3 id="d21fa87e-ad91-48cf-9dd2-77fac7966e51" class="">Addressing Hallucination</h3><p id="34ac18cb-9fd0-4729-a105-d1a37852bca4" class="">There is no general solution to preventing model hallucination. One way I like to think of it is akin to regression: when extrapolating beyond the training data you run the risk of making assumptions that no longer hold.</p><p id="8f68b382-3090-4a3a-8487-7039a727acdc" class="">Approaches include:</p><ul id="b4512c10-961c-498e-85c2-766158ca0894" class="bulleted-list"><li style="list-style-type:disc"><strong>Training Data Curation:</strong> Carefully curating and vetting training datasets can reduce the likelihood of hallucination by ensuring that models learn from high-quality, accurate data.</li></ul><ul id="0170e9a1-f81c-482e-a090-372a1a90577b" class="bulleted-list"><li style="list-style-type:disc"><strong>Prompt and Output Design:</strong> In generative models, carefully designing input prompts and setting constraints on outputs can mitigate hallucination effects. This is particularly relevant in NLP applications where the context and phrasing of prompts can significantly influence the model&#x27;s output.</li></ul><ul id="c0adc35b-cf80-4039-8e00-28325f33a0e6" class="bulleted-list"><li style="list-style-type:disc"><strong>Human-in-the-loop:</strong> Incorporating human feedback into the training loop can help identify and correct hallucinations, leading to models that better align with factual accuracy and user expectations.</li></ul><p id="8a162a92-e3cb-4b24-8461-3728fd13c7b3" class="">
+</p><h2 id="bc8e6a49-6526-445f-8fbe-2d6eb52e35d4" class="">Design Patterns</h2><p id="0b6d1702-4b23-4ef6-a629-c857d61ec6da" class="">To navigate the challenges and leverage the strengths of neural networks, practitioners have adopted several design patterns:</p><ul id="9252b78b-f1d5-49f1-9df2-7c6f7800f9d7" class="bulleted-list"><li style="list-style-type:disc"><strong>Ensemble Methods:</strong> Combining predictions from multiple neural network models to improve overall performance and reduce the likelihood of overfitting. This approach is beneficial in competitions and critical applications where even minor performance improvements are valuable.</li></ul><ul id="2c48fd39-c329-4e61-a5ee-67b9a7cdf209" class="bulleted-list"><li style="list-style-type:disc"><strong>Attention Mechanisms:</strong> Beyond their use in Transformers, attention mechanisms can enhance various neural network architectures by allowing models to focus on the most relevant parts of the input data, leading to better performance, especially in tasks involving sequences or contexts.</li></ul><ul id="cb4b5953-086a-4e70-8efe-5ad8ca1dfe78" class="bulleted-list"><li style="list-style-type:disc"><strong>Normalization Techniques:</strong> Batch normalization, layer normalization, and instance normalization are strategies to stabilize and accelerate neural network training. By normalizing the inputs to layers within the network, these techniques help mitigate issues like internal covariate shift.</li></ul><ul id="3cb7913b-fdf6-44b0-97cb-1b2aa9b496a0" class="bulleted-list"><li style="list-style-type:disc"><strong>Regularization Techniques:</strong> Beyond L1/L2 regularization, techniques such as dropout, data augmentation, and early stopping are employed to prevent overfitting and ensure that models generalize well to unseen data.</li></ul><ul id="0e71946b-cf96-4347-80e4-44815888e931" class="bulleted-list"><li style="list-style-type:disc"><strong>Residual Connections:</strong> Popularized by ResNet architectures, residual connections help alleviate the vanishing gradient problem in deep networks by allowing gradients to flow through skip connections, enabling the training of much deeper networks.</li></ul><ul id="f35bffec-a948-4c01-b765-1266d740dd1e" class="bulleted-list"><li style="list-style-type:disc"><strong>Dynamic Architectures:</strong> Incorporating mechanisms that allow the network to adapt its structure or computation paths dynamically based on the input data, such as Neural Architecture Search (NAS) or conditional computation, can lead to more efficient and effective models.</li></ul><ul id="558516aa-f3f5-4bd4-a57c-f3c750cada17" class="bulleted-list"><li style="list-style-type:disc"><strong>Transfer Learning:</strong> Leveraging pre-trained models on large datasets and fine-tuning them for specific tasks can significantly reduce the data and computational resources required.</li></ul><ul id="a09c84a1-2d32-486d-8043-09426c992404" class="bulleted-list"><li style="list-style-type:disc"><strong>Modular Design:</strong> Building neural networks with interchangeable modules or blocks allows for more flexible architectures that can be adapted to various tasks.</li></ul><ul id="da6aa641-e762-4f74-ba3d-a52324448fdc" class="bulleted-list"><li style="list-style-type:disc"><strong>Hybrid Models:</strong> Combining different types of neural networks, such as CNNs for feature extraction and RNNs for sequence processing, can harness the strengths of each architecture for complex tasks like video classification or multimodal analysis.</li></ul><h2 id="3ca28bda-d4e1-4306-87d8-b9c7dbff72ad" class="">Implementing a custom model</h2><p id="a623e272-a6f4-4ea6-b897-d27ed6fab5fb" class="">When constructing a neural network for tasks like character recognition in the EMNIST dataset, it&#x27;s essential to define key parameters that align with your specific problem. <code><strong>input_size</strong></code> corresponds to the dimensionality of your input data, <code><strong>hidden_size</strong></code> is a modifiable parameter that dictates the size of the hidden layers, and <code><strong>num_classes</strong></code> represents the total number of distinct categories in your classification task.</p><h3 id="9e8dff49-0a69-42dd-9c64-650f330f48cf" class="">In Keras</h3><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="5a4c7159-8bd7-47cd-bbc0-27e305754fef"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><strong>NOTE: </strong><a href="https://www.tensorflow.org/guide/keras">Keras documentation for detailed function definitions</a></div></figure><p id="74c662e7-0ed3-4ec2-a46d-4a7c905df5be" class=""><strong>Model Structure:</strong><br/>Begin by initializing a <br/><code>Sequential</code> model in Keras, then sequentially add layers, starting from input to output. For the EMNIST dataset, a simple model might include a layer to reshape the input, a flattening layer to convert 2D images to 1D vectors, and dense layers for classification purposes:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="5254011e-5e74-4d1e-940f-9eea30279c07" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">from keras.models import Sequential
+from keras.layers import Dense, Flatten, Reshape
+
+input_size = 784  # EMNIST images are 28x28 pixels
+hidden_size = 128  # Tunable parameter for the hidden layer
+num_classes = 47  # Number of classes in the EMNIST Balanced dataset
+
+model = Sequential([
+    Reshape((28, 28, 1), input_shape=(input_size,)),
+    Flatten(),
+    Dense(hidden_size, activation=&#x27;relu&#x27;),
+    Dense(num_classes, activation=&#x27;softmax&#x27;)
+])
+</code></pre><p id="80eef9fc-6210-47b5-938d-251329a9a0eb" class=""><strong>Compiling and Training:</strong><br/>After defining the model, compile it with the chosen optimizer and loss function, and then train it using the <br/><code>fit</code> method, specifying your training data, batch size, and epochs:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="59e29fdc-7fe1-4f15-b51a-b0e10543001a" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">model.compile(optimizer=&#x27;adam&#x27;,
+              loss=&#x27;categorical_crossentropy&#x27;,
+              metrics=[&#x27;accuracy&#x27;])
+model.fit(x_train, y_train, batch_size=32, epochs=10)
+</code></pre><h3 id="6b5b9467-a9f7-4cdc-ae6f-339a82439599" class="">In PyTorch</h3><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="cc0d59b7-ad4c-46c5-bda3-b5708c5a2619"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><strong>NOTE:</strong> <a href="https://pytorch.org/docs/stable/index.html">PyTorch documentation for detailed function definitions</a></div></figure><p id="031682cd-7af2-4db9-9b6c-57bbf8c573ba" class=""><strong>Custom Model Definition:</strong><br/>In PyTorch, define a custom neural network by subclassing <br/><code>nn.Module</code>. Initialize the layers in the constructor and specify the forward pass logic. A straightforward network might include a fully connected layer for the hidden layer and an output layer:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e308d4fe-a9ab-4213-b77f-b81fbfc30019" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">import torch
+import torch.nn as nn
+import torch.nn.functional as F
+
+class SimpleNN(nn.Module):
+    def __init__(self, input_size=784, hidden_size=128, num_classes=47):
+        super(SimpleNN, self).__init__()
+        self.fc1 = nn.Linear(input_size, hidden_size)
+        self.fc2 = nn.Linear(hidden_size, num_classes)
+
+    def forward(self, x):
+        x = F.relu(self.fc1(x))
+        x = self.fc2(x)
+        return x
+</code></pre><p id="0761e59e-f7ca-4b3d-bda5-41799f7fdb11" class=""><strong>Loss Function and Optimizer Setup:</strong><br/>Choose a suitable loss function and optimizer. For classification, <br/><code>CrossEntropyLoss</code> is typically used, and <code>Adam</code> is a widely used optimizer:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="af21fc82-ff6f-4bc1-9920-98c10d749ee7" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">model = SimpleNN(input_size=784, hidden_size=128, num_classes=47)
+loss_fn = nn.CrossEntropyLoss()
+optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
+</code></pre><h3 id="34b476da-b962-44ba-bee5-0f8293295e73" class=""><strong>Training the Models</strong></h3><p id="24b8e47b-d196-4444-b0f3-082b3c20fa99" class="">For training, you&#x27;ll require a dataset (e.g., EMNIST), a loss function, and an optimizer. Define the number of training epochs and the batch size as well.</p><p id="27e841c9-580a-4f7f-a291-0b2436c6e7ec" class=""><strong>PyTorch Training Loop:</strong><br/>In PyTorch, iterate over your dataset in batches, pass the inputs through the model to obtain outputs, compute the loss, and update the model parameters using <br/><code>loss.backward()</code> and <code>optimizer.step()</code>:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="7ea20344-cf43-4fc3-be97-5c87a8877d5b" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">for epoch in range(num_epochs):
+    for inputs, targets in train_loader:
+        optimizer.zero_grad()
+        outputs = model(inputs)
+        loss = loss_fn(outputs, targets)
+        loss.backward()
+        optimizer.step()</code></pre><p id="c63115f6-f882-4da8-9912-fc28eae8548e" class=""><strong>Keras Training:</strong><br/>In Keras, training the model is straightforward with the <br/><code>fit</code> method, where <code>x_train</code> and <code>y_train</code> are your training inputs and labels:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b24f2139-2618-4ce6-a3b8-a93481e6f155" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">model.fit(x_train, y_train, epochs=10, batch_size=32)</code></pre><p id="d0c028f3-8b54-4912-baca-979fb10a9be7" class="">This foundation serves as a starting point for constructing neural networks in both PyTorch and Keras. As you progress to more complex tasks, consider adding more layers, employing different types of layers (like <code>Conv2D</code> for image-related tasks), or adjusting parameters and hyperparameters to refine your model&#x27;s performance.</p><h2 id="f5b6f49f-58be-4da8-9e45-0a946032725e" class="">Examples with Code</h2><p id="520cc319-32c3-4c9e-b5fe-88202d4fbf68" class="">Practical implementations of neural network models provide valuable insights and hands-on experience:</p><ul id="9de6c58c-6190-4199-ad7d-4364390d4024" class="bulleted-list"><li style="list-style-type:disc"><strong>CNNs:</strong> Implementations of ResNet and XCeption in Keras for image classification tasks, demonstrating the effectiveness of deep convolutional architectures.<ul id="7d75e738-545b-449b-b2e7-25cb5a7d352f" class="bulleted-list"><li style="list-style-type:circle"><a href="https://github.com/christopherseaman/datasci_223/blob/main/exercises/4-classification/practice_1-which_animal.ipynb">Which animal is this?</a>: A practical exercise in applying CNNs to a multi-class classification problem.</li></ul></li></ul><ul id="5267e0da-b367-402c-8ef8-c765c86a3f48" class="bulleted-list"><li style="list-style-type:disc"><strong>Hybrid Models:</strong> Demonstrating the combination of CNNs and RNNs in Keras for tasks that require understanding both spatial and temporal data.<ul id="d520e0be-2f63-41c9-be41-8a51fe3e016b" class="bulleted-list"><li style="list-style-type:circle"><a href="https://github.com/ankangd/HybridCovidLUS">https://github.com/ankangd/HybridCovidLUS</a>: An example of a hybrid model applied to medical imaging for COVID-19 analysis.</li></ul></li></ul><ul id="4e785a7e-cc54-42ed-91bc-433712a086e0" class="bulleted-list"><li style="list-style-type:disc"><strong>GPT from Scratch:</strong> Building a simplified version of the GPT model in PyTorch, offering insights into the workings of transformer models.<ul id="e055ca24-accf-4221-8001-f7092259310b" class="bulleted-list"><li style="list-style-type:circle"><a href="https://github.com/karpathy/minGPT">https://github.com/karpathy/minGPT</a>: Accompanied by a <a href="https://youtu.be/-6_CvTdzMRY?si=xUDNvAZpTahkt3cP">full walkthrough video</a>, this implementation demystifies the GPT architecture.</li></ul></li></ul><ul id="f7be2684-a72f-4036-ab39-bda29599f0a3" class="bulleted-list"><li style="list-style-type:disc"><strong>Multi-Model Systems:</strong> Exploring the interaction between different models, such as in GANs, where a generative model is pitted against a discriminative model to produce high-quality synthetic data.<ul id="5f2d71f5-01ed-4428-a4da-232d092b371d" class="bulleted-list"><li style="list-style-type:circle"><a href="https://github.com/tezansahu/PyTorch-GANs">https://github.com/tezansahu/PyTorch-GANs</a>: A beginner-friendly implementation showing how to train a GAN on the MNIST dataset to generate digit images.</li></ul></li></ul><h1 id="438e39a3-6eba-489a-a408-48131df293bb" class="">It came from the internet</h1><h2 id="09a3dc42-7b9a-4bd1-a0e9-3af0e2cb76c1" class="">Recent datasci papers from NEJM:</h2><ul id="018fe46c-afc2-4928-a852-450e354c004b" class="bulleted-list"><li style="list-style-type:disc"><a href="https://evidence.nejm.org/doi/full/10.1056/EVIDstat2300205?emp=marcom&amp;utm_source=nejmglist&amp;utm_medium=email&amp;utm_campaign=evengage23"><strong>How Censoring Works</strong></a></li></ul><ul id="eafeae6b-c3d9-4af5-8df8-f190c817a5c9" class="bulleted-list"><li style="list-style-type:disc"><a href="https://evidence.nejm.org/doi/full/10.1056/EVIDstat2300128?emp=marcom"><strong>Large Language Models</strong></a></li></ul><ul id="6648bd53-2d6a-4b9f-b056-aabba8bfe3f7" class="bulleted-list"><li style="list-style-type:disc"><a href="https://evidence.nejm.org/doi/full/10.1056/EVIDstat2200171?emp=marcom&amp;utm_source=nejmglist&amp;utm_medium=email&amp;utm_campaign=evengage23"><strong>The Problem of Multiple Comparisons</strong></a></li></ul><ul id="dd2aca13-43b1-4578-bdbd-298157d39616" class="bulleted-list"><li style="list-style-type:disc"><a href="https://evidence.nejm.org/doi/full/10.1056/EVIDstat2300090?emp=marcom&amp;utm_source=nejmglist&amp;utm_medium=email&amp;utm_campaign=evengage23"><strong>Bayesian Way</strong></a></li></ul><h2 id="86f36a5c-ded2-4730-bb0a-abd53501183c" class="">More broadly:</h2><figure id="32474ae5-7936-4c6c-9325-fc553716a3ae"><div class="source">https://github.com/TheEconomist/the-economist-war-fire-model</div></figure><figure id="989154df-8325-4341-abfc-f8812daf5e97"><a href="https://blog.google/technology/developers/gemma-open-models/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Gemma: Introducing new state-of-the-art open models</div><div class="bookmark-description">Gemma is a family of lightweight, state-of-the art open models built from the same research and technology used to create the Gemini models.</div></div><div class="bookmark-href"><img src="https://blog.google/favicon.ico" class="icon bookmark-icon"/>https://blog.google/technology/developers/gemma-open-models/</div></div><img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Gemma-social-share.width-1300.jpg" class="bookmark-image"/></a></figure><figure id="8c5b429f-a889-4087-9d2f-0a12938dcc7c"><a href="https://openai.com/research/video-generation-models-as-world-simulators" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Video generation models as world simulators</div><div class="bookmark-description">We explore large-scale training of generative models on video data. Specifically, we train text-conditional diffusion models jointly on videos and images of variable durations, resolutions and aspect ratios. We leverage a transformer architecture that operates on spacetime patches of video and image latent codes. Our largest model, Sora, is capable of generating a minute of high fidelity video. Our results suggest that scaling video generation models is a promising path towards building general purpose simulators of the physical world.</div></div><div class="bookmark-href"><img src="https://openai.com/favicon.ico" class="icon bookmark-icon"/>https://openai.com/research/video-generation-models-as-world-simulators</div></div><img src="https://images.openai.com/blob/28bcbcb2-563a-432b-bb30-d74f66a087fe/young-tiger.jpg?trim=0%2C0%2C0%2C0&amp;width=1000&amp;quality=80" class="bookmark-image"/></a></figure><figure id="ff53aa9d-2e92-4fcf-9cc7-27bf729dabab"><a href="https://sohl-dickstein.github.io/2024/02/12/fractal.html" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Neural network training makes beautiful fractals</div><div class="bookmark-description">This blog is intended to be a place to share ideas and results that are too weird, incomplete, or off-topic to turn into an academic paper, but that I think may be important. Let me know what you think! Contact links to the left.</div></div><div class="bookmark-href">https://sohl-dickstein.github.io/2024/02/12/fractal.html</div></div></a></figure><h1 id="f450ea92-2cb1-4396-8566-2952ea19a507" class="">References</h1><h2 id="83ed98f1-22e0-4822-adc2-757f8dffdd7e" class="">Preparation for next week (LLMs)</h2><figure id="b26749e1-c95d-4991-b4a9-d0daa98aa3f0"><div class="source"><a href="Neural%20Networks%20If%20I%20only%20had%20a%20brain%20efe26c6a7fb84b28b2ae63b1a743d5bd/LLM_survey.pdf">https://prod-files-secure.s3.us-west-2.amazonaws.com/7fb3b993-e2d6-4864-ba4b-9bda3453f671/06fa3b15-3812-4344-b48e-5ceb7bd79d39/LLM_survey.pdf</a></div></figure><h2 id="763cee0c-4446-4745-936d-5cbd8d9dae65" class="">Books</h2><h3 id="1b6940ee-6d4a-4395-9425-485ec7a4be47" class="">Recommendations</h3><ul id="5ed56fab-caec-4f19-8ee0-58255b0ba33e" class="bulleted-list"><li style="list-style-type:disc"><em>Python for Data Analysis</em>, McKinney - author’s <a href="https://wesmckinney.com/book/">website</a> </li></ul><ul id="bf56a024-3a3c-4881-84f8-fd1c3ace52ff" class="bulleted-list"><li style="list-style-type:disc"><em>Python Data Science Handbook, </em>VanderPlas - author’s <a href="https://jakevdp.github.io/PythonDataScienceHandbook/">website</a></li></ul><ul id="7f0c2277-a016-45ff-9a5c-3b6e7c38ca17" class="bulleted-list"><li style="list-style-type:disc"><em>PyTorch Tutorials</em> - official <a href="https://pytorch.org/tutorials/beginner/deep_learning_60min_blitz.html">documentation</a></li></ul><ul id="d6bf04fa-b81e-495d-9101-4e677c624d71" class="bulleted-list"><li style="list-style-type:disc"><em>TensorFlow Tutorials</em> - official <a href="https://www.tensorflow.org/tutorials">documentation</a></li></ul><ul id="81b40f2a-36b2-42ea-ad22-9aeab8278f58" class="bulleted-list"><li style="list-style-type:disc"><em>Dive into Deep Learning - </em>authors’ <a href="https://d2l.ai">website</a></li></ul><ul id="c5098a2c-b31a-49e5-a7b6-b5791274d074" class="bulleted-list"><li style="list-style-type:disc"><em>Understanding Deep Learning</em><strong> </strong>- author’s <a href="https://udlbook.github.io/udlbook/">website</a> (<strong>WARNING: </strong>intense math)</li></ul><h3 id="56e8ea83-598b-4610-9af2-ef7a4e6bdb2c" class=""><a href="https://www.oreilly.com/library-access/">O’Reilly Library Access </a>(UCSF institutional access)</h3><ul id="84c01dec-6281-4f1e-a6e0-2b33e6e53ca8" class="bulleted-list"><li style="list-style-type:disc"><a href="https://learning.oreilly.com/library/view/hands-on-machine-learning/9781098125967/">Hands-on Machine Learning, Géron</a> and companion <a href="https://github.com/ageron/handson-ml3">repository</a></li></ul><ul id="15efd348-3e38-42c8-a447-707b2c739c63" class="bulleted-list"><li style="list-style-type:disc"><a href="https://learning.oreilly.com/library/view/machine-learning-with/9781801819312/">Machine Learning with PyTorch and Scikit-Learn, Rashka</a></li></ul><ul id="8fd1599c-d0e7-4e2f-9ade-a72a0e2165f1" class="bulleted-list"><li style="list-style-type:disc"><a href="https://learning.oreilly.com/library/view/deep-learning-with/9781617295263/">Deep Learning with PyTorch, Viehmann</a> </li></ul><h2 id="0954a42f-7f3a-4a74-9ff7-4b1cb7c4d341" class="">Tutorials</h2><ul id="e41ad151-04da-490e-9767-91302ade078f" class="bulleted-list"><li style="list-style-type:disc"><strong><a href="https://www.tensorflow.org/tutorials">TensorFlow Tutorials</a></strong><strong>: </strong>Official tutorials covering various aspects of TensorFlow, from basics to advanced techniques.</li></ul><ul id="84c91845-83fa-47bf-b649-029da3bf5ef3" class="bulleted-list"><li style="list-style-type:disc"><strong><a href="https://pytorch.org/tutorials/">PyTorch Tutorials</a></strong><strong>: </strong>Collection of tutorials for learning and implementing neural networks using PyTorch.</li></ul><ul id="d0fb661b-51bd-4145-a88b-313638a9159d" class="bulleted-list"><li style="list-style-type:disc"><strong><a href="https://keras.io/">Keras Documentation</a></strong><strong>: </strong>Comprehensive guides and tutorials for building neural networks with Keras, a high-level neural networks API.</li></ul><h2 id="089703d4-3112-4c14-a191-07df5261c91b" class="">Newsletters</h2><ul id="b49ae5ea-d4c6-4cd5-b44c-d1f026582392" class="bulleted-list"><li style="list-style-type:disc"><a href="https://distill.pub/"><strong>Distill</strong></a><strong>:</strong> A journal that offers clear and interactive explanations of machine learning and deep learning concepts.</li></ul><ul id="2c71fcb1-99f6-4669-83fd-ffda57ba09ae" class="bulleted-list"><li style="list-style-type:disc"><a href="https://thegradient.pub/"><strong>The Gradient</strong></a><strong>: </strong>A publication that focuses on the latest trends and insights in AI and machine learning research.</li></ul><ul id="d660b9c3-fe1e-493c-9121-b8945b35d603" class="bulleted-list"><li style="list-style-type:disc"><strong><a href="https://huggingface.co/papers">The Hugging Face Daily Papers</a></strong>: A curated list of new research papers from arXiv, each linked to its related models/datasets and Spaces (platform where developers can create, host, and share their ML applications)</li></ul><h2 id="baff87bd-6e68-4cba-a6e6-ddf7ab101a41" class="">Models</h2><ul id="90b65e47-eb24-4b97-b4e6-4da4b4edddb7" class="bulleted-list"><li style="list-style-type:disc"><a href="https://github.com/microsoft/RespireNet">https://github.com/microsoft/RespireNet</a> - A CNN-based model designed for COVID-19 severity prediction from lung ultrasound images, showcasing the application of neural networks in healthcare.</li></ul><ul id="30a7d606-b543-485f-b553-318a892dc9fb" class="bulleted-list"><li style="list-style-type:disc"><a href="https://github.com/ritchieng/the-incredible-pytorch">https://github.com/ritchieng/the-incredible-pytorch</a> - curated list of tutorials, projects, libraries, videos, papers, and books</li></ul><p id="dda6314b-9638-4124-8f4c-12465b6dab7f" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
