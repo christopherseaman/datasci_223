@@ -1,0 +1,1144 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Labels, continued</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="feecfbe6-0997-41ba-b6cd-db7f1b6b5813" class="page sans"><header><h1 class="page-title">Labels, continued</h1><p class="page-description"></p></header><div class="page-body"><h1 id="9bb5f315-39b9-457b-a536-0b0a578ef55d" class=""><code>git dangit</code> </h1><h2 id="e543c809-83ef-4cd3-9ce3-acce054ff428" class="block-color-default">Avoiding <code>git merge</code> conflicts with branches</h2><ol type="1" id="79659a08-6f0c-4911-b2d3-e10efd9783d8" class="numbered-list" start="1"><li>Working in branches for each exercise</li></ol><ol type="1" id="a4364131-90c5-41ef-bb5a-cb44d5e48f76" class="numbered-list" start="2"><li>Save to branch and sync (discarding commits)</li></ol><ol type="1" id="e574b922-66de-4313-bba8-983715d1ef6d" class="numbered-list" start="3"><li>(<em>Optional</em>) Add files from branch back to <code>main</code> through a Pull Request</li></ol><figure id="aef72db9-711e-41bf-95a4-31e4db67ee6a" class="image"><a href="Putting%20a%20label%20on%20things%209a7cd21131f24330a84d27123932d201/git_branches.png"><img style="width:1636px" src="Putting%20a%20label%20on%20things%209a7cd21131f24330a84d27123932d201/git_branches.png"/></a></figure><h2 id="baceeecd-305a-459d-85b3-5f3dc74334bd" class="">Example: </h2><ol type="1" id="9570f4e4-bbd5-4e57-9721-9de98cc95cd4" class="numbered-list" start="1"><li>Save the work I have in <code>main</code> to <code>branch1</code> </li></ol><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="6858867b-fd33-4e4b-88e7-018ee9c7a9b4" class="code"><code class="language-Shell">git checkout -b branch1  # Create and switch to branch1
+git add .               # Add all changes
+git commit -m &quot;Saving changes before syncing with upstream&quot;</code></pre><ol type="1" id="376b70c3-656f-4cef-bec9-5dee5c7c1843" class="numbered-list" start="2"><li>Discard changes on <code>main</code> and rebase from upstream</li></ol><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="0ab19ce9-5dc6-41f7-8d7e-d9ee20c4f591" class="code"><code class="language-Shell">git checkout main  # Switch to the main branch
+git reset --hard upstream/main  # Reset main to match upstream/main (assuming &#x27;upstream&#x27; is your upstream remote)</code></pre><ol type="1" id="33b68d16-2607-44c0-ad19-15acfde7b9b9" class="numbered-list" start="3"><li>Pull in specific files from <code>branch1</code> using <code>git checkout branch1 -- &lt;file_path&gt;</code></li></ol><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="bf3af951-c651-45d1-92be-3a830c7f4614" class="code"><code class="language-Shell">git checkout main  # Switch to the main branch if we hadn&#x27;t already
+git checkout branch1 -- exercises/4-classification/exercise.ipynb # Pull changes from branch1 for specific exercise file
+git add exercises/4-classification/exercise.ipynb # Add to the staging area
+git commit -m &#x27;exercise 4 added to main branch&#x27; # Commit changes to main branch</code></pre><ol type="1" id="5dd4b83d-71d6-470a-b6de-0accbd225a87" class="numbered-list" start="4"><li>Delete <code>branch1</code> once changes are saved to <code>main</code></li></ol><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="3e4eb63d-313e-4f66-895d-436ccbce66c5" class="code"><code class="language-Shell">git branch -d branch1  # Delete branch1</code></pre><h2 id="9cf166e7-ac88-4826-996c-2d5958edd272" class=""><code>git reset</code> and <code>git revert</code></h2><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="21687738-6a0c-4213-86f3-89cb561fc9b1"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><strong><code>git reset</code></strong><strong> is DESTRUCTIVE! </strong>It is used to delete changes to your git commit history</div></figure><p id="75e39588-cd08-449c-865e-37990ce86a48" class="">You can reset Git to any commit with:</p><ul id="c20021e5-31a1-42fa-8b1d-ccf1ba4f4426" class="bulleted-list"><li style="list-style-type:disc"><code>git reset @~N</code> or equivalently <code>git reset HEAD~N</code></li></ul><p id="8c44ee3a-f03c-463b-96d7-794e644d69b3" class="">Where N is the number of commits before HEAD, and <code>@~</code></p><p id="5edb4514-bc43-4e26-85ac-29aaf2332e42" class="">resets to the previous commit. So if we&#x27;re here:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="82ac7558-462c-4441-8be2-d9e4a9c597b3" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">A &lt;- B &lt;- C
+          ^ HEAD</code></pre><ul id="8180c307-fee1-41e1-9e61-aafff1ab3864" class="bulleted-list"><li style="list-style-type:disc"><code>git reset @~</code> undoes one commit, setting HEAD to B</li></ul><ul id="fb9b54e3-c6a1-4ce0-8ba6-56a726d0fcc2" class="bulleted-list"><li style="list-style-type:disc"><code>git reset @~2</code> undoes two commits, setting HEAD to A</li></ul><h3 id="2a386bfd-409e-483d-aacc-fe795ca34c5a" class="">Resetting to a specific commit</h3><ul id="226b0a23-67f0-43ea-b6ba-cd66a4c761d6" class="bulleted-list"><li style="list-style-type:disc"><code>git reset &lt;HASH&gt;</code> undoes commits back to the commit defined by &lt;HASH&gt;</li></ul><p id="30b05334-b14d-4c27-9241-d13331839936" class="">You can get the short hash of each commit using <code>git reflog</code></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="6357b7a4-f7d5-4007-b26c-25f16e3b6c59" class="code"><code class="language-Shell">❯ git reflog
+0728ee2 (HEAD -&gt; main) HEAD@{0}: checkout: moving from classification-+-fhir to main
+b4d3760 (classification-+-fhir) HEAD@{1}: commit: sync
+fde9224 HEAD@{2}: pull --tags origin classification-+-fhir: Fast-forward
+f6e0c45 HEAD@{3}: checkout: moving from main to classification-+-fhir
+0728ee2 (HEAD -&gt; main) HEAD@{4}: checkout: moving from classification-+-fhir to main
+f6e0c45 HEAD@{5}: checkout: moving from main to classification-+-fhir
+0728ee2 (HEAD -&gt; main) HEAD@{6}: commit: Lecture 4 update</code></pre><p id="9cc78829-5cbc-4b47-b614-ea8d4cf42caf" class="">In this case, <code>git reset 0728ee2</code> would take the HEAD back to “Lecture 4 update”</p><h3 id="7136741b-718e-4c41-b7fc-930c26a5ea9f" class="">Types of <code>git reset</code> </h3><p id="7e1f9b16-1ee4-49e4-b590-311183efa169" class="">Resets may be soft, hard, or mixed. Generally, I find mixed (default) or hard most useful:</p><ul id="ffa9172c-510a-43ad-80f3-7bc588c51f48" class="bulleted-list"><li style="list-style-type:disc"><code>git reset @~ --soft</code> : Moves the commit back one, leaves all changed files in the working directory, they are staged for commit</li></ul><ul id="2f77f823-a34a-4b5b-a393-4663222c8549" class="bulleted-list"><li style="list-style-type:disc"><code>git reset @~ --mixed</code> : Moves the commit back one, leaves all changed files in the working directory, they are NOT staged for commit</li></ul><ul id="7d72b0b9-b6a7-4414-8b06-9496093e43e0" class="bulleted-list"><li style="list-style-type:disc"><code>git reset @~ --hard</code> : Moves the commit back one, discards all changed files in the working directory since that commit</li></ul><h3 id="a8e15dca-ba90-4dc4-8806-f695d7732d59" class="">Versus <code>git revert</code></h3><p id="d969bb7f-165e-4ff3-b880-293f2272f299" class=""><code>git revert</code> is somewhat similar, but works differently. It adds a new commit that undoes the changes of the previous commit. All of your changes are still included in the repository history (which would be large in your case). In this case it would make a new commit B&#x27; that looks the same as B, but the .git folder would include all the history and files from C</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="c4f79535-ae4f-4a7f-b098-702c3b602c9c" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">A &lt;- B &lt;- C &lt;- B&#x27;
+               ^ HEAD</code></pre><h1 id="c1f52a38-0626-4f8d-9e01-8e4651342f11" class="">Systematic model selection</h1><ol type="1" id="30d8f629-a036-4723-a5c9-1d9599732989" class="numbered-list" start="1"><li><strong>Preparation and Setup</strong><ul id="7ba9ff22-31f4-4f79-a492-229cb4baec11" class="bulleted-list"><li style="list-style-type:disc"><strong>Parameter Definition:</strong> Establish the number of splits or folds (K) for the validation process, decide on the repetitions for techniques like Repeated K-Fold or K-Split if needed, and outline the hyperparameter grid (C) for each candidate model. For models lacking hyperparameters, set C to an empty configuration.</li></ul></li></ol><ol type="1" id="3da605d8-f3e5-4aaf-aa4f-c2183485cf14" class="numbered-list" start="2"><li><strong>Data Partitioning</strong><ul id="b10b53b9-d1b6-4273-ba52-4894a5ff7223" class="bulleted-list"><li style="list-style-type:disc"><strong>Validation Holdout (Optional):</strong> Optionally reserve a subset of the data as a standalone validation set (V) to provide an unbiased final evaluation.</li></ul></li></ol><ol type="1" id="75c1de71-fec2-45de-b46b-52edfa78d674" class="numbered-list" start="3"><li><strong>Model Evaluation</strong><ul id="445ebca7-4034-47eb-a4df-1c03ba38e9e8" class="bulleted-list"><li style="list-style-type:disc"><strong>K Splits/Folds Validation (Outer Loop):</strong> Organize the data into K distinct splits or folds, using a consistent strategy to ensure each segment of data is used for validation once. This could involve stratified sampling to preserve class distributions in cases of imbalanced datasets.<ul id="2896cf9b-5fa2-4640-9210-b70ad31d9e92" class="bulleted-list"><li style="list-style-type:circle"><strong>Hyperparameter Optimization (Inner Loop):</strong> Within each split or fold, perform hyperparameter tuning for models with configurable parameters. This can include nested validation within the training portion of each split or fold to determine the optimal settings.</li></ul></li></ul></li></ol><ol type="1" id="c81852e9-8752-4ed4-abdd-b10c9a813d83" class="numbered-list" start="4"><li><strong>Performance Aggregation</strong><ul id="361485d3-3985-428b-9de3-e748dd3a96b8" class="bulleted-list"><li style="list-style-type:disc"><strong>Score Compilation:</strong> Collect and average the performance scores across all K splits or folds to derive a comprehensive performance metric for each model configuration.</li></ul></li></ol><ol type="1" id="5373689d-4805-4810-b83c-daee0763fbdf" class="numbered-list" start="5"><li><strong>Model Selection</strong><ul id="d63b46a1-2529-4b28-aeaf-bf1448fa5b4e" class="bulleted-list"><li style="list-style-type:disc"><strong>Optimal Model Identification:</strong> Evaluate the aggregated performance of each model to select the one that demonstrates the best balance of accuracy, precision, recall, F1 score, or other relevant metrics, considering the specific objectives and constraints of the study.</li></ul></li></ol><ol type="1" id="898bfb33-88e6-4818-8be5-a532499744c9" class="numbered-list" start="6"><li><strong>Final Model Training and Validation</strong><ul id="520a3258-9508-41a9-96f4-6532e130dbbd" class="bulleted-list"><li style="list-style-type:disc"><strong>Comprehensive Training:</strong> Use the entire dataset (excluding any validation holdout) to train the selected model with the identified optimal hyperparameters.</li></ul><ul id="cdf83314-75ef-46c9-9250-66a85ffe733b" class="bulleted-list"><li style="list-style-type:disc"><strong>External Validation (Optional):</strong> If a separate validation set was reserved or an external dataset is available, assess the finalized model against this data to gauge its performance and generalizability.</li></ul></li></ol><ol type="1" id="7aaf03e4-edc8-41ff-a02a-367ece984b32" class="numbered-list" start="7"><li><strong>Documentation and Transparency</strong><ul id="dc91b359-8ce8-4ee6-b4d4-b27ae2c31d3d" class="bulleted-list"><li style="list-style-type:disc"><strong>In-depth Reporting:</strong> Thoroughly document the selection process, including the rationale behind the choice of metrics, models, hyperparameters, and the comparative performance across different model configurations, to ensure clarity and reproducibility.</li></ul></li></ol><h3 id="e223e8a7-cf85-46ab-953f-05c92ae5e32d" class=""><strong>Additional Considerations</strong></h3><ul id="9a61bfdd-04e2-443f-a63f-396ad483c1a6" class="bulleted-list"><li style="list-style-type:disc"><strong>Class Imbalances:</strong> If applicable, ensure strategies to handle class imbalances (e.g., stratified sampling, class weights) are integrated into both the training and validation processes.</li></ul><ul id="1ccf456d-0e2a-4f67-841b-acdb90adce04" class="bulleted-list"><li style="list-style-type:disc"><strong>Computational Efficiency:</strong> Be mindful of the computational complexity, particularly with a large number of models, hyperparameters, and folds. Employ efficient search techniques and parallel processing where feasible.</li></ul><ul id="b7622207-4ff1-4b84-a4dc-ba42290d6c53" class="bulleted-list"><li style="list-style-type:disc"><strong>Domain Requirements:</strong> Customize the model selection framework to align with the domain-specific needs and the nature of the data, ensuring the chosen approach is both relevant and practical.</li></ul><div id="c62340db-23a4-413d-8646-9eb6f1976948" class="column-list"><div id="1a7fc1d9-6724-482c-a12e-ccf36f3916f3" style="width:50%" class="column"><h2 id="1f2e39d2-9753-426a-95c1-c8621be30eee" class="">Simple k-fold</h2><figure id="5e6198ff-9c6e-46e9-bf4a-77343ed9c565" class="image"><a href="Labels,%20continued%20feecfbe6099741bab6cddb7f1b6b5813/Untitled.png"><img style="width:700px" src="Labels,%20continued%20feecfbe6099741bab6cddb7f1b6b5813/Untitled.png"/></a></figure><h2 id="0b5ab39d-8e36-4355-96c6-5d97bf78d7d9" class="">Nested k-fold</h2></div><div id="74a298cf-fccd-4bfc-95af-c36ec73de624" style="width:50%" class="column"><h2 id="1f5d1e22-2455-4e51-8905-9a77f84ec447" class="">Random k-fold</h2><figure id="d5b9859b-e5f3-47b9-8522-f79f02a60df5" class="image"><a href="Labels,%20continued%20feecfbe6099741bab6cddb7f1b6b5813/Untitled%201.png"><img style="width:700px" src="Labels,%20continued%20feecfbe6099741bab6cddb7f1b6b5813/Untitled%201.png"/></a></figure></div></div><figure id="6cb642e2-6ede-4405-a078-f8a3dbfae3e5" class="image"><a href="Labels,%20continued%20feecfbe6099741bab6cddb7f1b6b5813/Untitled%202.png"><img style="width:1323px" src="Labels,%20continued%20feecfbe6099741bab6cddb7f1b6b5813/Untitled%202.png"/></a></figure><h1 id="a0519531-70f1-4593-b39d-fa4215372f8b" class="">Methods in detail</h1><ul id="0695a0c2-d971-4071-ba0a-375be1b7ba5a" class="bulleted-list"><li style="list-style-type:disc"><strong>Data management</strong><ul id="de161268-6283-40f4-94ea-9b9fc9fb4119" class="bulleted-list"><li style="list-style-type:circle"><code>train_test_split</code> and <code>cross_val_score</code></li></ul><ul id="e0a9c10e-f998-46df-95f4-4c15190a140f" class="bulleted-list"><li style="list-style-type:circle">Rescaling inputs <code>StandardScaler</code> and <code>normalize</code></li></ul><ul id="f32d8eca-0154-4d38-859a-0a0ed8b2d92a" class="bulleted-list"><li style="list-style-type:circle">Fill missing with <code>Imputer</code></li></ul><ul id="333e2b0e-9a1d-46db-b98d-5e907d3f1e76" class="bulleted-list"><li style="list-style-type:circle">Split categorical into binary with <code>OneHotEncoder</code></li></ul><ul id="56edad54-0f33-4724-8cd5-d521d381597d" class="bulleted-list"><li style="list-style-type:circle">(<em>stretch</em>)<em> </em>Automated feature engineering (<code>SelectKBest</code>, <code>Recursive Feature Elimination</code> , auto feature eng)</li></ul></li></ul><ul id="bf0b09e5-5a32-4c50-9005-055da4f97c4e" class="bulleted-list"><li style="list-style-type:disc"><strong>Model details</strong><ul id="6a5b67eb-140e-4b4e-875c-0e4e1820435e" class="bulleted-list"><li style="list-style-type:circle">Explainability with feature weights, <code>SHAP</code>, <code>eli5</code>, and jackknife</li></ul><ul id="f6b0c605-6700-4a28-8dc6-064f69e75fd3" class="bulleted-list"><li style="list-style-type:circle">Hyperparameter search (e.g., GridSearchCV)</li></ul></li></ul><ul id="61181447-fb72-4948-8ce6-929ea727eb0f" class="bulleted-list"><li style="list-style-type:disc"><strong>Unsupervised learning</strong><ul id="c045eb7d-e8a2-4be5-b6b3-1170cf73c766" class="bulleted-list"><li style="list-style-type:circle">Principal Component Analysis (PCA)</li></ul><ul id="73122d95-d4af-4ec5-8266-d9f1c17667a1" class="bulleted-list"><li style="list-style-type:circle">Clustering</li></ul><ul id="060b5d16-6968-4203-876a-06173c8274a5" class="bulleted-list"><li style="list-style-type:circle">K-nearest neighbor</li></ul><ul id="44f66c31-8344-4891-b287-c66f30690a9e" class="bulleted-list"><li style="list-style-type:circle">t-distributed Stochastic Neighbor Embedding (t-SNE)</li></ul><ul id="581ca6c3-0f50-4a17-9657-a1653ecd1ad6" class="bulleted-list"><li style="list-style-type:circle">Self-organizing maps</li></ul></li></ul><ul id="e47077c0-3e9b-49c4-b86c-a9185e8bf742" class="bulleted-list"><li style="list-style-type:disc"><strong>Supervised classification</strong><ul id="e521d6d9-52cd-4d08-a06d-c831f05efe58" class="bulleted-list"><li style="list-style-type:circle">Logistic regression</li></ul><ul id="ccd21db7-3261-4211-9fc7-40b2cb08dcaa" class="bulleted-list"><li style="list-style-type:circle">RandomForest</li></ul><ul id="af696269-c049-4b37-9c9e-c5dbc08d1ff5" class="bulleted-list"><li style="list-style-type:circle">XGBoost</li></ul><ul id="1bb654db-00c9-4c08-8b43-2accdb492dc5" class="bulleted-list"><li style="list-style-type:circle">Neural networks (stretch goal)</li></ul><ul id="375f338a-b1c7-4731-a7cc-3bed2ce8af0c" class="bulleted-list"><li style="list-style-type:circle">LassoCV</li></ul></li></ul><ul id="a99891bd-dc3d-491d-95af-5aea229c58c1" class="bulleted-list"><li style="list-style-type:disc"><strong>Classical Statistics</strong><ol type="1" id="2336e3df-06fb-4895-8d85-e6db7a8dd028" class="numbered-list" start="1"><li><strong>Hypothesis Testing:</strong><ul id="62eb5192-ff13-4cf5-8064-50b277f6bd20" class="bulleted-list"><li style="list-style-type:disc"><code><strong>scipy.stats.ttest_ind</strong></code>: Performs a t-test for the means of two independent samples.</li></ul><ul id="d895cdd5-7cf9-4b03-95b5-e071ccfb916c" class="bulleted-list"><li style="list-style-type:disc"><code><strong>scipy.stats.f_oneway</strong></code>: Performs one-way ANOVA to test for differences between two or more groups.</li></ul><ul id="bf16f9fa-27c8-4a56-bf36-d999f6c0e7bb" class="bulleted-list"><li style="list-style-type:disc"><code><strong>scipy.stats.chi2_contingency</strong></code>: Conducts the chi-square test of independence for categorical variables.</li></ul><ul id="13e83c2f-4c89-42c3-a235-b80f06c3691a" class="bulleted-list"><li style="list-style-type:disc"><strong>(Advanced) </strong><code><strong>statsmodels.stats.multicomp.pairwise_tukeyhsd</strong></code>: Performs Tukey&#x27;s range test for multiple comparisons of means.</li></ul></li></ol><ol type="1" id="e1ec9410-d066-44e7-8005-9581e9b86835" class="numbered-list" start="2"><li><strong>Regression Analysis:</strong><ol type="a" id="489710d5-f37a-43b3-9769-4e7cb991c6bd" class="numbered-list" start="1"><li>Linear regression</li></ol><ol type="a" id="c469439d-698d-4ffe-9d12-34b552a1266f" class="numbered-list" start="2"><li>GLM</li></ol></li></ol><hr id="fafe4c96-6564-40ec-bd05-3f7bfb904ecc"/><p id="2b1a5aa9-a9f9-4fb6-95ce-ed1682e7237e" class="">Cut for prep time.</p><ol type="1" id="c96b80c7-b02b-4a4d-a04b-81d55d052a77" class="numbered-list" start="1"><li><strong>Time Series Analysis:</strong><ul id="b745244f-9201-4c5f-b952-a6dcd26a0d85" class="bulleted-list"><li style="list-style-type:disc"><code><strong>statsmodels.tsa.arima.ARIMA</strong></code>: Fits an autoregressive integrated moving average (ARIMA) model for time series forecasting.</li></ul><ul id="304d0304-8a8d-4e4f-8b05-42ce6a581710" class="bulleted-list"><li style="list-style-type:disc"><code><strong>statsmodels.tsa.seasonal.seasonal_decompose</strong></code>: Decomposes a time series into trend, seasonal, and residual components for analysis.</li></ul></li></ol><ol type="1" id="8f73e3b8-7c1f-4d99-9cf5-3dbc3b11f981" class="numbered-list" start="2"><li><strong>Nonparametric Tests:</strong><ul id="6c520b1b-78c9-41e5-a3d8-f9908a785dad" class="bulleted-list"><li style="list-style-type:disc"><code><strong>scipy.stats.wilcoxon</strong></code>: Performs the Wilcoxon signed-rank test for comparing paired samples.</li></ul><ul id="210aa556-efbe-47d6-9023-bff5fda5c2b6" class="bulleted-list"><li style="list-style-type:disc"><code><strong>scipy.stats.mannwhitneyu</strong></code>: Performs the Mann-Whitney U test for comparing two independent samples.</li></ul><ul id="a9fa93f3-1668-4a2a-9d51-4a600017226c" class="bulleted-list"><li style="list-style-type:disc"><code><strong>scipy.stats.kruskal</strong></code>: Conducts the Kruskal-Wallis H test for comparing more than two independent samples.</li></ul></li></ol><ul id="1e1f527b-4bef-41f8-b12b-8e50e27ab2dd" class="bulleted-list"><li style="list-style-type:circle"><strong>Sequential testing</strong> and <strong>CUPED </strong>(stretch goal)</li></ul></li></ul><ul id="2c6e1a65-90db-436b-97f0-80937f1d1dd7" class="toggle"><li><details open=""><summary>Bayesian (stretch goal)</summary><ol type="1" id="ba74990e-2027-4bc9-a75b-e636abf1b536" class="numbered-list" start="1"><li><strong>Bayesian T-Test:</strong><ul id="22a36540-a9f3-493b-831c-05231e3debac" class="bulleted-list"><li style="list-style-type:disc"><code><strong>pymc3.stats.bayesian_ttest</strong></code>: This function from the PyMC3 library performs a Bayesian t-test, allowing for hypothesis testing with continuous data while considering uncertainty in the parameters. It can handle cases where the sample sizes are small or unequal.</li></ul></li></ol><ol type="1" id="f23ec819-7b15-4046-96f3-c47ca78ba36f" class="numbered-list" start="2"><li><strong>Bayesian ANOVA:</strong><ul id="491a73ac-5201-4a4b-b268-f727f8f51da1" class="bulleted-list"><li style="list-style-type:disc"><code><strong>pymc3.stats.anova</strong></code>: PyMC3 also provides a Bayesian ANOVA implementation, allowing for hypothesis testing in the context of comparing means across multiple groups. It accounts for uncertainty in the parameters and provides posterior distributions for the effect sizes.</li></ul></li></ol><ol type="1" id="2d08a354-9ee2-437d-aa15-25858f1f1d96" class="numbered-list" start="3"><li><strong>Bayesian Regression:</strong><ul id="514c207a-1ba3-4abc-b8ff-8b796d9161ee" class="bulleted-list"><li style="list-style-type:disc"><code><strong>pymc3.glm</strong></code>: The PyMC3 library offers tools for Bayesian generalized linear regression, which can be used for hypothesis testing in regression analysis. It allows for incorporating prior knowledge, handling uncertainty, and making probabilistic statements about regression coefficients.</li></ul></li></ol><ol type="1" id="41bc1281-ce1b-4081-9abe-1f7e88718c10" class="numbered-list" start="4"><li><strong>Bayesian Significance Testing:</strong><ul id="dcfbc0ee-f2eb-4efc-a635-03fbb8df55c1" class="bulleted-list"><li style="list-style-type:disc"><code><strong>BayesianSignificanceTest</strong></code>: This class from the <code><strong>bayesian-AB-testing</strong></code> library provides a Bayesian approach to A/B testing, allowing for hypothesis testing in the context of comparing two groups (e.g., treatment vs. control). It considers prior distributions for the parameters and updates beliefs based on observed data to assess significance.</li></ul></li></ol><ol type="1" id="9338811b-f4ac-4905-83d0-0528c8836429" class="numbered-list" start="5"><li><strong>Bayesian Sequential Testing:</strong><ul id="0beb4c3f-1ff8-4398-8b93-0060ed8eea36" class="bulleted-list"><li style="list-style-type:disc"><code><strong>SequentialBayesianTest</strong></code>: You can use this class from the <code><strong>sequential-testing</strong></code> library to perform sequential hypothesis testing in a Bayesian framework. It allows for updating beliefs as data accumulates over time and making decisions based on posterior probabilities.</li></ul></li></ol></details></li></ul><h1 id="9fe8e80e-5ce3-4197-b32c-8b21552e4f0d" class="">Data preparation</h1><h2 id="2fc8f69f-30cb-4037-b99e-ff23b29c9214" class=""><code><strong>sklearn.model_selection.train_test_split</strong></code></h2><p id="7b455b8d-4497-4741-8025-50f7aef744fc" class="">Takes two arrays of the same length and splits into train and test.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="65580d04-3664-4c87-8e74-243a6835c8b3" class="code"><code class="language-Shell">import numpy as np
+from sklearn.model_selection import train_test_split
+
+# X = data, y = labels
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=42)</code></pre><p id="b68adf47-c849-467b-8f11-b2e237a5693d" class="">Parameters:</p><ul id="4cc252f8-7cb8-46f4-96d5-808dc82bdc9b" class="bulleted-list"><li style="list-style-type:disc"><strong>test_size</strong>, <strong>train_size:</strong> Float between 0..1, if either is not set then it receives the remainder, if both are not set the default is <strong>train_size</strong><em> </em>= 0.25</li></ul><ul id="ba03b4cb-996d-4c32-a088-6737099c9e01" class="bulleted-list"><li style="list-style-type:disc"><strong>random_state:</strong> Shuffles predictively if set for reproducibility</li></ul><ul id="19e56540-c924-425b-8c22-f560e1b4bd57" class="bulleted-list"><li style="list-style-type:disc"><strong>shuffle: </strong>Boolean on whether to shuffle or not</li></ul><ul id="960a10ac-6b23-4e0a-a5fd-5caeb6f1beaf" class="bulleted-list"><li style="list-style-type:disc"><strong>stratify:</strong> Array of labels to stratify by, preserving class ratios. Default to None, <a href="https://scikit-learn.org/stable/modules/cross_validation.html#stratification">more details in docs</a></li></ul><h2 id="3e94be74-5c83-451d-b3e9-12e8782d626a" class=""><code><strong>sklearn.model_selection.KFold</strong></code></h2><p id="40e9a1f0-d806-40ab-b80a-70c85e6ecc25" class=""><code><strong>KFold</strong></code> is a method for splitting the dataset into <strong>k consecutive folds</strong> (without shuffling by default). Each fold is then used as a validation set once, while the k - 1 remaining folds form the training set.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="afc3d326-68ad-44f3-a24c-e5121217e5f4" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">from sklearn.model_selection import KFold
+
+# Define the number of folds for cross-validation
+num_folds = 5
+
+# Create a KFold object
+kf = KFold(n_splits=num_folds, shuffle=False, random_state=None)</code></pre><p id="98c10450-f888-4f26-ad1a-1d7410c62fb3" class="">Parameters:</p><ul id="a5db1180-fbc8-480e-8b3a-df4d19ae348c" class="bulleted-list"><li style="list-style-type:disc"><strong>n_splits:</strong> int, default=5<ul id="ce3cda8f-db18-4c88-931f-a0aaf6a7849f" class="bulleted-list"><li style="list-style-type:circle">Number of folds. Must be at least 2.</li></ul></li></ul><ul id="778cbb81-092f-4eae-9aaa-ad7879fe29bb" class="bulleted-list"><li style="list-style-type:disc"><strong>shuffle:</strong> bool, default=False ⚠️<ul id="fd88439f-4c54-4ede-a4a7-0387b82288cd" class="bulleted-list"><li style="list-style-type:circle">Whether to shuffle the data before splitting into batches.</li></ul></li></ul><ul id="b24531ce-4195-4027-aae2-c506d839f05e" class="bulleted-list"><li style="list-style-type:disc"><strong>random_state:</strong> int or RandomState instance, default=None<ul id="b8eee809-06d7-4ca7-ac3b-713eb077a63c" class="bulleted-list"><li style="list-style-type:circle">When shuffle is True, random_state affects the ordering of the indices, which controls the randomness of each fold.</li></ul></li></ul><ul id="f1fc4ba2-2559-4ae5-8c66-5f3040e90da4" class="bulleted-list"><li style="list-style-type:disc"><strong>Other Parameters:</strong> For more advanced usage, <code><strong>KFold</strong></code> also supports additional parameters like <code><strong>stratify</strong></code>, which enables stratified splitting based on labels.</li></ul><h2 id="c0c978ea-bf6b-4b5e-a746-ba75bc42d910" class=""><strong>Automated k-fold cross-validation with </strong><code><strong>cross_val_score</strong></code></h2><p id="68346eac-b9a1-4806-acba-c9515a0a54bb" class=""><code><strong>cross_val_score</strong></code> is a function provided by scikit-learn that enables users to perform k-fold cross-validation with ease. Here&#x27;s an overview of how it works:</p><ul id="916b6abd-07ad-499f-a9d1-5f7aff22e445" class="bulleted-list"><li style="list-style-type:disc"><strong>Description:</strong> <code><strong>cross_val_score</strong></code> splits the dataset into multiple folds (or partitions) and evaluates the model&#x27;s performance on each fold separately. It uses stratified K-fold cross-validation by default for classification tasks and K-fold cross-validation for regression tasks. The function returns an array of scores obtained for each fold, allowing users to assess the model&#x27;s consistency across different subsets of the data.</li></ul><ul id="67e94fd6-70b0-455f-8700-8d980142a704" class="bulleted-list"><li style="list-style-type:disc"><strong>Key Features:</strong><ul id="be3c5649-86bf-4ce2-88e1-ae6c77cd66f6" class="bulleted-list"><li style="list-style-type:circle">Model evaluation: <code><strong>cross_val_score</strong></code> provides a convenient way to evaluate the performance of a machine learning model using cross-validation, helping users estimate how well the model is likely to generalize to new data.</li></ul><ul id="fb35fac0-d5f7-4ef1-a087-ac6ab9d08b33" class="bulleted-list"><li style="list-style-type:circle">Consistency: By splitting the dataset into multiple folds and evaluating the model on each fold separately, <code><strong>cross_val_score</strong></code> provides more reliable performance estimates than single train-test splits, reducing the risk of overfitting and providing a more accurate assessment of model performance.</li></ul><ul id="1bf45522-8117-4f56-9965-92b58e9f69e1" class="bulleted-list"><li style="list-style-type:circle">Customizability: <code><strong>cross_val_score</strong></code> allows users to specify the number of folds (<code><strong>cv</strong></code> parameter), the scoring metric (<code><strong>scoring</strong></code> parameter), and other relevant parameters to customize the cross-validation process according to their specific needs.</li></ul></li></ul><ul id="831bc163-21b6-4a77-8298-49237a45a497" class="bulleted-list"><li style="list-style-type:disc"><strong>Parameters:</strong><ul id="373ccc48-4ebc-4a71-bdf7-fa5b1db8fdf1" class="bulleted-list"><li style="list-style-type:circle"><code><strong>estimator</strong></code>: The machine learning model or pipeline to evaluate.</li></ul><ul id="48352654-e4c5-4fbb-aa7e-ba12deb7aa45" class="bulleted-list"><li style="list-style-type:circle"><code><strong>X</strong></code>: The feature matrix (input data).</li></ul><ul id="820a204d-ecdf-477e-8736-9e777b5d2e8e" class="bulleted-list"><li style="list-style-type:circle"><code><strong>y</strong></code>: The target variable (labels) for supervised learning tasks.</li></ul><ul id="5b8a51b9-d7a2-4de3-ad17-3f64a18e2e5f" class="bulleted-list"><li style="list-style-type:circle"><code><strong>cv</strong></code>: The number of folds for cross-validation. By default, it uses stratified K-fold cross-validation for classification tasks and K-fold cross-validation for regression tasks.</li></ul><ul id="fb65e68b-07e3-4e75-b865-49536c0bba86" class="bulleted-list"><li style="list-style-type:circle"><code><strong>scoring</strong></code>: The scoring metric used to evaluate model performance (e.g., accuracy, precision, recall for classification tasks, and mean squared error, R-squared for regression tasks).</li></ul><ul id="65925405-a5a8-4ec9-95d4-886d12abc8a2" class="bulleted-list"><li style="list-style-type:circle"><code><strong>n_jobs</strong></code>: The number of CPU cores to use for parallelizing cross-validation. Set to <code><strong>1</strong></code> to use all available cores.</li></ul><ul id="0f273860-c588-4a5a-a4c9-3f1a21528802" class="bulleted-list"><li style="list-style-type:circle"><code><strong>verbose</strong></code>: Controls the verbosity of cross-validation output (e.g., <code><strong>1</strong></code> for minimal output, <code><strong>2</strong></code> for more detailed output).</li></ul></li></ul><ul id="05337d3e-df3e-44dd-8fe8-38fc486cc7f6" class="bulleted-list"><li style="list-style-type:disc"><strong>Example:</strong></li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="31f8ccc5-7d84-493d-840d-cb73c3d821ed" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">from sklearn.model_selection import cross_val_score, KFold
+from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.datasets import load_iris
+
+# Load the Iris dataset
+iris = load_iris()
+X, y = iris.data, iris.target
+
+# Define the models
+models = [LogisticRegression(), RandomForestClassifier()]
+
+# Define the number of folds for cross-validation
+num_folds = 5
+
+# Create a cross-validation object with specific parameters
+kf = KFold(n_splits=num_folds, shuffle=True, random_state=42)
+
+# Perform cross-validation for each model
+for model in models:
+    # Perform cross-validation using the defined cross-validation object
+    scores = cross_val_score(model, X, y, cv=kf, scoring=&#x27;accuracy&#x27;)
+    
+    # Print the cross-validation scores for the current model
+    print(f&quot;Model: {model.__class__.__name__}&quot;)
+    print(&quot;Cross-Validation Scores:&quot;, scores)
+    print(&quot;Mean Accuracy:&quot;, scores.mean())</code></pre><h2 id="3353268b-a50d-4903-bd79-89578f1e76a6" class=""><code>sklearn.preprocessing.StandardScaler</code> and <code>normalize</code></h2><p id="c310ee87-3597-4946-89ec-129bfc338459" class=""><strong>Standardization</strong> of datasets is a <strong>common requirement for many machine learning estimators</strong> implemented in scikit-learn; they might behave badly if the individual features do not more or less look like standard normally distributed data: Gaussian with <strong>zero mean and unit variance</strong></p><p id="543bef4e-4bd2-4e04-acee-5e109343799a" class=""><strong>Normalization</strong> is the process of <strong>scaling individual samples to have unit norm</strong>. It requires specifying a normalization </p><p id="80287404-22dc-4898-8753-aa7a5706ff14" class="">
+</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="c2060fdd-9b25-4be1-97a1-bcaf1db1ba46" class="code"><code class="language-Shell">from sklearn.preprocessing import StandardScaler
+# Scale the data
+# When running without scaling the data, some models may not converge
+scaler = StandardScaler()
+train_scaled = scaler.fit_transform(train_01[&#x27;image_flat&#x27;].tolist())
+valid_scaled = scaler.transform(valid_01[&#x27;image_flat&#x27;].tolist())
+
+# Normalize a vector column
+from sklearn.preprocessing import normalize
+X[&#x27;vector_normalized&#x27;] = normalize(X[&#x27;vector&#x27;], norm=&#x27;l2&#x27;)</code></pre><p id="965e3012-480c-4195-94bb-77cfa8c0a3f6" class="">
+</p><h3 id="dbec1e88-dc8f-4a5b-9685-870bc767d4f1" class="">When to rescale and which to use:</h3><ol type="1" id="70545422-c184-4cee-a2b8-7a4a8b1f8ec7" class="numbered-list" start="1"><li><strong>Logistic Regression:</strong><ul id="5dfa85c1-a88e-4a7f-9e17-a40e94a21f9d" class="bulleted-list"><li style="list-style-type:disc"><strong>StandardScaler:</strong> Logistic regression assumes that the numerical features are centered around zero with a standard deviation of one. Therefore, using <code><strong>StandardScaler</strong></code> is recommended to standardize the features before fitting the logistic regression model.</li></ul></li></ol><ol type="1" id="30774778-6a61-4025-a660-9f0a127c59d5" class="numbered-list" start="2"><li><strong>Linear Regression:</strong><ul id="d672ee93-4766-43a7-82d4-7600671abcef" class="bulleted-list"><li style="list-style-type:disc"><strong>StandardScaler:</strong> Similar to logistic regression, linear regression assumes that the features are centered around zero with a standard deviation of one. Therefore, using <code><strong>StandardScaler</strong></code> is recommended for standardizing the features before fitting the linear regression model.</li></ul></li></ol><ol type="1" id="72a92224-aa91-418c-94ba-359342e28305" class="numbered-list" start="3"><li><strong>Support Vector Machines (SVM):</strong><ul id="f10fcdd4-2be7-4502-b894-9ea8392f2fbb" class="bulleted-list"><li style="list-style-type:disc"><strong>StandardScaler:</strong> SVMs are sensitive to the scale of the features. Standardizing the features using <code><strong>StandardScaler</strong></code> can help improve the performance and convergence of SVM models.</li></ul></li></ol><ol type="1" id="33dd2a63-aa23-4551-9e4a-c6313c669756" class="numbered-list" start="4"><li><strong>k-Nearest Neighbors (KNN):</strong><ul id="4fcf00bc-d93a-4e4c-a2a3-24bef7f77142" class="bulleted-list"><li style="list-style-type:disc"><strong>StandardScaler or normalize:</strong> KNN calculates distances between data points, so the scale of the features directly affects the distance metric. Standardizing the features with <code><strong>StandardScaler</strong></code> or normalizing them with <code><strong>normalize</strong></code> can help ensure that all features contribute equally to the distance computation.</li></ul></li></ol><ol type="1" id="650e41d7-45fa-48bc-baca-f6be725e1c6e" class="numbered-list" start="5"><li><strong>Decision Trees and Random Forests:</strong><ul id="0dee766e-7af6-4df0-9d1a-9c08594b052a" class="bulleted-list"><li style="list-style-type:disc"><strong>No scaling required:</strong> Decision trees and random forests are not sensitive to the scale of the features, so scaling is not necessary. You can use the raw features directly without applying any scaling.</li></ul></li></ol><ol type="1" id="1a8973a9-a10c-43a0-be6e-6df6c221e5a6" class="numbered-list" start="6"><li><strong>Gradient Boosting Machines (e.g., XGBoost, LightGBM):</strong><ul id="e3d9f6d3-e59d-450a-b484-c4f6346a10f0" class="bulleted-list"><li style="list-style-type:disc"><strong>No scaling required:</strong> Gradient boosting algorithms like XGBoost and LightGBM are robust to feature scales and do not require scaling. You can use the raw features directly without applying any scaling.</li></ul></li></ol><ol type="1" id="b6c05c88-aeb3-433b-af93-361eb552c884" class="numbered-list" start="7"><li><strong>Neural Networks:</strong><ul id="36224774-e0cd-4b17-8d88-a08c34a706a8" class="bulleted-list"><li style="list-style-type:disc"><strong>StandardScaler or normalize:</strong> Neural networks can benefit from feature scaling to help improve convergence and training stability. Depending on the architecture and activation functions used in the neural network, you may choose to use <code><strong>StandardScaler</strong></code> or <code><strong>normalize</strong></code> to scale the features.</li></ul></li></ol><h2 id="311f538e-3222-4e03-af6b-e09d4bd894c6" class=""><code><strong>sklearn.impute.SimpleImputer</strong></code></h2><p id="054313dc-eb04-4889-8625-2cf95d97be9b" class=""><code><strong>SimpleImputer</strong></code> is a class in scikit-learn used to impute missing values in datasets. It replaces missing values with either a constant or statistics (mean, median, most frequent) along each column.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="19a1a34a-3194-4d29-9395-5ae55adbd9de" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">from sklearn.impute import SimpleImputer
+
+# Create an instance of SimpleImputer with the desired strategy
+imputer = SimpleImputer(strategy=&#x27;mean&#x27;)
+
+# Fit the imputer to the data
+imputer.fit(X_train)
+
+# Transform the data by imputing missing values
+X_train_imputed = imputer.transform(X_train)
+X_test_imputed = imputer.transform(X_test)</code></pre><p id="42d2beaf-1aec-45db-b088-9e3bcf52f5d7" class="">Parameters:</p><ul id="4252cc8a-f371-4292-b578-ae52da849226" class="bulleted-list"><li style="list-style-type:disc"><strong>strategy:</strong> Specifies the imputation strategy. It can be one of:<ul id="1f6940cc-e2ae-4074-8731-ce725f2611fe" class="bulleted-list"><li style="list-style-type:circle"><code><strong>&quot;mean&quot;</strong></code>: Replace missing values using the mean along each column.</li></ul><ul id="8148b347-b65f-45f7-9462-a55b403bb388" class="bulleted-list"><li style="list-style-type:circle"><code><strong>&quot;median&quot;</strong></code>: Replace missing values using the median along each column.</li></ul><ul id="5875f048-4aef-476c-9536-33cc352b1377" class="bulleted-list"><li style="list-style-type:circle"><code><strong>&quot;most_frequent&quot;</strong></code>: Replace missing values using the most frequent value along each column.</li></ul><ul id="fcfac899-0edf-4813-af28-9b8ce308fe94" class="bulleted-list"><li style="list-style-type:circle"><code><strong>&quot;constant&quot;</strong></code>: Replace missing values with a constant specified by the <code><strong>fill_value</strong></code> parameter (default is 0).</li></ul></li></ul><h3 id="1bf83c20-5c8a-4d49-b6b1-90a048a4df67" class=""><strong>When to use </strong><code><strong>SimpleImputer</strong></code><strong>:</strong></h3><ul id="7294735a-9365-495e-a0b9-dbee05e577f2" class="bulleted-list"><li style="list-style-type:disc"><strong>Preprocessing for various models:</strong> <code><strong>SimpleImputer</strong></code> can be used as a preprocessing step before applying machine learning models. It handles missing values in the dataset, ensuring compatibility with models that cannot handle missing data.</li></ul><ul id="11579be3-4a7c-4a0a-82e4-5a5f945e063b" class="bulleted-list"><li style="list-style-type:disc"><strong>Handling missing data in real-world datasets:</strong> Real-world datasets often contain missing values due to various reasons such as data collection errors, incomplete records, or data corruption. <code><strong>SimpleImputer</strong></code> provides a convenient way to handle these missing values, allowing for reliable analysis and modeling.</li></ul><ul id="2b69f9c3-e484-47a6-b622-f46c3eb97787" class="bulleted-list"><li style="list-style-type:disc"><strong>Replacing missing values with appropriate statistics:</strong> Depending on the nature of the data and the modeling task, different imputation strategies (e.g., mean, median, most frequent) may be more suitable. <code><strong>SimpleImputer</strong></code> allows for flexibility in choosing the appropriate imputation strategy based on the characteristics of the dataset.</li></ul><h2 id="a57a6f5d-12bb-43b4-9415-bc2502273fd1" class=""><code><strong>sklearn.preprocessing.OneHotEncoder</strong></code></h2><p id="1fdbef23-9f06-4ad6-99b9-467e8f995835" class=""><code><strong>OneHotEncoder</strong></code> is a class in scikit-learn used to convert categorical integer features into one-hot encoded binary features. It creates a binary column for each category and returns a sparse matrix or a dense array depending on the <code><strong>sparse</strong></code> parameter.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2e777a3e-bde0-4f4d-8e4b-6fe001c82771" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">from sklearn.preprocessing import OneHotEncoder
+
+# Create an instance of OneHotEncoder
+encoder = OneHotEncoder()
+
+# Fit the encoder to the data
+encoder.fit(X_train_categorical)
+
+# Transform the data by one-hot encoding categorical features
+X_train_encoded = encoder.transform(X_train_categorical)
+X_test_encoded = encoder.transform(X_test_categorical)</code></pre><p id="4c50ba6d-f465-4d34-bc48-90d1bdbc288b" class="">Parameters:</p><ul id="494949f5-a515-44d3-9c27-29d79ef51efd" class="bulleted-list"><li style="list-style-type:disc"><strong>sparse:</strong> Specifies whether to return a sparse matrix (<code><strong>True</strong></code>) or a dense array (<code><strong>False</strong></code>). By default, it returns a sparse matrix.</li></ul><h3 id="67d64025-77a2-419a-aaa5-0cad7127b3a7" class=""><strong>When to use </strong><code><strong>OneHotEncoder</strong></code><strong>:</strong></h3><ul id="99369138-a6fa-46bd-9d70-d895310bcfc1" class="bulleted-list"><li style="list-style-type:disc"><strong>Categorical features with non-ordinal values:</strong> <code><strong>OneHotEncoder</strong></code> is suitable for encoding categorical features with non-ordinal values, where the categories do not have an inherent order.</li></ul><ul id="375418b9-c8e2-4d56-a06e-cba7e0addc86" class="bulleted-list"><li style="list-style-type:disc"><strong>Handling categorical data in machine learning models:</strong> Many machine learning algorithms require numerical input data. <code><strong>OneHotEncoder</strong></code> allows you to convert categorical features into a format that can be used as input to these algorithms, improving model performance.</li></ul><ul id="950a78c4-3374-4edb-a0f8-3305368daff4" class="bulleted-list"><li style="list-style-type:disc"><strong>Avoiding numerical assumptions:</strong> One-hot encoding prevents numerical algorithms from making assumptions about the ordinality or magnitude of categorical values, ensuring that each category is treated independently.</li></ul><ul id="f7943a72-605d-451d-97bf-ca086009226d" class="bulleted-list"><li style="list-style-type:disc"><strong>Categorical features with ordinal values:</strong> Sometimes, categorical features may have ordinal values where the categories have a specific order or hierarchy. In such cases, using binning along with <code><strong>OneHotEncoder</strong></code> can be beneficial.</li></ul><ul id="137f7b7c-88fa-42a0-b16d-3f38f652966d" class="bulleted-list"><li style="list-style-type:disc"><strong>Handling numerical features with discrete intervals:</strong> Binning is useful when dealing with numerical features that can be grouped into discrete intervals or categories. By binning numerical features and then applying <code><strong>OneHotEncoder</strong></code>, you can capture the underlying patterns or trends in the data more effectively.</li></ul><h2 id="ac9d0cae-78cd-4917-9902-50f1f053677b" class="">Feature engineering (<em>self-directed</em>)</h2><p id="bfb8ed4f-8752-4af4-8881-6bc720fcceb9" class="">In addition to the <strong>Unsupervised methods</strong> below, methods and libraries are available for feature engineering:</p><p id="5d9fad27-37a2-4958-ae9e-8829e0f145da" class=""><strong>Data reduction from existing features:</strong></p><ul id="064f5598-650a-4f80-b3bb-42dfaafa2d2d" class="bulleted-list"><li style="list-style-type:disc"><code>SelectKBest</code> </li></ul><ul id="7544a4a0-a41e-4132-b3e0-e675beb78b34" class="bulleted-list"><li style="list-style-type:disc"><code>Recursive Feature Elimination</code> </li></ul><p id="95f428d2-3868-4e5a-962c-e276859aab57" class=""><strong>Feature generation/combination</strong>:</p><ul id="deef6388-279f-40f2-bf6e-1774b50ac43d" class="bulleted-list"><li style="list-style-type:disc"><code>Featuretools</code> - automated feature engineering (create new features, keep best)</li></ul><h1 id="1d94a77d-30d6-42b8-98fa-f034092903b9" class="">Model details</h1><h2 id="288b213d-3960-4770-8bd9-28f3e8b1120c" class="">Feature explanation with <code>SHAP</code>, <code>eli5</code>, and jackknife</h2><h3 id="4b31e1eb-2b17-4212-ab2f-65fe74cb1a82" class=""><code><strong>SHAP</strong></code> (SHapley Additive exPlanations):</h3><ul id="fb22c82e-cca1-4fe6-b218-5484e11ab681" class="bulleted-list"><li style="list-style-type:disc"><strong>Description:</strong> SHAP is a Python library for explaining the output of machine learning models using Shapley values, a concept from cooperative game theory. It provides both global and local explanations for model predictions, allowing users to understand the impact of individual features on model outcomes.</li></ul><ul id="a8e8843d-ee7b-4830-a829-6016bdce069b" class="bulleted-list"><li style="list-style-type:disc"><strong>Use Case:</strong> When you need both global and local explanations for model predictions.</li></ul><ul id="09886e1f-fd1d-48bd-8678-446534d1f47b" class="bulleted-list"><li style="list-style-type:disc"><strong>Key Features:</strong><ul id="b8d853d6-3094-41eb-90a3-12219963af8e" class="bulleted-list"><li style="list-style-type:circle">Model-agnostic: SHAP is compatible with a wide range of machine learning models, including tree-based models, linear models, neural networks, and more.</li></ul><ul id="1901e7f1-095f-41f2-b64f-d70a85d2122c" class="bulleted-list"><li style="list-style-type:circle">Global and local explanations: SHAP enables users to obtain both global feature importance measures and local explanations for individual predictions, providing insights into model behavior at different levels.</li></ul><ul id="dd0278d8-c912-4bda-bf2c-2040de91453c" class="bulleted-list"><li style="list-style-type:circle">Consistency: SHAP ensures consistent explanations across different machine learning models, making it suitable for comparing and interpreting models from various domains.</li></ul><ul id="9c414262-6a94-4081-a513-ffc1de592e25" class="bulleted-list"><li style="list-style-type:circle">Visualization: SHAP provides visualizations such as summary plots, force plots, and dependence plots to help users interpret and communicate model explanations effectively.</li></ul></li></ul><h3 id="930c27f1-2090-43e2-b95d-adab0a17ae69" class=""><code><strong>eli5</strong></code> (Explain Like I&#x27;m 5):</h3><ul id="4f5ea714-b594-4ee8-81a7-6b043363df32" class="bulleted-list"><li style="list-style-type:disc"><strong>Description:</strong> <code><strong>eli5</strong></code> is a Python library for debugging and explaining machine learning models. It offers tools to inspect model coefficients, feature importances, and predictions, making it easier to understand model behavior and identify potential issues.</li></ul><ul id="5a500b6c-a06e-410e-9204-27f2d5ccd91d" class="bulleted-list"><li style="list-style-type:disc"><strong>Use Case:</strong> When you need human-readable explanations for model predictions and feature importance.</li></ul><ul id="23bb3d1a-c079-4e81-b75d-b138c652eff0" class="bulleted-list"><li style="list-style-type:disc"><strong>Key Features:</strong><ul id="af1ceb6a-f5d6-41bf-ad7f-9d45315e5b5f" class="bulleted-list"><li style="list-style-type:circle">Model-agnostic: <code><strong>eli5</strong></code> supports various machine learning models and frameworks, making it versatile for explaining models across different domains.</li></ul><ul id="f61953a0-9c77-44fd-8a49-06ee64ae3003" class="bulleted-list"><li style="list-style-type:circle">Interpretability: <code><strong>eli5</strong></code> provides human-readable explanations for model predictions, making complex models more interpretable and accessible to users.</li></ul><ul id="409e60af-fcf5-421b-8fd1-0b3e13256c55" class="bulleted-list"><li style="list-style-type:circle">Compatibility: <code><strong>eli5</strong></code> integrates seamlessly with popular machine learning libraries such as scikit-learn, XGBoost, LightGBM, and more, allowing for easy integration into existing workflows.</li></ul><ul id="f98c89a5-285a-4d9e-be3b-2e4fc34839f2" class="bulleted-list"><li style="list-style-type:circle">Transparency: <code><strong>eli5</strong></code> offers transparent and intuitive explanations for model behavior, helping users gain insights into the underlying factors driving model predictions.</li></ul></li></ul><h3 id="670f9ff5-7e08-4d13-9f75-f3082edee375" class="">Jackknife:</h3><ul id="2995602d-0743-4749-83de-dd144db24b2c" class="bulleted-list"><li style="list-style-type:disc"><strong>Description:</strong> Jackknife is a resampling technique commonly used in statistics for estimating the precision of parameter estimates and assessing the stability of model predictions. It involves <strong>systematically leaving out one column at a time from the dataset</strong> and recalculating model predictions to evaluate the impact of individual data points on model performance.</li></ul><ul id="dcd8489d-f059-40ae-8f1e-7c37cf953f8f" class="bulleted-list"><li style="list-style-type:disc"><strong>Use Case:</strong> When you need to assess the stability and reliability of model predictions.</li></ul><ul id="0107e3d9-6113-43c5-a5fc-166dd66063de" class="bulleted-list"><li style="list-style-type:disc"><strong>Key Features:</strong><ul id="22b202f9-8330-4884-ae57-f1e8cb543222" class="bulleted-list"><li style="list-style-type:circle">Robustness: Jackknife provides a robust method for assessing the stability and reliability of machine learning models by systematically evaluating model performance across different subsets of the data.</li></ul><ul id="a9bcc0c2-9813-426f-8b4f-36e7760c7ad5" class="bulleted-list"><li style="list-style-type:circle">Bias correction: Jackknife can be used to estimate and correct for bias in parameter estimates and predictions, improving the accuracy and generalization of machine learning models.</li></ul><ul id="be81f541-f63d-4cca-8946-a92aca11fc0b" class="bulleted-list"><li style="list-style-type:circle">Versatility: Jackknife is a versatile technique that can be applied to various machine learning tasks, including regression, classification, and model evaluation, making it suitable for a wide range of applications.</li></ul></li></ul><h2 id="c37ac875-8c13-483b-920f-7c760dcbe6f9" class="">H<strong>yperparameter Search</strong></h2><p id="f09b1e5b-79c4-46ab-b42c-2f7a7c69227b" class="">Hyperparameter search is a critical step in optimizing machine learning models for performance and generalization. Several techniques and libraries are available for efficiently searching and tuning hyperparameters to improve model accuracy and robustness. Here are some commonly used approaches:</p><h3 id="5f682157-c719-4af6-9ea5-516c5c92e265" class="">Grid Search (most common): <code><strong>sklearn.model_selection.GridSearchCV</strong></code></h3><ul id="c14d2140-c647-45f5-82c4-e57389158366" class="bulleted-list"><li style="list-style-type:disc"><strong>Description:</strong> Grid search is a hyperparameter optimization technique that exhaustively searches through a specified grid of hyperparameter values to identify the combination that yields the best model performance. It evaluates the model&#x27;s performance for each combination of hyperparameters using cross-validation and selects the combination with the highest validation score.</li></ul><ul id="fc89bdf5-cdd8-4cf4-a9fe-23450cfd55f7" class="bulleted-list"><li style="list-style-type:disc"><strong>Key Features:</strong><ul id="f1704b25-8d93-4b1b-a56f-b4b9bb27f839" class="bulleted-list"><li style="list-style-type:circle">Exhaustive search: Grid search systematically evaluates all possible combinations of hyperparameters within the specified grid, ensuring thorough exploration of the hyperparameter space.</li></ul><ul id="4f7bb73d-b558-45a6-b3c1-95e498441cbb" class="bulleted-list"><li style="list-style-type:circle">Cross-validation: Grid search typically employs cross-validation to estimate the generalization performance of each hyperparameter combination, reducing the risk of overfitting and providing more reliable performance estimates.</li></ul><ul id="c35f5cc2-72e5-466f-9035-a995700fc871" class="bulleted-list"><li style="list-style-type:circle">Transparency: Grid search is transparent and easy to understand, making it suitable for users who prefer a straightforward approach to hyperparameter tuning.</li></ul></li></ul><ul id="743047af-71c7-44e0-aa51-dba27ef2800f" class="bulleted-list"><li style="list-style-type:disc"><strong>Parameters:</strong><ul id="33a4f552-c3bb-4207-9b63-1cfef19898e2" class="bulleted-list"><li style="list-style-type:circle"><code><strong>param_grid</strong></code>: Dictionary or list of dictionaries specifying the hyperparameter grid to search.</li></ul><ul id="66798f81-630f-4f6d-b4b5-42410a73ec52" class="bulleted-list"><li style="list-style-type:circle"><code><strong>scoring</strong></code>: The scoring metric used to evaluate the model performance (e.g., accuracy, precision, recall).</li></ul><ul id="bd02aa92-93ab-4c25-a643-9fc2984b51fc" class="bulleted-list"><li style="list-style-type:circle"><code><strong>cv</strong></code>: The number of folds for cross-validation.</li></ul><ul id="a437ce67-7565-44a9-b7e2-78ee1c30e9e7" class="bulleted-list"><li style="list-style-type:circle"><code><strong>n_jobs</strong></code>: The number of CPU cores to use for parallelizing the grid search. Set to <code><strong>1</strong></code> to use all available cores.</li></ul><ul id="168d5f5a-e6d6-42ab-8761-917d19c5aa9e" class="bulleted-list"><li style="list-style-type:circle"><code><strong>verbose</strong></code>: Controls the verbosity of grid search output (e.g., <code><strong>1</strong></code> for minimal output, <code><strong>2</strong></code> for more detailed output).</li></ul></li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d5c07721-1971-4092-bc71-c27a9c9a1970" class="code"><code class="language-Python">from sklearn.model_selection import GridSearchCV
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.datasets import load_iris
+
+# Load the Iris dataset
+iris = load_iris()
+X, y = iris.data, iris.target
+
+# Define the parameter grid
+param_grid = {
+    &#x27;n_estimators&#x27;: [50, 100, 200],
+    &#x27;max_depth&#x27;: [None, 10, 20],
+    &#x27;min_samples_split&#x27;: [2, 5, 10]
+}
+
+# Instantiate the Random Forest classifier
+rf = RandomForestClassifier()
+
+# Perform grid search
+grid_search = GridSearchCV(estimator=rf, param_grid=param_grid, cv=5, scoring=&#x27;accuracy&#x27;, n_jobs=-1)
+grid_search.fit(X, y)
+
+# Print the best parameters and best score
+print(&quot;Best Parameters:&quot;, grid_search.best_params_)
+print(&quot;Best Score:&quot;, grid_search.best_score_)</code></pre><h3 id="5e65f863-e04b-40aa-8737-c6b4da8b4734" class="">Random Search: <code><strong>sklearn.model_selection.RandomizedSearchCV</strong></code></h3><ul id="73393117-d8b8-4b76-a34c-09abeb29f5d4" class="bulleted-list"><li style="list-style-type:disc"><strong>Description:</strong> Random search is a hyperparameter optimization technique that randomly samples hyperparameter values from specified distributions and evaluates the model&#x27;s performance for each sampled combination. It aims to efficiently explore the hyperparameter space by focusing on promising regions while avoiding exhaustive search.</li></ul><ul id="4da2d54e-4229-4b5f-afaf-86b98b7da338" class="bulleted-list"><li style="list-style-type:disc"><strong>Key Features:</strong><ul id="5bf2a35e-071f-4919-9b25-349b73461184" class="bulleted-list"><li style="list-style-type:circle">Efficiency: Random search can be more efficient than grid search for high-dimensional hyperparameter spaces, as it does not require evaluating every possible combination of hyperparameters.</li></ul><ul id="4678f6a4-0c6f-497b-89d1-10fad07884de" class="bulleted-list"><li style="list-style-type:circle">Exploration-exploitation trade-off: Random search strikes a balance between exploration (sampling diverse hyperparameter values) and exploitation (selecting promising regions based on previous evaluations), allowing for more effective hyperparameter tuning.</li></ul><ul id="f3ab9156-bce1-4cee-805c-43647e864605" class="bulleted-list"><li style="list-style-type:circle">Flexibility: Random search offers flexibility in defining the search space and sampling distributions for each hyperparameter, making it suitable for a wide range of machine learning tasks and algorithms.</li></ul></li></ul><ul id="16349eff-c1db-47f7-9559-d452c66637a4" class="bulleted-list"><li style="list-style-type:disc"><strong>Parameters:</strong><ul id="bd081570-8733-4487-bb13-f94e0fc31f83" class="bulleted-list"><li style="list-style-type:circle">Includes all from <code><strong>GridSearchCV</strong></code></li></ul><ul id="6902460a-c36c-49c6-9e06-b0e1f0965eda" class="bulleted-list"><li style="list-style-type:circle"><code><strong>n_iter</strong></code>: The number of parameter settings that are sampled.</li></ul></li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="8c9ac536-c529-41f1-b76f-205eb5ba7a07" class="code"><code class="language-Python">from sklearn.model_selection import RandomizedSearchCV
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.datasets import load_iris
+from scipy.stats import randint
+
+# Load the Iris dataset
+iris = load_iris()
+X, y = iris.data, iris.target
+
+# Define the parameter distributions
+param_distributions = {
+    &#x27;n_estimators&#x27;: randint(50, 200),
+    &#x27;max_depth&#x27;: [None, 10, 20],
+    &#x27;min_samples_split&#x27;: randint(2, 10)
+}
+
+# Instantiate the Random Forest classifier
+rf = RandomForestClassifier()
+
+# Perform random search
+random_search = RandomizedSearchCV(estimator=rf, param_distributions=param_distributions, n_iter=10, cv=5, scoring=&#x27;accuracy&#x27;, n_jobs=-1)
+random_search.fit(X, y)
+
+# Print the best parameters and best score
+print(&quot;Best Parameters:&quot;, random_search.best_params_)
+print(&quot;Best Score:&quot;, random_search.best_score_)</code></pre><h3 id="1fc5708c-e308-491a-9c3b-466e8e436b6c" class=""><strong>Bayesian Optimization: </strong><code><strong>scikit-optimize</strong></code><strong> or </strong><code><strong>BayesianOptimization</strong></code></h3><ul id="cd286ab1-870b-4593-97fe-eb24acd9495b" class="bulleted-list"><li style="list-style-type:disc"><strong>Description:</strong> Bayesian optimization is a sequential model-based optimization technique that uses probabilistic models to guide the search for optimal hyperparameters. It models the objective function (model performance) as a probability distribution and iteratively selects hyperparameters to maximize an acquisition function that balances exploration and exploitation.</li></ul><ul id="651ecbbc-6be0-416b-9c29-6891db4dfb8e" class="bulleted-list"><li style="list-style-type:disc"><strong>Use Case:</strong> When you want to automate the hyperparameter tuning process and efficiently search for optimal hyperparameters.</li></ul><ul id="19e20d87-9c28-4544-a2e4-36da81a17e37" class="bulleted-list"><li style="list-style-type:disc"><strong>Key Features:</strong><ul id="35ad14ef-8bae-4746-8bcd-53a321e3874f" class="bulleted-list"><li style="list-style-type:circle">Sequential optimization: Bayesian optimization iteratively selects hyperparameters based on previous evaluations, gradually refining the search space and focusing on promising regions to improve optimization efficiency.</li></ul><ul id="0a2a586a-d0b0-405b-9a42-67292fbd9dce" class="bulleted-list"><li style="list-style-type:circle">Probabilistic modeling: Bayesian optimization models the objective function as a probability distribution, allowing it to make informed decisions about which hyperparameters to explore next.</li></ul><ul id="674cdbca-c6f7-45e2-8364-f7581d324e91" class="bulleted-list"><li style="list-style-type:circle">Efficient exploration: Bayesian optimization uses probabilistic surrogate models to estimate the objective function, allowing it to explore the hyperparameter space more efficiently than exhaustive search methods like grid search.</li></ul></li></ul><ul id="4f56b486-2f79-4ee3-9151-13acafeea066" class="bulleted-list"><li style="list-style-type:disc"><strong>Libraries:</strong><ul id="7c23823c-eb33-4e7e-ae16-fee36d06079f" class="bulleted-list"><li style="list-style-type:circle"><code><strong>scikit-optimize</strong></code><strong> (skopt)</strong>: This library provides a simple and efficient implementation of Bayesian optimization techniques for hyperparameter tuning. It offers various optimization algorithms, including Gaussian process-based models, and supports both continuous and categorical hyperparameters.</li></ul><ul id="c6ad057d-f028-409c-811c-c60a299f25f0" class="bulleted-list"><li style="list-style-type:circle"><code><strong>BayesianOptimization</strong></code>: Another popular library for Bayesian optimization, which allows you to define your objective function and search space easily. It offers a user-friendly interface for conducting Bayesian optimization experiments and supports parallel optimization for improved efficiency.</li></ul></li></ul><ul id="4914f4fa-0d55-4b2a-a444-10596c05ef8e" class="bulleted-list"><li style="list-style-type:disc"><strong>Parameters (for </strong><code><strong>scikit-optimize</strong></code><strong>):</strong><ul id="cd294b67-698e-4333-a38b-dcd2868512ca" class="bulleted-list"><li style="list-style-type:circle"><code><strong>space</strong></code>: The search space defining the range or distribution of each hyperparameter.</li></ul><ul id="f85d721a-4f5b-4475-abaf-58a9b43c9ca2" class="bulleted-list"><li style="list-style-type:circle"><code><strong>acq_func</strong></code>: The acquisition function used to guide the search process (e.g., expected improvement, probability of improvement).</li></ul><ul id="d924c10d-c00c-439f-ba90-3fdc54154b87" class="bulleted-list"><li style="list-style-type:circle"><code><strong>n_calls</strong></code>: The number of function evaluations (model training iterations) to perform during optimization.</li></ul><ul id="d0a4179a-3283-4bc5-9342-66928f230183" class="bulleted-list"><li style="list-style-type:circle"><code><strong>n_initial_points</strong></code>: The number of initial random evaluations to bootstrap the optimization process.</li></ul><ul id="f2bfa577-1a4d-4e88-8750-267ea73f10ba" class="bulleted-list"><li style="list-style-type:circle"><code><strong>n_jobs</strong></code>: The number of parallel jobs to run during optimization for improved efficiency.</li></ul><ul id="819ba549-ba81-43b1-9598-81ba308816ef" class="bulleted-list"><li style="list-style-type:circle"><code><strong>random_state</strong></code>: Seed for random number generation to ensure reproducibility.</li></ul></li></ul><ul id="5df20efa-c46a-4e1b-999b-bb1fea0907d4" class="bulleted-list"><li style="list-style-type:disc"><strong>Example (using </strong><code><strong>scikit-optimize</strong></code><strong>):</strong></li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="438ea762-f0de-44e0-8db8-37c02c920e42" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">from skopt import BayesSearchCV
+from skopt.space import Real, Categorical, Integer
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.datasets import load_iris
+
+# Load the Iris dataset
+iris = load_iris()
+X, y = iris.data, iris.target
+
+# Define the search space
+param_space = {
+    &#x27;n_estimators&#x27;: Integer(50, 200),
+    &#x27;max_depth&#x27;: Integer(2, 20),
+    &#x27;min_samples_split&#x27;: Integer(2, 10)
+}
+
+# Instantiate the Random Forest classifier
+rf = RandomForestClassifier()
+
+# Perform Bayesian optimization
+bayes_search = BayesSearchCV(estimator=rf, search_spaces=param_space, n_iter=50, cv=5, scoring=&#x27;accuracy&#x27;, n_jobs=-1)
+bayes_search.fit(X, y)
+
+# Print the best parameters and best score
+print(&quot;Best Parameters:&quot;, bayes_search.best_params_)
+print(&quot;Best Score:&quot;, bayes_search.best_score_)
+
+</code></pre><p id="c04097fd-9db1-4634-ac3d-10fcf9a5bef1" class="">In this example, we use <code><strong>BayesSearchCV</strong></code> from <code><strong>scikit-optimize</strong></code> to perform Bayesian optimization for hyperparameter tuning of a Random Forest classifier on the Iris dataset. We define the search space for hyperparameters using <code><strong>Integer</strong></code>, <code><strong>Real</strong></code>, or <code><strong>Categorical</strong></code> types from <code><strong>skopt.space</strong></code>, specify the number of iterations (<code><strong>n_iter</strong></code>), and other relevant parameters. Finally, we fit the <code><strong>BayesSearchCV</strong></code> object to the data and print the best parameters and best score obtained during the search.</p><h1 id="6573d1a8-6e1e-443d-9822-94112a319948" class="">Unsupervised learning</h1><h2 id="b1e982a1-602a-43fd-87c9-6e974cd21de3" class="">Principal Component Analysis <code><strong>sklearn.decomposition.PCA</strong></code></h2><p id="0407f6ad-64b6-4f3e-ac5c-0444a3856733" class=""><strong>PCA (Principal Component Analysis)</strong> is a dimensionality reduction technique used to transform high-dimensional data into a lower-dimensional space while preserving most of the variability in the data.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="633d9371-0394-409c-801b-52a1bcfac534" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">from sklearn.datasets import load_iris
+from sklearn.decomposition import PCA
+import matplotlib.pyplot as plt
+
+# Load the Iris dataset
+iris = load_iris()
+X = iris.data
+y = iris.target
+
+# Apply PCA for dimensionality reduction
+pca = PCA(n_components=2)
+X_pca = pca.fit_transform(X)
+
+# Plot the transformed data
+plt.figure(figsize=(8, 6))
+for target in set(y):
+    plt.scatter(X_pca[y == target, 0], X_pca[y == target, 1], label=f&#x27;Class {target}&#x27;)
+plt.xlabel(&#x27;Principal Component 1&#x27;)
+plt.ylabel(&#x27;Principal Component 2&#x27;)
+plt.title(&#x27;PCA of Iris Dataset&#x27;)
+plt.legend()
+plt.show()</code></pre><h3 id="e9e1a8b9-b61d-40fd-a115-6f7c017cb142" class=""><strong>Parameters:</strong></h3><ul id="d3cdf8ba-8bf9-47e4-a7de-f74957a89960" class="bulleted-list"><li style="list-style-type:disc"><code><strong>n_components</strong></code>: int, float, None or str<ul id="74b388cb-aec3-468a-b8d0-f0f7e425d289" class="bulleted-list"><li style="list-style-type:circle">Number of components to keep. If <code><strong>n_components</strong></code> is not set, all components are kept (min(n_samples, n_features)).</li></ul><ul id="bc036cd1-94f6-44e3-8ce4-66d07a870ca9" class="bulleted-list"><li style="list-style-type:circle">If <code><strong>n_components</strong></code> is an int, it specifies the number of principal components to retain.</li></ul><ul id="c028cd6f-3c5a-4fcd-a14e-ddb15db642b9" class="bulleted-list"><li style="list-style-type:circle">If <code><strong>n_components</strong></code> is a float between 0.0 and 1.0, it indicates the ratio of variance to preserve.</li></ul><ul id="9a0f5df9-6598-4800-98ec-6a5bf2ebe062" class="bulleted-list"><li style="list-style-type:circle">If <code><strong>n_components</strong></code> is &#x27;mle&#x27;, it uses Minka’s MLE to guess the dimension.</li></ul><ul id="62bc8cd9-2ba8-4b3a-b608-0eadac2b02a8" class="bulleted-list"><li style="list-style-type:circle">If <code><strong>n_components</strong></code> is None, it keeps all components.</li></ul></li></ul><h3 id="654facb7-d6a5-4041-a312-9c2dde5ccdaa" class=""><strong>Outputs:</strong></h3><ul id="c3ed6169-d2f0-418b-9bbd-3f60b28d9786" class="bulleted-list"><li style="list-style-type:disc"><code><strong>components_</strong></code>: array-like, shape (n_components, n_features)<ul id="4a421081-e2d8-445c-8511-d5825337fad3" class="bulleted-list"><li style="list-style-type:circle">Principal axes in feature space, representing the directions of maximum variance in the data.</li></ul></li></ul><ul id="89a975a1-b48b-44a8-a63b-55c7298f7e1e" class="bulleted-list"><li style="list-style-type:disc"><code><strong>explained_variance_</strong></code>: array-like, shape (n_components,)<ul id="c123e4c0-5734-4445-b686-9aa0529bac2b" class="bulleted-list"><li style="list-style-type:circle">The amount of variance explained by each of the selected components.</li></ul></li></ul><ul id="23d6bdc9-9682-4a14-8bd6-91597ed74ada" class="bulleted-list"><li style="list-style-type:disc"><code><strong>explained_variance_ratio_</strong></code>: array-like, shape (n_components,)<ul id="a55a3793-9148-4ef1-829d-b27423c0ff1b" class="bulleted-list"><li style="list-style-type:circle">Percentage of variance explained by each of the selected components.</li></ul></li></ul><h3 id="fe7bbfa0-7ce3-456c-9f35-03eb31089516" class=""><strong>When to use </strong><code><strong>PCA</strong></code><strong>:</strong></h3><ul id="5fdd8fa4-09cc-487b-80a1-bc819d791e63" class="bulleted-list"><li style="list-style-type:disc"><strong>Dimensionality reduction:</strong> PCA is commonly used for reducing the dimensionality of high-dimensional data while retaining most of the variability. It is useful for visualizing high-dimensional data, speeding up subsequent computations, and reducing the risk of overfitting in models.</li></ul><ul id="b2b2f9c9-2c84-44d7-be49-43ee5d224c20" class="bulleted-list"><li style="list-style-type:disc"><strong>Visualization:</strong> PCA can be used to visualize high-dimensional data by projecting it onto a lower-dimensional space (e.g., 2D or 3D). This allows for easier interpretation and visualization of the data&#x27;s structure and relationships.</li></ul><ul id="dbcf19e6-a6d3-4a7e-b4a5-6d1c22d90ffd" class="bulleted-list"><li style="list-style-type:disc"><strong>Noise reduction:</strong> PCA can help in reducing the effects of noise and irrelevant features in the data by focusing on the directions of maximum variance. This can lead to improved model performance and generalization.</li></ul><ul id="3f4f58f9-9c53-4129-874b-9ded2ebf7ec1" class="bulleted-list"><li style="list-style-type:disc"><strong>Feature engineering:</strong> PCA can be used as a feature engineering technique to create new features that capture the most important patterns in the data. These new features can then be used as inputs to machine learning models for improved performance.</li></ul><h2 id="287c0cc2-f6f5-438f-b819-598b0d3ddd1b" class=""><strong>KMeans Clustering </strong><code><strong>sklearn.cluster.KMeans</strong></code></h2><p id="9c14e31c-dbf9-4020-a4c8-26e165a6da88" class=""><strong>KMeans Clustering</strong> is an unsupervised learning algorithm used to partition a dataset into clusters by minimizing the within-cluster variance. It iteratively assigns data points to the nearest cluster centroid and updates the centroids based on the mean of the points in each cluster.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="30cb6fe0-851f-488c-a844-ed3267a08fbf" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">from sklearn.datasets import load_iris
+from sklearn.cluster import KMeans
+import matplotlib.pyplot as plt
+
+# Load the Iris dataset
+iris = load_iris()
+X = iris.data
+y = iris.target
+
+# Apply KMeans clustering
+kmeans = KMeans(n_clusters=3)
+kmeans.fit(X)
+
+# Get cluster labels
+labels = kmeans.labels_
+
+# Plot the clustered data
+plt.figure(figsize=(8, 6))
+for cluster in set(labels):
+    plt.scatter(X[labels == cluster, 0], X[labels == cluster, 1], label=f&#x27;Cluster {cluster}&#x27;)
+plt.scatter(kmeans.cluster_centers_[:, 0], kmeans.cluster_centers_[:, 1], marker=&#x27;x&#x27;, color=&#x27;red&#x27;, label=&#x27;Centroids&#x27;)
+plt.xlabel(&#x27;Feature 1&#x27;)
+plt.ylabel(&#x27;Feature 2&#x27;)
+plt.title(&#x27;KMeans Clustering of Iris Dataset&#x27;)
+plt.legend()
+plt.show()</code></pre><h3 id="fe5a8e65-07fd-49db-be39-ff090d6bd5ff" class=""><strong>Parameters:</strong></h3><ul id="26aa1ad6-3f7c-4f21-b902-0f6b41f74c9f" class="bulleted-list"><li style="list-style-type:disc"><code><strong>n_clusters</strong></code>: int<ul id="f8d35c12-8d76-483f-b7d5-29611c92d87c" class="bulleted-list"><li style="list-style-type:circle">The number of clusters to form as well as the number of centroids to generate.</li></ul></li></ul><h3 id="4b592f47-fe87-46d3-b219-89ea7aeffc7b" class=""><strong>Outputs:</strong></h3><ul id="d8edb021-9cd4-4a4f-be8c-c9791573ba6e" class="bulleted-list"><li style="list-style-type:disc"><code><strong>labels_</strong></code>: array-like, shape (n_samples,)<ul id="1c0d9a78-7c10-4371-81ec-6123a38d7c4b" class="bulleted-list"><li style="list-style-type:circle">Cluster labels for each data point.</li></ul></li></ul><h3 id="fc756a4f-3048-4c83-91e8-5198acc994e4" class=""><strong>When to use </strong><code><strong>KMeans</strong></code><strong>:</strong></h3><ul id="ab3f8318-3dfd-472f-95b4-01bdb272fd1d" class="bulleted-list"><li style="list-style-type:disc"><strong>Cluster analysis:</strong> KMeans is commonly used for clustering analysis to discover natural groupings or patterns within data.</li></ul><ul id="06960ff1-0e2c-49fc-9b53-5444d628a803" class="bulleted-list"><li style="list-style-type:disc"><strong>Segmentation:</strong> KMeans can be used for customer segmentation, market segmentation, and image segmentation, among other applications.</li></ul><ul id="6d887b0a-5f62-43a3-8469-f05bd1b5417b" class="bulleted-list"><li style="list-style-type:disc"><strong>Anomaly detection:</strong> KMeans can help identify outliers or anomalies by assigning data points to clusters, and data points that are distant from cluster centroids may be considered as anomalies.</li></ul><ul id="9a66410c-af86-4a74-a3c4-63bfb6919dcc" class="bulleted-list"><li style="list-style-type:disc"><strong>Feature engineering:</strong> KMeans can be used as a feature engineering technique to create new features based on cluster assignments, which can then be used as input features for machine learning models.</li></ul><h2 id="37d6223a-8a50-46da-9d42-9d481347064a" class=""><strong>K-nearest Neighbors </strong><code><strong>sklearn.neighbors.KNeighborsClassifier</strong></code></h2><p id="3c6cb2bf-d384-4c05-8a7d-072e101754ce" class=""><strong>K-nearest Neighbors (KNN)</strong> is a non-parametric classification algorithm that classifies data points based on the majority class among their k nearest neighbors. It is widely used for both classification and regression tasks.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="40f2677c-456e-4a9b-a838-657ab7554e4b" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.datasets import load_iris
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.model_selection import train_test_split
+# We&#x27;ll use mlxtend to make the plotting easier
+from mlxtend.plotting import plot_decision_regions
+
+# Load the Iris dataset
+iris = load_iris()
+X = iris.data[:, :2]  # Considering only the first two features for visualization
+y = iris.target
+
+# Split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Initialize KNN classifier
+knn = KNeighborsClassifier(n_neighbors=3)
+
+# Fit the classifier to the training data
+knn.fit(X_train, y_train)
+
+# Plot decision regions
+plot_decision_regions(X_train, y_train, clf=knn, legend=2)
+
+# Adding axes annotations
+plt.xlabel(&#x27;Feature 1&#x27;)
+plt.ylabel(&#x27;Feature 2&#x27;)
+plt.title(&#x27;KNN Decision Boundaries (k=3)&#x27;)
+plt.show()</code></pre><h3 id="991dd09c-544a-46db-9322-6a3a6ff22bff" class=""><strong>Parameters:</strong></h3><ul id="8e050e64-aa3e-42f8-a37a-13dc236ec072" class="bulleted-list"><li style="list-style-type:disc"><code><strong>n_neighbors</strong></code>: int<ul id="8ee4233f-b22b-4bab-890b-37b46d65386a" class="bulleted-list"><li style="list-style-type:circle">Number of neighbors to use for classification.</li></ul></li></ul><h3 id="5548398c-95a3-43d4-8473-6f9db5e4c0c5" class=""><strong>Outputs:</strong></h3><ul id="2624444a-af46-41f3-a794-07b78ac63a7c" class="bulleted-list"><li style="list-style-type:disc"><strong>Predictions</strong>: array-like, shape (n_samples,)<ul id="55bb9803-c1f0-44d4-92a0-0b421cbb78b8" class="bulleted-list"><li style="list-style-type:circle">Predicted class labels for each data point in the test set.</li></ul></li></ul><h3 id="1db88d20-0fd8-4b7d-9df9-fe4106421b2c" class=""><strong>When to use </strong><code><strong>KNeighborsClassifier</strong></code><strong>:</strong></h3><ul id="a5d2fd1e-0d50-4903-b05b-0ca86aa069bf" class="bulleted-list"><li style="list-style-type:disc"><strong>Classification tasks:</strong> KNN is primarily used for classification tasks where the decision boundary is not linear.</li></ul><ul id="87a28df7-9dcd-4a59-8c14-0a8eeeb27d55" class="bulleted-list"><li style="list-style-type:disc"><strong>Small to medium-sized datasets:</strong> KNN performs well on small to medium-sized datasets with a relatively low number of features. It can be computationally expensive for large datasets due to the need to compute distances between data points.</li></ul><ul id="b225eec2-5b6b-4394-80e2-9a2be472a6ec" class="bulleted-list"><li style="list-style-type:disc"><strong>Non-parametric learning:</strong> KNN is a non-parametric learning algorithm, meaning it does not make any assumptions about the underlying data distribution. It can capture complex relationships between features and target variables.</li></ul><ul id="63cc6954-bee2-4949-913e-c1c11f807c0c" class="bulleted-list"><li style="list-style-type:disc"><strong>No training phase:</strong> KNN does not have a training phase, as it memorizes the training data and makes predictions based on the entire dataset. This makes it suitable for online learning scenarios where new data points are continuously added to the dataset.</li></ul><h2 id="0e760cda-f250-4240-b820-40547eee51af" class=""><strong>t-SNE </strong><code><strong>sklearn.manifold.TSNE</strong></code></h2><p id="5807e4c2-d572-41b0-8fe3-574337fa3963" class=""><strong>t-distributed Stochastic Neighbor Embedding (t-SNE)</strong> is a dimensionality reduction technique used for visualizing high-dimensional data in a lower-dimensional space. It aims to preserve the local structure of the data by modeling pairwise similarities between data points in high-dimensional space and low-dimensional space.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b2de4bd1-0111-4fbf-aa0c-9200179c6643" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">from sklearn.datasets import load_iris
+from sklearn.manifold import TSNE
+import matplotlib.pyplot as plt
+
+# Load the Iris dataset
+iris = load_iris()
+X = iris.data
+y = iris.target
+
+# Apply t-SNE for dimensionality reduction
+tsne = TSNE(n_components=2)
+X_tsne = tsne.fit_transform(X)
+
+# Plot the transformed data
+plt.figure(figsize=(8, 6))
+for target in set(y):
+    plt.scatter(X_tsne[y == target, 0], X_tsne[y == target, 1], label=f&#x27;Class {target}&#x27;)
+plt.xlabel(&#x27;t-SNE Component 1&#x27;)
+plt.ylabel(&#x27;t-SNE Component 2&#x27;)
+plt.title(&#x27;t-SNE Visualization of Iris Dataset&#x27;)
+plt.legend()
+plt.show()
+
+</code></pre><h3 id="55e059e8-b905-41d1-a5c2-dd7d656daaa8" class=""><strong>Parameters:</strong></h3><ul id="a930becb-8ecd-4d2a-9e95-4e5b1f540dec" class="bulleted-list"><li style="list-style-type:disc"><code><strong>n_components</strong></code>: int<ul id="a9bd1634-bf38-40fd-9502-553bba8e9aa4" class="bulleted-list"><li style="list-style-type:circle">Dimension of the embedded space (default is 2).</li></ul></li></ul><h3 id="454f8bfe-0449-4c02-b3c6-105588fca320" class=""><strong>Outputs:</strong></h3><ul id="adb962aa-1f3b-433a-bb65-828d7a46952c" class="bulleted-list"><li style="list-style-type:disc"><strong>Embedded data</strong>: array-like, shape (n_samples, n_components)<ul id="ac9da2d3-33fd-424a-8b55-19cb767b1d1a" class="bulleted-list"><li style="list-style-type:circle">Embedded data points in the lower-dimensional space.</li></ul></li></ul><h3 id="3cbb562a-04ca-4d86-bb35-e9c9e1e4d7b0" class=""><strong>When to use </strong><code><strong>TSNE</strong></code><strong>:</strong></h3><ul id="48f83528-19bb-49d1-bdf0-578b17d9b2b7" class="bulleted-list"><li style="list-style-type:disc"><strong>Visualization:</strong> t-SNE is primarily used for visualizing high-dimensional data in a lower-dimensional space (typically 2D or 3D). It preserves the local structure of the data, making it suitable for exploring and interpreting complex datasets.</li></ul><ul id="76921463-2fa6-41d4-ae34-36c8b4a171f0" class="bulleted-list"><li style="list-style-type:disc"><strong>Exploratory data analysis:</strong> t-SNE can be used as an exploratory data analysis tool to gain insights into the underlying structure and relationships within the data. It helps identify clusters, patterns, and outliers that may not be apparent in the original high-dimensional space.</li></ul><ul id="5ba1b55f-46de-4b07-8f69-76a9f28e17c3" class="bulleted-list"><li style="list-style-type:disc"><strong>Feature engineering:</strong> t-SNE can be used as a feature engineering technique to create new features based on the low-dimensional representations of the data. These new features can then be used as input features for machine learning models, potentially improving model performance.</li></ul><h2 id="f34e6886-f2a9-4b08-ad55-93e8652ce2c1" class=""><strong>Self-Organizing Maps (SOM)</strong></h2><p id="febdd631-b214-4a70-85be-32311a2d94c0" class="">Self-Organizing Maps (SOM) is an unsupervised learning algorithm used for dimensionality reduction and visualization of high-dimensional data. It is a type of artificial neural network that learns to map high-dimensional input data onto a low-dimensional grid of neurons, preserving the topological relationships between data points.</p><h3 id="67580dd7-29b2-4921-b9f8-755ed4c093af" class=""><strong>Libraries available:</strong></h3><ol type="1" id="d8050723-01b5-474e-960a-bd311246d30a" class="numbered-list" start="1"><li><strong>Minisom</strong>: A minimalistic and efficient implementation of Self-Organizing Maps (SOM) in Python.</li></ol><ol type="1" id="2aabe466-dd00-4e7e-8f14-de6c8cb5082d" class="numbered-list" start="2"><li><strong>SOMPY</strong>: A Python library for self-organizing maps that supports both batch and online training.</li></ol><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="5bf34acd-1fe8-4e5e-bedb-eda7f3b15615" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">from minisom import MiniSom
+from sklearn.datasets import load_iris
+import matplotlib.pyplot as plt
+
+# Load the Iris dataset
+iris = load_iris()
+X = iris.data
+y = iris.target
+
+# Initialize the SOM
+som = MiniSom(7, 7, X.shape[1], sigma=0.5, learning_rate=0.5)
+
+# Train the SOM
+som.train(X, 100)
+
+# Visualize the SOM
+plt.figure(figsize=(8, 6))
+for i, (x, label) in enumerate(zip(X, y)):
+    winner = som.winner(x)
+    plt.text(winner[0]+.5,  winner[1]+.5,  str(label), color=plt.cm.tab10(label / 10.), fontdict={&#x27;weight&#x27;: &#x27;bold&#x27;, &#x27;size&#x27;: 11})
+plt.title(&#x27;Self-Organizing Map of Iris Dataset&#x27;)
+plt.pcolor(som.distance_map().T, cmap=&#x27;bone_r&#x27;)  # plotting the distance map as background
+plt.colorbar()
+plt.show()
+
+</code></pre><h3 id="116f5266-7b47-4657-9c4d-c41a7f8eec5b" class=""><strong>Parameters:</strong></h3><ul id="7b369eeb-3fa5-4e76-8cd0-defcaf4d0079" class="bulleted-list"><li style="list-style-type:disc"><code><strong>x</strong></code>: int<ul id="f3118282-5073-43e7-b0c2-cd9dc5ae9a5a" class="bulleted-list"><li style="list-style-type:circle">Number of neurons in the x-axis (width) of the SOM grid.</li></ul></li></ul><ul id="c1977a80-aab7-4618-ba3e-7056ac692567" class="bulleted-list"><li style="list-style-type:disc"><code><strong>y</strong></code>: int<ul id="3fd444b2-ca89-4b88-922e-f7ea40289497" class="bulleted-list"><li style="list-style-type:circle">Number of neurons in the y-axis (height) of the SOM grid.</li></ul></li></ul><ul id="5b394f9c-f77f-405f-a5ba-893471d57567" class="bulleted-list"><li style="list-style-type:disc"><code><strong>input_len</strong></code>: int<ul id="ea32db61-479d-476b-8300-dd0556ebac6a" class="bulleted-list"><li style="list-style-type:circle">Number of features in the input data.</li></ul></li></ul><ul id="d363d13c-999d-4b81-a15b-eec827968048" class="bulleted-list"><li style="list-style-type:disc"><code><strong>sigma</strong></code>: float<ul id="31608ce3-e60b-459f-a591-6b8c31865341" class="bulleted-list"><li style="list-style-type:circle">Spread of the neighborhood function (default is 1.0).</li></ul></li></ul><ul id="1f1fcc9f-1852-468c-83f7-8d8076c4c18c" class="bulleted-list"><li style="list-style-type:disc"><code><strong>learning_rate</strong></code>: float<ul id="65829d05-bd64-4bc7-bdc4-36e79285ebcf" class="bulleted-list"><li style="list-style-type:circle">Initial learning rate (default is 0.5).</li></ul></li></ul><h3 id="01701f84-b2e0-47ac-bf97-d352c09f77eb" class=""><strong>Outputs:</strong></h3><ul id="603053c7-1db9-473e-b998-94abaff1c232" class="bulleted-list"><li style="list-style-type:disc"><code><strong>distance_map</strong></code>: array-like, shape (x, y)<ul id="fdcaecfd-bb63-4770-84fe-f1c8c6ad8fc8" class="bulleted-list"><li style="list-style-type:circle">Distance map of the SOM grid, indicating the average distance between each neuron and its neighbors.</li></ul></li></ul><ul id="60a87bd4-8897-4541-9b81-8ec4cdf77d61" class="bulleted-list"><li style="list-style-type:disc"><code><strong>win_map</strong></code>: dictionary<ul id="6e44023c-4e0c-4d99-9a52-d477162acc11" class="bulleted-list"><li style="list-style-type:circle">Mapping between each input data point and its corresponding winning neuron on the SOM grid.</li></ul></li></ul><h3 id="a2c3b286-1d3a-4cd0-8e7e-3222a0028d61" class=""><strong>When to use SOM:</strong></h3><ul id="de955781-914c-413c-99d6-2f9a440e1f39" class="bulleted-list"><li style="list-style-type:disc"><strong>Dimensionality reduction:</strong> SOM can be used for dimensionality reduction of high-dimensional data, projecting it onto a low-dimensional grid while preserving the topological relationships between data points.</li></ul><ul id="3a36f4e2-693b-4b25-a2f1-b1984d7ff565" class="bulleted-list"><li style="list-style-type:disc"><strong>Visualization:</strong> SOM provides a visual representation of the high-dimensional data in a lower-dimensional space, making it easier to explore and interpret complex datasets.</li></ul><ul id="d6920f94-0328-45b1-bd99-1e8a96cf0cad" class="bulleted-list"><li style="list-style-type:disc"><strong>Clustering:</strong> SOM can be used for clustering similar data points together on the SOM grid, helping identify clusters and patterns in the data.</li></ul><ul id="1134c14d-88cc-4bfd-a535-3f6281365dec" class="bulleted-list"><li style="list-style-type:disc"><strong>Feature extraction:</strong> SOM can extract meaningful features from the input data, which can be used as input features for downstream machine learning models.</li></ul><h3 id="6c2f857e-aa47-4ee8-b5be-20d18006f776" class="">Example in the wild:</h3><p id="64fbccd3-fa44-426a-b4aa-c76e0c964a80" class="">I used <code><strong>minisom</strong></code><strong> </strong>for feature engineering in this project:</p><figure id="5160024c-43fd-45c9-af24-bb72a87b6481"><div class="source">https://github.com/christopherseaman/five_twelve</div></figure><h1 id="3b7d7b5f-a6f9-42f6-a0e6-de3c9721b8b9" class="">Supervised classification</h1><h2 id="6f38fcce-5a45-4758-a25b-bb8c852f75f0" class=""><strong>Logistic Regression </strong><code><strong>sklearn.linear_model.LogisticRegression</strong></code></h2><p id="6c2d3c26-8ff4-4216-90f4-c2f04fd4ff7d" class=""><strong>Logistic Regression</strong> is a supervised learning algorithm used for binary classification tasks. It models the probability that a given input belongs to a particular class using the logistic function.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="bac045a9-351d-49e4-8203-ba7a3a6ffbfd" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.datasets import load_iris
+from sklearn.linear_model import LogisticRegression
+
+# Load the Iris dataset
+iris = load_iris()
+X = iris.data[:, :2]  # Use only the first two features for visualization
+y = iris.target
+
+# Apply Logistic Regression for classification
+logistic_regression = LogisticRegression()
+logistic_regression.fit(X, y)
+
+# Plot the decision boundary
+plt.figure(figsize=(8, 6))
+# Plot the decision boundary. For that, we will assign a color to each
+# point in the mesh [x_min, x_max]x[y_min, y_max].
+x_min, x_max = X[:, 0].min() - .5, X[:, 0].max() + .5
+y_min, y_max = X[:, 1].min() - .5, X[:, 1].max() + .5
+h = .02  # step size in the mesh
+xx, yy = np.meshgrid(np.arange(x_min, x_max, h), np.arange(y_min, y_max, h))
+Z = logistic_regression.predict(np.c_[xx.ravel(), yy.ravel()])
+
+# Put the result into a color plot
+Z = Z.reshape(xx.shape)
+plt.contourf(xx, yy, Z, cmap=plt.cm.coolwarm, alpha=0.8)
+
+# Plot the training points
+plt.scatter(X[:, 0], X[:, 1], c=y, cmap=plt.cm.coolwarm, edgecolors=&#x27;k&#x27;)
+plt.xlabel(&#x27;Feature 1&#x27;)
+plt.ylabel(&#x27;Feature 2&#x27;)
+plt.title(&#x27;Logistic Regression Decision Boundary&#x27;)
+plt.show()</code></pre><h3 id="f0fa02f4-c2af-4a90-95d0-f7559cecf442" class=""><strong>Parameters:</strong></h3><ul id="be659c65-3a8f-4eff-8f64-4b26833f8679" class="bulleted-list"><li style="list-style-type:disc"><code><strong>penalty</strong></code>: str, {&#x27;l1&#x27;, &#x27;l2&#x27;, &#x27;elasticnet&#x27;, &#x27;none&#x27;}, default=&#x27;l2&#x27;<ul id="fa4ae45c-a7ba-4346-a200-e80c21962017" class="bulleted-list"><li style="list-style-type:circle">The penalty (regularization term) to be used. Default is &#x27;l2&#x27;.</li></ul></li></ul><ul id="c74c05b0-72fe-4dda-ae09-a1c569020e22" class="bulleted-list"><li style="list-style-type:disc"><code><strong>C</strong></code>: float, default=1.0<ul id="854919d6-9600-4884-97be-0f3e78189453" class="bulleted-list"><li style="list-style-type:circle">Inverse of regularization strength; smaller values specify stronger regularization.</li></ul></li></ul><ul id="e81ea075-44d5-4f66-be89-232800ad1aa4" class="bulleted-list"><li style="list-style-type:disc"><code><strong>solver</strong></code>: {&#x27;newton-cg&#x27;, &#x27;lbfgs&#x27;, &#x27;liblinear&#x27;, &#x27;sag&#x27;, &#x27;saga&#x27;}, default=&#x27;lbfgs&#x27;<ul id="47345ead-d994-4a75-b18e-d28d0ecf0854" class="bulleted-list"><li style="list-style-type:circle">Algorithm to use in the optimization problem.</li></ul></li></ul><ul id="d81c82ef-e046-4a76-aa09-1a00ad83ad96" class="bulleted-list"><li style="list-style-type:disc"><code><strong>max_iter</strong></code>: int, default=100<ul id="29165a9f-fdf8-44df-a426-4a4588785fda" class="bulleted-list"><li style="list-style-type:circle">Maximum number of iterations taken for the solvers to converge.</li></ul></li></ul><h3 id="8364a466-ca24-4e1a-8528-947b908b7c60" class=""><strong>Outputs:</strong></h3><ul id="cba6eb72-034f-4620-9014-e4a03601c598" class="bulleted-list"><li style="list-style-type:disc"><code><strong>coef_</strong></code>: array-like, shape (1, n_features) or (n_classes, n_features)<ul id="266f51f5-9464-4090-b3c2-9a9027f1ec12" class="bulleted-list"><li style="list-style-type:circle">Coefficients of the features in the decision function.</li></ul></li></ul><ul id="38b674c2-6876-476e-8fe0-cc37b0f5e643" class="bulleted-list"><li style="list-style-type:disc"><code><strong>intercept_</strong></code>: array-like, shape (1,) or (n_classes,)<ul id="db98654a-0111-4439-b6e2-c24eaccebaa9" class="bulleted-list"><li style="list-style-type:circle">Intercept (a.k.a. bias) added to the decision function.</li></ul></li></ul><h3 id="df2a9164-1f15-4e2a-a492-2f1f14df1320" class=""><strong>When to use </strong><code><strong>Logistic Regression</strong></code><strong>:</strong></h3><ul id="0b7e491e-1c34-4b7d-901d-f0d28be3334a" class="bulleted-list"><li style="list-style-type:disc"><strong>Binary classification:</strong> Logistic Regression is well-suited for binary classification tasks where the target variable has two possible classes.</li></ul><ul id="6a3234fa-1f0d-457e-811e-ed31372d18a6" class="bulleted-list"><li style="list-style-type:disc"><strong>Interpretability:</strong> Logistic Regression provides interpretable results, as the coefficients of the model indicate the strength and direction of the relationships between features and the target variable.</li></ul><ul id="8547d5bd-2f1e-46dd-b946-12cd5a1b3721" class="bulleted-list"><li style="list-style-type:disc"><strong>Linear decision boundaries:</strong> Logistic Regression assumes a linear relationship between the features and the log-odds of the target variable, resulting in linear decision boundaries between classes.</li></ul><ul id="89dcb190-9913-496a-ab5d-67be2f3659c4" class="bulleted-list"><li style="list-style-type:disc"><strong>Scalability:</strong> Logistic Regression can handle large datasets efficiently, making it suitable for scenarios with a large number of samples or features.</li></ul><p id="031daac5-5d02-45e2-a447-c57232378122" class="">
+</p><h2 id="ba4f24bf-e134-446a-a111-4aedb89b9440" class=""><strong>Random Forest </strong><code><strong>sklearn.ensemble.RandomForestClassifier</strong></code></h2><p id="37aecdac-3b92-4451-a328-4c5120cb27ed" class=""><strong>Random Forest</strong> is an ensemble learning method that fits a number of decision tree classifiers on various sub-samples of the dataset and uses averaging to improve the predictive accuracy and control over-fitting. It can be used for classification and regression tasks.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="0b393271-7ffa-4a0b-9ea4-a2dbeef58c06" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">from sklearn.datasets import load_iris
+from sklearn.ensemble import RandomForestClassifier
+import matplotlib.pyplot as plt
+
+# Load the Iris dataset
+iris = load_iris()
+X = iris.data
+y = iris.target
+
+# Apply Random Forest Classifier for classification
+random_forest = RandomForestClassifier(n_estimators=100)
+random_forest.fit(X, y)
+
+# Plot feature importances
+plt.figure(figsize=(8, 6))
+plt.bar(range(X.shape[1]), random_forest.feature_importances_)
+plt.xticks(range(X.shape[1]), iris.feature_names, rotation=90)
+plt.xlabel(&#x27;Features&#x27;)
+plt.ylabel(&#x27;Importance&#x27;)
+plt.title(&#x27;Random Forest Feature Importances&#x27;)
+plt.show()</code></pre><h3 id="f9b568f5-6165-41e2-9b8c-30256b9aedbc" class=""><strong>Parameters:</strong></h3><ul id="d9a8f45b-0150-41b3-aa58-ed966c02da60" class="bulleted-list"><li style="list-style-type:disc"><code><strong>n_estimators</strong></code>: int, default=100<ul id="f870db82-a34e-482d-8f7a-101aca9800b2" class="bulleted-list"><li style="list-style-type:circle">The number of trees in the forest.</li></ul></li></ul><ul id="639be6f4-baaf-43fb-84e9-8d4eabcf8214" class="bulleted-list"><li style="list-style-type:disc"><code><strong>criterion</strong></code>: {&quot;gini&quot;, &quot;entropy&quot;}, default=&quot;gini&quot;<ul id="d553e4d4-27c4-4fd5-b88b-6ad91bbbc8b3" class="bulleted-list"><li style="list-style-type:circle">The function to measure the quality of a split.</li></ul></li></ul><ul id="34feeb18-8073-435d-805f-c41e35f4577f" class="bulleted-list"><li style="list-style-type:disc"><code><strong>max_depth</strong></code>: int, default=None<ul id="891688ca-1be4-4633-877d-6121b2c62cd1" class="bulleted-list"><li style="list-style-type:circle">The maximum depth of the tree.</li></ul></li></ul><ul id="048b5e51-beb5-4290-9d6f-78d0433b9679" class="bulleted-list"><li style="list-style-type:disc"><code><strong>min_samples_split</strong></code>: int or float, default=2<ul id="85c43c1f-b727-40db-892c-57d67777927e" class="bulleted-list"><li style="list-style-type:circle">The minimum number of samples required to split an internal node.</li></ul></li></ul><ul id="90e11755-3c68-4085-ad7d-47e8950c80ec" class="bulleted-list"><li style="list-style-type:disc"><code><strong>min_samples_leaf</strong></code>: int or float, default=1<ul id="82e8943c-b6df-4d07-8319-f22e61b6a309" class="bulleted-list"><li style="list-style-type:circle">The minimum number of samples required to be at a leaf node.</li></ul></li></ul><ul id="d80d3f8a-1008-4a7a-b748-83cecc48512c" class="bulleted-list"><li style="list-style-type:disc"><code><strong>max_features</strong></code>: {&quot;auto&quot;, &quot;sqrt&quot;, &quot;log2&quot;}, int, float, or None, default=&quot;auto&quot;<ul id="d274458f-441f-4e50-8265-384f93b9202c" class="bulleted-list"><li style="list-style-type:circle">The number of features to consider when looking for the best split.</li></ul></li></ul><h3 id="97967ce2-badf-4b8e-9fd2-9328a8d44789" class=""><strong>Outputs:</strong></h3><ul id="74e363f4-b96e-4bb4-9cef-57a70ccd5e94" class="bulleted-list"><li style="list-style-type:disc"><code><strong>feature_importances_</strong></code>: array-like of shape (n_features,)<ul id="ad20bc39-28aa-41b1-af88-017c96404ce3" class="bulleted-list"><li style="list-style-type:circle">The feature importances (the higher, the more important the feature).</li></ul></li></ul><h3 id="94f1da5c-986a-40c0-917a-be015c7f97da" class=""><strong>When to use </strong><code><strong>Random Forest</strong></code><strong>:</strong></h3><ul id="058c812c-fb19-43ca-9715-74ad0d6a02bf" class="bulleted-list"><li style="list-style-type:disc"><strong>Classification and regression:</strong> Random Forest can be used for both classification and regression tasks, making it a versatile algorithm suitable for various types of predictive modeling problems.</li></ul><ul id="6fab19b0-bde6-4305-a636-f060e537fc04" class="bulleted-list"><li style="list-style-type:disc"><strong>High-dimensional data:</strong> Random Forest is effective for datasets with a large number of features and can handle both numerical and categorical variables without the need for feature scaling.</li></ul><ul id="a1ef5288-cdb8-49e2-ac07-551d21692e18" class="bulleted-list"><li style="list-style-type:disc"><strong>Feature importance:</strong> Random Forest provides feature importances, allowing for insight into the most influential features in the dataset, which can aid in feature selection and interpretation.</li></ul><ul id="7c2678ab-6fb0-40e9-8b0d-111ae9e03753" class="bulleted-list"><li style="list-style-type:disc"><strong>Robustness to overfitting:</strong> Random Forest mitigates overfitting by averaging multiple decision trees trained on different subsets of the data, leading to more robust and generalizable models.</li></ul><h2 id="5e32757b-2306-4571-86c6-e1beea5566db" class=""><strong>XGBoost Classifier </strong><code><strong>xgboost.XGBClassifier</strong></code></h2><p id="ed8408af-5166-4ebe-bb4c-7a728b889948" class=""><strong>XGBoost (Extreme Gradient Boosting)</strong> is an optimized distributed gradient boosting library designed to be highly efficient, flexible, and portable. It implements machine learning algorithms under the Gradient Boosting framework.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b6f8a02e-072b-4253-8fca-b448226199c3" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">from sklearn.datasets import load_iris
+from xgboost import XGBClassifier
+import matplotlib.pyplot as plt
+
+# Load the Iris dataset
+iris = load_iris()
+X = iris.data
+y = iris.target
+
+# Apply XGBoost Classifier for classification
+xgb_classifier = XGBClassifier(n_estimators=100)
+xgb_classifier.fit(X, y)
+
+# Plot feature importances
+plt.figure(figsize=(8, 6))
+plt.bar(range(X.shape[1]), xgb_classifier.feature_importances_)
+plt.xticks(range(X.shape[1]), iris.feature_names, rotation=90)
+plt.xlabel(&#x27;Features&#x27;)
+plt.ylabel(&#x27;Importance&#x27;)
+plt.title(&#x27;XGBoost Feature Importances&#x27;)
+plt.show()</code></pre><h3 id="29f7b216-4b00-418d-853f-75952341e0ec" class=""><strong>Parameters:</strong></h3><ul id="84012472-d041-4c82-b479-02d7667fcd23" class="bulleted-list"><li style="list-style-type:disc"><code><strong>n_estimators</strong></code>: int, default=100<ul id="dae51b29-3f00-4b49-82aa-307344b2e6dc" class="bulleted-list"><li style="list-style-type:circle">Number of gradient boosted trees (or boosting rounds).</li></ul></li></ul><ul id="6959efc9-4b31-45a4-811b-764cb70c0a40" class="bulleted-list"><li style="list-style-type:disc"><code><strong>learning_rate</strong></code>: float, default=0.1<ul id="030eb6e9-4f3a-4dd0-9c73-0e1e7e3a1062" class="bulleted-list"><li style="list-style-type:circle">Step size shrinkage used in update to prevent overfitting. Range is [0,1].</li></ul></li></ul><ul id="6b6e8edb-6db8-4724-ab9e-21dc23b44f63" class="bulleted-list"><li style="list-style-type:disc"><code><strong>max_depth</strong></code>: int, default=6<ul id="1e87f015-6bc4-4987-8b0b-5c98387de07b" class="bulleted-list"><li style="list-style-type:circle">Maximum depth of a tree. Increasing this value will make the model more complex and more likely to overfit.</li></ul></li></ul><ul id="a89d6dd8-4b85-4c64-95ae-7c49668beaca" class="bulleted-list"><li style="list-style-type:disc"><code><strong>subsample</strong></code>: float, default=1<ul id="1935f807-d87d-49eb-84ea-c12b7e626b25" class="bulleted-list"><li style="list-style-type:circle">Subsample ratio of the training instances. Setting it to 0.5 means that XGBoost randomly samples half of the training data prior to growing trees.</li></ul></li></ul><ul id="ec92e7c9-b217-4e11-8d99-12b8061bd256" class="bulleted-list"><li style="list-style-type:disc"><code><strong>colsample_bytree</strong></code>: float, default=1<ul id="55fa69e2-61bc-4fcf-8f0e-05a6f59a78c9" class="bulleted-list"><li style="list-style-type:circle">Subsample ratio of columns when constructing each tree. Subsampling occurs once for every tree constructed.</li></ul></li></ul><h3 id="158717ad-55ec-4609-a164-813bd994cf51" class=""><strong>Outputs:</strong></h3><ul id="de0ca6a9-4fcc-4f90-a7c0-2e0a12f8baad" class="bulleted-list"><li style="list-style-type:disc"><code><strong>feature_importances_</strong></code>: array-like of shape (n_features,)<ul id="7412daf6-36f2-47d0-b1a5-faa94d8309a8" class="bulleted-list"><li style="list-style-type:circle">The feature importances (the higher, the more important the feature).</li></ul></li></ul><h3 id="07d43222-b73e-46eb-af38-71d20815cc19" class=""><strong>When to use </strong><code><strong>XGBoost</strong></code><strong>:</strong></h3><ul id="5217f7c2-99fe-4e86-9461-eb7e78265ffb" class="bulleted-list"><li style="list-style-type:disc"><strong>Classification and regression:</strong> XGBoost is a powerful algorithm suitable for both classification and regression tasks. It is widely used in machine learning competitions and real-world applications due to its high predictive performance.</li></ul><ul id="c414a867-60e0-4e3e-ad10-ec5c09c682a1" class="bulleted-list"><li style="list-style-type:disc"><strong>Highly scalable:</strong> XGBoost is highly efficient and scalable, making it suitable for large datasets with a high number of features and samples. It can be parallelized and distributed across multiple CPU cores and GPUs for faster training.</li></ul><ul id="5f7a4d7b-4dbf-4a24-8403-d0103742f6bc" class="bulleted-list"><li style="list-style-type:disc"><strong>Handling missing values:</strong> XGBoost can handle missing values internally, eliminating the need for imputation or preprocessing steps. It also supports sparse data formats, making it efficient for datasets with a large number of missing values or features.</li></ul><ul id="6a2ea444-c6e8-4b9c-80cd-8b91a61735f6" class="bulleted-list"><li style="list-style-type:disc"><strong>Feature importance:</strong> XGBoost provides feature importances, allowing for insight into the most influential features in the dataset. This can aid in feature selection, interpretation, and understanding of the underlying patterns in the data.</li></ul><h2 id="88e1eb71-e34e-4637-90a1-76edfb1b58a9" class="">Understanding the types of trees</h2><h3 id="d8dd61e3-9206-4e15-948e-c2159319ae24" class=""><strong>Decision Trees:</strong></h3><ul id="0813c1a8-2e4d-4da0-9488-c10f34b8e0c5" class="bulleted-list"><li style="list-style-type:disc"><strong>Concept:</strong> Decision trees are hierarchical structures that recursively split the dataset into subsets based on the values of input features. Each internal node represents a feature and a decision based on its value, while each leaf node represents the outcome or prediction.</li></ul><ul id="ba8a77e4-ec3a-45b4-9885-cf33aeca6490" class="bulleted-list"><li style="list-style-type:disc"><strong>Splitting Criteria:</strong> Decision trees split the data at each node based on a criterion that maximizes the homogeneity of the target variable within the resulting subsets. Common splitting criteria include Gini impurity and information gain (entropy).</li></ul><ul id="0bcf0e5c-6b99-4c8f-8d71-64b90fe96c96" class="bulleted-list"><li style="list-style-type:disc"><strong>Tree Growth:</strong> Decision trees can continue growing until certain stopping criteria are met, such as reaching a maximum depth, minimum number of samples per leaf, or a minimum impurity threshold.</li></ul><ul id="51e29769-4c38-4c0e-a25a-55608820ab86" class="bulleted-list"><li style="list-style-type:disc"><strong>Predictions:</strong> To make predictions for a new data point, it traverses the tree from the root node to a leaf node based on the feature values of the data point. The prediction at the leaf node is typically the majority class (for classification) or the average value (for regression) of the training samples in that node.</li></ul><h3 id="bb9d695c-51ec-4e4e-8b95-4bb21c111549" class=""><strong>Random Forests:</strong></h3><ul id="f7738b36-eabd-4c2a-b56f-a07e98ca37de" class="bulleted-list"><li style="list-style-type:disc"><strong>Ensemble Learning:</strong> Random forests are an ensemble learning method that consists of multiple decision trees trained on different subsets of the data. Each tree is trained independently, typically using a random subset of features at each node.</li></ul><ul id="6bf68f87-368d-4018-bb77-8b0db4727a88" class="bulleted-list"><li style="list-style-type:disc"><strong>Voting:</strong> During prediction, each tree in the random forest independently predicts the outcome, and the final prediction is determined by a majority vote (for classification) or averaging (for regression) of the individual tree predictions.</li></ul><ul id="8c08e30c-21f8-408a-8a10-21d65ce628af" class="bulleted-list"><li style="list-style-type:disc"><strong>Reducing Overfitting:</strong> Random forests mitigate overfitting by averaging the predictions of multiple trees, reducing the risk of memorizing noise in the training data.</li></ul><h3 id="a85c3898-8e37-4a5d-8cc9-057cf55799fa" class=""><strong>XGBoost:</strong></h3><ul id="9eeeb204-9761-46ec-84ee-e01a45c0afe7" class="bulleted-list"><li style="list-style-type:disc"><strong>Gradient Boosting:</strong> XGBoost is an implementation of gradient boosting, a sequential ensemble learning technique. Unlike random forests, where trees are built independently, in gradient boosting, trees are built sequentially, with each new tree aiming to correct the errors made by the previous ones.</li></ul><ul id="ce8d9d68-6ad0-4b52-881d-728f6e7e3011" class="bulleted-list"><li style="list-style-type:disc"><strong>Iterative Improvement:</strong> XGBoost builds trees in an additive manner, where each new tree is trained to minimize the errors (residuals) of the combined predictions of the existing trees.</li></ul><ul id="35fc466d-cd43-4f22-93b6-140cff32727d" class="bulleted-list"><li style="list-style-type:disc"><strong>Regularization:</strong> XGBoost incorporates regularization techniques to control model complexity and prevent overfitting, such as shrinkage (learning rate) and tree depth regularization.</li></ul><h3 id="57517ea4-d1e8-4eed-b0ea-86e01e856c57" class=""><strong>Key Differences:</strong></h3><ol type="1" id="e97c8830-fcf6-42d5-b7e7-4aa91cb1bcfd" class="numbered-list" start="1"><li><strong>Independence vs. Collaboration:</strong> In random forests, each tree makes its own prediction independently, while in XGBoost, the trees work together collaboratively to improve predictions over time.</li></ol><ol type="1" id="a8bd1183-8d9e-4b44-92d5-b9a7623dedc3" class="numbered-list" start="2"><li><strong>Bias-Variance Tradeoff:</strong> Random forests tend to have low bias and high variance, while XGBoost aims to reduce both bias and variance simultaneously, often resulting in better overall performance.</li></ol><ol type="1" id="0ebb62a0-0851-420d-bbf3-708bd18add29" class="numbered-list" start="3"><li><strong>Interpretability:</strong> Random forests are easier to interpret since each tree can be analyzed individually, while XGBoost&#x27;s ensemble approach may be harder to interpret due to the collaborative nature of the trees.</li></ol><h2 id="346830c4-1148-4a01-92df-72ff247a9447" class="">Keras Neural Network (multi-layer perceptron)</h2><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="ea7971a4-9a97-4969-b9ee-16510c22ce4b"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><strong>PREVIEW:</strong> We will discuss neural networks in more detail next lecture</div></figure><p id="65c5a78e-6da2-49f2-9d62-78ac8fe206b0" class=""><strong>Keras</strong> is a high-level neural networks API, written in Python and capable of running on top of TensorFlow, Theano, or CNTK. It allows for easy and fast experimentation with deep neural networks.</p><h3 id="2b9587ec-ccd8-491f-b958-4ff396ab693e" class=""><strong>What is a Multi-Layer Perceptron (MLP)?</strong></h3><p id="a18e5f4d-8439-4426-855b-2a0435acada7" class="">A Multi-Layer Perceptron (MLP) is a type of feedforward neural network consisting of multiple layers of nodes, or neurons. Each neuron in one layer connects with a certain weight to every neuron in the next layer. MLPs are often used for supervised learning tasks such as classification and regression.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a0305c75-eb41-4874-9eda-eb4c05cac468" class="code"><code class="language-Python">import tensorflow as tf
+from tensorflow.keras.datasets import mnist
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Flatten, Dense, Dropout
+
+# Load the MNIST dataset
+(X_train, y_train), (X_test, y_test) = mnist.load_data()
+X_train, X_test = X_train / 255.0, X_test / 255.0  # Normalize pixel values to [0, 1]
+
+# Define the model architecture
+model = Sequential([
+    Flatten(input_shape=(28, 28)),  # Flatten the 28x28 image into a 1D array
+    Dense(128, activation=&#x27;relu&#x27;),  # Fully connected layer with 128 units and ReLU activation
+    Dropout(0.2),                    # Dropout layer with a dropout rate of 20%
+    Dense(10, activation=&#x27;softmax&#x27;)  # Output layer with 10 units for 10 classes and softmax activation
+])
+
+# Compile the model
+model.compile(optimizer=&#x27;adam&#x27;,                       # Adam optimizer
+              loss=&#x27;sparse_categorical_crossentropy&#x27;, # Sparse categorical crossentropy loss
+              metrics=[&#x27;accuracy&#x27;])                   # Accuracy metric for evaluation
+
+# Train the model
+model.fit(X_train, y_train, epochs=5, batch_size=64, validation_split=0.2)
+
+# Evaluate the model
+test_loss, test_acc = model.evaluate(X_test, y_test)
+print(f&#x27;Test accuracy: {test_acc}&#x27;)</code></pre><h3 id="ddce54e0-fef4-4389-8f8d-689b3f1b894b" class=""><strong>Model Architecture (3 layers):</strong></h3><ul id="503da818-d79b-4b42-b9eb-dee7b70442a8" class="bulleted-list"><li style="list-style-type:disc"><strong>Flatten Layer:</strong> Converts the 2D input data (28x28 images) into a 1D array.</li></ul><ul id="a4bf193f-93e0-43f3-97e7-45a24791535c" class="bulleted-list"><li style="list-style-type:disc"><strong>Dense Layer (Hidden Layer):</strong> Fully connected neural network layer with 128 units and ReLU activation function.</li></ul><ul id="e0a8a960-95f9-4bbd-9595-9266162e4594" class="bulleted-list"><li style="list-style-type:disc"><strong>Dense Layer (Output Layer):</strong> Fully connected layer with 10 units corresponding to the 10 classes in the MNIST dataset, using softmax activation for multi-class classification.</li></ul><h3 id="a0d2aba9-f963-4f03-8bd9-f83bece32d8a" class=""><strong>Altering Neural Networks for Different Classification Tasks</strong></h3><ol type="1" id="398bef6d-c46a-4727-820d-142e44f1e7b4" class="numbered-list" start="1"><li><strong>Multi-Class Classification (e.g., 26 letters):</strong><ul id="52b15c38-94b1-4f26-a663-4f9c78e13fc6" class="bulleted-list"><li style="list-style-type:disc">Adjust the number of neurons in the output layer to match the number of classes. For example, if you&#x27;re classifying among 26 letters, the output layer should have 26 neurons.</li></ul><ul id="852426ff-eb2d-4e28-9646-f7e2ea6d97b6" class="bulleted-list"><li style="list-style-type:disc">Utilize the softmax activation function in the output layer for multi-class classification. It provides probabilities for each class and ensures that the sum of the probabilities across all classes is equal to 1.</li></ul><ul id="b60332bc-2752-42a3-aea6-d768a4205bb1" class="bulleted-list"><li style="list-style-type:disc">Use appropriate loss functions such as categorical cross-entropy for multi-class classification tasks.</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="8e88c8cf-f474-418a-9139-0fde3936cf41" class="code"><code class="language-Python"># Define the model architecture for multi-class classification
+model_multi_class = Sequential([
+    Flatten(input_shape=(28, 28)),  # Flatten the 28x28 image into a 1D array
+    Dense(128, activation=&#x27;relu&#x27;),  # Fully connected layer with 128 units and ReLU activation
+    Dense(26, activation=&#x27;softmax&#x27;)  # Output layer with 26 neurons for 26 classes and softmax activation
+])
+
+# Compile the model for multi-class classification
+model_multi_class.compile(optimizer=&#x27;adam&#x27;,                       # Adam optimizer
+                           loss=SparseCategoricalCrossentropy(),  # Sparse categorical crossentropy loss
+                           metrics=[&#x27;accuracy&#x27;])                  # Accuracy metric for evaluation</code></pre></li></ol><ol type="1" id="fbb98461-c4c5-4b50-8999-83d851583f55" class="numbered-list" start="2"><li><strong>Binary Classification (e.g., binary classifier):</strong><ul id="136cfc3a-84a3-4b01-b191-08f0706c8167" class="bulleted-list"><li style="list-style-type:disc">Modify the number of neurons in the output layer to 1, representing the probability of belonging to the positive class (e.g., 1 for positive class, 0 for negative class).</li></ul><ul id="5cc79eb6-9637-4564-9b8c-7380340e16d5" class="bulleted-list"><li style="list-style-type:disc">Use the sigmoid activation function in the output layer for binary classification. It squashes the output between 0 and 1, representing the probability of belonging to the positive class.</li></ul><ul id="7d5be4a2-89e0-4a1d-8b4d-1fb26b186189" class="bulleted-list"><li style="list-style-type:disc"><code>BinaryCrossentropy</code> loss function is commonly used for binary classification tasks.</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2ff58749-cd38-465f-8d69-4b46b345800f" class="code"><code class="language-Python"># Define the model architecture for binary classification
+model_binary_class = Sequential([
+    Flatten(input_shape=(28, 28)),  # Flatten the 28x28 image into a 1D array
+    Dense(128, activation=&#x27;relu&#x27;),  # Fully connected layer with 128 units and ReLU activation
+    Dense(1, activation=sigmoid)    # Output layer with 1 neuron for binary classification and sigmoid activation
+])
+
+# Compile the model for binary classification
+model_binary_class.compile(optimizer=&#x27;adam&#x27;,                 # Adam optimizer
+                           loss=BinaryCrossentropy(),       # Binary crossentropy loss
+                           metrics=[&#x27;accuracy&#x27;])            # Accuracy metric for evaluation</code></pre></li></ol><h3 id="1e6b7c79-3bc6-4eb8-9fdc-28e3ada03f74" class=""><strong>Training Parameters:</strong></h3><ul id="c1628a54-1f54-4ea3-8eb6-1f060a471632" class="bulleted-list"><li style="list-style-type:disc"><code><strong>optimizer</strong></code>: Adam optimizer.</li></ul><ul id="87e8701b-b33c-4a1a-8cee-c49bd2ba8bc1" class="bulleted-list"><li style="list-style-type:disc"><code><strong>loss</strong></code>: Categorical cross-entropy loss function.</li></ul><ul id="52a652c8-bd7d-4a49-a84b-a1f84029f107" class="bulleted-list"><li style="list-style-type:disc"><code><strong>metrics</strong></code>: Accuracy is used as the evaluation metric.</li></ul><h3 id="245f587f-1712-4435-ac26-97cbf6d75ece" class=""><strong>Outputs:</strong></h3><ul id="3070dc65-a965-4f9c-8285-bd9dd456b092" class="bulleted-list"><li style="list-style-type:disc"><strong>Test Accuracy:</strong> The accuracy achieved by the model on the test dataset.</li></ul><h3 id="6634affc-1333-41da-a0e1-007affdd22e6" class=""><strong>When to use Keras Neural Networks:</strong></h3><ul id="185a16fa-2d24-4f15-8774-2feccaec598d" class="bulleted-list"><li style="list-style-type:disc"><strong>Image classification:</strong> Keras is suitable for building neural network models for image classification tasks, such as MNIST digit classification.</li></ul><ul id="dc71f4a4-b0e9-4fbc-b136-693a3cb6a8e0" class="bulleted-list"><li style="list-style-type:disc"><strong>Fast prototyping:</strong> Keras allows for easy and fast experimentation with different neural network architectures, making it ideal for rapid prototyping of deep learning models.</li></ul><ul id="96975149-40d2-4a09-9a7a-6b898fddb4c2" class="bulleted-list"><li style="list-style-type:disc"><strong>Integration with TensorFlow:</strong> Keras seamlessly integrates with TensorFlow, allowing for efficient computation on both CPU and GPU architectures.</li></ul><ul id="9f266e54-2c45-4e87-b230-83bdb22b6307" class="bulleted-list"><li style="list-style-type:disc"><strong>Community support:</strong> Keras has a large and active community, with extensive documentation, tutorials, and pre-trained models available for various tasks.</li></ul><h2 id="a8a2d62a-848a-442e-a330-97d7e2a5b5db" class="">Bonus methods</h2><ul id="a4b7394c-82b6-4155-b166-7d64a79e7eff" class="bulleted-list"><li style="list-style-type:disc"><strong><strong>Lasso Regression </strong></strong><code><strong><strong>sklearn.linear_model.Lasso</strong></strong></code><strong> : </strong></li></ul><ul id="c08331b0-2aed-4ca3-9e5a-ada30ee2094d" class="bulleted-list"><li style="list-style-type:disc"><strong><strong>Lasso Cross-Validation </strong></strong><code><strong><strong>sklearn.linear_model.LassoCV</strong></strong></code><strong> : </strong></li></ul><h1 id="293c0c2d-1492-49df-9dec-498d51512de9" class="">Hypothesis testing</h1><h2 id="326d42e4-d813-4b9c-8e77-e50feaceed45" class=""><em><strong>t</strong></em><strong>-test </strong><code><strong>scipy.stats.ttest_ind</strong></code></h2><p id="5e46ec06-77e2-4978-b0bc-7ddb856b0833" class=""><code><strong>scipy.stats.ttest_ind</strong></code> is a function in the <code><strong>scipy.stats</strong></code> module used to perform an independent two-sample t-test for comparing the means of two independent samples.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="0e849c16-1694-4dc1-a52f-34847fe96d0e" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">from scipy import stats
+
+# Example usage of ttest_ind
+sample1 = [1, 2, 3, 4, 5]
+sample2 = [6, 7, 8, 9, 10]
+t_statistic, p_value = stats.ttest_ind(sample1, sample2)
+print(&quot;t-statistic:&quot;, t_statistic)
+print(&quot;p-value:&quot;, p_value)</code></pre><h3 id="f3c17d58-7e87-4fe6-a2cb-b62c6bc200eb" class=""><strong>Parameters:</strong></h3><ul id="bf9f88a7-42ae-48a4-8c09-cc495ae20c3c" class="bulleted-list"><li style="list-style-type:disc"><code><strong>a, b</strong></code>: array_like<ul id="caf73f9a-3ae4-46b4-81de-4ffaa545ff1d" class="bulleted-list"><li style="list-style-type:circle">The arrays containing the sample data for which the t-test is to be performed.</li></ul></li></ul><ul id="b02c6994-bb4f-4c86-8b57-5ff7144af81b" class="bulleted-list"><li style="list-style-type:disc"><code><strong>equal_var</strong></code>: bool, optional<ul id="054b2973-0a1a-48f4-a853-adb8d15569b4" class="bulleted-list"><li style="list-style-type:circle">If <code><strong>True</strong></code> (default), perform a standard independent two-sample t-test that assumes equal population variances. If <code><strong>False</strong></code>, perform Welch’s t-test, which does not assume equal population variances.</li></ul></li></ul><h3 id="f0aacdb3-8186-4d6f-80da-5d9052bbbb05" class=""><strong>Outputs:</strong></h3><ul id="59815629-1861-46c0-8d5e-9f8b4c2100d2" class="bulleted-list"><li style="list-style-type:disc"><code><strong>t_statistic</strong></code>: float<ul id="3d1794be-be80-47e6-a76a-82bce1f21e5a" class="bulleted-list"><li style="list-style-type:circle">The calculated t-statistic for the two samples.</li></ul></li></ul><ul id="5704f3b4-e3fb-48ff-92ba-1983e915103e" class="bulleted-list"><li style="list-style-type:disc"><code><strong>p_value</strong></code>: float<ul id="92dfc720-1d0c-41a9-9e50-df5f98cb9c6f" class="bulleted-list"><li style="list-style-type:circle">The two-tailed p-value associated with the t-statistic.</li></ul></li></ul><h3 id="231e2cab-a780-45c7-9b0b-15c9e1c13293" class=""><strong>When to use </strong><code><strong>scipy.stats.ttest_ind</strong></code><strong>:</strong></h3><ul id="73a24b8d-719b-4d4f-8e8b-e3bc9bff3b63" class="bulleted-list"><li style="list-style-type:disc"><strong>Comparing means of two samples:</strong> Use the independent t-test when you want to determine whether there is a statistically significant difference between the means of two independent samples.</li></ul><ul id="3f091162-916b-4ff9-9642-07c1c6743e58" class="bulleted-list"><li style="list-style-type:disc"><strong>Normality assumptions:</strong> The t-test assumes that the data in each sample are approximately normally distributed, with equal or at least approximately equal variances between groups.</li></ul><ul id="8afb5522-50ea-4de2-8f8c-ac7dafea5d7c" class="bulleted-list"><li style="list-style-type:disc"><strong>Independent samples:</strong> The samples should be independent of each other, meaning that the observations in one sample are not related to the observations in the other sample.</li></ul><h2 id="2bf4d139-4b2c-470b-8626-1458b55127f6" class=""><strong>ANOVA </strong><code><strong>scipy.stats.f_oneway</strong></code><strong> </strong></h2><p id="29823038-47e7-4736-8275-1f8a13b11bf6" class=""><code><strong>scipy.stats.f_oneway</strong></code> is a function in the <code><strong>scipy.stats</strong></code> module used to perform a one-way ANOVA (Analysis of Variance) test to compare the means of two or more independent samples.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="acadf3b5-7c20-449a-8c27-e6e48b125de2" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">from scipy import stats
+
+# Example usage of f_oneway
+sample1 = [1, 2, 3, 4, 5]
+sample2 = [6, 7, 8, 9, 10]
+f_statistic, p_value = stats.f_oneway(sample1, sample2)
+print(&quot;F-statistic:&quot;, f_statistic)
+print(&quot;p-value:&quot;, p_value)
+
+</code></pre><h3 id="83e42417-2c70-4028-9d3b-0b816a8f42cc" class=""><strong>Parameters:</strong></h3><ul id="35533287-af6f-46c3-a50e-e7d3d592bd58" class="bulleted-list"><li style="list-style-type:disc"><code><strong>sample1, sample2, ...</strong></code>: array_like<ul id="c799c146-ffc1-4d0c-b780-5d9af3333006" class="bulleted-list"><li style="list-style-type:circle">The arrays containing the sample data for which the one-way ANOVA test is to be performed.</li></ul></li></ul><h3 id="bad9b837-592d-49d8-b511-ad2ebf2fe9a4" class=""><strong>Outputs:</strong></h3><ul id="8775217a-f26b-4cc8-99c3-f350bb533569" class="bulleted-list"><li style="list-style-type:disc"><code><strong>f_statistic</strong></code>: float<ul id="f47c6cff-92f5-49bc-9713-bdebaa47a950" class="bulleted-list"><li style="list-style-type:circle">The calculated F-statistic for the samples.</li></ul></li></ul><ul id="d7af2067-edd6-4d5b-93d2-2eab5d935f9e" class="bulleted-list"><li style="list-style-type:disc"><code><strong>p_value</strong></code>: float<ul id="eb5eb9e0-043d-4293-a364-8bd2362aede3" class="bulleted-list"><li style="list-style-type:circle">The p-value associated with the F-statistic.</li></ul></li></ul><h3 id="ad75d55a-ad7c-47f9-b2d7-41cba645eec6" class=""><strong>When to use </strong><code><strong>scipy.stats.f_oneway</strong></code><strong>:</strong></h3><ul id="9a4b0707-5ca4-4828-ab22-29449fc4ea59" class="bulleted-list"><li style="list-style-type:disc"><strong>Comparing means of multiple samples:</strong> Use the one-way ANOVA test when you want to determine whether there are statistically significant differences between the means of two or more independent samples.</li></ul><ul id="78a59e9e-95eb-4820-b3a7-06bad6fd0bc6" class="bulleted-list"><li style="list-style-type:disc"><strong>Normality assumptions:</strong> The ANOVA test assumes that the data in each sample are approximately normally distributed.</li></ul><ul id="a45314fd-9de8-4bc6-9989-3ff06778a9bb" class="bulleted-list"><li style="list-style-type:disc"><strong>Equal variances:</strong> The ANOVA test assumes that the variances of the populations from which the samples are drawn are approximately equal.</li></ul><h2 id="a876660d-8421-4a40-8045-364b8b24879d" class=""><strong>Chi^2 </strong><code><strong>scipy.stats.chi2_contingency</strong></code></h2><p id="ff7364f8-4c83-474e-81b6-a5bd385fdfe8" class=""><code><strong>scipy.stats.chi2_contingency</strong></code> is a function in the <code><strong>scipy.stats</strong></code> module used to perform a chi-square test of independence for contingency tables.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d273088d-625f-4cea-a724-d860c565397f" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">from scipy import stats
+
+# Example usage of chi2_contingency
+observed = [[10, 20, 30], [40, 50, 60]]
+chi2_statistic, p_value, dof, expected = stats.chi2_contingency(observed)
+print(&quot;Chi-square statistic:&quot;, chi2_statistic)
+print(&quot;p-value:&quot;, p_value)
+print(&quot;Degrees of freedom:&quot;, dof)
+print(&quot;Expected frequencies:&quot;, expected)
+
+</code></pre><h3 id="4e9b7c24-b218-428b-96c0-5f7ad8ce24ff" class=""><strong>Parameters:</strong></h3><ul id="5a0c94e1-dedc-44fb-91e1-16bd6fff0b21" class="bulleted-list"><li style="list-style-type:disc"><code><strong>observed</strong></code>: array_like<ul id="16f40038-bd2a-46d4-810e-0a7e4c39590d" class="bulleted-list"><li style="list-style-type:circle">The observed frequencies in the contingency table. The table should have at least two rows and two columns.</li></ul></li></ul><h3 id="b27b187e-954e-4dfe-9774-2f21ed78c2a8" class=""><strong>Outputs:</strong></h3><ul id="3e77c392-4c08-4396-9914-943f84874a95" class="bulleted-list"><li style="list-style-type:disc"><code><strong>chi2_statistic</strong></code>: float<ul id="ef61d667-bcc7-4af0-ba81-f0c2329cacf8" class="bulleted-list"><li style="list-style-type:circle">The calculated chi-square statistic.</li></ul></li></ul><ul id="1fd9e12f-6e33-4a6b-aa3e-b80909f72528" class="bulleted-list"><li style="list-style-type:disc"><code><strong>p_value</strong></code>: float<ul id="4b45d66b-2bc6-4078-8ab3-07bf6a5625a3" class="bulleted-list"><li style="list-style-type:circle">The p-value associated with the chi-square statistic.</li></ul></li></ul><ul id="41f964db-6935-4454-a31e-35918709766f" class="bulleted-list"><li style="list-style-type:disc"><code><strong>dof</strong></code>: int<ul id="1e9b96dc-f541-4740-8c98-b146ba15f808" class="bulleted-list"><li style="list-style-type:circle">The degrees of freedom.</li></ul></li></ul><ul id="f249038f-edb2-46c2-b28f-089ec885bc12" class="bulleted-list"><li style="list-style-type:disc"><code><strong>expected</strong></code>: ndarray<ul id="901c02fa-7b93-4318-86df-87eab455348a" class="bulleted-list"><li style="list-style-type:circle">The expected frequencies, based on the marginal sums of the contingency table.</li></ul></li></ul><h3 id="a4909071-7e34-4904-907c-977e261afad5" class=""><strong>When to use </strong><code><strong>scipy.stats.chi2_contingency</strong></code><strong>:</strong></h3><ul id="e7a8d3fd-2ddb-4fcf-b9bc-9a193e2f5567" class="bulleted-list"><li style="list-style-type:disc"><strong>Testing independence of categorical variables:</strong> Use the chi-square test of independence when you want to determine whether there is a statistically significant association between two or more categorical variables.</li></ul><ul id="7fd14db3-b4a4-4e6c-863b-fade943cc854" class="bulleted-list"><li style="list-style-type:disc"><strong>Contingency tables:</strong> The variables should be measured on a nominal scale, and the data should be arranged in a contingency table format.</li></ul><ul id="89a608e6-f9cb-46e6-b56c-b23772376d83" class="bulleted-list"><li style="list-style-type:disc"><strong>Assumptions:</strong> The chi-square test assumes that the observations are independent and that the expected frequencies are not too small (typically, all expected frequencies should be greater than 5).</li></ul><h1 id="9a1c6d47-ee22-4581-9633-c8d70acbf955" class="">Regression</h1><h2 id="61783745-f808-4263-a87b-610b00edd931" class=""><code><strong>sklearn.linear_model.LinearRegression</strong></code></h2><p id="4d0611ea-f413-44a9-aaaf-9cfb513c50f6" class=""><strong>Linear Regression</strong> is a supervised learning algorithm used for modeling the relationship between a dependent variable and one or more independent variables by fitting a linear equation to observed data.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="0fe83c9d-a2ee-4dfb-8715-5db34efb85fb" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">from sklearn.datasets import fetch_california_housing
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+
+# Load the California housing dataset
+california_housing = fetch_california_housing()
+X = california_housing.data
+y = california_housing.target
+
+# Split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Create a Linear Regression model
+model = LinearRegression()
+
+# Fit the model to the training data
+model.fit(X_train, y_train)
+
+# Predict on new data
+y_pred = model.predict(X_test)</code></pre><h3 id="90edeec1-873c-40a7-8837-30fac11a3f34" class=""><strong>Parameters:</strong></h3><ul id="b2ae5d5d-1c83-46a7-86de-24d30abfa3f0" class="bulleted-list"><li style="list-style-type:disc"><code><strong>fit_intercept</strong></code>: bool, default=True<ul id="e1d9248c-8ac6-472d-a3db-20fe649e2a7a" class="bulleted-list"><li style="list-style-type:circle">Whether to calculate the intercept for this model. If set to False, no intercept will be used in calculations (e.g., data is expected to be centered).</li></ul></li></ul><ul id="6cc374af-35d8-423f-9c2e-9dd1283d9796" class="bulleted-list"><li style="list-style-type:disc"><code><strong>normalize</strong></code>: bool, default=False<ul id="8519d5b2-2acb-4896-8845-421b46dc7f13" class="bulleted-list"><li style="list-style-type:circle">This parameter is ignored when <code><strong>fit_intercept</strong></code> is set to False. If True, the regressors X will be normalized before regression by subtracting the mean and dividing by the l2-norm. If you wish to standardize, please use <code><strong>sklearn.preprocessing.StandardScaler</strong></code> before calling <code><strong>fit</strong></code> on an estimator with <code><strong>normalize=False</strong></code>.</li></ul></li></ul><ul id="23c30fa8-779a-4dcd-ba08-c30c14e6281a" class="bulleted-list"><li style="list-style-type:disc"><code><strong>copy_X</strong></code>: bool, default=True<ul id="47e833ac-6bb1-4e02-81b8-ebba9e9a8555" class="bulleted-list"><li style="list-style-type:circle">If True, X will be copied; else, it may be overwritten.</li></ul></li></ul><ul id="1ba7bcdb-8bf0-4576-88cf-ccb70a4a0e6f" class="bulleted-list"><li style="list-style-type:disc"><code><strong>n_jobs</strong></code>: int, default=None<ul id="8560ad16-28bc-44aa-8206-6d4acd948e08" class="bulleted-list"><li style="list-style-type:circle">The number of jobs to use for the computation. This will only provide speedup for n_targets &gt; 1 and sufficient large problems.</li></ul></li></ul><h3 id="637e6d71-fb82-4c32-9091-8a842fbe2f20" class=""><strong>Attributes (learned during training):</strong></h3><ul id="784e6ad5-4da7-40d1-969e-ca918cbc6c63" class="bulleted-list"><li style="list-style-type:disc"><code><strong>coef_</strong></code>: array, shape (n_features, ) or (n_targets, n_features)<ul id="a4be7d4a-516d-4399-80d4-6c1c5fc6531d" class="bulleted-list"><li style="list-style-type:circle">Estimated coefficients for the linear regression problem. If multiple targets are passed during the fit (y 2D), this is a 2D array of shape (n_targets, n_features), while if only one target is passed, this is a 1D array of length n_features.</li></ul></li></ul><ul id="5c9afd44-30a7-4136-836d-4b5e1c381d57" class="bulleted-list"><li style="list-style-type:disc"><code><strong>intercept_</strong></code>: array<ul id="a5530d7b-4ff0-421f-b1e4-ba48ca18361d" class="bulleted-list"><li style="list-style-type:circle">Independent term in the linear model.</li></ul></li></ul><h3 id="0a4626cb-f7ab-4f03-9fc7-c0513aaf5820" class=""><strong>Outputs (from completed model):</strong></h3><ul id="4e49b6ca-4dcb-4a9b-8972-37b4d2c6c17e" class="bulleted-list"><li style="list-style-type:disc"><strong>Predictions (</strong><code><strong>y_pred</strong></code><strong>)</strong>: array<ul id="00ebb81d-4a4e-41bf-81be-a41aedce0d79" class="bulleted-list"><li style="list-style-type:circle">The predicted values of the dependent variable based on the fitted linear model.</li></ul></li></ul><ul id="05f752e4-ca27-4e21-87b4-e3b2b5a9c4b1" class="bulleted-list"><li style="list-style-type:disc"><strong>Residuals</strong>: array<ul id="b52f32ec-f6ee-4241-8eed-43f6daf268b1" class="bulleted-list"><li style="list-style-type:circle">The differences between the observed and predicted values of the dependent variable. These residuals can be used to assess the goodness of fit of the model.</li></ul></li></ul><h3 id="7dabf3e1-4afa-44f4-a20f-c119a08568a1" class=""><strong>When to use </strong><code><strong>LinearRegression</strong></code><strong>:</strong></h3><ul id="df78a416-bd84-4ac5-8745-5f04a97b42f1" class="bulleted-list"><li style="list-style-type:disc"><strong>Simple and interpretable:</strong> Linear regression is a simple and interpretable method for modeling the relationship between independent and dependent variables. It provides insight into the impact of each independent variable on the dependent variable.</li></ul><ul id="7079915f-f752-42bb-a845-e181ff0c2778" class="bulleted-list"><li style="list-style-type:disc"><strong>Linear relationship:</strong> Linear regression assumes a linear relationship between the independent and dependent variables. It is suitable when the relationship between variables can be reasonably approximated by a straight line.</li></ul><ul id="8dbe1c86-23eb-4ca5-8d94-ce24e8a7c1fe" class="bulleted-list"><li style="list-style-type:disc"><strong>Assumption of normality:</strong> Linear regression assumes that the residuals (the differences between observed and predicted values) are normally distributed. It is important to check this assumption when using linear regression for inference.</li></ul><ul id="60fa0d67-f0be-4cb2-8d8a-70fe73ba08ce" class="bulleted-list"><li style="list-style-type:disc"><strong>Predictive modeling:</strong> Linear regression can also be used for predictive modeling when the goal is to predict the value of the dependent variable based on the values of the independent variables.</li></ul><h2 id="3e7eccc4-c087-4191-b4f7-05636a2ac946" class=""><strong>Generalized Linear Models </strong><code><strong>statsmodels.api.GLM</strong></code></h2><p id="8e1617b7-1062-415d-8db4-095b69ffb6b2" class=""><strong>Generalized Linear Models (GLMs)</strong> extend the linear regression framework to accommodate different types of response variables and error distributions. They are particularly useful when the response variable is not normally distributed or when the relationship between the independent variables and the mean of the response variable is not linear.</p><p id="c3d3ee36-bf19-4bc1-b76a-da771d859252" class="">GLMs are particularly useful when the response variable is not normally distributed or when the relationship between the independent variables and the mean of the response variable is not linear. GLMs allow for the specification of a link function and an error distribution, which can be tailored to the specific characteristics of the data.</p><p id="e3c78f82-9070-4c47-809c-60169e3ad172" class="">Common examples of GLMs include:</p><ol type="1" id="bc36f565-2ca6-4a62-a24d-fa69ade48f44" class="numbered-list" start="1"><li><strong>Logistic Regression</strong>: Used for binary classification problems where the response variable is binary (0 or 1).</li></ol><ol type="1" id="91800101-2fd9-4002-b71d-71429ed8a863" class="numbered-list" start="2"><li><strong>Poisson Regression</strong>: Used for count data where the response variable represents the number of occurrences of an event in a fixed interval of time or space.</li></ol><ol type="1" id="d3137443-49de-439b-81a0-a64af482a738" class="numbered-list" start="3"><li><strong>Gamma Regression</strong>: Used for continuous, positive-valued response variables that are skewed and do not follow a normal distribution.</li></ol><ol type="1" id="9748425f-c917-4224-8423-fb2fc8217a65" class="numbered-list" start="4"><li><strong>Inverse Gaussian Regression</strong>: Used for continuous, positive-valued response variables that are skewed and have a long right tail.</li></ol><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b6cdbef9-1164-4b8d-b176-d471faf8b6de" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">import statsmodels.api as sm
+from sklearn.datasets import fetch_california_housing
+from sklearn.model_selection import train_test_split
+import numpy as np
+
+# Load the California housing dataset
+california_housing = fetch_california_housing()
+X = california_housing.data
+y = california_housing.target
+
+# Add a constant for the intercept
+X = sm.add_constant(X)
+
+# Split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Fit a GLM
+glm_model = sm.GLM(y_train, X_train, family=sm.families.Gaussian())
+glm_results = glm_model.fit()
+
+# Print the summary of the model
+print(glm_results.summary())</code></pre><h3 id="78f97d5e-9fa5-4239-b82c-53254be7f795" class=""><strong>Parameters:</strong></h3><ul id="3dcf53fc-c743-4ab7-924d-d2c4c71727e9" class="bulleted-list"><li style="list-style-type:disc"><code><strong>endog</strong></code>: array_like<ul id="4c1b17c3-bf68-42d1-a056-e839872d945d" class="bulleted-list"><li style="list-style-type:circle">The response variable.</li></ul></li></ul><ul id="7a8aeb19-604e-4774-b986-1208210592ea" class="bulleted-list"><li style="list-style-type:disc"><code><strong>exog</strong></code>: array_like<ul id="d7390871-0656-4a5a-826a-6e6a7e3a07e3" class="bulleted-list"><li style="list-style-type:circle">The design matrix.</li></ul></li></ul><ul id="1b45cc5f-238f-42d2-b3e6-471365459236" class="bulleted-list"><li style="list-style-type:disc"><code><strong>family</strong></code>: family class instance<ul id="9252567f-3f96-4c2b-b563-f94a55424bc9" class="bulleted-list"><li style="list-style-type:circle">The distribution family of the GLM.</li></ul></li></ul><h3 id="cf516f98-dd5b-45de-b8c9-4231261cef15" class=""><strong>Attributes (learned during training):</strong></h3><ul id="c30ec27e-f6b8-4583-9cbc-12c7474f39bb" class="bulleted-list"><li style="list-style-type:disc"><code><strong>params</strong></code>: array<ul id="2421583e-c405-4c9c-8181-99093924983a" class="bulleted-list"><li style="list-style-type:circle">Estimated coefficients for the GLM.</li></ul></li></ul><ul id="e31fbb75-79d0-4fcf-a091-ebf17e16ccb7" class="bulleted-list"><li style="list-style-type:disc"><code><strong>bse</strong></code>: array<ul id="23ff01c1-f19b-47b1-a04b-a9976f13f1d4" class="bulleted-list"><li style="list-style-type:circle">Standard errors of the coefficient estimates.</li></ul></li></ul><ul id="876f249f-c535-40ea-b8c2-a4948cf4fa44" class="bulleted-list"><li style="list-style-type:disc"><code><strong>tvalues</strong></code>: array<ul id="577f2b2c-83d5-4540-9370-ed22be7199c7" class="bulleted-list"><li style="list-style-type:circle">The t-statistic for the null hypothesis that the corresponding coefficient is zero.</li></ul></li></ul><ul id="9212a227-dd1a-481a-9d5b-de1d30ca932a" class="bulleted-list"><li style="list-style-type:disc"><code><strong>pvalues</strong></code>: array<ul id="cd89232d-55e1-432b-a99e-257d4f2734af" class="bulleted-list"><li style="list-style-type:circle">The p-values associated with the t-statistics.</li></ul></li></ul><ul id="97cd1af9-04d0-4d0e-aec8-681a786883f9" class="bulleted-list"><li style="list-style-type:disc"><code><strong>cov_params()</strong></code>: array<ul id="a61b6ab8-015f-4f88-a671-936d552055e2" class="bulleted-list"><li style="list-style-type:circle">Estimated covariance matrix of the parameters.</li></ul></li></ul><h3 id="7062f6bb-9f94-4430-b764-4fa4e117ddc2" class=""><strong>Outputs (from completed model):</strong></h3><ul id="c42eb02c-f9fa-4c65-929d-7b1aee831be5" class="bulleted-list"><li style="list-style-type:disc"><code><strong>summary()</strong></code>: summary instance<ul id="ccccfa0a-e65a-44c5-8c30-8276dc7fe9e8" class="bulleted-list"><li style="list-style-type:circle">Provides a summary of the GLM including coefficients, standard errors, t-values, p-values, and other statistics.</li></ul></li></ul><ul id="7ab35a43-f712-40b8-b437-f35491e939a8" class="bulleted-list"><li style="list-style-type:disc"><code><strong>params</strong></code>: array<ul id="55578ebe-3dc8-456c-943c-08fb1a1616d8" class="bulleted-list"><li style="list-style-type:circle">Estimated coefficients for the GLM.</li></ul></li></ul><ul id="49ee8a64-2be5-4862-a5e8-fad341231169" class="bulleted-list"><li style="list-style-type:disc"><code><strong>fittedvalues</strong></code>: array<ul id="2f757aa2-0d7f-420f-8163-21fbeb055366" class="bulleted-list"><li style="list-style-type:circle">The predicted values of the dependent variable based on the fitted GLM.</li></ul></li></ul><ul id="38c65f4e-17bb-4fc3-899a-4c5eb363d2ef" class="bulleted-list"><li style="list-style-type:disc"><code><strong>resid_response</strong></code>: array<ul id="e33809c5-7c28-4847-8623-5c6dd2826598" class="bulleted-list"><li style="list-style-type:circle">The residuals of the GLM.</li></ul></li></ul><ul id="2a4a52f0-14e7-4835-8978-b0d713a04c59" class="bulleted-list"><li style="list-style-type:disc"><code><strong>predict()</strong></code>: method<ul id="daa9c5f6-74f6-425b-9b74-acd7ee634342" class="bulleted-list"><li style="list-style-type:circle">Predict the response variable for new data.</li></ul></li></ul><h3 id="9b5db1d3-aa8b-4ef9-9a11-9617ec011daf" class=""><strong>When to use </strong><code><strong>statsmodels.api.GLM</strong></code><strong>:</strong></h3><ul id="498ae74d-a8b5-4847-afca-03b2e060c38f" class="bulleted-list"><li style="list-style-type:disc"><strong>Non-normal response variable:</strong> When the response variable is not normally distributed, such as in count data or binary data.</li></ul><ul id="de248e4d-f738-4d82-98e9-5d5ceaf9ba2c" class="bulleted-list"><li style="list-style-type:disc"><strong>Flexible error distributions:</strong> GLMs allow for the specification of different error distributions (e.g., Gaussian, binomial, Poisson) to accommodate the characteristics of the response variable.</li></ul><ul id="8faf10e1-d311-45bb-aa9c-c101d144ec24" class="bulleted-list"><li style="list-style-type:disc"><strong>Link functions:</strong> GLMs can model the relationship between the mean of the response variable and the linear combination of the independent variables using different link functions, providing flexibility in modeling non-linear relationships.</li></ul><ul id="5ae8e4a1-516a-48d4-8f0f-542e3e9be19c" class="bulleted-list"><li style="list-style-type:disc"><strong>Inference:</strong> GLMs provide inferential statistics such as coefficients, standard errors, t-values, and p-values, which can be used for hypothesis testing and interpretation.</li></ul><ol type="1" id="81bd492a-4366-47bb-97a2-5cbb7a480e15" class="numbered-list" start="1"><li><strong>Preparation and Setup</strong><ul id="11387eb2-6d17-4331-b14f-74122e68a0f4" class="bulleted-list"><li style="list-style-type:disc"><strong>Parameter Definition:</strong> Establish the number of splits or folds (K) for the validation process, decide on the repetitions for techniques like Repeated K-Fold or K-Split if needed, and outline the hyperparameter grid (C) for each candidate model. For models lacking hyperparameters, set C to an empty configuration.</li></ul></li></ol><ol type="1" id="17c19025-9a6e-4979-9501-a5cf4af489cf" class="numbered-list" start="2"><li><strong>Data Partitioning</strong><ul id="eaeab439-b7d7-4da6-bbef-c220f935902a" class="bulleted-list"><li style="list-style-type:disc"><strong>Validation Holdout (Optional):</strong> Optionally reserve a subset of the data as a standalone validation set (V) to provide an unbiased final evaluation.</li></ul></li></ol><ol type="1" id="5c2a1010-2e9b-45bd-b89d-511a5a64ffae" class="numbered-list" start="3"><li><strong>Model Evaluation</strong><ul id="071666dc-c87b-4fb1-8d8c-bf63496f702f" class="bulleted-list"><li style="list-style-type:disc"><strong>K Splits/Folds Validation (Outer Loop):</strong> Organize the data into K distinct splits or folds, using a consistent strategy to ensure each segment of data is used for validation once. This could involve stratified sampling to preserve class distributions in cases of imbalanced datasets.<ul id="28939400-21e2-47a6-9d85-7460cf539efa" class="bulleted-list"><li style="list-style-type:circle"><strong>Hyperparameter Optimization (Inner Loop):</strong> Within each split or fold, perform hyperparameter tuning for models with configurable parameters. This can include nested validation within the training portion of each split or fold to determine the optimal settings.</li></ul></li></ul></li></ol><ol type="1" id="5a966a5c-98d2-4497-85ec-25e7230a8d3e" class="numbered-list" start="4"><li><strong>Performance Aggregation</strong><ul id="61564bef-04ed-455c-9016-757a3519c23f" class="bulleted-list"><li style="list-style-type:disc"><strong>Score Compilation:</strong> Collect and average the performance scores across all K splits or folds to derive a comprehensive performance metric for each model configuration.</li></ul></li></ol><ol type="1" id="7079d062-53be-4d02-bf4e-d227c14e8404" class="numbered-list" start="5"><li><strong>Model Selection</strong><ul id="c87d7b98-197c-4882-a937-1b9d84a9b6db" class="bulleted-list"><li style="list-style-type:disc"><strong>Optimal Model Identification:</strong> Evaluate the aggregated performance of each model to select the one that demonstrates the best balance of accuracy, precision, recall, F1 score, or other relevant metrics, considering the specific objectives and constraints of the study.</li></ul></li></ol><ol type="1" id="a0148d30-6a8a-4133-8ea8-97e645d69817" class="numbered-list" start="6"><li><strong>Final Model Training and Validation</strong><ul id="3fee382c-045c-478c-a634-eb0543e178d6" class="bulleted-list"><li style="list-style-type:disc"><strong>Comprehensive Training:</strong> Use the entire dataset (excluding any validation holdout) to train the selected model with the identified optimal hyperparameters.</li></ul><ul id="99a73613-0506-43ab-83d5-83dcb5a4b6b1" class="bulleted-list"><li style="list-style-type:disc"><strong>External Validation (Optional):</strong> If a separate validation set was reserved or an external dataset is available, assess the finalized model against this data to gauge its performance and generalizability.</li></ul></li></ol><ol type="1" id="5befab81-1f51-4889-9c93-453373ba94f6" class="numbered-list" start="7"><li><strong>Documentation and Transparency</strong><ul id="cfbd47c5-5587-45fb-b727-6bb1664fc4ce" class="bulleted-list"><li style="list-style-type:disc"><strong>In-depth Reporting:</strong> Thoroughly document the selection process, including the rationale behind the choice of metrics, models, hyperparameters, and the comparative performance across different model configurations, to ensure clarity and reproducibility.</li></ul></li></ol><h3 id="3ca29745-3da8-477d-91ad-dcead3d0d707" class=""><strong>Additional Considerations</strong></h3><ul id="703ddac1-38f8-4387-abad-8612f852aba7" class="bulleted-list"><li style="list-style-type:disc"><strong>Handling Class Imbalances:</strong> Implement appropriate strategies, such as weighted training or stratified sampling, throughout the validation process to address imbalanced data.</li></ul><ul id="139c3620-2dac-4024-9e2f-233ffa3e08dc" class="bulleted-list"><li style="list-style-type:disc"><strong>Computational Efficiency:</strong> Be cognizant of the resource demands, especially with extensive model grids and validation strategies. Employ efficient search techniques and parallel processing where feasible.</li></ul><ul id="b15a4ac6-63e0-44d3-bd8e-e5c7fb2e0923" class="bulleted-list"><li style="list-style-type:disc"><strong>Adaptation to Domain Requirements:</strong> Customize the model selection framework to align with the domain-specific needs and the nature of the data, ensuring the chosen approach is both relevant and practical.</li></ul></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
