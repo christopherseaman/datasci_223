@@ -17,6 +17,7 @@ import pandas
 od.download(
     "https://www.kaggle.com/datasets/tapakah68/facial-emotion-recognition")
 
+Comments on Jupter Notebook follow along step by step, but the overall summary of what we did is documented below.
 
 ## Problem: To identify positive or negative emotions through facial imaging data (where various emotions including Negative: sadness, anger, fear, disgust and Positive: happy, surprise, neutral. 
 ## Question: Can we predict a binary positive or negative from a person’s imaging data?
