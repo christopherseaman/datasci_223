@@ -4,8 +4,11 @@ Dataset: https://www.kaggle.com/datasets/tapakah68/facial-emotion-recognition
 
 How to use Kaggle dataset in Google Colab:
 https://www.geeksforgeeks.org/how-to-import-kaggle-datasets-directly-into-google-colab/
+
 download opendatasets to download kaggle dataset, pandas as well
+
 On kaggle account - go to settings, scroll down click new API token, and download kaggle.json - open it up and store username and password
+
 %pip install opendatasets pandas
 import opendatasets as od
 import pandas
@@ -33,4 +36,4 @@ We also wanted to take a few random images from the test set and see if our mode
 
 Limitations: Our Accuracy for training and testing is still under 0.65, which is far from perfect. This likely needs to be improved. There were still some images that were not fully clear which emotion they were representing (although much better than the initial dataset we used), but the goal is to get this to be better. This would likely require going through the data and seeing which images made it cause errors. Affectnet for example is a large database (0.4 million?) that has facial emotion data. This may be better for this project. We tried adding more layers and tuning other parameters, but it did not make much of a difference and we did not want to overfit again after out initial struggles. We also wanted to stick to the neural network model compared to other binary classification models like logistic regression. However, the accuracy did improve and the ROC curve showed that it was much much better than before (our initial dataset was 0.5 and was basically a random classifier).
 
-Citations: We used mainly Google Colab’s AI assistant, GitHub Co-Pilot, and ChatGPT for coding issues and debugging assistance. Data is from Face expression recognition dataset (kaggle.com).
+Citations: We used mainly Google Colab’s AI assistant, GitHub Co-Pilot, and ChatGPT for coding issues and debugging assistance. Data is from Face expression recognition dataset (kaggle.com). See top for link.
