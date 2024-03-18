@@ -9,7 +9,7 @@ On kaggle account - go to settings, scroll down click new API token, and downloa
 import opendatasets as od
 import pandas
  
- #the following dataset is used - download if not working to see, but when you run the code provide the username and password from kaggle.json earlier in the given box that pops up in output
+ the following dataset is used - download if not working to see, but when you run the code provide the username and password from kaggle.json earlier in the given box that pops up in output
 od.download(
     "https://www.kaggle.com/datasets/tapakah68/facial-emotion-recognition")
 
