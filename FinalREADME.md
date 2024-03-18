@@ -2,9 +2,9 @@
 
 Dataset: https://www.kaggle.com/datasets/tapakah68/facial-emotion-recognition
 How to use Kaggle dataset in Google Colab:
-#https://www.geeksforgeeks.org/how-to-import-kaggle-datasets-directly-into-google-colab/
-#download opendatasets to download kaggle dataset, pandas as well
-#On kaggle account - go to settings, scroll down click new API token, and download kaggle.json - open it up and store username and password
+https://www.geeksforgeeks.org/how-to-import-kaggle-datasets-directly-into-google-colab/
+download opendatasets to download kaggle dataset, pandas as well
+On kaggle account - go to settings, scroll down click new API token, and download kaggle.json - open it up and store username and password
 %pip install opendatasets pandas
 import opendatasets as od
 import pandas
