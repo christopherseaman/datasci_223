@@ -1,6 +1,7 @@
 # Final Project - Krish Rai and Taimoor Qureshi: Predicting Positive vs Negative Emotions for Facial Imaging Data
 
 Dataset: https://www.kaggle.com/datasets/tapakah68/facial-emotion-recognition
+
 How to use Kaggle dataset in Google Colab:
 https://www.geeksforgeeks.org/how-to-import-kaggle-datasets-directly-into-google-colab/
 download opendatasets to download kaggle dataset, pandas as well
