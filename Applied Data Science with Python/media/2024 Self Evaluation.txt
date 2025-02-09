@@ -1,0 +1,153 @@
+1. Describe your accomplishments and successes this performance cycle.
+
+# Curriculum Development & Teaching Excellence
+
+As an instructor with over two decades of professional data science experience, I've focused on bringing industry-standard practices and real-world applications into our curriculum. This year, I successfully designed and launched two foundational courses (the first ones focused on Python!) that bridge theoretical knowledge with practical skills—exactly what our students need for careers in academic research, biotech industry, and government roles. These courses were developed in direct response to student requests and have become cornerstones of our program, helping us support our growing student body.
+
+DS-217: Introduction to Python & Data Science Tools
+ - Huge initial enrollment, with 45 students completing the first offering — a testament to the course's value and appeal
+ - Incorporated UCSF's HPC cluster integration and remote execution capabilities, preparing students for both academic research and industry environments
+ - Brought in three guest lecturers from industry, expanding students' professional network
+
+DS-223: Applied Data Science with Python
+ - Designed and delivered advanced curriculum covering machine learning, deep learning, and practical applications
+ - Integrated industry-standard tools (PyTorch, TensorFlow) with real-world examples from my experience at Atlassian, Dropbox, and 1Password
+ - Built comprehensive reference materials drawing from both academic sources and industry best practices
+ - Incorporated cutting-edge topics like transformers and embeddings (think ChatGPT), keeping our program competitive and current
+
+
+# Program Leadership & Student Success
+
+Capstone Program Development:
+ - Joined program leadership in revising our capstone requirements to make them more flexible to varied types of research and more relevant to students' academic development
+ - Mentored one of the first cohort's students to successful capstone completion, presenting her work at American Statistical Association's Joint Statistical Meeting (JSM)
+ - Served as data science advisor for second cohort students, utilizing my industry network to facilitate connections with a UCSF-affiliated lab and biotech startup
+ - Chaired multiple second cohort capstone committees, ensuring high standards and practical relevance
+ - Established additional office hours specifically for capstone support, lending problem-solving expertise to students from outside their capstone committees 
+
+# Research & Consulting Impact
+
+Internal Consulting & Collaboration:
+ - Conducted multiple CTSI initial consultations, applying my experience in bio- and health-tech consulting
+ - Established two long-term research collaborations with Global Brain Health Initiative researchers
+ - Introduced industry best practices in data system architecture and ML implementation, improving research outcomes
+
+# Program Development & Innovation
+
+Systematic improvements in program infrastructure:
+ - Implemented standardized documentation practices based on my experience leading data science teams
+ - Created reproducible workflows for course materials and assignments using GitHub (a tool students will need to know after graduating) to maintain quality while accommodating our growing student body
+
+----
+
+2. How can my supervisor help me be more successful?
+
+# Prioritization & Program Development
+
+There's just an amazing amount of stuff we can do. Our fledgling program needs to mature in defining roles/responsibilities, developing repeatable processes, and adopting tools to support its growth. I'd love your guidance on:
+ - How should we determine what to focus on first?
+ - What's the one thing that you wish we could tackle this semester?
+ - What do you see as our biggest opportunity for improvement this year?
+ - How can we better balance immediate teaching needs with long-term program development?
+
+
+# Professional Growth & Mentorship
+
+I'm excited about my role here but unclear about the path forward. I'd appreciate your perspective on:
+
+Career development within UCSF's academic environment:
+ - What are the options for growth in academic leadership?
+ - Where could I contribute more broadly to institutional initiatives?
+ - How can I get more involved in research collaborations?
+
+Building academic networks:
+ - Connecting with experienced mentors within the university
+ - Finding opportunities to engage with other UCSF departments and programs
+ - Understanding the academic landscape and where I might fit in long-term
+
+----
+
+3. Additional thoughts about my performance this year
+
+Teaching these courses has been the highlight of my year. There's nothing quite like watching a student's face light up when they finally get their code to work, or seeing them confidently explain a complex concept they struggled with just weeks before. Our first cohort student presenting at JSM was amazing—she went from being nervous about public speaking to fielding tough questions like a pro.
+
+I love that we're building something new here. Every time a student uses Python to solve a real healthcare problem, or applies what they learned in class to their research, it reminds me why we started this program. The late-night debugging sessions, the "aha!" moments in office hours, even the frustrating days when nothing seems to work—it's all worth it when students start seeing themselves as real data scientists.
+
+I'm excited to keep growing with the program. We're figuring things out as we go, but seeing our students succeed makes me confident we're on the right track. I want to keep making our courses better, keep pushing our students to tackle harder problems, and keep helping them discover what they're capable of.
+
+----
+
+## Development Area
+Develop a clear understanding of and actively pursue career growth opportunities within UCSF's academic environment, focusing on leadership pathways, research integration, and institutional engagement.
+
+## How the Plan Will Be Completed
+
+1. Academic Career Path Exploration
+   - Research available academic tracks and roles at UCSF
+   - Identify requirements and qualifications for advancement
+   - Map potential career progression pathways
+   - Connect with those in similar roles across departments
+
+2. Mentorship & Network Development
+   - Establish relationships with 2-3 research groups
+   - Leverage CTSI consulting engagements to build my network within UCSF
+   - Create opportunities for informal mentoring through research collaborations
+   - Cultivate a diverse network of academic and research connections
+
+## How Success Will Be Measured
+
+1. Career Development Progress
+   - Clear understanding of academic advancement criteria
+   - Documented career development plan with milestones
+   - Regular meetings with mentors and advisors
+   - Progress toward next career level requirements
+
+2. Network & Relationship Impact
+   - Strong mentoring relationships established
+   - Active engagement with research collaborators
+   - Expanded network through CTSI consulting
+   - Evidence of network-driven opportunities
+
+----
+
+## Development Area
+Establish myself as a leader building a culture of excellence by implementing scalable systems and empowering others through clear roles and effective processes. Develop leadership capabilities throughout the program via robust foundations in people, process, and tools to enable sustainable growth.
+
+## How the Plan Will Be Completed
+
+1. People & Roles Development
+   - Delineate clear roles definitions and responsibilities among leadership
+   - Identify key program dependencies and risks
+   - Create opportunities for others to take ownership of specific program areas
+
+2. Process Maturity Implementation
+   - Lead the development of standard operating procedures
+   - Establish regular program review and improvement cycles
+   - Develop clear communication channels and feedback loops
+   - Build documentation practices that support knowledge transfer
+
+3. Tools & Infrastructure Enhancement
+   - Evaluate and select appropriate tools for program management
+   - Create systems for course material version control
+   - Implement collaborative platforms for team coordination
+   - Develop data-driven decision-making capabilities
+   - Build automated workflows for routine tasks
+
+## How Success Will Be Measured
+
+1. Leadership Development 
+   - Demonstrate ability to coach others in process improvement
+   - Receive positive feedback on leadership style and effectiveness
+   - Show growth in strategic thinking through documented decisions
+   - Build a reputation as a go-to resource for program development within HDS
+
+2. Organizational Impact 
+   - Ownership and key processes within the program are clearly defined and documented 
+   - Time spent on routine tasks is reduced and upcoming program responsibilities are planned in advance
+   - Knowledge transfer successfully demonstrated through documentation
+
+3. Program Effectiveness 
+   - Improve response time to program challenges
+   - Reduce recurring issues through process improvements
+   - Increase cross-functional collaboration effectiveness
+   - Show measurable efficiency gains in program operations
