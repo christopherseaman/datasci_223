@@ -239,7 +239,7 @@ We need to tell git who we are. We do this using `git config` to
 > [!important]  
 > Note! Having your email address listed in a public repository is a bad idea. You will get targeted for spam or worse. GitHub will set up an anonymous proxy email address automatically, you can find it https://github.com/settings/emails while logged in.  
 
-![[github_email.png]]
+![](github_email.png)
 
 ## Cloud options
 
@@ -255,7 +255,7 @@ To clone the notebooks that accompany the book Python for Data Analysis:
 
 `git clone` `[https://github.com/wesm/pydata-book.git](https://github.com/wesm/pydata-book.git)`
 
-![[git_clone.png]]
+![](git_clone.png)
 
 ## Commit
 
@@ -287,7 +287,7 @@ One solution is to use a **branch workflow**, where work-in-progress happens in 
 
 A best practice when merging work into the main branch is to use a **pull request** or **PR**. A pull request signals that your work may be complete and you’d like someone else to review it and give feedback. This ensures not just that the changes you’ve made are correct, but that they are understandable to others. Once the reviewer gives the 👍 (and conflicts are resolved), your development branch can be merged into the main branch.
 
-![[Notion/Getting into Data Science/Applied Data Science with Python/Getting started with git, python, and R/git_branches.png|git_branches.png]]
+![](git_branches.png)
 
 ## Sensitive information
 
@@ -305,7 +305,7 @@ Sometimes your repos will get into states that can’t be resolved automatically
 
 Read more on merge conflicts in [Atlassian’s tutorial](https://www.atlassian.com/git/tutorials/using-branches/merge-conflicts)
 
-![[xkcd_git.png]]
+![](xkcd_git.png)
 
   
 
@@ -375,7 +375,7 @@ Virtual environments work by:
 
 Notebooks capture a lot of feedback and output when run, which can get quite large. To keep your repository light, remember to **Clear All Outputs** before committing changes to a notebook.
 
-[](jupyter_clear.png)
+![Jupyter clearing dialog](jupyter_clear.png)
 
 # Exercise
 
@@ -392,7 +392,7 @@ Notebooks capture a lot of feedback and output when run, which can get quite lar
 - (Recommended) Python Foundations: Create an account on [Exercism](http://exercism.org/tracks/python) and work through the [python track](http://exercism.org/tracks/python) until you get to loops. That exercise is called _Making the Grade_, which you will complete and submit via GitHub.
     - Python Track on Exercism
         
-        ![[exercism_python.png]]
+        ![](exercism_python.png)
         
 ## For submission
 - Coding assignment:
