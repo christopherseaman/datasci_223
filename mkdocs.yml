@@ -68,14 +68,6 @@ nav:
     - Project: Project.md
   - Lectures:
     - '1. Getting started with git, python, and R': 1/index.md
-    - '2. Cleaning, munging, and wrangling': 2/index.md
-    - '3. JOIN the DISTINCT with SQL': 3/index.md
-    - '4. Putting a label on things': 4/index.md
-    - '5. Classification, continued': 5/index.md
-    - '6. Neural Networks: If I only had a brain': 6/index.md
-    - '7. Intro to Deep Learning Transformers': 7/index.md
-    - '8. Jobs & Impostor Syndrome': 8/index.md
-    - '9. Final Lecture': 9/index.md
 
 extra:
   social:
