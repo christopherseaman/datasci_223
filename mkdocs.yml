@@ -1,7 +1,6 @@
 site_name: Applied Data Science with Python
 site_description: UCSF DataSci 223 Course Materials
 docs_dir: lectures
-docs_dir_in_site_dir: true
 
 theme:
   name: material
