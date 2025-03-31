@@ -7,7 +7,7 @@ Additionally, collaboration usually happens in git and documentation will use ma
 - Tools: `python`, `R`, and `git`
     - Getting set up locally
     - Cloud options (Colab, Binder, Paperspace, GitHub)
-- Command line basics
+- Command Line Basics
     - ?
     - ?
 - Markdown
@@ -24,6 +24,11 @@ Additionally, collaboration usually happens in git and documentation will use ma
     - Running python and jupyter
     - Variables and control flow
     - Common packages
+- Runtime Environmants
+    - Virtual environments
+    - Jupyter Notebooks
+    - Google Colab (no PHI in this course)
+    - GitHub Codespaces (sign up for free student membership)
 
 # Installing tools
 
@@ -314,7 +319,7 @@ We’ll just barely scratch the surface here, it goes a **lot** deeper. This sec
 
 - Package manager
     - MacOS: [Homebrew](https://brew.sh)
-    - Windows: [Chocolatey](https://chocolatey.org/install)
+    - Windows: [Chocolatey](https://chocolatey.org/install) #FIXME: WSL, not choco
 - Python 3
     - Mac: `brew install python`
     - Windows: `choco install python`
@@ -370,7 +375,7 @@ Virtual environments work by:
 
 Notebooks capture a lot of feedback and output when run, which can get quite large. To keep your repository light, remember to **Clear All Outputs** before committing changes to a notebook.
 
-![[jupyter_clear.png]]
+[](jupyter_clear.png)
 
 # Exercise
 
