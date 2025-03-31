@@ -26,9 +26,9 @@ theme:
       toggle:
         icon: material/brightness-4
         name: Switch to system preference
-  font:
-    code: 0xProto
   favicon: assets/favicon.png
+  features:
+    - header.autohide
 
 markdown_extensions:
   - pymdownx.highlight:
