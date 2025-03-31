@@ -371,6 +371,7 @@ Notebooks capture a lot of feedback and output when run, which can get quite lar
 
 # Exercise
 
+## Don't have to submit this part
 - Setup: Get everything installed from the Quickstart
     - (Recommended) Package manager
         - MacOS: [Homebrew](https://brew.sh)
@@ -385,18 +386,18 @@ Notebooks capture a lot of feedback and output when run, which can get quite lar
         
         ![[exercism_python.png]]
         
+## For submission
 - Coding assignment:
-    - Fork the class repo on GitHub - [https://github.com/christopherseaman/datasci_223](https://github.com/christopherseaman/datasci_223)
-    - Complete the _Making the Grade_ exercise: `exercises/1-foundations/exercise.ipynb`
-    - Create a `Readme.md` in the root directory of the repo and introduce yourself (or your team), create a link to your solution to _Making the Grade_, and any notes on what you’re hoping to get out of the course or difficulties you had with the assignment
+    - Click on this link to fork the assignment on GitHub
+    - Create a `README.md` in the root directory of the repo and introduce yourself (first name only, ) and any notes on what you’re hoping to get out of the course or difficulties you had with the assignment
+    - Coding: #FIXME- create autograded python assignment (hash script? save `hash.py "your.email@ucsf.edu" > hash.email`)
     - Commit your changes to your forked copy of the repository on GitHub
-    - Submit the assignment by letting us know where to find the repository
 - (Optional) Work on the [Whirlwind Tour of Python](https://jakevdp.github.io/WhirlwindTourOfPython/) chapters (through ch7, “Control Flow Statements”) alongside the notebooks [on GitHub](https://github.com/jakevdp/WhirlwindTourOfPython)
     1. Work through examples in your own development branch
     2. Commit your changes when you’ve reached good stopping points
     3. When you’re ready for feedback, share it with someone else
     4. Try more [exercises on python basics](https://pythonbasics.org/exercises/) or search the web for exercises/examples specific to what you want to practice. [Python is the second-most popular programming language](https://octoverse.github.com/2022/top-programming-languages) (javascript runs the web at \#1), so there’s a lot of material out there.
-- (Optional, prep for next week) Finished everything? Start [Python for Data Analysis](https://wesmckinney.com/book/) to prepare for data munging next lecture. The [book has a repo on GitHub](https://github.com/wesm/pydata-book/tree/3rd-edition) for the examples and exercises
+#FIXME:NO_MORE_PANDAS? - (Optional, prep for next week) Finished everything? Start [Python for Data Analysis](https://wesmckinney.com/book/) to prepare for data munging next lecture. The [book has a repo on GitHub](https://github.com/wesm/pydata-book/tree/3rd-edition) for the examples and exercises
 
 # It came from the Internet
 
