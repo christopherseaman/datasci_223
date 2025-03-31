@@ -2,11 +2,11 @@ Faculty: Christopher Seaman
 
 EA's: Marlene Lin & Nya Campbell
 
-Dates: April 3 - June 4, 2024 _(10 total class meetings)_
+Dates: April 3rd - June 4th, 2025 _(10 class meetings)_
 
 Lecture: Wednesday, 9:10 - 11:00 AM, Mission Hall 1407
 
-Lab: Wednesday, 11:10 - 12:30 PM, Mission Hall 1407
+Lab: Wednesday, 11:10 - 12:30 AM, Mission Hall 1407
 
 # Overview
 
@@ -25,6 +25,9 @@ Familiarity with programming concepts, including loops, variables, and functions
 
 Each week will focus on a different area of applied data science. See the list of lecture by week for more details.
 
+- Lectures will be held on Mondays, 3:00 - 5:00 PM
+- Labs will be held on Fridays, 9:00 - 10:30 AM
+
 Lectures will provide an overview of new concepts and tools introduced that week. Each lecture will close with a hands-on exercise with solutions due the following lecture.
 
 Labs will not introduce new material; instead, they provide a forum for collaboration between students and staff to help each other with the current material.
@@ -33,7 +36,7 @@ Students are encouraged to collaborate in small groups, but may also work indepe
 
 ## Grading
 
-Final grades will be based on the course participation (20%), submitted exercises (60%), and final project (20%).
+Final grades will be based on the class participation (40%) and submitted exercises (60%).
 
 # Materials
 
@@ -47,17 +50,42 @@ This course will utilize freely available and open-source materials.
 
 ## Tools
 
-Students should become familiar with:
+Students should expect to become familiar with:
 
 - Markdown
 - Python + data science libraries
 - Git + GitHub
 - Jupyter notebooks, including Google Colab
-- Visual Studio Codes
+- Visual Studio Code
+
+## References
+
+### Recommended
+
+- Python: general introduction
+    - _Whirlwind Tour of Python_, VanderPlas - author’s [website](https://jakevdp.github.io/WhirlwindTourOfPython/)
+    - _Think Python_, Downey - purchase or read for free at [Green Tea Press](https://greenteapress.com/wp/think-python/)
+    - _Hitchhiker’s Guide to Python!_ - official [documentation](https://docs.python-guide.org/)
+- Python: data science and analysis
+    - _Python for Data Analysis_, McKinney - author’s [website](https://wesmckinney.com/book/)
+    - _Python Data Science Handbook,_ VanderPlas - author’s [website](https://jakevdp.github.io/PythonDataScienceHandbook/)
+
+### Optional
+
+- [pythonbooks.org](https://pythonbooks.org/free-books/) - additional free books available
+- Python: general introduction
+    - _Python 101_ - community resource on the [web](https://python101.pythonlibrary.org/)
+    - _Python for Everybody_ - author’s [website](https://www.py4e.com/)
+- Python: data science
+    - _Machine Learning from Scratch_ - author’s [website](https://dafriedman97.github.io/mlbook/content/introduction.html), learn the nuts and bolts behind the tools
+    - _Artificial Intelligence: A Modern Approach_ - author’s [website](https://aima.cs.berkeley.edu/), authoritative deep survey of AI topics
+- Python: library-specific
+    - _Effective Pandas_ - author’s [website](https://leanpub.com/effective-pandas), deep dive into a common python library not covered in this course
+    - _Deep Learning with PyTorch_ - read on publisher’s [website](https://www.manning.com/books/deep-learning-with-pytorch)
+    - _PyTorch Tutorials_ - official [documentation](https://pytorch.org/tutorials/beginner/deep_learning_60min_blitz.html)
+    - _TensorFlow Tutorials_ - official [documentation](https://www.tensorflow.org/tutorials)
 
 # Lectures
-
-_May change with student demand_
 
 ## Getting Started with Git, Markdown, and Python
 

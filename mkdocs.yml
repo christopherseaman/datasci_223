@@ -1,0 +1,87 @@
+site_name: Applied Data Science with Python
+site_description: UCSF DataSci 223 Course Materials
+docs_dir: lectures
+docs_dir_in_site_dir: true
+
+theme:
+  name: material
+  custom_dir: overrides
+  palette:
+
+    # Palette toggle for automatic mode
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default 
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
+  font:
+    code: 0xProto
+  favicon: assets/favicon.png
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.details
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.arithmatex:
+      generic: true
+
+plugins:
+  - search
+  - minify:
+      minify_html: true
+  - git-revision-date-localized:
+      enable_creation_date: true
+
+nav:
+  - Home: index.md
+  - Course Information:
+    - Syllabus: Syllabus.md
+    - Project: Project.md
+  - Lectures:
+    - '1. Getting started with git, python, and R': 1/index.md
+    - '2. Cleaning, munging, and wrangling': 2/index.md
+    - '3. JOIN the DISTINCT with SQL': 3/index.md
+    - '4. Putting a label on things': 4/index.md
+    - '5. Classification, continued': 5/index.md
+    - '6. Neural Networks: If I only had a brain': 6/index.md
+    - '7. Intro to Deep Learning Transformers': 7/index.md
+    - '8. Jobs & Impostor Syndrome': 8/index.md
+    - '9. Final Lecture': 9/index.md
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/christopherseaman/datasci_223
+    - icon: fontawesome/brands/discord
+      link: https://discord.gg/QdTYgR45er
+  version:
+    provider: mike 
