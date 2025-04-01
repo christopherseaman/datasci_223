@@ -29,7 +29,7 @@ theme:
   favicon: assets/favicon.png
   features:
     - header.autohide
-    - toc.follow 
+    - toc.integrate 
 
 markdown_extensions:
   - admonition
