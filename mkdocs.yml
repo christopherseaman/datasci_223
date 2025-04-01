@@ -63,8 +63,8 @@ plugins:
 nav:
   - Home: index.md
   - Course Information:
-    - Syllabus: Syllabus.md
-    - Project: Project.md
+    - Syllabus: syllabus.md
+    - Project: project.md
   - Lectures:
     - '1. Getting started with git, python, and R': 1/index.md
 
