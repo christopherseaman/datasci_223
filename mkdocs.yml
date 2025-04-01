@@ -30,6 +30,8 @@ theme:
   features:
     - header.autohide
     - toc.integrate
+    - navigation.tabs
+    - navigation.sections
 
 markdown_extensions:
   - admonition
@@ -68,8 +70,11 @@ nav:
   - Course Information:
     - Syllabus: syllabus.md
     - Project: project.md
+    - References: references.md
   - Lectures:
-    - '1. Getting started': 1/index.md
+    - '1. Getting Started': 1/index.md
+    - Exercise: 1/exercise.md
+    - Demo: 1/demo.md
 
 extra:
   social:
