@@ -1,4 +1,14 @@
-# Lecture 1: `git init`
+# Lecture 1: `git init` - Tools for Health Data Science
+
+<!--
+SPEAKING NOTES:
+- This lecture covers the foundational tools needed for health data science
+- Emphasize that these tools form an ecosystem that enables reproducible research
+- Remind students that while there's a lot to learn, they don't need to master everything at once
+- Point out that these skills are transferable across many health data science roles
+-->
+
+## Table of Contents
 
 - Tools: `python`, `R`, and `git`
     - Getting set up locally
@@ -27,6 +37,13 @@
     - Jupyter Notebooks
     - Google Colab (no PHI in this course)
     - GitHub Codespaces (sign up for free student membership)
+- Data Security and Ethics
+    - Working securely with health data
+    - When NOT to use cloud tools
+    - HIPAA compliance considerations
+    - Data minimization principles
+
+> **Comprehension Check**: What tools have you used before? What are you most excited to learn?
 
 
 ## Installing tools
@@ -57,7 +74,7 @@ These are the standard options that I'll be using to demonstrate going forward. 
         - Python + Jupyter (use notebooks within VS Code)
         - GitHub Repositories + Remote Repositories (manage git in VS Code instead of the terminal)
 
-**Note:** If you don't want to install software locally, you can use GitHub Codespaces (recommended) or [Google Colab](http://colab.research.google.com) but _never_ use PHI data with public-facing tools.
+**Note:** If you don't want to install software locally, you can use GitHub Codespaces (recommended) or [Google Colab](https://colab.research.google.com) but _never_ use PHI data with public-facing tools.
 
 ### GitHub Codespaces
 
@@ -79,6 +96,11 @@ How we'll manage assignments in this course:
 
 ### Command Line Basics
 
+**Recommended Resources:**
+- [LinuxCommand.org](https://linuxcommand.org/lc3_learning_the_shell.php) - Learning the shell
+- [The Missing Semester](https://missing.csail.mit.edu/) - MIT course on developer tools
+- [regex101.com](https://regex101.com/) - Regular expression testing tool
+
 Essential commands for navigating and working with files:
 
 - **Navigation**: `pwd` (where am I?), `ls` (what's here?), `cd` (change directory)
@@ -89,6 +111,23 @@ Essential commands for navigating and working with files:
 - **Chaining**: `|` (pipe output), `>` (redirect to file), `>>` (append to file)
 
 Access via Terminal (Mac), WSL (Windows, recommended), or Terminal (Linux)
+
+<!--
+SPEAKING NOTES:
+- These commands form the foundation of data manipulation in health research
+- Explain how `grep` can be used to search through clinical notes for specific terms
+- Demonstrate how pipes can be used to filter and transform health data
+- Point out that these skills are essential for working with large health datasets
+- MISCONCEPTION: Address the fear of breaking things in the terminal - explain how to be cautious
+-->
+
+#### Health Data Science Applications
+
+- Organizing patient data files: `mkdir patient_cohorts/{control,treatment}`
+- Searching clinical notes: `grep "diabetes" patient_notes.txt`
+- Extracting first 10 rows of data: `head -n 10 lab_results.csv`
+- Counting records by type: `grep "diagnosis" records.csv | wc -l`
+- Combining data processing steps: `cat vitals.csv | grep "elevated" | sort > high_risk_patients.csv`
 
 ### Windows Subsystem for Linux (WSL)
 
@@ -104,8 +143,7 @@ For Windows users, WSL provides a Linux environment directly in Windows:
 MacOS:
 
 - [Meet HomeBrew (brew.sh)](https://brew.sh)
-- [Data Science Setup on MacOS](https://engineeringfordatascience.com/posts/setting_up_a_macbook_for_data_science/)
-- [How I set up my new Macbook Pro for Programming and Data Science](https://towardsdatascience.com/how-i-set-up-my-new-macbook-pro-for-programming-and-data-science-505c69d2142)
+- [Data Science Setup on MacOS](https://engineeringfordatascience.com/posts/setting_up_a_macbook_for_data_science/)\
 
 Windows:
 
@@ -138,7 +176,7 @@ Tools you'll need:
 - Bonus!
     - VS Code - the default IDE for everyone (except people using Posit/RStudio)
         - [Download](https://code.visualstudio.com) or `brew install visual-studio-code`
-        - Can also run inside a web browser: [vscode.dev](http://vscode.dev), [Codespaces](https://github.com/features/codespaces)
+        - Can also run inside a web browser: [vscode.dev](https://vscode.dev), [Codespaces](https://github.com/features/codespaces)
         - Extensions: Python, Jupyter, GitHub Repositories, Remote Repositories (manage git with VS Code), GitHub Codespaces (cheap remote computer), GitHub Copilot (AI assistant)
     - Fonts (make it nice!)
         - [Fira Mono](https://fonts.google.com/specimen/Fira+Mono?category=Monospace) `brew install font-fira-mono`
@@ -158,7 +196,10 @@ You can run R and python in lots of places, many for free:
 
 Lightweight markup language for documentation, used in GitHub, Notion, and more:
 
-- **Resources**: [Markdown Guide](https://www.markdownguide.org/basic-syntax/), [Interactive Tutorial](https://www.markdowntutorial.com)
+**Recommended Resources:**
+- [Markdown Guide](https://www.markdownguide.org/basic-syntax/) - Comprehensive reference
+- [Interactive Tutorial](https://www.markdowntutorial.com) - Hands-on learning
+- [CommonMark tutorial](https://commonmark.org/help/tutorial) - Standard Markdown tutorial
 
 > **Markdown Tip**: In Markdown, only use one H1 (`#`) heading per document. This helps maintain a clear document structure and improves readability. The first H1 heading typically serves as the document's title or main heading.
 
@@ -179,11 +220,23 @@ Every repo should have a README.md to explain what it is and how to use it.
 
 ## LIVE DEMO!
 
+<!--
+SPEAKING NOTES:
+- See lectures/1/demo.md for detailed demo steps and speaking notes
+- This demo covers basic navigation, file operations, and text manipulation
+- Focus on health data science applications of command line tools
+-->
+
+See [demo.md](demo.md) for detailed steps.
+
 ## git and GitHub
 
 Version control system for tracking changes and collaborating on code:
 
-- **Resources**: [Atlassian Git Tutorial](https://www.atlassian.com/git/tutorials/what-is-version-control) (focus on _Getting Started_ and _Collaborating_)
+**Recommended Resources:**
+- [GitHub Foundations](https://learn.microsoft.com/en-us/training/paths/github-foundations/) - THE tutorial for GitHub
+- [Atlassian Git Tutorial](https://www.atlassian.com/git/tutorials/what-is-version-control) (focus on _Getting Started_ and _Collaborating_)
+- [Markdown Guide](https://www.markdownguide.org/basic-syntax/) - Markdown syntax reference
 
 ### Essential Git Commands
 
@@ -216,7 +269,19 @@ Version control system for tracking changes and collaborating on code:
 
 The most popular language for data science and machine learning:
 
-- **Resource**: [A Whirlwind Tour of Python](https://jakevdp.github.io/WhirlwindTourOfPython/) (free online)
+**Recommended Resources:**
+- [A Whirlwind Tour of Python](https://jakevdp.github.io/WhirlwindTourOfPython/) (free online)
+- [Think Python](https://greenteapress.com/wp/think-python/) - Free book by Allen Downey
+- [Python for Data Analysis](https://wesmckinney.com/book/) - For data science applications
+- [Python Data Science Handbook](https://jakevdp.github.io/PythonDataScienceHandbook/) - Comprehensive guide
+
+<!--
+SPEAKING NOTES:
+- Python has become the dominant language in health data science due to its readability and extensive libraries
+- Emphasize that Python's syntax is designed to be readable, making it ideal for collaborative health research
+- Point out that many health organizations and research institutions use Python for data analysis
+- MISCONCEPTION: Address the idea that you need to memorize everything - explain the value of knowing how to find information
+-->
 
 ### Quick Setup
 
@@ -228,12 +293,36 @@ The most popular language for data science and machine learning:
 - **Data analysis**: Pandas, NumPy
 - **Visualization**: Matplotlib, Seaborn
 - **Machine learning**: scikit-learn, PyTorch, TensorFlow/Keras
+- **Health-specific**: BioPython, Nilearn, MedPy, PyDicom
+
+### Python in Health Data Science
+
+```python
+# Example: Working with patient data
+patient_name = "Jane Doe"  # String (text) - always anonymized for teaching
+patient_age = 65           # Integer (whole number)
+blood_glucose = 140.5      # Float (decimal number)
+has_diabetes = True        # Boolean (True/False)
+
+# Simple analysis
+if blood_glucose > 126.0:
+    print(f"Patient {patient_name} has elevated blood glucose")
+    
+# List of blood pressure readings
+bp_readings = [120, 122, 118, 125]
+average_bp = sum(bp_readings) / len(bp_readings)
+print(f"Average systolic BP: {average_bp}")
+```
 
 ### Virtual Environments
 
+**Recommended Resources:**
+- [Python Virtual Environments Primer](https://realpython.com/python-virtual-environments-a-primer/) - Detailed guide
+- [Python venv documentation](https://docs.python.org/3/library/venv.html) - Official documentation
+
 Isolated Python environments for different projects:
 
-- **Why**: Avoid dependency conflicts between projects
+- **Why**: Avoid dependency conflicts between projects, essential for reproducible health research
 - **How**:
   1. Create: `python3 -m venv env_folder`
   2. Activate: `source env_folder/bin/activate` (Mac/Linux) or `env_folder\Scripts\activate` (Windows)
@@ -246,10 +335,55 @@ Interactive Python environment combining code, output, and documentation:
 
 - **Best practice**: Clear outputs before committing to git
 - **Why**: Prevents large file sizes and merge conflicts
+- **Health applications**: Ideal for exploratory analysis of health data, creating shareable research, and documenting clinical data pipelines
 
 ![Jupyter clearing dialog](jupyter_clear.png)
 
 ## LIVE DEMO!
+
+<!--
+SPEAKING NOTES:
+- See lectures/1/demo.md for detailed demo steps and speaking notes
+- This demo covers Python basics for health data science
+- Focus on health-specific examples and applications
+-->
+
+See [demo.md](demo.md) for detailed steps.
+
+## Data Security and Ethics in Health Data Science
+
+**Recommended Resources:**
+- [UCSF Information Commons Tools](https://informationcommons.ucsf.edu/tools) - For working with EHR data
+
+<!--
+SPEAKING NOTES:
+- This is a critical topic for health data scientists that affects all the tools we use
+- Emphasize that security is everyone's responsibility, not just IT departments
+- Point out that ethical considerations should be part of the planning process, not an afterthought
+- MISCONCEPTION: Address the idea that anonymized data is always safe - explain re-identification risks
+-->
+
+### Key Principles
+
+- **PHI (Protected Health Information)**: Any identifiable health information
+- **De-identification**: Removing identifiers from health data
+- **HIPAA compliance**: Legal requirements for handling health data
+- **Informed consent**: Ensuring proper permissions for data use
+
+### Tool Considerations
+
+- **Local vs. Cloud**: When to keep data on local, secured systems
+- **Public tools**: Never use Google Colab, GitHub, etc. with PHI
+- **Secure alternatives**: UCSF's secure computing environments, private instances
+- **Data minimization**: Only use the data you need for your specific purpose
+
+### Best Practices
+
+- Always encrypt sensitive data
+- Use secure authentication (MFA where possible)
+- Document your data handling procedures
+- Consult with privacy experts when in doubt
+- Consider ethical implications beyond legal requirements
 
 ## This Week's Assignment
 
@@ -258,6 +392,14 @@ Interactive Python environment combining code, output, and documentation:
 - **What**: Platform for distributing, submitting, and grading assignments
 - **How**: Accept assignment link → Get private repo → Make changes → Push to submit
 - **Benefits**: Automated testing, private repos, direct feedback
+
+<!--
+SPEAKING NOTES:
+- Emphasize that this assignment helps build the foundational skills needed for the course
+- Point out that the hashing exercise relates to data privacy concepts
+- Remind students that git skills will be used throughout their careers
+- Encourage students to start early and reach out if they have questions
+-->
 
 ### Assignment Tasks
 
@@ -274,6 +416,8 @@ Interactive Python environment combining code, output, and documentation:
 3. **Submit** via git push (auto-graded)
 
 See [exercise.md](exercise.md) for more details and additional practice resources.
+
+> **Final Comprehension Check**: What's one thing you learned today that you're excited to apply? What's one thing you're still confused about?
 
 ## It came from the Internet
 
