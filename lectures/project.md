@@ -1,3 +1,5 @@
+# Final Project
+
 The final assignment for this class is a multi-week project. The project is self-driven but the expectation is that you will work in groups to demonstrate your ability to do something original with your newfound pythonic abilities.
 
 It’s up to you, but some suggestions include:
@@ -7,7 +9,7 @@ It’s up to you, but some suggestions include:
 - Working with an existing codebase/model to apply an interesting ML method
 - Performing a novel analysis on a dataset
 
-# Expectations
+## Expectations
 
 - This should involve original work from your team (size of group: anywhere between 1-38)
 - Level of effort take 2-3 weeks of your work
@@ -29,9 +31,9 @@ It’s up to you, but some suggestions include:
         - Tools/methods used
         - Issues overcome along the way
 
-# Inspiration
+## Inspiration
 
-## Data & code
+### Data & code
 
 - [The Incredible PyTorch](https://github.com/ritchieng/the-incredible-pytorch)
     

@@ -289,7 +289,7 @@ Thanks this week to [Data Science Weekly Newsletter](https://datascienceweekly.s
 
 #### Tooling updates
 
-> [!info] Beyond Pandas - working with big(ger) data more efficiently using Polars and Parquet  
+> [!info] Beyond Pandas - working with big(ger) data more efficiently using Polars and Parquet  
 > As data scientists/engineers, we often deal with large datasets that can be challenging to work with.  
 > [https://medium.com/data-analytics-at-nesta/beyond-pandas-working-with-big-ger-data-more-efficiently-using-polars-and-parquet-fd980353cc2](https://medium.com/data-analytics-at-nesta/beyond-pandas-working-with-big-ger-data-more-efficiently-using-polars-and-parquet-fd980353cc2)  
 
