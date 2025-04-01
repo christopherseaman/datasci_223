@@ -2,8 +2,8 @@
 > - **Instructor:** Christopher Seaman
 > - **EA's:** Marlene Lin & Nya Campbell
 > - **Dates:** April 3rd - June 4th, 2025 _(10 class meetings)_
-> - **Lecture:** Wednesday, 9:00 - 11:00 AM, Mission Hall 1407
-> - **Lab:** Wednesday, 11:00 - 12:30 AM, Mission Hall 1407
+> - **Lecture:** Wednesday, 9:00 - 11:00 AM, Mission Hall 1400
+> - **Lab:** Wednesday, 11:00 - 12:30 AM, Mission Hall 1400
 
 # Overview
 

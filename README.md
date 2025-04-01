@@ -1,13 +1,14 @@
 # Course links
 
-- [Syllabus](syllabus.md)
-- [Final Project](project.md)
-- [References](references.md)
-- GitHub - [https://github.com/christopherseaman/datasci_223](https://github.com/christopherseaman/datasci_223)
-- Discord - [https://discord.gg/QdTYgR45er](https://discord.gg/QdTYgR45er)
-- Recordings - [https://lecture.ucsf.edu/](https://lecture.ucsf.edu/ets/Channel/b28d58f224e040c59832d99d7d91aa995f/browse/null/most-recent/null/0/null)
-- This page - [https://ds223.badmath.org/](https://ds223.badmath.org/)
-
+> [!INFO] Course Information
+> - **Instructor:** Christopher Seaman
+> - **EA's:** Marlene Lin & Nya Campbell
+> - **Dates:** April 3rd - June 4th, 2025 _(10 class meetings)_
+> - **Lecture:** Wednesday, 9:00 - 11:00 AM, Mission Hall 1400
+> - **Lab:** Wednesday, 11:00 - 12:30 AM, Mission Hall 1400
+> - **GitHub:** [https://github.com/christopherseaman/datasci_223](https://github.com/christopherseaman/datasci_223)
+> - **Discord:** [https://discord.gg/QdTYgR45er](https://discord.gg/QdTYgR45er)
+> - **CLE:** [DATASCI 223: Applied Data Science with Python (Spring 2025)](https://courses.ucsf.edu/course/view.php?id=12061)
 
 # Lectures
 
