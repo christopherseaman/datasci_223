@@ -1,5 +1,3 @@
-# Course links
-
 > [!INFO] Course Information
 > - **Instructor:** Christopher Seaman
 > - **EA's:** Marlene Lin & Nya Campbell
@@ -11,7 +9,6 @@
 > - **CLE:** [DATASCI 223: Applied Data Science with Python (Spring 2025)](https://courses.ucsf.edu/course/view.php?id=12061)
 
 # Lectures
-
 1. [Getting started with git, python, and markdown](1/index.md)     
 <!--
         - Tools: `python`, and `git`
@@ -34,7 +31,6 @@
 -->
 
 # Topics for your consideration
-
 1. _Debugging: Rubber ducks all the way down_
 2. _JOIN the DISTINCT with SQL_
 3. Polars: working with data bigger than memory
