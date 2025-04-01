@@ -30,8 +30,9 @@ theme:
   features:
     - header.autohide
     - toc.integrate
-    - navigation.tabs
-    - navigation.sections
+    - navigation.instant
+    - navigation.tracking
+    - toc.follow
 
 markdown_extensions:
   - admonition
@@ -56,6 +57,9 @@ markdown_extensions:
   - pymdownx.tilde
   - pymdownx.arithmatex:
       generic: true
+  - toc:
+      permalink: true
+      toc_depth: 3
 
 plugins:
   - search
@@ -73,8 +77,6 @@ nav:
     - References: references.md
   - Lectures:
     - '1. Getting Started': 1/index.md
-    - Exercise: 1/exercise.md
-    - Demo: 1/demo.md
 
 extra:
   social:
