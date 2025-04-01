@@ -1,0 +1,6 @@
+patient_id,age,blood_pressure,cholesterol,diagnosis
+1001,67,140/90,210,hypertension
+1002,54,120/80,185,healthy
+1003,72,160/95,240,hypertension
+1004,45,118/75,190,healthy
+1005,62,145/92,225,hypertension

@@ -192,6 +192,18 @@ You can run R and python in lots of places, many for free:
 - Paperspace (free for public notebooks, paid for private or higher-powered machines)
 - Binder (free, always public)
 
+## LIVE DEMO!
+
+<!--
+SPEAKING NOTES:
+- Demo 1 in the demos folder covers command line basics for health data management
+- It demonstrates project setup, file operations, and data manipulation with health examples
+- Shows how to create a research project structure and analyze patient data with command line tools
+- Includes a data pipeline example using pipes and redirection
+-->
+
+<!-- Demo steps are available in the demos folder for instructor reference -->
+
 ## Markdown
 
 Lightweight markup language for documentation, used in GitHub, Notion, and more:
@@ -217,17 +229,6 @@ Lightweight markup language for documentation, used in GitHub, Notion, and more:
 - **Blockquotes**: `> quoted text`
 
 Every repo should have a README.md to explain what it is and how to use it.
-
-## LIVE DEMO!
-
-<!--
-SPEAKING NOTES:
-- See lectures/1/demo.md for detailed demo steps and speaking notes
-- This demo covers basic navigation, file operations, and text manipulation
-- Focus on health data science applications of command line tools
--->
-
-See [demo.md](demo.md) for detailed steps.
 
 ## git and GitHub
 
@@ -264,6 +265,16 @@ Version control system for tracking changes and collaborating on code:
 ![](xkcd_git.png)
 
 ## LIVE DEMO!
+
+<!--
+SPEAKING NOTES:
+- Demo 2 in the demos folder covers Git & GitHub for health research projects
+- It demonstrates VS Code Git integration and GitHub web interface
+- Shows repository creation, commits, and publishing to GitHub
+- Emphasizes version control for reproducible health research
+-->
+
+<!-- Demo steps are available in the demos folder for instructor reference -->
 
 ## Python
 
@@ -343,12 +354,13 @@ Interactive Python environment combining code, output, and documentation:
 
 <!--
 SPEAKING NOTES:
-- See lectures/1/demo.md for detailed demo steps and speaking notes
-- This demo covers Python basics for health data science
-- Focus on health-specific examples and applications
+- Demo 3 in the demos folder covers Python for health data analysis
+- It demonstrates Python basics, script-based analysis, and Jupyter notebooks
+- Shows how to work with health data in different Python environments
+- Includes examples of analyzing patient vitals and exploratory data analysis
 -->
 
-See [demo.md](demo.md) for detailed steps.
+<!-- Demo steps are available in the demos folder for instructor reference -->
 
 ## Data Security and Ethics in Health Data Science
 

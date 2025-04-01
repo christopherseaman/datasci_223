@@ -1,0 +1,44 @@
+name: Auto-grading
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pytest
+    
+    - name: Run tests
+      run: |
+        pytest tests/test_email_hasher.py -v
+    
+    - name: Check for README.md
+      run: |
+        if [ ! -f "README.md" ]; then
+          echo "ERROR: README.md file is missing"
+          exit 1
+        fi
+        
+        # Check if README.md contains required sections
+        if ! grep -q "hoping to get out of the course" README.md; then
+          echo "WARNING: README.md might be missing course expectations section"
+        fi
+        
+        if ! grep -q "http" README.md; then
+          echo "WARNING: README.md might be missing a link to music recommendation"
+        fi
