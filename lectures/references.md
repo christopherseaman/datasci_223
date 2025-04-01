@@ -19,6 +19,7 @@ VS Code:
 - [Debug code with Visual Studio Code](https://code.visualstudio.com/docs/debugtest/debugging)
 
 ## Git and Markdown Resources
+- [GitHub Foundations](https://learn.microsoft.com/en-us/training/paths/github-foundations/) - THE tutorial for GitHub
 - [Atlassian Git tutorial](https://www.atlassian.com/git/tutorials/what-is-version-control) - Comprehensive Git guide
 - [Markdown Guide](https://www.markdownguide.org/basic-syntax/) - Markdown syntax reference
 - [Markdown Tutorial](https://www.markdowntutorial.com/) - Interactive Markdown learning
