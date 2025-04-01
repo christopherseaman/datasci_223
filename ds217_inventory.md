@@ -1,5 +1,31 @@
 # Python and Command Line Fundamentals - Comprehensive Course Inventory
 
+## Additional Reference Materials
+### Command Line Resources
+- [LinuxCommand.org](http://linuxcommand.org/lc3_learning_the_shell.php) - Learning the shell
+- [The Linux Command Line book](http://linuxcommand.org/tlcl.php) - Free book by William Shotts
+- [The Missing Semester](https://missing.csail.mit.edu/) - MIT course on developer tools
+- [Bash manual](https://www.gnu.org/software/bash/manual/) - Official Bash documentation
+- [PowerShell documentation](https://docs.microsoft.com/en-us/powershell/) - Microsoft's PowerShell docs
+
+### Python Resources
+- [Official Python documentation](https://docs.python.org/3/) - Python language reference
+- [Codecademy Python course](https://www.codecademy.com/learn/learn-python-3) - Interactive Python learning
+- [Automate the Boring Stuff with Python](https://automatetheboringstuff.com/) - Practical Python programming
+- [Introduction to Python](http://introtopython.org/) - Python basics tutorial
+- [A Byte of Python](https://python.swaroopch.com/) - Python book for beginners
+
+### Git and Markdown Resources
+- [Atlassian Git tutorial](https://www.atlassian.com/git/tutorials/what-is-version-control) - Comprehensive Git guide
+- [Markdown Guide](https://www.markdownguide.org/basic-syntax/) - Markdown syntax reference
+- [Markdown Tutorial](https://www.markdowntutorial.com/) - Interactive Markdown learning
+- [CommonMark tutorial](https://commonmark.org/help/tutorial) - CommonMark standard tutorial
+
+### Development Tools
+- [Jetbrains' Learn PyCharm](https://www.jetbrains.com/pycharm/learn/) - PyCharm IDE tutorials
+- [Effective PyCharm Course](https://training.talkpython.fm/courses/explore_pycharm/mastering-pycharm-ide) - Advanced PyCharm training
+- [regex101.com](https://regex101.com/) - Regular expression testing tool
+
 ## Course Overview
 ### Syllabus (DataSci 217)
 #### Course Structure
@@ -83,32 +109,6 @@
 - Best practices
   - Handling sensitive information
   - Communication with team members
-
-### Markdown
-#### Key Topics
-- Basic syntax
-  - Paragraphs and line breaks
-  - Headers
-  - Font styles (bold, italic)
-  - Blockquotes
-- Lists
-  - Unordered lists
-  - Ordered lists
-  - Checklists
-- Code formatting
-  - Inline code
-  - Code blocks
-- Links
-- README.md best practices
-
-### Python Environments and Packages
-#### Key Topics
-- Virtual environments
-- Package management with pip
-- Importing packages
-- .gitignore for Python projects
-
-## Lecture 3: Advanced Command Line and Python Data Structures
 ### Advanced Command Line
 `datasci_217/03/index.md`
 #### Key Topics

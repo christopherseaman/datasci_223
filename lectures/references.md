@@ -1,6 +1,32 @@
 # Reference materials
 
-## Highly Recommended
+## Command Line Resources
+- [LinuxCommand.org](http://linuxcommand.org/lc3_learning_the_shell.php) - Learning the shell
+- [The Linux Command Line book](http://linuxcommand.org/tlcl.php) - Free book by William Shotts
+- [The Missing Semester](https://missing.csail.mit.edu/) - MIT course on developer tools
+- [Bash manual](https://www.gnu.org/software/bash/manual/) - Official Bash documentation
+- [PowerShell documentation](https://docs.microsoft.com/en-us/powershell/) - Microsoft's PowerShell docs
+- [regex101.com](https://regex101.com/) - Regular expression testing tool
+
+## Development Tools
+Since I will _NOT_ be supporting PyCharm
+- [Jetbrains' Learn PyCharm](https://www.jetbrains.com/pycharm/learn/) - PyCharm IDE tutorials
+- [Effective PyCharm Course](https://training.talkpython.fm/courses/explore_pycharm/mastering-pycharm-ide) - Advanced PyCharm training
+
+VS Code:
+- [Tutorial: Get started with Visual Studio Code](https://code.visualstudio.com/docs/getstarted/getting-started)
+- [Getting Started with Python in VS Code](https://code.visualstudio.com/docs/python/python-tutorial)
+- [Debug code with Visual Studio Code](https://code.visualstudio.com/docs/debugtest/debugging)
+
+## Git and Markdown Resources
+- [Atlassian Git tutorial](https://www.atlassian.com/git/tutorials/what-is-version-control) - Comprehensive Git guide
+- [Markdown Guide](https://www.markdownguide.org/basic-syntax/) - Markdown syntax reference
+- [Markdown Tutorial](https://www.markdowntutorial.com/) - Interactive Markdown learning
+- [CommonMark tutorial](https://commonmark.org/help/tutorial) - CommonMark standard tutorial
+
+## Python Resources
+
+### Highly Recommended
 
 Python: general introduction
 
@@ -23,7 +49,7 @@ Python: data science and analysis
 - [Machine Learning with PyTorch and Scikit-Learn, Rashka](https://learning.oreilly.com/library/view/machine-learning-with/9781801819312/)
 - [Deep Learning with PyTorch, Viehmann](https://learning.oreilly.com/library/view/deep-learning-with/9781617295263/)
 
-## UCSF Library
+### UCSF Library
 
 [UCSF library](https://www.library.ucsf.edu/) resources that might be helpful for your class project or future work:
 
@@ -43,7 +69,7 @@ If you are working with EHR data from the info commons, in addition to the [wiki
 
 The data science and open scholarship team also has help desk hours and consultations for related questions: [DSOS team](https://www.library.ucsf.edu/ask-an-expert/data-science/)
 
-## Additional options
+### Additional options
 
 Python: general introduction
 
@@ -52,6 +78,12 @@ Python: general introduction
 - [pythonbooks.org](https://pythonbooks.org/free-books/) - additional free books available
 - _Learning Python_ - great (but not free) book [from O’Reilly](https://www.oreilly.com/library/view/learning-python-4th/9780596805395/)
 - _Python Cookbook_ - applications and examples (not free) [from O’Reilly](https://www.oreilly.com/library/view/python-cookbook/0596001673/)
+- [Official Python documentation](https://docs.python.org/3/) - Python language reference
+- [Codecademy Python course](https://www.codecademy.com/learn/learn-python-3) - Interactive Python learning
+- [Automate the Boring Stuff with Python](https://automatetheboringstuff.com/) - Practical Python programming
+- [Introduction to Python](http://introtopython.org/) - Python basics tutorial
+- [A Byte of Python](https://python.swaroopch.com/) - Python book for beginners
+
 
 Python: data science
 
