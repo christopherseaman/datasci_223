@@ -76,7 +76,7 @@ nav:
     - Project: project.md
     - References: references.md
   - Lectures:
-    - '1. Getting Started': 1/index.md
+    - '1. `git init`': 1/index.md
 
 extra:
   social:
