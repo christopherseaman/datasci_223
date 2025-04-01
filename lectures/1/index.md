@@ -1,7 +1,3 @@
-It doesn't matter which tools you use; python and R (and other specialized tools) are quite capable. Since python and R are the most commonly used tools, knowing one or both of them will make it easier to play well with others. Don't try to be an expert in everything! Figure out which you prefer and learn to be "fluent" (able to code a solution from start to finish) in one, then you can get by being "conversational" (able to read and edit others' code) in the other.
-
-Additionally, collaboration usually happens in git and documentation will use markdown. Luckily, those are easy to pick up.
-
 # `git init`
 
 - Tools: `python`, `R`, and `git`
@@ -32,9 +28,14 @@ Additionally, collaboration usually happens in git and documentation will use ma
     - Google Colab (no PHI in this course)
     - GitHub Codespaces (sign up for free student membership)
 
+
 # Installing tools
 
-For most roles, data science happens in `python` and `R`
+For most roles data science happens in `python` and `R`, in this course we will be talking about `python`.
+
+It doesn't matter which tools you use; python and R (and other specialized tools) are quite capable. Since python and R are the most commonly used tools, knowing one or both of them will make it easier to play well with others. Don't try to be an expert in everything! Figure out which you prefer and learn to be "fluent" (able to code a solution from start to finish) in one, then you can get by being "conversational" (able to read and edit others' code) in the other. 
+
+Additionally, collaboration usually happens in git and documentation will use markdown. Luckily, those are "easy" to pick up.
 
 ## Quickstart
 

@@ -29,6 +29,7 @@ theme:
   favicon: assets/favicon.png
   features:
     - header.autohide
+    - toc.integrate 
 
 markdown_extensions:
   - admonition
@@ -68,7 +69,7 @@ nav:
     - Syllabus: syllabus.md
     - Project: project.md
   - Lectures:
-    - '1. Getting started with git, python, and R': 1/index.md
+    - '1. Getting started': 1/index.md
 
 extra:
   social:
