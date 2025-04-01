@@ -11,7 +11,7 @@
 # Lectures
 1. [Getting started with git, python, and markdown](1/index.md)     
 <!--
-        - Tools: `python`, and `git`
+        - Tools: `python` and `git`
             - Getting set up locally
             - Cloud options (Colab, Codespaces, Binder, Paperspace, GitHub)
         - Markdown

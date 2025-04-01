@@ -10,7 +10,7 @@ SPEAKING NOTES:
 
 ## Table of Contents
 
-- Tools: `python`, `R`, and `git`
+- Tools: `python` and `git`
     - Getting set up locally
     - Cloud options (GitHub Codespaces, Colab, Binder, Paperspace)
 - Command Line Basics
@@ -44,7 +44,6 @@ SPEAKING NOTES:
     - Data minimization principles
 
 > **Comprehension Check**: What tools have you used before? What are you most excited to learn?
-
 
 ## Installing tools
 
@@ -159,8 +158,6 @@ _if you're a weirdo and want to turn your iPad into a fully-fledged development 
 - VS Code: [vscode.dev](https://vscode.dev)
 - Jupyter: [Juno](https://juno.sh) (and Juno Connect to use cloud processing and GPUs)
 
-  
-
 Tools you'll need:
 
 - git
@@ -169,23 +166,11 @@ Tools you'll need:
     - [GitHub Desktop](https://desktop.github.com) has a GUI (excellent for beginners, but plenty of devs use it, too!)
     - VS Code 👇 can also manage git repositories!
 - Python 3 - [Data Science with Python Tutorial](https://www.geeksforgeeks.org/data-science-tutorial/)
-    - We'll install later 👇
-- R - [R for Data Science](https://r4ds.had.co.nz)
-    - [Posit](https://posit.co) (formerly RStudio)
-    - [tidyverse](https://www.tidyverse.org/) (has most everything you need)
-- Bonus!
-    - VS Code - the default IDE for everyone (except people using Posit/RStudio)
-        - [Download](https://code.visualstudio.com) or `brew install visual-studio-code`
-        - Can also run inside a web browser: [vscode.dev](https://vscode.dev), [Codespaces](https://github.com/features/codespaces)
-        - Extensions: Python, Jupyter, GitHub Repositories, Remote Repositories (manage git with VS Code), GitHub Codespaces (cheap remote computer), GitHub Copilot (AI assistant)
-    - Fonts (make it nice!)
-        - [Fira Mono](https://fonts.google.com/specimen/Fira+Mono?category=Monospace) `brew install font-fira-mono`
-        - [Source Code Pro](https://fonts.google.com/specimen/Source+Code+Pro) `brew install font-source-code-pro`
-        - Or any other [monospaced font](https://fonts.google.com/?category=Monospace) you like!
+    - We'll install and explore throughout the course 👇
 
 #### Cloud options
 
-You can run R and python in lots of places, many for free:
+You can run Python in lots of places, many for free:
 
 - GitHub Codespaces (free extra hours for students with GitHub Education, can work with private repos)
 - Google Colab (free for public notebooks, paid for private or higher-powered machines)
@@ -464,4 +449,3 @@ Thanks this week to [Data Science Weekly Newsletter](https://datascienceweekly.s
 > [!info] Data Cleaning Plan  #FIXME:MOVE TO NEXT WEEK
 > Data cleaning or data wrangling is the process of organizing and transforming raw data into a dataset that can be easily accessed and analyzed.  
 > [https://cghlewis.github.io/mpsi-data-training/training_4.html](https://cghlewis.github.io/mpsi-data-training/training_4.html)
-t
