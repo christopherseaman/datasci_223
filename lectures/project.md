@@ -22,12 +22,12 @@ It’s up to you, but some suggestions include:
         - Citations (data, code, papers)
     - Short-form presentation:
         - 10 minutes with fellow classmates as the target audience
+        - Slide deck (PDF, PowerPoint, etc.)
         - Problem statement
         - Existing work you pulled from
         - Your contribution
         - Tools/methods used
         - Issues overcome along the way
-        - PPT or document style OK
 
 # Inspiration
 
