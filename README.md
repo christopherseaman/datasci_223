@@ -32,9 +32,9 @@
             - Running python and jupyter
             - Variables and control flow
             - Common packages 
-/>
+-->
 
-# Topics under consideration
+# Topics for your consideration
 
 1. _Debugging: Rubber ducks all the way down_
 2. _JOIN the DISTINCT with SQL_

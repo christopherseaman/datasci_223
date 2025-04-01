@@ -21,6 +21,15 @@ At the conclusion of this course, students will be able to:
 
 Familiarity with programming concepts, including loops, variables, and functions. Ideally, hands-on experience writing and running scripts such as in: Python, R, Bash, or other programming languages.
 
+Students would benefit by being familiar with:
+- Markdown
+- Python
+- Git + GitHub
+- Jupyter notebooks
+- Visual Studio Code
+
+Instruction and materials will be provided to aid students in getting to a common baseline during the first lecture.
+
 ## Format
 
 Each week will focus on a different area of applied data science. See the list of lecture by week for more details.
@@ -43,18 +52,6 @@ This course will utilize freely available and open-source materials.
 
 - CLE Dashboard - Syllabus, discussion, and lecture recordings
 - GitHub - Exercises and code, where assignments will be submitted
-
-## Tools
-
-Students should expect to become familiar with:
-
-- Markdown
-- Python + data science libraries
-- Git + GitHub
-- Jupyter notebooks, including Google Colab
-- Visual Studio Code
-
-Instruction and materials will be provided to aide students in getting to a common baseline after the first lecture.
 
 # Lectures
 
