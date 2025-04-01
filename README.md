@@ -5,10 +5,8 @@
 - [References](references.md)
 - GitHub - [https://github.com/christopherseaman/datasci_223](https://github.com/christopherseaman/datasci_223)
 - Discord - [https://discord.gg/QdTYgR45er](https://discord.gg/QdTYgR45er)
-- Project - [[Project]]
-- Submit assignments - [https://forms.gle/EmcM9s7UrVGLykDm9](https://forms.gle/EmcM9s7UrVGLykDm9)
 - Recordings - [https://lecture.ucsf.edu/](https://lecture.ucsf.edu/ets/Channel/b28d58f224e040c59832d99d7d91aa995f/browse/null/most-recent/null/0/null)
-- This page - [https://not.badmath.org/ds223](https://not.badmath.org/ds223)
+- This page - [https://ds223.badmath.org/](https://ds223.badmath.org/)
 
 
 # Lectures
