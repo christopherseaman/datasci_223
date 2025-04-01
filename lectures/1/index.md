@@ -160,6 +160,8 @@ Lightweight markup language for documentation, used in GitHub, Notion, and more:
 
 - **Resources**: [Markdown Guide](https://www.markdownguide.org/basic-syntax/), [Interactive Tutorial](https://www.markdowntutorial.com)
 
+> **Markdown Tip**: In Markdown, only use one H1 (`#`) heading per document. This helps maintain a clear document structure and improves readability. The first H1 heading typically serves as the document's title or main heading.
+
 ### Key Syntax
 
 - **Paragraphs**: Separate with blank lines
