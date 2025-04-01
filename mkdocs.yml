@@ -29,7 +29,7 @@ theme:
   favicon: assets/favicon.png
   features:
     - header.autohide
-    - toc.integrate 
+    - toc.follow 
 
 markdown_extensions:
   - admonition
@@ -54,6 +54,7 @@ markdown_extensions:
   - pymdownx.tilde
   - pymdownx.arithmatex:
       generic: true
+  - toc
 
 plugins:
   - search
