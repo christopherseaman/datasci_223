@@ -10,12 +10,21 @@
     font-family: "Source Code Pro", "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
 }
 
-/* Make headings bold and balance spacing */
+/* Content spacing */
+.md-content article {
+    padding: 0 1rem;
+}
+
+.md-content article > * {
+    margin: 1rem 0;
+}
+
+/* Make headings bold and consistent spacing */
 .md-typeset h1,
 .md-typeset h2,
 .md-typeset h3 {
     font-weight: 700;
-    margin: 1.2em 0;
+    margin: 2rem 0 1rem;
 }
 
 /* Dark mode adjustments */
