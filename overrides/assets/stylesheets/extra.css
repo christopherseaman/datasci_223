@@ -10,11 +10,16 @@
     font-family: "Source Code Pro", "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
 }
 
-/* Make headings bold */
+/* Make headings bold and balance spacing */
 .md-typeset h1,
 .md-typeset h2,
 .md-typeset h3 {
     font-weight: 700;
+    margin: 2em 0 1em;
+}
+
+.md-typeset h1:first-child {
+    margin-top: 1em;
 }
 
 /* Dark mode adjustments */
