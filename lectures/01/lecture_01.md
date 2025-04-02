@@ -174,7 +174,7 @@ Lightweight markup language for documentation, used in GitHub, Notion, and more:
 
 > **Markdown Tip**: In Markdown, only use one H1 (`#`) heading per document. This helps maintain a clear document structure and improves readability. The first H1 heading typically serves as the document's title or main heading.
 
-## Key Syntax
+### Key Syntax
 
 - **Paragraphs**: Separate with blank lines
 - **Headers**: `# H1`, `## H2`, `### H3`
@@ -189,7 +189,7 @@ Lightweight markup language for documentation, used in GitHub, Notion, and more:
 
 Every repo should have a README.md to explain what it is and how to use it.
 
-## git and GitHub
+## `git` and GitHub
 
 Version control system for tracking changes and collaborating on code:
 
@@ -198,7 +198,7 @@ Version control system for tracking changes and collaborating on code:
 - [Atlassian Git Tutorial](https://www.atlassian.com/git/tutorials/what-is-version-control) (focus on _Getting Started_ and _Collaborating_)
 - [Markdown Guide](https://www.markdownguide.org/basic-syntax/) - Markdown syntax reference
 
-## Essential Git Commands
+### Essential Git Commands
 
 - **Setup**: `git config --global user.name "Your Name"` and `git config --global user.email "email@example.com"`
 - **Starting**: `git init` (new repo) or `git clone URL` (copy existing repo)
@@ -208,13 +208,13 @@ Version control system for tracking changes and collaborating on code:
   3. `git commit -m "Message"` (save snapshot)
   4. `git push` (upload to remote) / `git pull` (download from remote)
 
-## Collaboration Features
+### Collaboration Features
 
 - **Branches**: Create separate workspaces with `git branch` and `git checkout`
 - **Pull Requests**: Request code review before merging changes
 - **Forks**: Make your own copy of someone else's repository
 
-## Important Notes
+### Important Notes
 
 - **Never commit sensitive info**: No passwords, PHI, or PII
 - **Handling conflicts**: Use `git restore`, `git rebase`, or `git stash` when things get messy
@@ -235,19 +235,19 @@ The most popular language for data science and machine learning:
 - [Python for Data Analysis](https://wesmckinney.com/book/) - For data science applications
 - [Python Data Science Handbook](https://jakevdp.github.io/PythonDataScienceHandbook/) - Comprehensive guide
 
-## Quick Setup
+### Quick Setup
 
 - **Mac**: `brew install python`
 - **Windows**: In WSL: `sudo apt install python3 python3-pip python3-venv`
 
-## Key Packages
+### Key Packages
 
 - **Data analysis**: Pandas, NumPy
 - **Visualization**: Matplotlib, Seaborn
 - **Machine learning**: scikit-learn, PyTorch, TensorFlow/Keras
 - **Health-specific**: BioPython, Nilearn, MedPy, PyDicom
 
-## Python in Health Data Science
+### Python in Health Data Science
 
 ```python
 # Example: Working with patient data
@@ -266,7 +266,7 @@ average_bp = sum(bp_readings) / len(bp_readings)
 print(f"Average systolic BP: {average_bp}")
 ```
 
-## Virtual Environments
+### Virtual Environments
 
 **Recommended Resources:**
 - [Python Virtual Environments Primer](https://realpython.com/python-virtual-environments-a-primer/) - Detailed guide
@@ -281,7 +281,7 @@ Isolated Python environments for different projects:
   3. Install: `pip install -r requirements.txt`
   4. Deactivate: `deactivate`
 
-## Jupyter Notebooks
+### Jupyter Notebooks
 
 Interactive Python environment combining code, output, and documentation:
 
@@ -298,37 +298,37 @@ Interactive Python environment combining code, output, and documentation:
 **Recommended Resources:**
 - [UCSF Information Commons Tools](https://informationcommons.ucsf.edu/tools) - For working with EHR data
 
-## Key Principles
+### Key Principles
 
 - **PHI (Protected Health Information)**: Any identifiable health information
 - **De-identification**: Removing identifiers from health data
 - **HIPAA compliance**: Legal requirements for handling health data
 - **Informed consent**: Ensuring proper permissions for data use
 
-## Tool Considerations
+### Tool Considerations
 
 - **Local vs. Cloud**: When to keep data on local, secured systems
 - **Public tools**: Never use Google Colab, GitHub, etc. with PHI
 - **Secure alternatives**: UCSF's secure computing environments, private instances
 - **Data minimization**: Only use the data you need for your specific purpose
 
-## Best Practices
+### Best Practices
 
-- Always encrypt sensitive data
+- Always encrypt sensitive data and minimize "data surface"
 - Use secure authentication (MFA where possible)
 - Document your data handling procedures
 - Consult with privacy experts when in doubt
 - Consider ethical implications beyond legal requirements
 
-## This Week's Assignment
+## Assignment
 
-## GitHub Classroom Overview
+### GitHub Classroom Overview
 
 - **What**: Platform for distributing, submitting, and grading assignments
 - **How**: Accept assignment link → Get private repo → Make changes → Push to submit
 - **Benefits**: Automated testing, private repos, direct feedback
 
-## Assignment Tasks
+### Assignment Tasks
 
 1. **Create README.md** with:
    - Brief introduction (first name only)
