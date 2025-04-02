@@ -120,6 +120,7 @@ For Windows users, WSL provides a Linux environment directly in Windows:
 
 - **Why use it**: Consistent Unix environment, better compatibility with data science tools
 - **Quick install**: In PowerShell (as Admin): `wsl --install`, then restart
+- **VS Code integration**: Install the WSL extension in VS Code to work from Unix
 - **File access**: Windows files at `/mnt/c/...`, WSL files at `\\wsl$\Ubuntu\...`
 - **Best terminal**: Windows Terminal or VS Code's integrated terminal
 
@@ -144,7 +145,7 @@ _if you're a weirdo and want to turn your iPad into a fully-fledged development 
 - VS Code: [vscode.dev](https://vscode.dev)
 - Jupyter: [Juno](https://juno.sh) (and Juno Connect to use cloud processing and GPUs)
 
-Tools you'll need:
+### Tools you'll need:
 
 - git
     - `brew install git`
