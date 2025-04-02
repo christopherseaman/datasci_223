@@ -35,7 +35,11 @@ Welcome to the first lecture of Applied Data Science with Python! Today we'll be
     - Working securely with health data
     - When NOT to use cloud tools
 
+## Why Python?
+
 > **Check**: What tools have you used before? What would you like to cover in this course?
+
+![](python_import.webp)
 
 ## Installing tools
 
@@ -194,6 +198,8 @@ Every repo should have a README.md to explain what it is and how to use it.
 
 Version control system for tracking changes and collaborating on code:
 
+![](xkcd_git.png)
+
 **Recommended Resources:**
 - [GitHub Foundations](https://learn.microsoft.com/en-us/training/paths/github-foundations/) - THE tutorial for GitHub
 - [Atlassian Git Tutorial](https://www.atlassian.com/git/tutorials/what-is-version-control) (focus on _Getting Started_ and _Collaborating_)
@@ -228,7 +234,6 @@ GitHub (thankfully) will do its best to keep you from posting your email on the 
 - **GitHub alternatives**: GitLab, Bitbucket, or UCSF's internal GitHub (for PHI)
 
 ![](git_branches.png)
-![](xkcd_git.png)
 
 ## LIVE DEMO!
 
