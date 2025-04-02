@@ -27,7 +27,7 @@ theme:
       toggle:
         icon: material/brightness-1
         name: Switch to system preference
-  favicon: assets/favicon.png
+  favicon: overrides/assets/images/favicon.png
   features:
     - header.autohide
     - toc.integrate
