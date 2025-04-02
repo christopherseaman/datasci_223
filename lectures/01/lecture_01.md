@@ -7,14 +7,6 @@ pdf: true
 
 Welcome to the first lecture of Applied Data Science with Python! Today we'll be covering the essential tools and concepts that will form the foundation of your data science journey.
 
-<!--
-SPEAKING NOTES:
-- This lecture covers the foundational tools needed for health data science
-- Emphasize that these tools form an ecosystem that enables reproducible research
-- Remind students that while there's a lot to learn, they don't need to master everything at once
-- Point out that these skills are transferable across many health data science roles
--->
-
 ## Table of Contents
 
 - Tools: `python` and `git`
@@ -119,15 +111,6 @@ Essential commands for navigating and working with files:
 
 Access via Terminal (Mac), WSL (Windows, recommended), or Terminal (Linux)
 
-<!--
-SPEAKING NOTES:
-- These commands form the foundation of data manipulation in health research
-- Explain how `grep` can be used to search through clinical notes for specific terms
-- Demonstrate how pipes can be used to filter and transform health data
-- Point out that these skills are essential for working with large health datasets
-- MISCONCEPTION: Address the fear of breaking things in the terminal - explain how to be cautious
--->
-
 #### Health Data Science Applications
 
 - Organizing patient data files: `mkdir patient_cohorts/{control,treatment}`
@@ -135,6 +118,8 @@ SPEAKING NOTES:
 - Extracting first 10 rows of data: `head -n 10 lab_results.csv`
 - Counting records by type: `grep "diagnosis" records.csv | wc -l`
 - Combining data processing steps: `cat vitals.csv | grep "elevated" | sort > high_risk_patients.csv`
+
+## LIVE DEMO!
 
 ### Windows Subsystem for Linux (WSL)
 
@@ -184,18 +169,6 @@ You can run Python in lots of places, many for free:
 - Google Colab (free for public notebooks, paid for private or higher-powered machines)
 - Paperspace (free for public notebooks, paid for private or higher-powered machines)
 - Binder (free, always public)
-
-## LIVE DEMO!
-
-<!--
-SPEAKING NOTES:
-- Demo 1 in the demos folder covers command line basics for health data management
-- It demonstrates project setup, file operations, and data manipulation with health examples
-- Shows how to create a research project structure and analyze patient data with command line tools
-- Includes a data pipeline example using pipes and redirection
--->
-
-<!-- Demo steps are available in the demos folder for instructor reference -->
 
 ## Markdown
 
@@ -259,16 +232,6 @@ Version control system for tracking changes and collaborating on code:
 
 ## LIVE DEMO!
 
-<!--
-SPEAKING NOTES:
-- Demo 2 in the demos folder covers Git & GitHub for health research projects
-- It demonstrates VS Code Git integration and GitHub web interface
-- Shows repository creation, commits, and publishing to GitHub
-- Emphasizes version control for reproducible health research
--->
-
-<!-- Demo steps are available in the demos folder for instructor reference -->
-
 ## Python
 
 The most popular language for data science and machine learning:
@@ -278,14 +241,6 @@ The most popular language for data science and machine learning:
 - [Think Python](https://greenteapress.com/wp/think-python/) - Free book by Allen Downey
 - [Python for Data Analysis](https://wesmckinney.com/book/) - For data science applications
 - [Python Data Science Handbook](https://jakevdp.github.io/PythonDataScienceHandbook/) - Comprehensive guide
-
-<!--
-SPEAKING NOTES:
-- Python has become the dominant language in health data science due to its readability and extensive libraries
-- Emphasize that Python's syntax is designed to be readable, making it ideal for collaborative health research
-- Point out that many health organizations and research institutions use Python for data analysis
-- MISCONCEPTION: Address the idea that you need to memorize everything - explain the value of knowing how to find information
--->
 
 ### Quick Setup
 
@@ -345,28 +300,10 @@ Interactive Python environment combining code, output, and documentation:
 
 ## LIVE DEMO!
 
-<!--
-SPEAKING NOTES:
-- Demo 3 in the demos folder covers Python for health data analysis
-- It demonstrates Python basics, script-based analysis, and Jupyter notebooks
-- Shows how to work with health data in different Python environments
-- Includes examples of analyzing patient vitals and exploratory data analysis
--->
-
-<!-- Demo steps are available in the demos folder for instructor reference -->
-
 ## Data Security and Ethics in Health Data Science
 
 **Recommended Resources:**
 - [UCSF Information Commons Tools](https://informationcommons.ucsf.edu/tools) - For working with EHR data
-
-<!--
-SPEAKING NOTES:
-- This is a critical topic for health data scientists that affects all the tools we use
-- Emphasize that security is everyone's responsibility, not just IT departments
-- Point out that ethical considerations should be part of the planning process, not an afterthought
-- MISCONCEPTION: Address the idea that anonymized data is always safe - explain re-identification risks
--->
 
 ### Key Principles
 
@@ -398,14 +335,6 @@ SPEAKING NOTES:
 - **How**: Accept assignment link → Get private repo → Make changes → Push to submit
 - **Benefits**: Automated testing, private repos, direct feedback
 
-<!--
-SPEAKING NOTES:
-- Emphasize that this assignment helps build the foundational skills needed for the course
-- Point out that the hashing exercise relates to data privacy concepts
-- Remind students that git skills will be used throughout their careers
-- Encourage students to start early and reach out if they have questions
--->
-
 ### Assignment Tasks
 
 1. **Create README.md** with:
@@ -426,7 +355,7 @@ See [exercise.md](exercise.md) for more details and additional practice resource
 
 ## It came from the Internet
 
-Thanks this week to [Data Science Weekly Newsletter](https://datascienceweekly.substack.com/?utm_source=substack&utm_medium=email)
+Thanks this week to [Data Science Weekly Newsletter](https://datascienceweekly.substack.com/?utm_source=subsoft&utm_medium=email)
 
 #### Data teams
 

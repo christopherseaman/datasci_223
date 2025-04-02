@@ -12,29 +12,9 @@
 
 This repository contains the course materials for UCSF DataSci 223: Applied Data Science with Python.
 
-## Course Materials
+## Lectures
 
 1. [Getting started with git, python, and markdown](01/index.md)
-
-<!--
-        - Tools: `python` and `git`
-            - Getting set up locally
-            - Cloud options (Colab, Codespaces, Binder, Paperspace, GitHub)
-        - Markdown
-            - Syntax summaries
-            - GitHub and Notion flavors
-            - Readme.md - make one for every repo
-        - git and GitHub
-            - Starting or cloning a repository
-            - Git push/pull/sync
-            - Branches
-            - Conflicts
-        - Python
-            - Syntax basics
-            - Running python and jupyter
-            - Variables and control flow
-            - Common packages 
--->
 
 ## Topics for your consideration
 
