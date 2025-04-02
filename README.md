@@ -8,8 +8,14 @@
 > - **Discord:** [https://discord.gg/QdTYgR45er](https://discord.gg/QdTYgR45er)
 > - **CLE:** [DATASCI 223: Applied Data Science with Python (Spring 2025)](https://courses.ucsf.edu/course/view.php?id=12061)
 
-# Lectures
-1. [Getting started with git, python, and markdown](1/index.md)     
+# Applied Data Science with Python
+
+This repository contains the course materials for UCSF DataSci 223: Applied Data Science with Python.
+
+## Course Materials
+
+1. [Getting started with git, python, and markdown](01/index.md)
+
 <!--
         - Tools: `python` and `git`
             - Getting set up locally
