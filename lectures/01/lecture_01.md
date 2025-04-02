@@ -209,6 +209,12 @@ Version control system for tracking changes and collaborating on code:
   3. `git commit -m "Message"` (save snapshot)
   4. `git push` (upload to remote) / `git pull` (download from remote)
 
+### `git config --global user.email "NOT YOUR ACTUAL EMAIL"`
+
+GitHub (thankfully) will do its best to keep you from posting your email on the internet. They provide an anonymous remailing service with an email alias. Add that to your `git config`
+
+![](github_email.png)
+
 ### Collaboration Features
 
 - **Branches**: Create separate workspaces with `git branch` and `git checkout`
