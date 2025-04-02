@@ -1,3 +1,5 @@
+# Applied Data Science with Python
+
 > [!INFO] Course Information
 > - **Instructor:** Christopher Seaman
 > - **EA's:** Marlene Lin & Nya Campbell
@@ -7,8 +9,6 @@
 > - **GitHub:** [https://github.com/christopherseaman/datasci_223](https://github.com/christopherseaman/datasci_223)
 > - **Discord:** [https://discord.gg/QdTYgR45er](https://discord.gg/QdTYgR45er)
 > - **CLE:** [DATASCI 223: Applied Data Science with Python (Spring 2025)](https://courses.ucsf.edu/course/view.php?id=12061)
-
-# Applied Data Science with Python
 
 This repository contains the course materials for UCSF DataSci 223: Applied Data Science with Python.
 
@@ -36,7 +36,8 @@ This repository contains the course materials for UCSF DataSci 223: Applied Data
             - Common packages 
 -->
 
-# Topics for your consideration
+## Topics for your consideration
+
 1. _Debugging: Rubber ducks all the way down_
 2. _JOIN the DISTINCT with SQL_
 3. Polars: working with data bigger than memory
