@@ -16,7 +16,7 @@ This document contains three hands-on demos for the first lecture, strategically
 >   - "The command line is outdated" - Explain it's still essential for data science
 >   - "I might break something" - Reassure that basic commands are safe with proper care
 >   - "This is too technical" - Connect to familiar health data tasks
-> - **VALIDATION:** Watch students try commands, look for confusion in execution or concept
+> - **VALIDATION:** Students may show confusion when executing commands or understanding concepts. Common stumbling blocks include remembering command syntax and understanding the purpose of each command.
 
 ### Introduction (1 minute)
 
@@ -126,7 +126,7 @@ grep "heart" notes.txt
 >   - "Git is only for software developers" - Show research applications
 >   - "Version control is too complicated" - Show how GUIs simplify the process
 >   - "I work alone, so I don't need Git" - Explain benefits for solo researchers
-> - **VALIDATION:** Watch for confusion about basic git concepts (commit, push, etc.)
+> - **VALIDATION:** Students may struggle with basic Git concepts like commit, push, and repository structure. Common questions include the difference between local and remote repositories and when to commit changes.
 
 ### Introduction (1 minute)
 
@@ -247,7 +247,7 @@ grep "heart" notes.txt
 >   - "Python is too hard to learn" - Show readable syntax
 >   - "I need to memorize everything" - Emphasize looking up documentation
 >   - "Python isn't suitable for health data" - Show relevant examples
-> - **VALIDATION:** Watch for confusion with syntax, especially indentation
+> - **VALIDATION:** Students may struggle with Python syntax, particularly indentation and function definitions. Common questions include how to structure code and when to use different data types.
 
 ### Introduction (1 minute)
 
