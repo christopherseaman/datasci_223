@@ -77,6 +77,9 @@ plugins:
           concurrency: 4
           verbose: true
           explicit: true
+          options:
+            format: letter
+            output_path: "{abs_dest_path}/lectures/{page.meta.lecture_number}/lecture_{page.meta.lecture_number}.pdf"
 
 nav:
   - Home: index.md
