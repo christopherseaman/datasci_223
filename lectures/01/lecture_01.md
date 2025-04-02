@@ -3,7 +3,7 @@ lecture_number: 01
 pdf: true
 ---
 
-# Lecture 1: `git init` - Getting Started with Git, Python, and Markdown
+# Lecture 1: `git init` - Getting Started with Git, Python, and Markdown [\[pdf\]](lecture_01.pdf)
 
 Welcome to the first lecture of Applied Data Science with Python! Today we'll be covering the essential tools and concepts that will form the foundation of your data science journey.
 

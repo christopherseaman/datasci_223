@@ -89,8 +89,8 @@ nav:
     - References: references.md
   - Lectures:
     - '01. `git init`': 01/lecture_01.md
-  - Lectures (PDF):
-    - '01. `git init`': 01/lecture_01.pdf
+  # - Lectures (PDF):
+  #   - '01. `git init`': 01/lecture_01.pdf
   - Exercises:
     - '01. `git init` (Due April 9th)': https://classroom.github.com/a/6fFVVHyL
 
