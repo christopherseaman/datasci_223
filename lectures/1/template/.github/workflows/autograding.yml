@@ -34,11 +34,6 @@ jobs:
           exit 1
         fi
         
-        # Check if README.md contains required sections
-        if ! grep -q "hoping to get out of the course" README.md; then
-          echo "WARNING: README.md might be missing course expectations section"
-        fi
-        
         if ! grep -q "http" README.md; then
           echo "WARNING: README.md might be missing a link to music recommendation"
         fi
