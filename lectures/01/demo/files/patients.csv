@@ -1,0 +1,11 @@
+patient_id,age,blood_pressure,diagnosis,medication_count
+A12345,65,140/90,hypertension,2
+B67890,45,120/80,diabetes,1
+C24680,72,130/85,hypertension,3
+D13579,38,110/70,healthy,0
+E86420,55,150/95,hypertension,2
+F97531,62,125/82,diabetes,2
+G12345,70,135/88,hypertension,1
+H67890,48,115/75,healthy,0
+I24680,80,145/92,hypertension,3
+J13579,42,118/76,healthy,0 

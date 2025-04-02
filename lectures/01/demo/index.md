@@ -2,68 +2,43 @@
 
 This document contains three hands-on demos for the first lecture, strategically placed at the ⅓, ⅔, and end points of the lecture. Each demo builds on the previous one, creating a cohesive learning experience.
 
-## Demo 1: Command Line for Health Data Management (15 minutes)
-
-> **SPEAKING NOTES:**
-> - **OBJECTIVES:** Familiarize students with terminal navigation, file operations, and basic data manipulation
-> - **TIMING:** Present this demo after covering Command Line Basics section
-> - **PREPARATION:** Have terminal open and ready to demonstrate
-> - **APPROACH:** 
->   - Demonstrate each command, explaining what it does before executing
->   - Emphasize how these commands apply to health data workflows
->   - Point out that these skills form the foundation for data pipeline creation
-> - **MISCONCEPTIONS TO ADDRESS:**
->   - "The command line is outdated" - Explain it's still essential for data science
->   - "I might break something" - Reassure that basic commands are safe with proper care
->   - "This is too technical" - Connect to familiar health data tasks
-> - **VALIDATION:** Students may show confusion when executing commands or understanding concepts. Common stumbling blocks include remembering command syntax and understanding the purpose of each command.
+## Demo 1: Command Line for Health Data Management (10 minutes)
 
 ### Introduction (1 minute)
 
-"Let's explore how the command line can help us organize and analyze health data. These skills are essential for creating reproducible research workflows."
+> "Let's explore how the command line can help us organize and analyze health data. These skills are essential for creating reproducible research workflows."
 
-### Part 1: Setting Up a Health Research Project (5 minutes)
+### Part 1: Setting Up a Health Research Project (3 minutes)
 
-1. Open your terminal:
-   - Mac: Terminal app
-   - Windows: WSL Ubuntu terminal (recommended) or PowerShell
-   - Linux: Terminal app
-
-2. Navigate and explore:
+1. Open terminal and navigate:
    ```bash
-   pwd                  # Shows current location (Present Working Directory)
+   pwd                  # Shows current location
    ls -la               # Lists all files including hidden ones
    cd ~                 # Go to home directory
    mkdir health_project # Create project directory
    cd health_project    # Move into project directory
    ```
 
-3. Create a research project structure:
+2. Create research project structure:
    ```bash
-   # Create organized directory structure for health research
-   mkdir -p data/{raw,processed,external} code results figures
-   
-   # Create a README file
-   echo "# Health Data Analysis Project" > README.md
-   echo "Project for analyzing patient outcomes data" >> README.md
+   # Create organized directory structure
+   mkdir -p data/{raw,processed} code results figures
    
    # View the structure
    ls -la
    find . -type d | sort  # Shows directory tree
    ```
 
-### Part 2: Working with Health Data Files (7 minutes)
+### Part 2: Working with Health Data Files (4 minutes)
 
-1. Create sample health data:
+1. Copy and view sample health data:
    ```bash
-   # Copy the sample data file
-   cp /path/to/patients.csv data/raw/
+   # Copy the sample data file (adjust path as needed)
+   cp ../lectures/01/demo/files/patients.csv data/raw/
    
    # View the data
    cat data/raw/patients.csv
    ```
-   
-   Note: The sample data file is available in the demos folder: [patients.csv](patients.csv)
 
 2. Analyze the data with command line tools:
    ```bash
@@ -79,23 +54,45 @@ This document contains three hands-on demos for the first lecture, strategically
    # Extract just the blood pressure readings
    cut -d',' -f3 data/raw/patients.csv
    
-   # Create a filtered dataset of hypertension patients
+   # Create a filtered dataset
    grep "hypertension" data/raw/patients.csv > data/processed/hypertension_patients.csv
    cat data/processed/hypertension_patients.csv
    ```
 
-3. Data pipeline example:
+3. Create a data processing pipeline:
    ```bash
    # A simple data processing pipeline
-   cat data/raw/patients.csv | grep -v "patient_id" | cut -d',' -f2,5 | sort > data/processed/age_diagnosis.csv
+   echo "age,medication_count" > data/processed/age_diagnosis.csv
+   cat data/raw/patients.csv | grep -v "patient_id" | cut -d',' -f2,5 | sort >> data/processed/age_diagnosis.csv
    
    # View the result
    cat data/processed/age_diagnosis.csv
    ```
 
+### Error Handling Examples
+
+If you encounter errors:
+1. File not found:
+   ```bash
+   # Check if file exists
+   ls -la data/raw/
+   
+   # Verify file path
+   pwd
+   ```
+
+2. Permission denied:
+   ```bash
+   # Check permissions
+   ls -la data/raw/patients.csv
+   
+   # Fix permissions if needed
+   chmod +r data/raw/patients.csv
+   ```
+
 ### Quick Exercise (2 minutes)
 
-"Now it's your turn! Create a file called `notes.txt` with a few lines about health data topics you're interested in, then use `grep` to find specific terms in it."
+> "Create a file called `notes.txt` with a few lines about health data topics you're interested in, then use `grep` to find specific terms in it."
 
 ```bash
 # Example solution
@@ -105,272 +102,225 @@ echo "Want to learn about medical imaging analysis" >> notes.txt
 grep "heart" notes.txt
 ```
 
-### Wrap-up (1 minute)
-
-"These command line skills are the building blocks for more complex data processing. Next, we'll see how to track changes to our work using Git."
-
-## Demo 2: Git & GitHub for Health Research Projects (15 minutes)
-
-> **SPEAKING NOTES:**
-> - **OBJECTIVES:** Demonstrate version control basics using VS Code and GitHub interfaces
-> - **TIMING:** Present after covering Git and GitHub section
-> - **PREPARATION:** 
->   - Have VS Code installed with GitHub extension
->   - Have GitHub account ready
->   - Clear browser cache or use incognito if showing login
-> - **APPROACH:**
->   - Focus on visual interfaces rather than command line
->   - Show both VS Code Git tools and GitHub web interface
->   - Emphasize reproducibility aspects for health research
-> - **MISCONCEPTIONS TO ADDRESS:**
->   - "Git is only for software developers" - Show research applications
->   - "Version control is too complicated" - Show how GUIs simplify the process
->   - "I work alone, so I don't need Git" - Explain benefits for solo researchers
-> - **VALIDATION:** Students may struggle with basic Git concepts like commit, push, and repository structure. Common questions include the difference between local and remote repositories and when to commit changes.
+## Demo 2: Git & GitHub for Health Research Projects (10 minutes)
 
 ### Introduction (1 minute)
 
-"Version control is essential for reproducible health research. Let's explore how Git and GitHub can help track changes to your analysis code and data processing scripts using visual tools that make the process more intuitive."
+> "Version control is essential for reproducible health research. Let's explore two common Git workflows: starting a new project and working with an existing repository."
 
-### Part 1: Setting Up Git and GitHub (3 minutes)
+### Part 1: Starting a New Project (3 minutes)
 
-1. GitHub account setup:
-   - Navigate to [GitHub](https://github.com)
-   - Show profile settings
-   - Highlight GitHub Education benefits for students
-   - Discuss privacy considerations for health researchers
-
-2. VS Code Git integration:
-   - Show Git extension in VS Code
-   - Explain how it simplifies Git operations
-   - Point out Source Control icon in the sidebar
-
-### Part 2: Creating a Local Health Research Project (4 minutes)
-
-1. Create a new project folder:
-   - Open VS Code
-   - Create a new folder: "health-data-analysis"
-   - Create a simple README.md file
-   
-   Note: A sample README.md is available in the demos folder: [README.md](README.md)
-
-2. Initialize Git repository:
-   - Click on Source Control icon in VS Code sidebar
-   - Click "Initialize Repository" button
-   - Show the .git folder that appears (may need to show hidden files)
-   - Explain what initialization does
-
-3. Create a simple analysis script:
-   - Create a new file: `analyze_outcomes.py`
-   
-   Note: A sample script is available in the demos folder: [analyze_outcomes.py](analyze_outcomes.py)
-
-### Part 3: First Commit and Publishing to GitHub (4 minutes)
-
-1. Make your first commit:
-   - Show files in Source Control panel (they appear with U for Untracked)
-   - Stage changes by clicking + icon next to files
-   - Enter a commit message: "Initial project setup with risk calculator"
+#### Option A: Create and Publish from VS Code
+1. Initialize Git in VS Code:
+   - Open VS Code in the project directory
+   - Click the Source Control icon in the sidebar (or press Ctrl+Shift+G)
+   - Click "Initialize Repository"
+   - Stage the patients.csv file by clicking the + icon next to it
+   - Enter commit message: "Add sample patient data"
    - Click the checkmark to commit
-   - Explain what a commit is and why descriptive messages matter
 
-2. Create and publish to GitHub repository:
-   - Click "Publish to GitHub" in Source Control panel
-   - Choose public or private repository
-   - Name the repository "health-data-analysis"
-   - Add a description
-   - Select files to include (typically all)
+2. Create GitHub repository:
+   - Go to GitHub.com
+   - Click the + icon in top right
+   - Select "New repository"
+   - Name: "health-data-demo"
+   - Description: "Demo repository for health data analysis"
+   - Choose "Public"
+   - Don't initialize with README
+   - Click "Create repository"
+
+3. Connect and push:
+   - In VS Code, click "Publish to GitHub" in the Source Control panel
+   - Choose the repository you just created
    - Click "Publish"
-   - Show the repository on GitHub after publishing
+   - Verify the files appear on GitHub
 
-3. Explain GitHub repository features:
-   - README.md display on the main page
-   - Code browsing and history
-   - Issues for tracking tasks and bugs
-   - Settings for managing access and integrations
+#### Option B: Create on GitHub and Clone Locally
+1. Create repository on GitHub:
+   - Go to GitHub.com
+   - Click the + icon in top right
+   - Select "New repository"
+   - Name: "health-data-demo"
+   - Description: "Demo repository for health data analysis"
+   - Choose "Public"
+   - Initialize with a README.md
+   - Add .gitignore for Python
+   - Click "Create repository"
 
-### Part 4: Making Changes and Syncing (3 minutes)
+2. Clone to local machine:
+   - On GitHub, click the green "Code" button
+   - Copy the HTTPS URL
+   - Open VS Code
+   - Press Ctrl+Shift+P (Cmd+Shift+P on Mac)
+   - Type "Git: Clone"
+   - Paste the repository URL (or if you just start typing it will search for it)
+   - Choose where to save it
+   - Click "Clone"
 
-1. Make changes to your code:
-   - Add a new function to `analyze_outcomes.py`:
-   
-   ```python
-   def calculate_bmi(weight_kg, height_m):
-       """Calculate Body Mass Index"""
-       return weight_kg / (height_m ** 2)
-   
-   # Add example BMI calculation
-   if __name__ == "__main__":
-       # Existing code remains...
-       
-       # Add BMI examples
-       print("\nBMI Calculations:")
-       print(f"BMI for 70kg, 1.75m: {calculate_bmi(70, 1.75):.1f}")
+3. Make and push changes:
+   - Open the cloned repository in VS Code
+   - Add your files (e.g., patients.csv)
+   - Stage changes in Source Control
+   - Commit with a descriptive message
+   - Click "Sync Changes" to push
+
+### Part 2: Making Changes and Syncing (4 minutes)
+
+1. Add and commit the analysis script:
+   ```bash
+   cp ../lectures/01/demo/files/vitals_analysis.py code/
    ```
-
-2. Commit and push changes using VS Code:
-   - Show modified files in Source Control panel (M for Modified)
-   - Stage changes
-   - Enter commit message: "Add BMI calculation function"
-   - Commit changes
+   - In VS Code, the new file will appear in Source Control
+   - Stage the file by clicking the + icon
+   - Enter commit message: "Add patient vitals analysis script"
+   - Click the checkmark to commit
    - Click "Sync Changes" to push to GitHub
-   - Show the updated repository on GitHub
 
-3. Demonstrate viewing history:
-   - Show commit history in VS Code (click on "Commits" in Source Control panel)
-   - Show history on GitHub (click on "commits" link)
-   - Explain how this creates a permanent record of research code evolution
+2. GitHub repository features on the web:
+   - View files and their history in the Code tab
+   - See commit history in the Commits tab
+   - Track tasks in the Issues tab
+   - Configure repository in Settings
+   - Review and merge changes in Pull requests
+   - Edit files directly:
+     * Click on any file to view it
+     * Click the pencil icon to edit
+     * Make changes in the web editor
+     * Add a commit message
+     * Choose to commit directly or create a pull request
+     * Click "Commit changes"
+   - Create new files:
+     * Click "Add file" button
+     * Choose "Create new file"
+     * Enter filename (e.g., "data/notes.md")
+     * Add file content
+     * Add commit message
+     * Choose branch
+     * Click "Commit new file"
+
+3. Pull changes from GitHub:
+   - In VS Code, click "Source Control"
+   - Click the "..." menu
+   - Select "Pull" to get latest changes
+   - Or use the sync button to pull and push
+
+### Common Git Issues and Solutions
+
+1. "Repository not found":
+   - Check repository URL
+   - Verify GitHub credentials
+   - Try `git remote -v` to check remotes
+
+2. "Changes not staged":
+   - Use `git status` to see changes
+   - Stage files in VS Code
+   - Commit before pushing
+
+3. Merge conflicts:
+   - Pull latest changes first
+   - Resolve conflicts in VS Code
+   - Commit resolved changes
+
+4. "Authentication failed":
+   - Check GitHub credentials
+   - Use personal access token if needed
+   - Verify SSH key setup if using SSH
 
 ### Quick Exercise (2 minutes)
 
-"Your turn! Create a new file in your repository called `research_question.md` that describes a health data science question you're interested in exploring. Use VS Code to commit and push it to GitHub."
+> "Choose one of these exercises:
+> 1. Create a new repository for your health data project and push your first commit
+> 2. Clone an existing health data repository, make a small change, and push it back"
 
-### Wrap-up (1 minute)
-
-"VS Code and GitHub make version control accessible without memorizing complex commands. This approach ensures your health research is reproducible, backed up, and easily shared with collaborators. As you become more comfortable, you can explore additional features like branches for experimental analysis methods."
-
-## Demo 3: Python for Health Data Analysis (15 minutes)
-
-> **SPEAKING NOTES:**
-> - **OBJECTIVES:** Introduce Python basics with health data examples and demonstrate different environments
-> - **TIMING:** Present after covering Python and Runtime Environments sections
-> - **PREPARATION:** 
->   - Have Python installed and ready
->   - Prepare Jupyter notebook environment
->   - Have example health dataset ready
-> - **APPROACH:**
->   - Start with basic syntax in terminal
->   - Progress to script-based analysis
->   - Finish with Jupyter notebook for exploratory analysis
->   - Show both local and cloud options
-> - **MISCONCEPTIONS TO ADDRESS:**
->   - "Python is too hard to learn" - Show readable syntax
->   - "I need to memorize everything" - Emphasize looking up documentation
->   - "Python isn't suitable for health data" - Show relevant examples
-> - **VALIDATION:** Students may struggle with Python syntax, particularly indentation and function definitions. Common questions include how to structure code and when to use different data types.
+## Demo 3: Python for Health Data Analysis (10 minutes)
 
 ### Introduction (1 minute)
 
-"Python has become the language of choice for health data science due to its readability and powerful libraries. Let's explore how to use Python for health data analysis in different environments."
+> "Python has become the language of choice for health data science due to its readability and powerful libraries. Let's explore how to use Python for health data analysis."
 
-### Part 1: Python Basics with Health Data Examples (4 minutes)
+### Part 1: Running the Analysis Script (4 minutes)
 
-1. Start Python in interactive mode:
+1. Copy and run the script:
    ```bash
-   python3
+   cp ../lectures/01/demo/files/vitals_analysis.py code/
+   python3 code/vitals_analysis.py
    ```
 
-2. Demonstrate basic data types with health examples:
+2. Explain the output:
+   - Patient analysis results showing age, blood pressure, and BMI
+   - Blood pressure categories (Normal, Elevated, Stage 1/2 Hypertension)
+   - BMI calculations with example values
+
+### Part 2: Understanding the Code (4 minutes)
+
+The script uses these key Python concepts for health data analysis:
+
+1. **Functions and Docstrings**:
    ```python
-   # String (text) - always anonymized for teaching
-   patient_name = "Jane Doe"
-   
-   # Numeric data types
+   def analyze_blood_pressure(systolic, diastolic):
+       """Analyze blood pressure readings and return category."""
+       if systolic < 120 and diastolic < 80:
+           return "Normal"
+       # ... more conditions ...
+   ```
+   - Functions encapsulate reusable code
+   - Docstrings explain what functions do
+   - Clear naming makes code self-documenting
+
+2. **Data Types and Structures**:
+   ```python
+   # Numeric data
    age = 65                    # Integer
    temperature = 98.6          # Float
-   heart_rate = [72, 75, 70]   # List
    
-   # Boolean
-   has_hypertension = True
-   
-   # Dictionary for structured data
-   patient = {
+   # Collections
+   heart_rate = [72, 75, 70]   # List of measurements
+   patient = {                  # Dictionary for structured data
        "id": "A12345",
        "age": 65,
-       "conditions": ["hypertension", "arthritis"],
-       "medications": 3
+       "conditions": ["hypertension", "arthritis"]
    }
-   
-   # Accessing data
-   print(f"Patient age: {patient['age']}")
-   print(f"First condition: {patient['conditions'][0]}")
-   
-   # Simple calculations
-   average_heart_rate = sum(heart_rate) / len(heart_rate)
-   print(f"Average heart rate: {average_heart_rate}")
-   
-   # Control flow
+   ```
+   - Different types for different data
+   - Lists for sequences of values
+   - Dictionaries for labeled data
+
+3. **Control Flow and Analysis**:
+   ```python
    if temperature > 100.4:
        print("Fever detected")
    else:
        print("Temperature normal")
-   
-   # Exit interactive mode
-   exit()
    ```
+   - Conditional logic for medical decisions
+   - Loops for processing multiple values
+   - Functions for complex calculations
 
-### Part 2: Creating a Health Data Analysis Script (4 minutes)
-
-1. Demonstrate a script for analyzing patient vitals:
-   
-   Note: The script is available in the demos folder: [vitals_analysis.py](vitals_analysis.py)
-   
-   ```bash
-   # Run the script
-   python3 vitals_analysis.py
+4. **String Formatting**:
+   ```python
+   print(f"Patient age: {patient['age']}")
+   print(f"Average heart rate: {average_heart_rate:.1f}")
    ```
+   - f-strings for readable output
+   - Formatting for precision control
+   - Combining text and variables
 
-2. Explain key Python concepts:
-   - Functions and docstrings
-   - Data structures (lists, dictionaries)
-   - Control flow (if/else, loops)
-   - String formatting
-   - Basic calculations
+### Error Handling Examples
 
-### Part 3: Jupyter Notebooks for Exploratory Health Data Analysis (4 minutes)
+If you encounter errors:
+1. Syntax errors:
+   - Check for missing colons or parentheses
+   - Verify indentation
+   - Look for typos in variable names
 
-1. Launch Jupyter Notebook (or show a prepared notebook):
-   
-   Note: A sample notebook is available in the demos folder: [health_data_exploration.ipynb](health_data_exploration.ipynb)
-   
-   ```bash
-   # In a real demo, you would have Jupyter installed
-   jupyter notebook health_data_exploration.ipynb
-   ```
-
-2. Explain Jupyter Notebook features:
-   - Mixing code, output, and documentation
-   - Interactive execution
-   - Rich output (tables, charts)
-   - Ideal for exploratory analysis and sharing research
-
-### Part 4: Cloud Options for Python in Health Research (3 minutes)
-
-1. Demonstrate GitHub Codespaces (or describe with screenshots):
-   - Show how to create a Codespace from a repository
-   - Highlight VS Code in browser features
-   - Discuss benefits for collaboration
-
-2. Introduce Google Colab (or describe with screenshots):
-   - Navigate to [Google Colab](https://colab.research.google.com)
-   - Show how to create a new notebook
-   - Demonstrate GitHub integration
-   - Emphasize NEVER using PHI data in Colab
-
-3. Discuss when to use each environment:
-   - Local Python: For sensitive data, full control
-   - Jupyter Notebooks: For exploratory analysis, sharing results
-   - Codespaces: For collaboration, consistent environments
-   - Colab: For quick experiments, GPU access (no PHI!)
+2. Runtime errors:
+   - Check data types match function expectations
+   - Verify file paths are correct
+   - Ensure all required modules are imported
 
 ### Quick Exercise (2 minutes)
 
-"Your turn! Modify the vitals analysis script to add a new function that calculates BMI given height and weight, then run it to see the results."
-
-```python
-# Example solution to add to vitals_analysis.py
-def calculate_bmi(weight_kg, height_m):
-    """Calculate Body Mass Index"""
-    return weight_kg / (height_m ** 2)
-
-# Test the function
-print("\nBMI Calculations:")
-print(f"BMI for 70kg, 1.75m: {calculate_bmi(70, 1.75):.1f}")
-```
-
-### Wrap-up (1 minute)
-
-"Python provides powerful tools for health data analysis. As you progress, you'll learn more about specialized libraries like Pandas, NumPy, and scikit-learn that make complex analysis easier. Remember to always consider data security when working with health information."
+> "Modify the vitals analysis script to add a new function that analyzes medication counts and returns a risk category based on the number of medications. Then run it to see the results."
 
 ## Final Thoughts
 
@@ -380,4 +330,4 @@ These demos are designed to build on each other, creating a cohesive learning ex
 2. **Git & GitHub Demo**: Builds on file management to introduce version control and collaboration
 3. **Python Demo**: Leverages the previous skills to perform actual data analysis
 
-Each demo includes health-specific examples to make the content relevant and engaging for health data science students.
+Each demo includes health-specific examples to make the content relevant and engaging for health data science students. 

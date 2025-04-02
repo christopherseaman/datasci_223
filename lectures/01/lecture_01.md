@@ -103,6 +103,7 @@ How we'll manage assignments in this course:
 ### Command Line Basics
 
 **Recommended Resources:**
+
 - [LinuxCommand.org](https://linuxcommand.org/lc3_learning_the_shell.php) - Learning the shell
 - [The Missing Semester](https://missing.csail.mit.edu/) - MIT course on developer tools
 - [regex101.com](https://regex101.com/) - Regular expression testing tool
