@@ -42,7 +42,7 @@ Welcome to the first lecture of Applied Data Science with Python! Today we'll be
     - HIPAA compliance considerations
     - Data minimization principles
 
-> **Comprehension Check**: What tools have you used before? What are you most excited to learn?
+> **Check**: What tools have you used before? What would you like to cover in this course?
 
 ## Installing tools
 
@@ -351,7 +351,7 @@ Interactive Python environment combining code, output, and documentation:
 
 See [exercise.md](exercise.md) for more details and additional practice resources.
 
-> **Final Comprehension Check**: What's one thing you learned today that you're excited to apply? What's one thing you're still confused about?
+> **Check**: How's my driving? What's still confusing?
 
 ## It came from the Internet
 

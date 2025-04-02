@@ -11,7 +11,7 @@ This document contains three hands-on demos for the first lecture, strategically
 ### Part 1: Setting Up a Health Research Project (3 minutes)
 
 1. Open terminal and navigate:
-   ```sh
+   ```bash
    pwd                  # Shows current location
    ls -la               # Lists all files including hidden ones
    cd ~                 # Go to home directory
@@ -20,7 +20,7 @@ This document contains three hands-on demos for the first lecture, strategically
    ```
 
 2. Create research project structure:
-   ```sh
+   ```bash
    # Create organized directory structure
    mkdir -p data/{raw,processed} code results figures
    
@@ -32,7 +32,7 @@ This document contains three hands-on demos for the first lecture, strategically
 ### Part 2: Working with Health Data Files (4 minutes)
 
 1. Copy and view sample health data:
-   ```sh
+   ```console
    # Copy the sample data file (adjust path as needed)
    cp ../lectures/01/demo/files/patients.csv data/raw/
    
@@ -41,7 +41,7 @@ This document contains three hands-on demos for the first lecture, strategically
    ```
 
 2. Analyze the data with command line tools:
-   ```sh
+   ```bash
    # Count total records
    wc -l data/raw/patients.csv
    
@@ -60,7 +60,7 @@ This document contains three hands-on demos for the first lecture, strategically
    ```
 
 3. Create a data processing pipeline:
-   ```sh
+   ```bash
    # A simple data processing pipeline
    echo "age,medication_count" > data/processed/age_diagnosis.csv
    cat data/raw/patients.csv | grep -v "patient_id" | cut -d',' -f2,5 | sort >> data/processed/age_diagnosis.csv
@@ -73,7 +73,7 @@ This document contains three hands-on demos for the first lecture, strategically
 
 If you encounter errors:
 1. File not found:
-   ```sh
+   ```bash
    # Check if file exists
    ls -la data/raw/
    
@@ -82,7 +82,7 @@ If you encounter errors:
    ```
 
 2. Permission denied:
-   ```sh
+   ```bash
    # Check permissions
    ls -la data/raw/patients.csv
    
@@ -94,7 +94,7 @@ If you encounter errors:
 
 > "Create a file called `notes.txt` with a few lines about health data topics you're interested in, then use `grep` to find specific terms in it."
 
-```sh
+```bash
 # Example solution
 echo "I'm interested in diabetes research" > notes.txt
 echo "Also curious about heart disease prevention" >> notes.txt
@@ -167,7 +167,7 @@ grep "heart" notes.txt
 ### Part 2: Making Changes and Syncing (4 minutes)
 
 1. Add and commit the analysis script:
-   ```sh
+   ```bash
    cp ../lectures/01/demo/files/vitals_analysis.py code/
    ```
    - In VS Code, the new file will appear in Source Control
@@ -241,7 +241,7 @@ grep "heart" notes.txt
 ### Part 1: Running the Analysis Script (4 minutes)
 
 1. Copy and run the script:
-   ```sh
+   ```bash
    cp ../lectures/01/demo/files/vitals_analysis.py code/
    python3 code/vitals_analysis.py
    ```
