@@ -6,7 +6,7 @@ This document contains three hands-on demos for the first lecture, strategically
 
 ### Introduction (1 minute)
 
-> "Let's explore how the command line can help us organize and analyze health data. These skills are essential for creating reproducible research workflows."
+> Let's explore how the command line can help us organize and analyze health data. These skills are essential for creating reproducible research workflows.
 
 ### Part 1: Setting Up a Health Research Project (3 minutes)
 
@@ -92,7 +92,7 @@ If you encounter errors:
 
 ### Quick Exercise (2 minutes)
 
-> "Create a file called `notes.txt` with a few lines about health data topics you're interested in, then use `grep` to find specific terms in it."
+> Create a file called `notes.txt` with a few lines about health data topics you're interested in, then use `grep` to find specific terms in it.
 
 ```bash
 # Example solution
@@ -106,7 +106,7 @@ grep "heart" notes.txt
 
 ### Introduction (1 minute)
 
-> "Version control is essential for reproducible health research. Let's explore two common Git workflows: starting a new project and working with an existing repository."
+> Version control is essential for reproducible health research. Let's explore two common Git workflows: starting a new project and working with an existing repository.
 
 ### Part 1: Starting a New Project (3 minutes)
 
@@ -228,15 +228,15 @@ grep "heart" notes.txt
 
 ### Quick Exercise (2 minutes)
 
-> "Choose one of these exercises:
+> Choose one of these exercises:
 > 1. Create a new repository for your health data project and push your first commit
-> 2. Clone an existing health data repository, make a small change, and push it back"
+> 2. Clone an existing health data repository, make a small change, and push it back
 
 ## Demo 3: Python for Health Data Analysis (10 minutes)
 
 ### Introduction (1 minute)
 
-> "Python has become the language of choice for health data science due to its readability and powerful libraries. Let's explore how to use Python for health data analysis."
+> Python has become the language of choice for health data science due to its readability and powerful libraries. Let's explore how to use Python for health data analysis.
 
 ### Part 1: Running the Analysis Script (4 minutes)
 
@@ -320,7 +320,7 @@ If you encounter errors:
 
 ### Quick Exercise (2 minutes)
 
-> "Modify the vitals analysis script to add a new function that analyzes medication counts and returns a risk category based on the number of medications. Then run it to see the results."
+> Modify the vitals analysis script to add a new function that analyzes medication counts and returns a risk category based on the number of medications. Then run it to see the results."
 
 ## Final Thoughts
 
