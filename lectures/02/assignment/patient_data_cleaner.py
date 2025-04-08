@@ -47,13 +47,15 @@ def clean_patient_data(patients):
         # Capitalize name (BUG: typo in key 'nage' instead of 'name')
         patient['nage'] = patient['name'].title()
         
-        # BUG: Forgot to convert age to integer
-        # Should be: patient['age'] = int(patient['age'])
+        # BUG: Wrong method name (fill_na vs fillna)
+        patient['age'] = patient['age'].fill_na(0)
         
-        # Filter out patients under 18
-        # BUG: Logic error - keeps patients under 18 instead of filtering them out
-        # BUG: Syntax error - missing colon after if statement
-        if patient['age'] < 18
+        # BUG: Wrong method name (drop_duplcates vs drop_duplicates)
+        patient = patient.drop_duplcates()
+        
+        # BUG: Wrong comparison operator (= vs ==)
+        if patient['age'] = 18:
+            # BUG: Logic error - keeps patients under 18 instead of filtering them out
             cleaned_patients.append(patient)
     
     return cleaned_patients
@@ -64,7 +66,7 @@ def main():
     script_dir = os.path.dirname(os.path.abspath(__file__))
     
     # Construct the path to the data file
-    data_path = os.path.join(script_dir, 'data', 'patients.json')
+    data_path = os.path.join(script_dir, 'data', 'raw', 'patients.json')
     
     # Load the patient data
     patients = load_patient_data(data_path)

@@ -53,15 +53,16 @@ def calculate_dosage(patient):
     weight = patient['weight']
     medication = patient['med']
     
-    # BUG: Typo in medication name lookup
-    # Should be: factor = DOSAGE_FACTORS[medication]
-    factor = DOSAGE_FACTORS[medication + 's']
+    factor = DOSAGE_FACTORS.get(medication + 's', 0)
     
-    # BUG: Wrong factor used (addition instead of multiplication)
-    # Should be: dosage = weight * factor
     dosage = weight + factor
     
-    return dosage
+    if medication == "insulin":
+        return weight * 0.01
+    elif medication == "antibiotic":
+        return dosage * 15
+    else:
+        return dosage
 
 def calculate_all_dosages(patients):
     """
@@ -77,8 +78,6 @@ def calculate_all_dosages(patients):
     patients_with_dosages = []
     
     for i, patient in enumerate(patients):
-        # BUG: Skip some patients accidentally
-        # Should process all patients
         if i % 2 == 0:  # Only process even-indexed patients
             # Calculate dosage for this patient
             dosage = calculate_dosage(patient)
@@ -90,9 +89,7 @@ def calculate_all_dosages(patients):
             # Add to our list
             patients_with_dosages.append(patient_with_dosage)
             
-            # BUG: Sum total incorrectly
-            # Should be: total_medication += dosage
-            total_medication = dosage  # Overwrites instead of adds
+            total_medication = dosage
     
     return patients_with_dosages, total_medication
 
@@ -102,14 +99,12 @@ def main():
     script_dir = os.path.dirname(os.path.abspath(__file__))
     
     # Construct the path to the data file
-    data_path = os.path.join(script_dir, 'data', 'meds.json')
+    data_path = os.path.join(script_dir, 'data', 'raw', 'meds.json')
     
     # Load the patient data
     patients = load_patient_data(data_path)
     
-    # BUG: Missing parentheses in a calculation
-    # Should be: patients_with_dosages, total_medication = calculate_all_dosages(patients)
-    patients_with_dosages, total_medication = calculate_all_dosages(patients
+    patients_with_dosages, total_medication = calculate_all_dosages(patients)
     
     # Print the dosage information
     print("Medication Dosages:")
