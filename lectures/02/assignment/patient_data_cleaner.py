@@ -44,14 +44,16 @@ def clean_patient_data(patients):
     cleaned_patients = []
     
     for patient in patients:
-        # Capitalize name
-        patient['name'] = patient['name'].title()
+        # Capitalize name (BUG: typo in key 'nage' instead of 'name')
+        patient['nage'] = patient['name'].title()
         
-        # Convert age to integer
-        patient['age'] = int(patient['age'])
+        # BUG: Forgot to convert age to integer
+        # Should be: patient['age'] = int(patient['age'])
         
         # Filter out patients under 18
-        if patient['age'] >= 18:
+        # BUG: Logic error - keeps patients under 18 instead of filtering them out
+        # BUG: Syntax error - missing colon after if statement
+        if patient['age'] < 18
             cleaned_patients.append(patient)
     
     return cleaned_patients
