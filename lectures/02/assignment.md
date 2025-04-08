@@ -16,22 +16,22 @@ This assignment has two parts:
 ### Tasks
 
 - Fix the provided buggy scripts:
-  - `buggy_bmi.py` (calculates BMI and category, contains typos and logic errors)
-  - `buggy_list.py` (processes a list, contains off-by-one and typo errors)
+  - `patient_data_cleaner_buggy.py` (cleans and filters patient records)
+  - `med_dosage_calculator_buggy.py` (calculates medication dosages)
 - The bugs are **typical beginner mistakes** such as:
   - Typos and wrong variable names (`NameError`)
   - Off-by-one errors (`IndexError`)
   - Incorrect logic or formulas
   - Syntax issues (`SyntaxError`, `IndentationError`)
-- The code intent is **simple and easy to reason about** (e.g., calculating BMI, printing or processing list items).
+- The code intent is **simple and easy to reason about** (e.g., cleaning patient data, calculating dosages).
 - Use **any debugging method you prefer**:
   - Print statements
   - `pdb`
   - VS Code debugger
   - Other tools
 - Pass all provided **pytest** tests:
-  - `test_buggy_bmi.py`
-  - `test_buggy_list.py`
+  - `test_patient_data_cleaner.py`
+  - `test_med_dosage_calculator.py`
 - Add comments explaining:
   - What was wrong
   - How you fixed it
@@ -56,6 +56,7 @@ This assignment has two parts:
   - A brief reflection (1 paragraph):
     - Challenges faced
     - How polars helped
+    - What you learned
 
 ### Grading
 
