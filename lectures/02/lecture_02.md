@@ -2,7 +2,9 @@
 lecture_number: 01
 pdf: true
 ---
-
+<!---
+create the lecture notes (projected/shared instead of slides). Let's make the lecture notes in parts, in the lectures/02/parts folder have 1) a .md for the Jupyter part, 2) folder for debugging with a .md for each major topic plus .py scripts and .md's for demos/assignment, 3) folder for working with data bigger than memory with a .md for the notes and .py scripts and .md's for demos/assignment
+--->
 <!---
 - 0) Jupyter notebooks
   - Magic commands, especially %pip
