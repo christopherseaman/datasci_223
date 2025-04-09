@@ -1,3 +1,14 @@
+Edit @/lectures/02/lecture_02.md  to better match the following instructions, including but not limited to:
+
+- Recommending topics to add, expand, or remove given the audience, topic, and time constraints
+- Adding visual cues and visual learning content or suggestions (e.g., add an image link for a screenshot that doesn't exist)
+- Talking points in HTML comments. These should include the content to be shared (not directions for what the instructor should talk about) so that they are valuable to students reviewing the material on their own
+- Balance of content: each topic should include conceptual, reference, and example material
+- Demos match to lecture content: the demos should demonstrate the content clearly and not require or reference additional material outside the lecture @/lectures/02/demo/demo1-print-debugging.md @/lectures/02/demo/demo2-pdb-debugging.md @/lectures/02/demo/demo3-vscode-debugging.md @/lectures/02/demo/demo4-bigdata.md 
+- @/lectures/02/assignment/README.md @/lectures/02/assignment/patient_data_cleaner.py @/lectures/02/assignment/med_dosage_calculator.py  match to lecture content: the assignment should be doable using the tools provided in lecture; the assignment should be designed for autograding via github action unit tests
+
+----
+
 ## Meta-Instruction
 
 - **Audience Assessment:** Create content for health data science masters students who are beginners in programming (Python, git, shell commands)
@@ -24,7 +35,7 @@
 ### 3. Teaching Approach
 
 - **Beginner-Friendly:** Avoid jargon, explain terms when introduced
-- **Visual Learning:** Use diagrams, analogies, and concrete examples
+- **Visual Learning:** Use diagrams, analogies, screenshots, and concrete examples/outputs
 - **Engagement:** Include comprehension checkpoints and practice opportunities
 - **Misconceptions:** Address common beginner mistakes in speaking notes
 
@@ -41,10 +52,4 @@
 - **Progressive Difficulty:** Start simple, build complexity across demos
 - **Clear Instructions:** Provide step-by-step guidance with expected outcomes
 - **Success Validation:** Include ways to confirm students completed tasks correctly
-
-----
-
-create long-form markdown lecture notes (projected/shared instead of slides) based on @/lectures/02/outline.md and look up details as needed based on content locations in @/refs/debugging/inventory.md . Target is 90 minute lecture (including demos) with 45-60 min spent on debugging Let's make the lecture notes in parts, in the lectures/02/parts folder have 
-1. A .md for the Jupyter part
-2. Folder for debugging with a .md for each major topic plus .py scripts and .md's for demos/assignment
-3. Folder for working with data bigger than memory with a .md for the notes and .py scripts and .md's for demos/assignment
+p
