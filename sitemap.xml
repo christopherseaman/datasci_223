@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+         <loc>https://christopherseaman.github.io/datasci_223/index.html</loc>
+         <lastmod>2025-12-28</lastmod>
+    </url>
+    <url>
+         <loc>https://christopherseaman.github.io/datasci_223/planned_lectures.html</loc>
+         <lastmod>2025-12-28</lastmod>
+    </url>
+    <url>
+         <loc>https://christopherseaman.github.io/datasci_223/01/lecture_01.html</loc>
+         <lastmod>2025-12-28</lastmod>
+    </url>
+    <url>
+         <loc>https://christopherseaman.github.io/datasci_223/01/demo/vscode_debug_walkthrough.html</loc>
+         <lastmod>2025-12-28</lastmod>
+    </url>
+</urlset>
