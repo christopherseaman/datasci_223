@@ -59,26 +59,7 @@ def _run_notebook(tmp_path: Path, config_path: Path) -> Path:
     env = os.environ.copy()
     env["POLARS_ASSIGNMENT_CONFIG"] = str(config_path)
 
-    notebook_md = BASE_DIR / "assignment.md"
-    notebook_ipynb = tmp_path / "assignment.ipynb"
-
-    subprocess.run(
-        [
-            sys.executable,
-            "-m",
-            "jupytext",
-            "--to",
-            "notebook",
-            str(notebook_md),
-            "-o",
-            str(notebook_ipynb),
-        ],
-        cwd=BASE_DIR,
-        check=True,
-        capture_output=True,
-        text=True,
-        env=env,
-    )
+    notebook_ipynb = BASE_DIR / "assignment.ipynb"
 
     subprocess.run(
         [
