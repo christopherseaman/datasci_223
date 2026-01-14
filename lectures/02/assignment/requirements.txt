@@ -1,0 +1,8 @@
+polars
+pyyaml
+jupytext
+jupyter
+nbconvert
+pytest
+numpy
+faker

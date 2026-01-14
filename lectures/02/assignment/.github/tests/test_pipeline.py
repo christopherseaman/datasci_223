@@ -1,88 +1,165 @@
+from __future__ import annotations
+
+import os
+import subprocess
+import sys
+from datetime import datetime
 from pathlib import Path
 
 import polars as pl
 import pytest
+import yaml
 
-from src import pipeline
+BASE_DIR = Path(__file__).resolve().parents[2]
+
+
+def _write_test_config(tmp_path: Path) -> Path:
+    config = yaml.safe_load((BASE_DIR / "config.yaml").read_text())
+    config["data"]["encounters_csv"] = str(
+        BASE_DIR / "data" / "encounters" / "sample.csv"
+    )
+    config["data"]["vitals_csv"] = str(BASE_DIR / "data" / "vitals" / "sample.csv")
+    config["outputs"]["summary_parquet"] = str(
+        tmp_path / "facility_month_summary.parquet"
+    )
+    config["outputs"]["summary_csv"] = str(tmp_path / "facility_month_summary.csv")
+
+    config_path = tmp_path / "config.yaml"
+    config_path.write_text(yaml.safe_dump(config))
+    return config_path
+
+
+def _run_notebook(tmp_path: Path, config_path: Path) -> Path:
+    env = os.environ.copy()
+    env["POLARS_ASSIGNMENT_CONFIG"] = str(config_path)
+
+    notebook_md = BASE_DIR / "assignment.md"
+    notebook_ipynb = tmp_path / "assignment.ipynb"
+
+    subprocess.run(
+        [
+            sys.executable,
+            "-m",
+            "jupytext",
+            "--to",
+            "notebook",
+            str(notebook_md),
+            "-o",
+            str(notebook_ipynb),
+        ],
+        cwd=BASE_DIR,
+        check=True,
+        capture_output=True,
+        text=True,
+        env=env,
+    )
+
+    subprocess.run(
+        [
+            sys.executable,
+            "-m",
+            "jupyter",
+            "nbconvert",
+            "--execute",
+            "--to",
+            "notebook",
+            "--output",
+            "assignment_executed.ipynb",
+            str(notebook_ipynb),
+        ],
+        cwd=tmp_path,
+        check=True,
+        capture_output=True,
+        text=True,
+        env=env,
+        timeout=60,
+    )
+
+    return tmp_path / "assignment_executed.ipynb"
+
+
+def _expected_summary(cfg: dict) -> pl.DataFrame:
+    start_dt = datetime.fromisoformat(cfg["data"]["start_date"])
+    facilities = cfg["data"]["facilities"]
+
+    encounters = (
+        pl.read_csv(cfg["data"]["encounters_csv"])
+        .with_columns(
+            [
+                pl.col("admit_ts").str.strptime(pl.Datetime, strict=False),
+                pl.col("discharge_ts").str.strptime(pl.Datetime, strict=False),
+            ]
+        )
+        .filter(pl.col("admit_ts") >= start_dt)
+        .filter(pl.col("facility").is_in(facilities))
+        .select(["patient_id", "facility"])
+        .unique()
+    )
+
+    vitals = (
+        pl.read_csv(cfg["data"]["vitals_csv"])
+        .with_columns(
+            [
+                pl.col("timestamp").str.strptime(pl.Datetime, strict=False),
+                pl.col("heart_rate").cast(pl.Float32),
+                pl.col("bmi").cast(pl.Float32),
+            ]
+        )
+        .filter(pl.col("timestamp") >= start_dt)
+    )
+
+    return (
+        vitals.join(encounters, on="patient_id", how="inner")
+        .group_by(
+            [
+                "facility",
+                pl.col("timestamp").dt.year().alias("year"),
+                pl.col("timestamp").dt.month().alias("month"),
+            ]
+        )
+        .agg(
+            [
+                pl.len().alias("num_vitals"),
+                pl.mean("heart_rate").alias("avg_hr"),
+                pl.mean("bmi").alias("avg_bmi"),
+            ]
+        )
+        .sort(["facility", "year", "month"])
+    )
 
 
 @pytest.fixture(scope="module")
-def cfg(tmp_path_factory):
-    cfg = pipeline.load_config("config.yaml")
-
-    tmp_outputs = tmp_path_factory.mktemp("outputs")
-    cfg["outputs"]["summary_parquet"] = str(tmp_outputs / "summary.parquet")
-    cfg["outputs"]["summary_csv"] = str(tmp_outputs / "summary.csv")
-    cfg["outputs"]["chart_png"] = str(tmp_outputs / "summary.png")
-
-    tmp_data = tmp_path_factory.mktemp("data")
-    encounters_dir = tmp_data / "encounters"
-    vitals_dir = tmp_data / "vitals"
-    encounters_dir.mkdir()
-    vitals_dir.mkdir()
-
-    encounters = pl.DataFrame(
-        {
-            "encounter_id": ["ENC-0001", "ENC-0002", "ENC-0003"],
-            "patient_id": ["PAT-0001", "PAT-0002", "PAT-0001"],
-            "facility": ["UCSF", "ZSFG", "UCSF"],
-            "admit_ts": ["2023-01-05", "2023-02-10", "2023-03-01"],
-            "discharge_ts": ["2023-01-06", "2023-02-10", "2023-03-02"],
-        }
-    )
-    encounters.write_csv(encounters_dir / "encounters_1.csv")
-
-    vitals = pl.DataFrame(
-        {
-            "patient_id": ["PAT-0001", "PAT-0001", "PAT-0002", "PAT-0003"],
-            "timestamp": ["2023-01-05", "2023-01-06", "2023-02-10", "2023-01-15"],
-            "heart_rate": [70, 74, 80, 65],
-            "systolic_bp": [120, 122, 130, 110],
-            "diastolic_bp": [80, 82, 85, 70],
-            "bmi": [24.0, 24.3, 29.1, 23.5],
-        }
-    )
-    vitals.write_csv(vitals_dir / "vitals_1.csv")
-
-    cfg["data"]["encounters_glob"] = str(encounters_dir / "*.csv")
-    cfg["data"]["vitals_glob"] = str(vitals_dir / "*.csv")
-    cfg["data"]["start_date"] = "2023-01-01"
-    cfg["data"]["facilities"] = ["UCSF", "ZSFG"]
-
-    return cfg
+def executed_run(tmp_path_factory):
+    tmp_path = tmp_path_factory.mktemp("assignment_run")
+    config_path = _write_test_config(tmp_path)
+    _run_notebook(tmp_path, config_path)
+    return {
+        "config_path": config_path,
+        "tmp_path": tmp_path,
+    }
 
 
-def test_load_data(cfg):
-    encounters_lf, vitals_lf = pipeline.load_data(cfg)
-    assert isinstance(encounters_lf, pl.LazyFrame)
-    assert isinstance(vitals_lf, pl.LazyFrame)
-    encounters_schema = encounters_lf.collect_schema()
-    vitals_schema = vitals_lf.collect_schema()
-    assert "patient_id" in encounters_schema
-    assert "heart_rate" in vitals_schema
+def test_outputs_created(executed_run):
+    config = yaml.safe_load(Path(executed_run["config_path"]).read_text())
+    parquet_path = Path(config["outputs"]["summary_parquet"])
+    csv_path = Path(config["outputs"]["summary_csv"])
 
-
-def test_build_summary_schema(cfg):
-    encounters_lf, vitals_lf = pipeline.load_data(cfg)
-    summary_lf = pipeline.build_summary(encounters_lf, vitals_lf, cfg)
-    assert isinstance(summary_lf, pl.LazyFrame)
-    schema = summary_lf.collect_schema()
-    for col in ["facility", "year", "month", "num_vitals", "avg_hr", "avg_bmi"]:
-        assert col in schema
-
-
-def test_materialize_creates_outputs(cfg):
-    encounters_lf, vitals_lf = pipeline.load_data(cfg)
-    summary_lf = pipeline.build_summary(encounters_lf, vitals_lf, cfg)
-    df = pipeline.materialize(summary_lf, cfg)
-    assert df.height > 0
-    parquet_path = Path(cfg["outputs"]["summary_parquet"])
-    csv_path = Path(cfg["outputs"]["summary_csv"])
-    assert parquet_path.exists()
-    assert csv_path.exists()
+    assert parquet_path.exists(), "Parquet output missing"
+    assert csv_path.exists(), "CSV output missing"
 
     parquet_df = pl.read_parquet(parquet_path)
     csv_df = pl.read_csv(csv_path)
+
     assert parquet_df.height == csv_df.height
-    for col in ["facility", "year", "month", "num_vitals"]:
-        assert col in parquet_df.columns
+    for column in ["facility", "year", "month", "num_vitals", "avg_hr", "avg_bmi"]:
+        assert column in parquet_df.columns
+
+
+def test_summary_matches_expected(executed_run):
+    config = yaml.safe_load(Path(executed_run["config_path"]).read_text())
+    parquet_df = pl.read_parquet(config["outputs"]["summary_parquet"])
+
+    expected = _expected_summary(config)
+    result = parquet_df.select(expected.columns).sort(["facility", "year", "month"])
+
+    assert result.to_dicts() == expected.to_dicts()

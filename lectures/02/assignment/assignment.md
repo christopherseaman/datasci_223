@@ -1,113 +1,104 @@
-# Assignment 02: Out-of-Core Analytics with Polars (Notebook)
+# Assignment 02: Polars Lazy Pipeline (Notebook)
 
-This notebook walks you through the same workflow as `README.md`, but in a notebook-friendly format.
-You will still implement the core logic in `src/pipeline.py`.
+This notebook is the starter template for Assignment 02. Follow each section, fill in the TODOs, and run the notebook top-to-bottom.
 
 ## Goals
 
-- Build a lazy Polars pipeline over CSV inputs
+- Build lazy Polars scans over CSV inputs
 - Join encounters + vitals and compute monthly summaries
 - Materialize outputs with streaming and export Parquet/CSV
 - Confirm outputs and pass the tests
 
 ## Setup
 
-If the `data/` folder is missing, generate the synthetic dataset from the assignment root:
+Run in a terminal:
 
-```bash
-uv run python generate_assignment_data.py --size small --output-dir data
-```
+- `uv venv .venv`
+- `uv pip install -r requirements.txt`
 
-If you want to scale up later, rerun with `--size large`.
-
-```python
-from src import pipeline
-
-cfg = pipeline.load_config("config.yaml")
-cfg
-```
-
-## Part 1: Configure the Pipeline
-
-Open `config.yaml` and confirm these sections are filled out:
-
-- `data.encounters_glob`
-- `data.vitals_glob`
-- `data.start_date`
-- `data.facilities`
-- `outputs.summary_parquet`
-- `outputs.summary_csv`
-- (optional) `outputs.chart_png`
-
-Keep paths relative so the autograder can run anywhere.
-
-## Part 2: Implement `pipeline.py`
-
-Open `src/pipeline.py` and complete the TODOs for:
-
-- `load_data(cfg)`
-- `build_summary(encounters_lf, vitals_lf, cfg)`
-- `materialize(summary_lf, cfg)`
-
-Return to this notebook after you implement each section.
-
-### Checkpoint: load_data
+## Load the config
 
 ```python
-encounters_lf, vitals_lf = pipeline.load_data(cfg)
-encounters_lf.collect_schema()
+from pathlib import Path
+import os
+import yaml
+
+config_path = Path(os.environ.get("POLARS_ASSIGNMENT_CONFIG", "config.yaml"))
+config = yaml.safe_load(config_path.read_text())
+config
 ```
+
+## Part 1: Lazy scans
+
+Create lazy scans for encounters and vitals. Parse the date columns so you can filter and group by year/month later.
 
 ```python
-vitals_lf.collect_schema()
+import polars as pl
+
+encounters_lf = pl.scan_csv(config["data"]["encounters_csv"])
+# TODO: parse admit_ts/discharge_ts as Datetime and select key columns
+
+vitals_lf = pl.scan_csv(config["data"]["vitals_csv"])
+# TODO: parse timestamp as Datetime and cast numeric columns
 ```
 
-### Checkpoint: build_summary
+## Part 2: Filter + join
+
+Filter to the facilities and start date in the config. Create a patient → facility mapping to avoid duplicate joins.
 
 ```python
-summary_lf = pipeline.build_summary(encounters_lf, vitals_lf, cfg)
-summary_lf.collect_schema()
+from datetime import datetime
+
+start_dt = datetime.fromisoformat(config["data"]["start_date"])
+facilities = config["data"]["facilities"]
+
+encounters_filtered = encounters_lf
+# TODO: filter by admit_ts >= start_dt and facilities list
+# TODO: keep patient_id + facility only, then de-duplicate
+
+vitals_filtered = vitals_lf
+# TODO: filter timestamp >= start_dt
+
+summary_lf = vitals_filtered.join(encounters_filtered, on="patient_id", how="inner")
+# TODO: group by facility/year/month and aggregate num_vitals, avg_hr, avg_bmi
 ```
 
-```python
-summary_lf.explain()
-```
+## Part 3: Materialize outputs
 
-### Checkpoint: materialize
-
-```python
-df = pipeline.materialize(summary_lf, cfg)
-df.head()
-```
-
-## Part 3: Validate Outputs
+Collect with streaming and write the output files defined in `config.yaml`.
 
 ```python
 from pathlib import Path
 
-output_parquet = Path(cfg["outputs"]["summary_parquet"])
-output_csv = Path(cfg["outputs"]["summary_csv"])
+summary_df = summary_lf.collect(engine="streaming")
 
-output_parquet.exists(), output_csv.exists()
+output_parquet = Path(config["outputs"]["summary_parquet"])
+output_csv = Path(config["outputs"]["summary_csv"])
+
+# TODO: create output directories
+# TODO: write Parquet + CSV
+
+summary_df
 ```
+
+## Part 4: Quick checks
 
 ```python
 import polars as pl
 
 parquet_df = pl.read_parquet(output_parquet)
 csv_df = pl.read_csv(output_csv)
-parquet_df.height, csv_df.height
+parquet_df, csv_df
 ```
 
-## Part 4: Tests (run in terminal)
+## Tests (run in terminal)
 
-```bash
-uv run pytest .github/tests -q
-```
+- `uv run pytest .github/tests -q`
 
 ## Submission Checklist
 
-- `src/pipeline.py` TODOs completed
-- `outputs/README.md` documents artifacts
-- Parquet + CSV created in `outputs/`
+- TODOs completed and notebook runs top-to-bottom
+- `outputs/facility_month_summary.parquet` exists
+- `outputs/facility_month_summary.csv` exists
+- `outputs/README.md` updated
 - All tests pass locally

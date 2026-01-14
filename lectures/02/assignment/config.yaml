@@ -1,14 +1,9 @@
 data:
-  encounters_glob: "data/encounters/*.csv"
-  vitals_glob: "data/vitals/*.csv"
+  encounters_csv: "data/encounters/sample.csv"
+  vitals_csv: "data/vitals/sample.csv"
   start_date: "2023-01-01"
   facilities: ["UCSF", "ZSFG"]
 
 outputs:
   summary_parquet: "outputs/facility_month_summary.parquet"
   summary_csv: "outputs/facility_month_summary.csv"
-  chart_png: "outputs/facility_month_summary.png"
-
-processing:
-  bmi_floor: 12
-  bmi_ceiling: 70

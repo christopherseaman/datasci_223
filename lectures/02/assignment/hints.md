@@ -1,30 +1,27 @@
 # Assignment 02 Hints
 
-## Data sizing
+## Lazy pipeline tips
 
-- Start with a subset of CSVs (copy a few files into `data/sample/`) to iterate quickly.
-- Once the pipeline works, point config back to the full glob.
+- Use `pl.scan_csv` and chain `.select()` early to keep the plan lean.
+- `LazyFrame.collect_schema()` is the fastest way to inspect dtypes.
+- `LazyFrame.explain()` should show scans → filters → joins → aggregates.
 
-## Polars tips
+## Joining safely
 
-- Use `pl.scan_csv(..., dtypes={"patient_id": pl.Int32})` to control parsing.
-- Chain `.select()` immediately to limit columns; the rest stay untouched.
-- Call `.explain()` on the LazyFrame to ensure filters appear before joins.
-- Use `.collect_schema()` to preview dtypes without triggering an expensive scan.
+- Encounters can contain multiple rows per patient. Use `select(["patient_id", "facility"]).unique()` to avoid duplicate joins.
+- If you see too many rows in the output, check that mapping first.
 
-## Streaming behavior
+## Datetime helpers
 
-- `.collect(engine="streaming")` supports aggregations and joins but not sorts that require full materialization. If you must sort, do it on a reduced dataset.
-- When streaming, avoid `.with_columns(pl.col("..."))` that depend on entire table (e.g., cumulative sums) unless necessary.
+- Use `pl.col("timestamp").str.strptime(pl.Datetime, strict=False)` before calling `.dt.year()` / `.dt.month()`.
+- `datetime.fromisoformat(config["data"]["start_date"])` is a quick way to build the filter.
 
-## Testing strategy
+## Output checks
 
-1. `load_data` should not materialize anything—use `.head().collect()` only within tests.
-2. `build_summary` can be validated by checking `.collect_schema()` and `.explain()`.
-3. `materialize` should be idempotent; you can delete outputs and rerun without stale state.
+- Create output folders with `Path(...).parent.mkdir(parents=True, exist_ok=True)`.
+- Read the Parquet output with `pl.read_parquet(...)` to sanity check row counts.
 
-## Debugging failures
+## Testing
 
-- If tests complain about missing columns, print `LazyFrame.collect_schema()` to confirm names.
-- For date filters, ensure they are parsed as `Datetime` (use `pl.datetime` helper or string parsing).
-- Altair export requires `altair` + a renderer (vega-lite). If missing, wrap in try/except (already done in starter).
+- The autograder sets `POLARS_ASSIGNMENT_CONFIG` to point at a temp config file.
+- If tests fail, run the notebook top-to-bottom and confirm the outputs exist.
