@@ -2,19 +2,24 @@
 
 ## Lazy pipeline tips
 
-- Use `pl.scan_csv` and chain `.select()` early to keep the plan lean.
+- Use `pl.scan_parquet` and chain `.select()` early to keep the plan lean.
 - `LazyFrame.collect_schema()` is the fastest way to inspect dtypes.
 - `LazyFrame.explain()` should show scans → filters → joins → aggregates.
 
-## Joining safely
+## ICD-10 filtering
 
-- Encounters can contain multiple rows per patient. Use `select(["patient_id", "facility"]).unique()` to avoid duplicate joins.
-- If you see too many rows in the output, check that mapping first.
+- `pl.col("code").str.slice(0, 3).is_in(prefixes)` is a safe way to use ICD prefixes.
+- Keep the lookup table lean: select just `code` + `category` before joining.
+
+## Prevalence math
+
+- Build a `patients_with_dx` table with `.unique()` before joining back to patients.
+- Use `fill_null(False)` after the join so every patient gets a boolean.
 
 ## Datetime helpers
 
-- Use `pl.col("timestamp").str.strptime(pl.Datetime, strict=False)` before calling `.dt.year()` / `.dt.month()`.
-- `datetime.fromisoformat(config["data"]["start_date"])` is a quick way to build the filter.
+- Use `pl.col("record_ts").str.strptime(pl.Datetime, strict=False)` before filtering.
+- `datetime.fromisoformat(config["data"]["start_date"])` is a quick way to build the cutoff.
 
 ## Output checks
 

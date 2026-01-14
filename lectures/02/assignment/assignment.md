@@ -1,13 +1,13 @@
-# Assignment 02: Polars Lazy Pipeline (Notebook)
+# Assignment 02: ICD-10 + HCPCS Prevalence (Notebook)
 
 This notebook is the starter template for Assignment 02. Follow each section, fill in the TODOs, and run the notebook top-to-bottom.
 
 ## Goals
 
-- Build lazy Polars scans over CSV inputs
-- Join encounters + vitals and compute monthly summaries
+- Build lazy Polars scans over claims-style Parquet inputs
+- Join patients, sites, and ICD-10 records
+- Compute site-level prevalence of a target diagnosis
 - Materialize outputs with streaming and export Parquet/CSV
-- Confirm outputs and pass the tests
 
 ## Setup
 
@@ -15,6 +15,11 @@ Run in a terminal:
 
 - `uv venv .venv`
 - `uv pip install -r requirements.txt`
+
+## Generate data
+
+- `uv run python generate_assignment_data.py --size medium --output-dir data`
+- If you hit memory limits, rerun with `--size small` or `--num-patients`
 
 ## Load the config
 
@@ -30,37 +35,67 @@ config
 
 ## Part 1: Lazy scans
 
-Create lazy scans for encounters and vitals. Parse the date columns so you can filter and group by year/month later.
+Create lazy scans for patients, sites, records, and lookups. Parse `record_ts` so you can filter by date later.
 
 ```python
 import polars as pl
 
-encounters_lf = pl.scan_csv(config["data"]["encounters_csv"])
-# TODO: parse admit_ts/discharge_ts as Datetime and select key columns
+patients_lf = pl.scan_parquet(config["data"]["patients_parquet"])
+# TODO: select patient_id, site_id, dob, gender, zip_code
 
-vitals_lf = pl.scan_csv(config["data"]["vitals_csv"])
-# TODO: parse timestamp as Datetime and cast numeric columns
+sites_lf = pl.scan_parquet(config["data"]["sites_parquet"])
+# TODO: select site_id, site_name, site_type
+
+records_lf = pl.scan_parquet(config["data"]["records_parquet"])
+# TODO: ensure record_ts is Datetime and select patient_id, site_id, record_type, code
+
+icd_lookup_lf = pl.scan_parquet(config["data"]["icd10_lookup_parquet"])
+# TODO: select code, short_description, category
+
+hcpcs_lookup_lf = pl.scan_parquet(config["data"]["hcpcs_lookup_parquet"])
+# TODO: select code, description, group (optional for context)
 ```
 
 ## Part 2: Filter + join
 
-Filter to the facilities and start date in the config. Create a patient → facility mapping to avoid duplicate joins.
+Filter to ICD-10 records that match the prefixes in the config. Use the lookup table to keep only target codes.
 
 ```python
 from datetime import datetime
 
 start_dt = datetime.fromisoformat(config["data"]["start_date"])
-facilities = config["data"]["facilities"]
+target_prefixes = config["data"]["target_icd_prefixes"]
 
-encounters_filtered = encounters_lf
-# TODO: filter by admit_ts >= start_dt and facilities list
-# TODO: keep patient_id + facility only, then de-duplicate
+icd_target_codes = (
+    icd_lookup_lf
+    # TODO: filter to codes with target prefixes
+    # TODO: keep only the code column
+)
 
-vitals_filtered = vitals_lf
-# TODO: filter timestamp >= start_dt
+icd_records = (
+    records_lf
+    # TODO: filter to ICD-10-CM records on/after start_dt
+    # TODO: join to icd_target_codes on code
+)
 
-summary_lf = vitals_filtered.join(encounters_filtered, on="patient_id", how="inner")
-# TODO: group by facility/year/month and aggregate num_vitals, avg_hr, avg_bmi
+patients_with_dx = (
+    icd_records
+    # TODO: keep unique patient_id values
+)
+
+patients_flagged = (
+    patients_lf
+    # TODO: join patients_with_dx to flag has_target_dx
+)
+
+summary_lf = (
+    patients_flagged
+    # TODO: join sites
+    # TODO: group by site_id/site_name/site_type
+    # TODO: aggregate num_patients, num_patients_with_dx
+    # TODO: compute pct_with_dx
+    # TODO: sort by site_id
+)
 ```
 
 ## Part 3: Materialize outputs
@@ -72,8 +107,8 @@ from pathlib import Path
 
 summary_df = summary_lf.collect(engine="streaming")
 
-output_parquet = Path(config["outputs"]["summary_parquet"])
-output_csv = Path(config["outputs"]["summary_csv"])
+output_parquet = Path(config["outputs"]["prevalence_parquet"])
+output_csv = Path(config["outputs"]["prevalence_csv"])
 
 # TODO: create output directories
 # TODO: write Parquet + CSV
@@ -98,7 +133,7 @@ parquet_df, csv_df
 ## Submission Checklist
 
 - TODOs completed and notebook runs top-to-bottom
-- `outputs/facility_month_summary.parquet` exists
-- `outputs/facility_month_summary.csv` exists
+- `outputs/site_diagnosis_prevalence.parquet` exists
+- `outputs/site_diagnosis_prevalence.csv` exists
 - `outputs/README.md` updated
 - All tests pass locally

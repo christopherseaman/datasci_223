@@ -1,245 +1,141 @@
-# Data Dictionary: EHR Encounters + Procedures Generator
-# Synthetic healthcare data for Polars lazy/streaming assignment
+# Data Dictionary: ICD-10 + HCPCS Assignment
+# Synthetic claims-style data for Polars lazy/streaming assignment
 
-version: 1.0
-description: Synthetic EHR encounters with ICD-10 diagnoses and HCPCS procedures for diabetes management workflow
+version: 2.0
+description: Synthetic ICD-10-CM diagnoses + HCPCS procedures focused on diabetes screening and monitoring
+
+population:
+  name: "Type 2 diabetes monitoring"
+  target_icd_prefixes: ["E11"]
+  related_icd_prefixes: ["Z13", "Z79"]
+  icd_target_max: 40
+  icd_related_max: 30
+  hcpcs_keywords: ["glucose", "hemoglobin", "hba1c", "a1c", "lipid", "cholesterol", "insulin"]
+  hcpcs_max: 60
+  target_prevalence: 0.35
+
+generation_defaults:
+  default_size: medium
+  patients_by_size:
+    small: 1500
+    medium: 6000
+    large: 15000
+
+site_size_ranges:
+  Clinic:
+    min: 600
+    max: 2500
+  Community Hospital:
+    min: 2500
+    max: 9000
+  Regional Medical Center:
+    min: 9000
+    max: 25000
 
 tables:
-  encounters:
-    description: Hospital/clinic encounter records
-    row_count_target:
-      small: 500_000
-      large: 5_000_000
+  sites:
+    description: Clinical sites used for patient attribution
     columns:
-      encounter_id:
+      site_id:
         type: string
-        description: Unique encounter identifier
-        example: "ENC-2024-00123456"
-      patient_id:
+        description: Site identifier
+        example: "SITE-001"
+      site_name:
         type: string
-        description: Patient identifier (links to vitals/labs)
-        example: "PAT-005678"
-      facility:
+        description: Display name for the site
+        example: "Oakland Community Hospital"
+      site_type:
         type: categorical
-        description: Healthcare facility
-        values: ["UCSF Medical Center", "ZSFG", "Mission Bay", "Mount Zion", "Parnassus"]
-      encounter_type:
-        type: categorical
-        description: Type of encounter
-        values: ["Inpatient", "Outpatient", "Emergency", "Urgent Care", "Telehealth"]
-      admit_ts:
-        type: datetime
-        description: Admission/encounter start timestamp
-        example: "2024-01-15T08:30:00Z"
-      discharge_ts:
-        type: datetime
-        description: Discharge/encounter end timestamp
-        example: "2024-01-17T14:20:00Z"
-      primary_diagnosis_icd10:
-        type: string
-        description: Primary diagnosis ICD-10 code
-        example: "E11.9"
-      primary_diagnosis_desc:
-        type: string
-        description: Primary diagnosis description
-        example: "Type 2 diabetes mellitus without complications"
-      disposition:
-        type: categorical
-        description: Discharge disposition
-        values: ["Home", "Rehab", "SNF", "Transfer", "Expired"]
-
-  procedures:
-    description: Procedures performed during encounters (HCPCS codes)
-    row_count_target:
-      small: 800_000
-      large: 8_000_000
-    columns:
-      procedure_id:
-        type: string
-        description: Unique procedure identifier
-        example: "PROC-2024-00987654"
-      encounter_id:
-        type: string
-        description: Link to encounter record
-        example: "ENC-2024-00123456"
-      hcpcs_code:
-        type: string
-        description: HCPCS procedure code
-        example: "83036"
-      hcpcs_desc:
-        type: string
-        description: HCPCS procedure description
-        example: "Hemoglobin A1c test"
-      procedure_ts:
-        type: datetime
-        description: Procedure timestamp
-        example: "2024-01-15T09:15:00Z"
-      ordering_provider:
-        type: string
-        description: Ordering provider ID
-        example: "DR-00123"
-      result_value:
-        type: float
-        description: Numeric result (if applicable)
-        example: 7.2
-      result_unit:
-        type: string
-        description: Result unit (if applicable)
-        example: "%"
-
-  vitals:
-    description: Vital signs measurements (wearable and clinical)
-    row_count_target:
-      small: 50_000
-      large: 500_000
-    columns:
-      vital_id:
-        type: string
-        description: Unique vital measurement identifier
-        example: "VIT-2024-01234567"
-      patient_id:
-        type: string
-        description: Patient identifier
-        example: "PAT-005678"
-      measurement_ts:
-        type: datetime
-        description: Measurement timestamp
-        example: "2024-01-15T08:45:00Z"
-      source:
-        type: categorical
-        description: Measurement source
-        values: ["Wearable", "Clinical", "Home Monitor", "Pharmacy"]
-      heart_rate:
+        description: Clinic vs hospital type
+        values: ["Clinic", "Community Hospital", "Regional Medical Center"]
+      patient_capacity:
         type: integer
-        unit: bpm
-        description: Heart rate
-        range: [40, 180]
-      systolic_bp:
-        type: integer
-        unit: mmHg
-        description: Systolic blood pressure
-        range: [80, 200]
-      diastolic_bp:
-        type: integer
-        unit: mmHg
-        description: Diastolic blood pressure
-        range: [40, 120]
-      blood_glucose:
-        type: float
-        unit: mg/dL
-        description: Blood glucose level
-        range: [50, 400]
-      temperature:
-        type: float
-        unit: "°C"
-        description: Body temperature
-        range: [35.0, 41.0]
-      spo2:
-        type: float
-        unit: "%"
-        description: Blood oxygen saturation
-        range: [85, 100]
+        description: Approximate panel size for the site
+        range: [600, 25000]
 
   patients:
-    description: Patient demographic and clinical profile
-    row_count_target:
-      small: 100_000
-      large: 1_000_000
+    description: Patient demographics for the population
     columns:
       patient_id:
         type: string
         description: Patient identifier
-        example: "PAT-005678"
-      age:
-        type: integer
-        unit: years
-        description: Patient age
-        range: [18, 90]
+        example: "PAT-000123"
+      site_id:
+        type: string
+        description: Site attribution for the patient
+        example: "SITE-001"
+      dob:
+        type: date
+        description: Date of birth
+        example: "1972-04-12"
       gender:
         type: categorical
-        description: Gender
-        values: ["Female", "Male", "Other"]
-      race_ethnicity:
-        type: categorical
-        description: Race/ethnicity
-        values: ["White", "Black", "Hispanic", "Asian", "Other"]
-      insurance:
-        type: categorical
-        description: Insurance type
-        values: ["Medicare", "Medicaid", "Private", "Self-pay", "Other"]
-      diabetes_type:
-        type: categorical
-        description: Diabetes classification
-        values: ["Type 1", "Type 2", "Gestational", "None", "Pre-diabetes"]
-      hba1c_baseline:
-        type: float
-        unit: "%"
-        description: Baseline HbA1c
-        range: [4.5, 14.0]
-      comorbidities:
-        type: array
-        description: Relevant comorbidities
-        items: ["Hypertension", "Hyperlipidemia", "Obesity", "CKD", "CAD", "None"]
+        description: Patient gender
+        values: ["F", "M", "X"]
+      zip_code:
+        type: string
+        description: ZIP code
+        example: "94110"
 
-code_lookups:
-  icd10_diabetes:
-    description: Common ICD-10 codes for diabetes and related conditions
-    codes:
-      E11.9: "Type 2 diabetes mellitus without complications"
-      E11.8: "Type 2 diabetes mellitus with other specified complications"
-      E11.65: "Type 2 diabetes mellitus with hyperglycemia"
-      E11.40: "Type 2 diabetes mellitus with diabetic neuropathy"
-      E11.21: "Type 2 diabetes mellitus with diabetic nephropathy"
-      E11.51: "Type 2 diabetes mellitus with diabetic retinopathy"
-      E10.9: "Type 1 diabetes mellitus without complications"
-      E13.0: "Other specified diabetes mellitus with diabetic coma"
-      I10: "Essential (primary) hypertension"
-      E78.5: "Hyperlipidemia, unspecified"
-      E66.9: "Obesity, unspecified"
-      N18.9: "Chronic kidney disease, unspecified"
-      I25.10: "Atherosclerotic heart disease of native coronary artery without angina pectoris"
+  records:
+    description: Long-format diagnosis + procedure history
+    columns:
+      record_id:
+        type: string
+        description: Record identifier
+        example: "REC-2024-00001234"
+      patient_id:
+        type: string
+        description: Patient identifier
+        example: "PAT-000123"
+      site_id:
+        type: string
+        description: Site attribution
+        example: "SITE-001"
+      record_ts:
+        type: datetime
+        description: Timestamp for the coded event
+        example: "2024-05-02T10:15:00"
+      record_type:
+        type: categorical
+        description: Code system for the record
+        values: ["ICD-10-CM", "HCPCS"]
+      code:
+        type: string
+        description: ICD-10-CM or HCPCS code
+        example: "E11.9"
 
-  hcpcs_diabetes:
-    description: Common HCPCS codes for diabetes management and testing
-    codes:
-      "83036": "Hemoglobin A1c test"
-      "82947": "Glucose, blood, quantitative (reagent strip)"
-      "82951": "Glucose, quantitative, blood (except reagent strip)"
-      "84295": "Creatinine, blood"
-      "80053": "Complete blood count (CBC)"
-      "84443": "Alanine aminotransferase (ALT) (SGPT)"
-      "84450": "Aspartate aminotransferase (AST) (SGOT)"
-      "82565": "Creatine kinase (CK), total"
-      "82570": "Creatine kinase (CK), isoenzymes"
-      "83735": "Lipid panel"
-      "84480": "Cholesterol, total"
-      "84478": "Cholesterol, HDL"
-      "84481": "Cholesterol, LDL"
-      "82670": "Triglycerides"
-      "81002": "Urinalysis, by dip stick"
-      "81003": "Urinalysis, by microscopy"
-      "99213": "Outpatient visit, established patient"
-      "99214": "Outpatient visit, established patient, higher complexity"
-      "99215": "Outpatient visit, established patient, highest complexity"
-      "G0472": "Annual wellness visit"
-      "G0402": "Initial preventive physical examination"
-      "G0438": "Annual wellness visit, subsequent"
-      "G0439": "Annual wellness visit, subsequent, high risk"
+  icd10_lookup:
+    description: ICD-10-CM codes used in the assignment
+    columns:
+      code:
+        type: string
+        description: ICD-10-CM code
+        example: "E11.9"
+      short_description:
+        type: string
+        description: Short label
+        example: "Type 2 diabetes mellitus without complications"
+      long_description:
+        type: string
+        description: Longer code description
+      category:
+        type: string
+        description: ICD-10 category (3-character prefix)
+        example: "E11"
 
-generation_notes:
-  temporal_coverage: "2 years of synthetic data (2024-2025)"
-  correlation_structure: |
-    - Diabetes severity correlates with HbA1c, glucose, and comorbidity burden
-    - Older patients have more encounters and procedures
-    - Inpatient encounters have longer stays and more procedures
-    - Wearable vitals show higher frequency than clinical measurements
-    - Procedure codes align with diagnosis codes (e.g., HbA1c for diabetes)
-  realistic_constraints: |
-    - Encounters cannot overlap for same patient
-    - Procedure timestamps must fall within encounter window
-    - Vital signs follow physiological ranges and diurnal patterns
-    - HbA1c values change slowly (months) vs glucose (hours)
-  data_quality_flags: |
-    - Include null values for missing clinical data (realistic EHR gaps)
-    - Add outlier values for data cleaning exercises
-    - Vary measurement frequency by source (wearable > clinical)
+  hcpcs_lookup:
+    description: HCPCS/CPT-style procedure codes used in the assignment
+    columns:
+      code:
+        type: string
+        description: HCPCS/CPT code
+        example: "83036"
+      description:
+        type: string
+        description: Procedure description
+        example: "Hemoglobin A1c test"
+      group:
+        type: string
+        description: Group label from DHS list
+        example: "CLINICAL LABORATORY SERVICES"

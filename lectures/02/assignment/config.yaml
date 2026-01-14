@@ -1,9 +1,12 @@
 data:
-  encounters_csv: "data/encounters/sample.csv"
-  vitals_csv: "data/vitals/sample.csv"
+  patients_parquet: "data/patients.parquet"
+  sites_parquet: "data/sites.parquet"
+  records_parquet: "data/records.parquet"
+  icd10_lookup_parquet: "data/icd10_lookup.parquet"
+  hcpcs_lookup_parquet: "data/hcpcs_lookup.parquet"
   start_date: "2023-01-01"
-  facilities: ["UCSF", "ZSFG"]
+  target_icd_prefixes: ["E11"]
 
 outputs:
-  summary_parquet: "outputs/facility_month_summary.parquet"
-  summary_csv: "outputs/facility_month_summary.csv"
+  prevalence_parquet: "outputs/site_diagnosis_prevalence.parquet"
+  prevalence_csv: "outputs/site_diagnosis_prevalence.csv"
