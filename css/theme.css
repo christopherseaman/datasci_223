@@ -8,7 +8,7 @@ body {
   margin: 0;
   padding: 0;
   background: #000;
-  color: #f0f3f6;
+  color: #ffffff;
 }
 
 code, pre {
@@ -19,7 +19,7 @@ code, pre {
 .sidebar {
   width: 280px;
   background: #0a0a0a;
-  color: #f0f3f6;
+  color: #ffffff;
   padding: 20px;
   overflow-y: auto;
   position: fixed;
@@ -44,7 +44,7 @@ body.nav-hidden .main-content {
   padding-bottom: 10px;
   border-bottom: 2px solid #00ffcc;
   text-align: center;
-  color: #f0f3f6;
+  color: #ffffff;
   line-height: 36px;
 }
 
@@ -76,7 +76,7 @@ body.nav-hidden .main-content {
 
 .nav-link {
   display: block;
-  color: #f0f3f6;
+  color: #ffffff;
   text-decoration: none;
   padding: 4px 12px;
   margin: 1px 0;
@@ -88,12 +88,12 @@ body.nav-hidden .main-content {
 
 .nav-link:hover {
   background: #1a1a1a;
-  color: #f0f3f6;
+  color: #ffffff;
 }
 
 .nav-link.active {
   background: #00ffcc;
-  color: #000;
+  color: #000000;
   font-weight: 600;
 }
 
@@ -111,7 +111,7 @@ body.nav-hidden .main-content {
 }
 
 .content h1 {
-  color: #f0f3f6;
+  color: #ffffff;
   border-bottom: 2px solid #7a828e;
   padding-bottom: 8px;
   font-size: 2.5em;
@@ -119,7 +119,7 @@ body.nav-hidden .main-content {
 }
 
 .content h2 {
-  color: #f0f3f6;
+  color: #ffffff;
   margin-top: 2em;
   font-weight: bold;
 }
@@ -157,7 +157,7 @@ body.nav-hidden .main-content {
   padding: 2px 6px;
   border-radius: 3px;
   font-size: 1em;
-  color: #f0f3f6;
+  color: #ffffff;
 }
 
 .content pre {
@@ -189,7 +189,7 @@ body.nav-hidden .main-content {
 
 .content th {
   background: #1a1a1a;
-  color: #f0f3f6;
+  color: #ffffff;
 }
 
 .content tr:nth-child(even) {
