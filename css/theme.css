@@ -74,29 +74,28 @@ body.nav-hidden .main-content {
   line-height: 1.3;
 }
 
-.sidebar a.nav-link,
-.sidebar a.nav-link:link,
-.sidebar a.nav-link:visited {
+.nav-link {
   display: block;
-  color: #ffffff;
   text-decoration: none;
   padding: 4px 12px;
   margin: 1px 0;
   border-radius: 4px;
   font-size: 1em;
   line-height: 1.4;
-  transition: background-color 0.2s, color 0.2s;
 }
 
-.sidebar a.nav-link:hover {
+.nav-link,
+.nav-link:any-link {
+  color: #ffffff;
+}
+
+.nav-link:hover {
   background: #1a1a1a;
+  color: #ffffff;
 }
 
-.sidebar a.nav-link.active,
-.sidebar a.nav-link.active:link,
-.sidebar a.nav-link.active:visited,
-.sidebar a.nav-link.active:hover,
-.sidebar a.nav-link.active:active {
+.nav-link.active,
+.nav-link.active:any-link {
   background: #00ffcc;
   color: #000000;
   font-weight: 700;
