@@ -10,30 +10,31 @@
   </div>
 
   <div class="nav-section">
-    <h3>Foundational</h3>
-    {%- for l in nav.lectures %}
-      {%- if l.track == "Foundational" %}
-    <a class="nav-link{% if page.url == '/' + l.id + '/' %} active{% endif %}" href="{{ ('/' + l.id + '/') | url }}">{{ l.id }}. {{ l.label }}</a>
-      {%- endif %}
-    {%- endfor %}
-  </div>
-
-  <div class="nav-section">
-    <h3>ML / AI</h3>
-    {%- for l in nav.lectures %}
-      {%- if l.track == "ML/AI" %}
-    <a class="nav-link{% if page.url == '/' + l.id + '/' %} active{% endif %}" href="{{ ('/' + l.id + '/') | url }}">{{ l.id }}. {{ l.label }}</a>
-      {%- endif %}
-    {%- endfor %}
-  </div>
-
-  <div class="nav-section">
-    <h3>Applied</h3>
-    {%- for l in nav.lectures %}
-      {%- if l.track == "Applied" %}
-    <a class="nav-link{% if page.url == '/' + l.id + '/' %} active{% endif %}" href="{{ ('/' + l.id + '/') | url }}">{{ l.id }}. {{ l.label }}</a>
-      {%- endif %}
-    {%- endfor %}
+    <h3>Lectures</h3>
+    <div class="nav-subsection">
+      <h4>Foundation</h4>
+      {%- for l in nav.lectures %}
+        {%- if l.track == "Foundational" %}
+      <a class="nav-link{% if page.url == '/' + l.id + '/' %} active{% endif %}" href="{{ ('/' + l.id + '/') | url }}">{{ l.id }}. {{ l.label }}</a>
+        {%- endif %}
+      {%- endfor %}
+    </div>
+    <div class="nav-subsection">
+      <h4>Machine Learning</h4>
+      {%- for l in nav.lectures %}
+        {%- if l.track == "ML/AI" %}
+      <a class="nav-link{% if page.url == '/' + l.id + '/' %} active{% endif %}" href="{{ ('/' + l.id + '/') | url }}">{{ l.id }}. {{ l.label }}</a>
+        {%- endif %}
+      {%- endfor %}
+    </div>
+    <div class="nav-subsection">
+      <h4>Applications</h4>
+      {%- for l in nav.lectures %}
+        {%- if l.track == "Applied" %}
+      <a class="nav-link{% if page.url == '/' + l.id + '/' %} active{% endif %}" href="{{ ('/' + l.id + '/') | url }}">{{ l.id }}. {{ l.label }}</a>
+        {%- endif %}
+      {%- endfor %}
+    </div>
   </div>
 
 <!--  <div class="nav-section">
