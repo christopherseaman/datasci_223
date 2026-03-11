@@ -91,9 +91,11 @@ body.nav-hidden .main-content {
   color: #ffffff;
 }
 
-.nav-link.active {
+.nav-link.active,
+.nav-link.active:hover,
+.nav-link.active:visited {
   background: #00ffcc;
-  color: #000000;
+  color: #000000 !important;
   font-weight: 600;
 }
 
