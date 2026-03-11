@@ -2,6 +2,8 @@ module.exports = {
   project: "DataSci-223",
   pages: [
     { url: "/", label: "Overview" },
+    { label: "GitHub Repository", url: "https://github.com/christopherseaman/datasci_223" },
+    { label: "Discord", url: "https://discord.gg/QdTYgR45er" },
   ],
   lectures: [
     { id: "01", label: "Debugging", track: "Foundational" },
@@ -14,9 +16,5 @@ module.exports = {
     { id: "08", label: "LLM Workflows", track: "ML/AI" },
     { id: "09", label: "Computer Vision", track: "Applied" },
     { id: "10", label: "A/B Testing", track: "Applied" },
-  ],
-  resources: [
-    { label: "GitHub Repository", url: "https://github.com/christopherseaman/datasci_223" },
-    { label: "Discord", url: "https://discord.gg/QdTYgR45er" },
   ],
 };
