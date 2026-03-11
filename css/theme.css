@@ -62,16 +62,15 @@ body.nav-hidden .main-content {
 }
 
 .nav-subsection {
-  margin-bottom: 12px;
+  margin-bottom: 4px;
 }
 
 .nav-subsection h4 {
   color: #00ffcc;
-  margin: 0 0 6px 0;
+  margin: 4px 0 2px 0;
   font-size: 0.95em;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  opacity: 0.75;
   line-height: 1.3;
 }
 
