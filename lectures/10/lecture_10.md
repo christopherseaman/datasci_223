@@ -3,7 +3,9 @@ lecture_number: 10
 pdf: false
 ---
 
-A/B Testing and Causal Inference: From Theory to Practice
+# A/B Testing and Causal Inference: From Theory to Practice
+
+([pdf](media/ab_testing_lecture.pdf))
 
 ## Who Am I?
 
