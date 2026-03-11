@@ -13,7 +13,7 @@ module.exports = {
     { id: "07", label: "Transformers", track: "ML/AI" },
     { id: "08", label: "LLM Workflows", track: "ML/AI" },
     { id: "09", label: "Computer Vision", track: "Applied" },
-    { id: "10", label: "TBD", track: "Applied" },
+    { id: "10", label: "A/B Testing", track: "Applied" },
     { id: "11", label: "TBD", track: "Applied" },
   ],
   exercises: [
