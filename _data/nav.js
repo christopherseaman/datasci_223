@@ -14,12 +14,6 @@ module.exports = {
     { id: "08", label: "LLM Workflows", track: "ML/AI" },
     { id: "09", label: "Computer Vision", track: "Applied" },
     { id: "10", label: "A/B Testing", track: "Applied" },
-    { id: "11", label: "TBD", track: "Applied" },
-  ],
-  exercises: [
-    { id: "01", label: "Debugging", url: "https://classroom.github.com/a/UIovekSt" },
-    { id: "02", label: "Polars", url: "https://classroom.github.com/a/fgf2ebz9" },
-    { id: "03", label: "SQL", url: "https://classroom.github.com/a/Rn7-jPaj" },
   ],
   resources: [
     { label: "GitHub Repository", url: "https://github.com/christopherseaman/datasci_223" },
