@@ -88,15 +88,20 @@ body.nav-hidden .main-content {
 
 .nav-link:hover {
   background: #1a1a1a;
-  color: #ffffff;
+}
+
+.nav-link.active {
+  background: #00ffcc;
+  color: #000000;
+  font-weight: 700;
 }
 
 .nav-link.active,
+.nav-link.active:link,
+.nav-link.active:visited,
 .nav-link.active:hover,
-.nav-link.active:visited {
-  background: #00ffcc;
-  color: #000000 !important;
-  font-weight: 700;
+.nav-link.active:active {
+  color: #000000;
 }
 
 /* Main content */
