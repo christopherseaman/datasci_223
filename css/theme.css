@@ -74,9 +74,19 @@ body.nav-hidden .main-content {
   line-height: 1.3;
 }
 
+.sidebar a,
+.sidebar a:visited {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.sidebar a.active,
+.sidebar a.active:visited {
+  color: #000000;
+}
+
 .nav-link {
   display: block;
-  text-decoration: none;
   padding: 4px 12px;
   margin: 1px 0;
   border-radius: 4px;
@@ -84,18 +94,11 @@ body.nav-hidden .main-content {
   line-height: 1.4;
 }
 
-.nav-link,
-.nav-link:any-link {
-  color: #ffffff;
-}
-
 .nav-link:hover {
   background: #1a1a1a;
-  color: #ffffff;
 }
 
-.nav-link.active,
-.nav-link.active:any-link {
+.nav-link.active {
   background: #00ffcc;
   color: #000000;
   font-weight: 700;
