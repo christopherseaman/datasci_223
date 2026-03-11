@@ -96,7 +96,7 @@ body.nav-hidden .main-content {
 .nav-link.active:visited {
   background: #00ffcc;
   color: #000000 !important;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 /* Main content */
