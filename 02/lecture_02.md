@@ -2,7 +2,7 @@
 
 - hw02 - #FIXME add GitHub Classroom link once ready
 
-# Links & Self-Guided Review
+## Links & Self-Guided Review
 
 - [Polars User Guide](https://docs.pola.rs/user-guide/) – official docs with eager + lazy API examples
 - [Apache Arrow Columnar Format](https://arrow.apache.org/overview/) – why columnar memory layouts matter
@@ -11,7 +11,7 @@
 - [VS Code: Python performance tips](https://code.visualstudio.com/docs/python/python-tutorial) – environment setup + profiling
 - `scripts/fetch_xkcd_2x.py` – grab XKCD comics (see `all_xkcd.csv` index) for lecture visuals
 
-# Why Memory Limits Sneak Up On Us
+## Why Memory Limits Sneak Up On Us
 
 ![Dataset vs laptop memory](media/memory_vs_dataset.png)
 
@@ -19,7 +19,7 @@ _Chart shows estimated in-memory size; raw on-disk sizes are in the table below.
 
 Health datasets outgrow laptop RAM quickly: a handful of CSVs with vitals, labs, and encounters can exceed 16 GB once loaded. Attempting to "just read the file" leads to system thrash, swap usage, and eventually Python `MemoryError`s that interrupt the workflow.
 
-### Laptop specs vs dataset footprints
+#### Laptop specs vs dataset footprints
 
 | Dataset                              | Typical raw size | In-memory pandas size            | Fits on 16 GB laptop?   |
 | ------------------------------------ | ---------------- | -------------------------------- | ----------------------- |
@@ -29,7 +29,7 @@ Health datasets outgrow laptop RAM quickly: a handful of CSVs with vitals, labs,
 | Imaging metadata (Parquet)           | 9 GB             | ~9 GB                            | ⚠️ if other apps closed |
 | Claims archive (partitioned Parquet) | 120 GB           | streamed                         | ✅ (with streaming)     |
 
-### Warning signs you are hitting RAM limits
+#### Warning signs you are hitting RAM limits
 
 - `top` or `Activity Monitor` shows Python ballooning toward total RAM
 - Fans spin, everything slows, disk swap spikes
@@ -42,7 +42,7 @@ _If the rows are literally on fire, start fixing quality before scaling anything
 
 Grab a quick sense of scale (`du -sh data/`, `wc -l big_file.csv`) before committing to a full load—if numbers dwarf your RAM, pivot immediately.
 
-### Quick pivot when pandas crashes
+#### Quick pivot when pandas crashes
 
 1. **Stop the read** once memory spikes—killing the kernel only hides the problem.
 2. **Profile the file size** (`du -sh`, `wc -l`) so you know what you are up against.
@@ -50,7 +50,7 @@ Grab a quick sense of scale (`du -sh data/`, `wc -l big_file.csv`) before commit
 4. **Rebuild the transform** with Polars lazy scans (`pl.scan_*`) and streaming collects.
 5. **Cache intermediate outputs** so future runs never touch the raw CSV again.
 
-### Code Snippet: Pushing pandas too far
+#### Code Snippet: Pushing pandas too far
 
 ```python
 import pandas as pd
@@ -68,9 +68,9 @@ except MemoryError:
 
 This is the moment to stop fighting pandas and switch strategies (column pruning, chunked readers, or a Polars lazy pipeline) _before_ debugging phantom crashes.
 
-# Polars Essentials
+## Polars Essentials
 
-## Columnar storage (row vs column)
+### Columnar storage (row vs column)
 
 Columnar formats keep same-typed values together, which makes scans faster and cheaper than row-wise text formats.
 
@@ -99,7 +99,7 @@ Polars is pandas without the hidden index and with a Rust engine under the hood.
 - **Everything is explicit columns**—no surprise index alignment.
 - **Expressions replace per-row Python**—filters, casts, joins compile to vectorized Rust kernels.
 
-### Reference Card: pandas → Polars translation
+#### Reference Card: pandas → Polars translation
 
 | To do this              | You know this in pandas         | Do this in Polars                                          |
 | ----------------------- | ------------------------------- | ---------------------------------------------------------- |
@@ -111,11 +111,11 @@ Polars is pandas without the hidden index and with a Rust engine under the hood.
 | Join tables             | `df.merge(dim, on="id")`        | `.join(dim, on="id")`                                      |
 | Stream-collect results  | _(n/a)_                         | `.collect(engine="streaming")`                             |
 
-## `scan_csv` and `scan_parquet`
+### `scan_csv` and `scan_parquet`
 
 Lazy scans build a query plan without loading the full dataset. Use them for large files, globs, and any pipeline you want to keep in streaming mode.
 
-### Reference Card: `scan_csv` / `scan_parquet`
+#### Reference Card: `scan_csv` / `scan_parquet`
 
 - **Function:** `pl.scan_csv(...)`, `pl.scan_parquet(...)`
 - **Purpose:** Create a `LazyFrame` for pushdown + optimization
@@ -125,7 +125,7 @@ Lazy scans build a query plan without loading the full dataset. Use them for lar
   - `dtypes` / `schema` (CSV): set column types and avoid inference
 - **Returns:** `LazyFrame`
 
-### Code Snippet: Lazy scan + schema preview
+#### Code Snippet: Lazy scan + schema preview
 
 ```python
 import polars as pl
@@ -137,7 +137,7 @@ print(sensor.collect_schema())
 print(vitals.collect_schema())
 ```
 
-### Reference Card: `collect_schema()`
+#### Reference Card: `collect_schema()`
 
 - **Method:** `LazyFrame.collect_schema()`
 - **Purpose:** Retrieve column names and data types without executing the full query
@@ -147,11 +147,11 @@ print(vitals.collect_schema())
     - Fast introspection—validates your pipeline before collecting
     - Confirms dtypes after casts or transforms
 
-## `pl.DataFrame()`
+### `pl.DataFrame()`
 
 Use `pl.DataFrame()` to build small in-memory tables for benchmarks, checks, or plotting.
 
-### Reference Card: `pl.DataFrame`
+#### Reference Card: `pl.DataFrame`
 
 - **Function:** `pl.DataFrame(...)`
 - **Purpose:** Create a Polars `DataFrame` from Python data
@@ -160,7 +160,7 @@ Use `pl.DataFrame()` to build small in-memory tables for benchmarks, checks, or 
   - `schema`: optional column names/types
 - **Returns:** `DataFrame`
 
-### Code Snippet: Small benchmark table
+#### Code Snippet: Small benchmark table
 
 ```python
 import polars as pl
@@ -174,17 +174,17 @@ bench = pl.DataFrame(
 )
 ```
 
-## `select()` and `filter()`
+### `select()` and `filter()`
 
 `select()` chooses columns (or expressions); `filter()` keeps rows that match a boolean expression. Use both early for pushdown.
 
-### Reference Card: `select` / `filter`
+#### Reference Card: `select` / `filter`
 
 - **Select:** `.select([col1, col2, expr.alias("new")])`
 - **Filter:** `.filter(pl.col("...") >= 0)`
 - **Notes:** chained filters are fine; projections + filters often push down to the scan
 
-### Code Snippet: Projection + predicate pushdown
+#### Code Snippet: Projection + predicate pushdown
 
 ```python
 import polars as pl
@@ -202,11 +202,11 @@ vitals = (
 )
 ```
 
-## `with_columns()` and expression helpers
+### `with_columns()` and expression helpers
 
 Expressions let you define column logic once and push it down into the engine.
 
-### Reference Card: Expression toolbox
+#### Reference Card: Expression toolbox
 
 - **Core:** `pl.col(...)`, `pl.lit(...)`, `.with_columns([...])`
 - **String + list:** `.str.split(...)`, `.list.get(...)`, `pl.concat_str([...])`
@@ -214,7 +214,7 @@ Expressions let you define column logic once and push it down into the engine.
 - **Filtering:** `.is_in(...)`, `.is_between(...)`
 - **Types + bounds:** `.cast(...)`, `.clip(lower_bound=..., upper_bound=...)`
 
-### Code Snippet: Derive keys + time parts
+#### Code Snippet: Derive keys + time parts
 
 ```python
 import polars as pl
@@ -238,7 +238,7 @@ vitals = (
 )
 ```
 
-## Distinct counts and prefix filters
+### Distinct counts and prefix filters
 
 When you summarize events by site, you often want distinct patients and a quick way to filter code prefixes. Polars gives you both with `unique()` and string expressions.
 
@@ -248,7 +248,7 @@ When you summarize events by site, you often want distinct patients and a quick 
 | E11.65| True                |
 | I10   | False               |
 
-### Reference Card: Distinct + prefix helpers
+#### Reference Card: Distinct + prefix helpers
 
 - **Distinct rows:** `.select([...]).unique()` (keeps one row per key combo)
 - **Distinct counts:** `.group_by("site_id").agg(pl.n_unique("patient_id"))`
@@ -256,7 +256,7 @@ When you summarize events by site, you often want distinct patients and a quick 
 - **Null fill:** `.with_columns(pl.col("diabetes_patients").fill_null(0))`
 - **Rounding:** `.with_columns(pl.col("diabetes_prevalence").round(3))`
 
-### Code Snippet: Distinct patients + prefix filter
+#### Code Snippet: Distinct patients + prefix filter
 
 ```python
 import polars as pl
@@ -271,7 +271,7 @@ patients_by_site = (
 )
 ```
 
-### Aside: Data model for health-data workflows
+#### Aside: Data model for health-data workflows
 
 Many health-data pipelines involve multiple sources, repeated measurements, and joins that can accidentally multiply rows. _Grain_ = the unit of observation in a table.
 
@@ -288,18 +288,18 @@ Two practical rules:
 - Know the _grain_ before you join (one-to-many joins are normal; many-to-many joins often explode row counts).
 - Decide early whether you want “per-patient”, “per-encounter”, or “per-month” outputs, and aggregate to that grain before expensive joins.
 
-## `group_by` + `agg` + `join`
+### `group_by` + `agg` + `join`
 
 Aggregations and joins are the core of most tabular pipelines. Keep joins at the right grain, then summarize.
 
-### Reference Card: `group_by`, `agg`, `join`, `sort`
+#### Reference Card: `group_by`, `agg`, `join`, `sort`
 
 - **Group + aggregate:** `.group_by([...]).agg([...])`
 - **Common aggregations:** `pl.len()`, `pl.mean(...)`, `pl.median(...)`, `pl.sum(...)`, `pl.corr(...)`
 - **Join:** `.join(other, on=..., how=...)` (know the join grain)
 - **Order:** `.sort([...])` (global sort can break streaming)
 
-### Code Snippet: Monthly facility summary
+#### Code Snippet: Monthly facility summary
 
 ```python
 encounters = pl.scan_csv("data/encounters/*.csv", try_parse_dates=True)
@@ -325,13 +325,13 @@ summary = (
 )
 ```
 
-### Code Snippet: pandas vs Polars
+#### Code Snippet: pandas vs Polars
 
 ```python
 import pandas as pd
 import polars as pl
 
-# pandas: full load, then work
+## pandas: full load, then work
 pandas_result = (
     pd.read_csv("data/vitals.csv")
       .query("timestamp >= '2024-01-01'")
@@ -339,7 +339,7 @@ pandas_result = (
       .heart_rate.mean()
 )
 
-# polars: lazy scan, stream collect
+## polars: lazy scan, stream collect
 polars_result = (
     pl.scan_csv("data/vitals.csv")
       .filter(pl.col("timestamp") >= pl.datetime(2024, 1, 1))
@@ -349,7 +349,7 @@ polars_result = (
 )
 ```
 
-### Does pandas support larger-than-memory data now?
+#### Does pandas support larger-than-memory data now?
 
 Core pandas is still fundamentally in-memory for operations like groupby, joins, sorts, etc.
 
@@ -357,7 +357,7 @@ Core pandas is still fundamentally in-memory for operations like groupby, joins,
 - For larger-than-RAM pipelines, common tools include DuckDB, Polars, Dask/Modin, Vaex, or PyArrow dataset/compute (depending on the task).
 - pandas is catching up on Parquet I/O via `pyarrow` (projection/predicate pushdown), but most pandas transforms (groupby/join/sort) still run in-memory.
 
-### Columnar hand-off
+#### Columnar hand-off
 
 Convert each raw CSV to Parquet once, then keep everything columnar:
 
@@ -375,7 +375,7 @@ print(f"{csv_mb:.1f} MB → {parquet_mb:.1f} MB ({csv_mb / parquet_mb:.2f}x smal
 
 Use `LazyFrame.collect_schema()` (not `lazyframe.schema`) to confirm dtypes, and partition long histories by `year` or `facility` so streaming scans stay sub-gigabyte.
 
-### Advanced aside: Parquet layout (why it affects speed)
+#### Advanced aside: Parquet layout (why it affects speed)
 
 - Parquet stores data in **row groups**; each row group contains per-column chunks plus min/max stats that enable predicate pushdown.
 - If you frequently filter on `facility` or `year`, consider **partitioning** your dataset by those columns (fewer bytes scanned).
@@ -383,13 +383,13 @@ Use `LazyFrame.collect_schema()` (not `lazyframe.schema`) to confirm dtypes, and
 
 ![Health data reality check](media/xkcd_health_data.png)
 
-# LIVE DEMO
+## LIVE DEMO
 
 See [`demo/01a_streaming_filter.md`](./demo/01a_streaming_filter.md) for the Polars basics walkthrough.
 
-# Lazy Execution & Streaming Patterns
+## Lazy Execution & Streaming Patterns
 
-## `LazyFrame` methods
+### `LazyFrame` methods
 
 Most of this lecture uses a `LazyFrame` pipeline (`pl.scan_* → ... → collect/sink`). If you learn these methods, you can read almost every Polars example we write this quarter.
 
@@ -407,7 +407,7 @@ Most of this lecture uses a `LazyFrame` pipeline (`pl.scan_* → ... → collect
 
 ![Lazy query plan sketch](media/lazy_plan.png)
 
-## `LazyFrame.explain()` and `.collect(engine="streaming")`
+### `LazyFrame.explain()` and `.collect(engine="streaming")`
 
 `explain()` prints the optimized plan so you can spot scans, filters, joins, and aggregations.
 
@@ -429,17 +429,17 @@ _Format varies by Polars version; look for scan -> filter -> join -> aggregate._
 
 Lazy plans shine once you chain multiple operations: the engine reorders filters, drops unused columns, and chooses whether to stream.
 
-### Diagnose and trust the plan
+#### Diagnose and trust the plan
 
 - `query.explain()` outlines scan → filter → join → aggregate so you can spot expensive steps.
 - `query.collect(engine="streaming")` opts into streaming; Polars swaps to an in-memory engine only when necessary (e.g., global sorts).
 - `.sink_parquet("outputs/summary.parquet")` writes directly to disk without loading the DataFrame into Python.
 
-## `collect()` and `sink_parquet()`
+### `collect()` and `sink_parquet()`
 
 `collect()` loads a LazyFrame into a DataFrame in memory. `sink_parquet()` writes straight to disk without loading into Python.
 
-### Reference Card: Collecting and sinking
+#### Reference Card: Collecting and sinking
 
 - **`collect()`**: execute and return a DataFrame (in memory)
 - **`collect(engine="streaming")` / `collect(streaming=True)`**: stream when possible
@@ -447,7 +447,7 @@ Lazy plans shine once you chain multiple operations: the engine reorders filters
 - **`pl.read_parquet(path)`**: eager read for spot checks
 - **`write_csv(path)`**: DataFrame -> CSV after collect
 
-### Code Snippet: Stream, then write
+#### Code Snippet: Stream, then write
 
 ```python
 result = query.collect(engine="streaming")
@@ -460,19 +460,19 @@ check = pl.read_parquet("outputs/summary.parquet")
 check.describe()
 ```
 
-## `to_pandas()`
+### `to_pandas()`
 
 Sometimes the fastest path to compatibility is converting to pandas for plotting or library support.
 
 > "~~AK-47~~ pandas. ~~The very best there is.~~ When you absolutely, positively got to ~~kill every motherfucker in the room~~ be compatible with everything, accept no substitutes." - _Jackie Brown_
 
-### Reference Card: `to_pandas`
+#### Reference Card: `to_pandas`
 
 - **Method:** `.to_pandas()`
 - **Purpose:** Convert a Polars `DataFrame` to pandas for compatibility
 - **Note:** Use after filtering/aggregating to keep the pandas DataFrame small
 
-### Code Snippet: Convert for plotting
+#### Code Snippet: Convert for plotting
 
 ```python
 import altair as alt
@@ -486,19 +486,19 @@ alt.Chart(plot_df).mark_line().encode(
 ).properties(width=600, height=250)
 ```
 
-## SQL with `SQLContext`
+### SQL with `SQLContext`
 
 Polars can run SQL over lazy frames. This is a thin layer over the same optimizer, so you still get pushdown and streaming when the plan supports it.
 
 **NOTE:** Polars SQL is not a full-featured SQL engine; it covers common patterns (SELECT, WHERE, GROUP BY, JOIN) but lacks advanced features (CTEs, window functions, etc.). We will cover SQL in more detail next week.
 
-### Reference Card: `SQLContext`
+#### Reference Card: `SQLContext`
 
 - **Create:** `ctx = pl.SQLContext()`
 - **Register:** `ctx.register("table_name", lazy_frame)`
 - **Execute:** `query = ctx.execute("SELECT ...")` (returns a `LazyFrame`)
 
-### Code Snippet: SQL-style query, lazy execution
+#### Code Snippet: SQL-style query, lazy execution
 
 ```python
 import polars as pl
@@ -520,18 +520,18 @@ result = query.collect(engine="streaming")
 result.describe()
 ```
 
-## `sort()` and `sample()`
+### `sort()` and `sample()`
 
 > [!warning]
 > Sorting can force a full in-memory load. Sampling is cheap after collection and helps with quick visuals.
 
-### Reference Card: Ordering + quick checks
+#### Reference Card: Ordering + quick checks
 
 - **`sort([...])`**: global order, can break streaming
 - **`sample(n=..., shuffle=True)`**: take a subset after collect
 - **`estimated_size("mb")`**: quick size check on a DataFrame
 
-### Code Snippet: Small sanity sample
+#### Code Snippet: Small sanity sample
 
 ```python
 df = query.collect(engine="streaming")
@@ -539,7 +539,7 @@ sample = df.sample(n=2000, shuffle=True).sort("timestamp")
 print(sample.estimated_size("mb"))
 ```
 
-## Streaming limits (when streaming won't help)
+### Streaming limits (when streaming won't help)
 
 Streaming is powerful, but not magic. Some operations force large shuffles or require global state.
 
@@ -555,7 +555,7 @@ When this happens:
 - Reduce columns early (projection), filter early (predicate), and aggregate to the target grain before joins.
 - Write intermediate outputs (Parquet) at stable checkpoints so you don’t recompute expensive steps.
 
-### Reference Card: Lazy vs eager
+#### Reference Card: Lazy vs eager
 
 | Situation                             | Use eager when…            | Use lazy when…                         |
 | ------------------------------------- | -------------------------- | -------------------------------------- |
@@ -564,7 +564,7 @@ When this happens:
 | Complex UDF (Python per-row function) | Logic needs Python per row | You can rewrite as expressions         |
 | Joins/aggregations                    | Dimension table is tiny    | Fact table exceeds RAM                 |
 
-### Code Snippet: Multi-source lazy join
+#### Code Snippet: Multi-source lazy join
 
 ```python
 import polars as pl
@@ -586,17 +586,17 @@ query = (
 result = query.collect(engine="streaming")
 ```
 
-# LIVE DEMO
+## LIVE DEMO
 
 See [`demo/02a_lazy_join.md`](./demo/02a_lazy_join.md) for the lazy-plan deep dive.
 
-# Building a Polars Pipeline
+## Building a Polars Pipeline
 
 ![Data pipeline](media/xkcd_data_pipeline.png)
 
 Good pipelines make the flow obvious: inputs -> transforms -> outputs. The visuals below map to that flow.
 
-## Pipeline anatomy: inputs -> transforms -> outputs
+### Pipeline anatomy: inputs -> transforms -> outputs
 
 ```mermaid
 flowchart LR
@@ -631,13 +631,13 @@ flowchart LR
 - **Transforms**: lazy expressions that stay pushdown-friendly—nothing executes until collect.
 - **Outputs + logs**: always emit both Parquet (for downstream) and CSV (for quick checks), plus row counts and timing for reproducibility.
 
-## Memory profile: streaming vs eager
+### Memory profile: streaming vs eager
 
 ![Streaming keeps memory bounded](media/memory_plateau.svg)
 
 _Streaming stays bounded; eager loads can spike past RAM._
 
-## Monitor early runs
+### Monitor early runs
 
 ![Resource monitoring dashboard](media/resource_monitor.png)
 
@@ -649,7 +649,7 @@ Pipelines are as much about reproducibility and debugging as raw speed.
 
 Put the pieces together: start lazy, keep everything parameterized, and stream the final collect.
 
-## Checklist: from pandas crash to Polars pipeline
+### Checklist: from pandas crash to Polars pipeline
 
 - [ ] **Define inputs & outputs** in a config (`config/pipeline.yaml`) instead of hardcoding paths.
 - [ ] **Scan sources lazily** (`pl.scan_parquet`) and push filters (`pl.col("timestamp") >= ...`).
@@ -657,17 +657,17 @@ Put the pieces together: start lazy, keep everything parameterized, and stream t
 - [ ] **Collect with streaming** or `.sink_parquet()` to avoid loading giant tables into memory.
 - [ ] **Emit artifacts + logs** (row counts, durations) for reproducibility.
 
-## Methodology: config-driven pipeline
+### Methodology: config-driven pipeline
 
 - **Config-driven**: all file globs, filters, and output paths live in YAML.
 - **Three phases**: load (scan + cast) → transform (joins + groupby) → write artifacts.
 - **Artifacts**: always write both Parquet (for downstream pipelines) and CSV (for quick inspection).
 - **Sanity checks**: row counts, schema, and "does the output look plausible?" before you ship results.
 
-### Code Snippet: yaml-driven pipeline
+#### Code Snippet: yaml-driven pipeline
 
 ```yaml
-# config/vitals_pipeline.yaml
+## config/vitals_pipeline.yaml
 name: Vitals Summary Pipeline
 description: Aggregate patient vitals by facility and month
 
@@ -717,7 +717,7 @@ settings:
 ```
 
 ```python
-# pipeline.py - loads config and executes
+## pipeline.py - loads config and executes
 import yaml
 import polars as pl
 from pathlib import Path
@@ -757,7 +757,7 @@ def run_pipeline(config_path: str):
 
 The same flow scales up; the orchestration just gets bigger.
 
-### Reference Card: Pipeline ergonomics
+#### Reference Card: Pipeline ergonomics
 
 | Task                   | Command                                                   | Why                         |
 | ---------------------- | --------------------------------------------------------- | --------------------------- |
@@ -767,7 +767,7 @@ The same flow scales up; the orchestration just gets bigger.
 | Validate outputs       | `pl.read_parquet(...).describe()`                         | Confirm schema + row counts |
 | Archive artifacts      | `checksums.txt`, `manifest.json`                          | Detect drift later          |
 
-### Code Snippet: CLI batch skeleton
+#### Code Snippet: CLI batch skeleton
 
 ```python
 import argparse
@@ -799,6 +799,6 @@ result.write_parquet(args.output)
 logging.info("Wrote %s rows to %s", result.height, args.output)
 ```
 
-# LIVE DEMO
+## LIVE DEMO
 
 See [`demo/03a_batch_report.md`](./demo/03a_batch_report.md) for a config-driven batch run with validation checkpoints.

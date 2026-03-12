@@ -4,7 +4,7 @@ Reading Rocks!
 
 - [https://classroom.github.com/a/78aoV6u5](https://classroom.github.com/a/78aoV6u5)
 
-# Links & Self-Guided Review
+## Links & Self-Guided Review
 
 - TB Hack Day on Feb 11th! Register at <https://seatrac.uw.edu/training/i4tbworkinggroup>
 
@@ -17,9 +17,9 @@ Reading Rocks!
 - [Regex101](https://regex101.com/) — interactive regex tester with explanation
 - [scispaCy](https://allenai.github.io/scispacy/) — biomedical NLP models
 
-# Natural Language Processing
+## Natural Language Processing
 
-## What is NLP?
+### What is NLP?
 
 ![Clinical Entities](media/clinical_ent.webp)
 
@@ -39,7 +39,7 @@ The core challenges:
 - **Variation** — "BP", "blood pressure", "b.p." all mean the same thing
 - **Implicit knowledge** — "take with food" implies meals
 
-## Why NLP for Health Data?
+### Why NLP for Health Data?
 
 Electronic health records contain vast amounts of free-text data: physician notes, discharge summaries, radiology reports, pathology findings. Surveys and patient-reported outcomes add more unstructured text. NLP lets you:
 
@@ -55,7 +55,7 @@ Electronic health records contain vast amounts of free-text data: physician note
 | Discharge summaries | "Follow up with cardiology in 2 weeks" | Care instructions, timing |
 | Patient surveys | "The wait time was frustrating" | Sentiment, specific complaints |
 
-## Classical vs LLM-based Approaches
+### Classical vs LLM-based Approaches
 
 **Classical NLP** uses explicit pipelines: tokenize text, apply rules or statistics, convert to numerical features. **LLM-based NLP** uses neural networks trained on massive text corpora to learn representations end-to-end.
 
@@ -82,7 +82,7 @@ Electronic health records contain vast amounts of free-text data: physician note
 
 Most real-world clinical NLP systems combine both: classical techniques for structured extraction, LLMs for complex reasoning.
 
-## Tools: NLTK vs spaCy
+### Tools: NLTK vs spaCy
 
 Two Python libraries dominate classical NLP work.
 
@@ -104,7 +104,7 @@ Two Python libraries dominate classical NLP work.
 - **Token** — a single word or punctuation mark with attributes (text, POS, lemma)
 - **Span** — a slice of a Doc (like a substring, but with token information)
 
-### Installation
+#### Installation
 
 | Tool | Install | First-time Setup |
 |------|---------|------------------|
@@ -112,11 +112,11 @@ Two Python libraries dominate classical NLP work.
 | spaCy | `pip install spacy` | `python -m spacy download en_core_web_sm` |
 | scikit-learn | `pip install scikit-learn` | (none required) |
 
-# Text Processing Fundamentals
+## Text Processing Fundamentals
 
 Before analysis, we transform raw text into a consistent format. These preprocessing steps are foundational to nearly all NLP work.
 
-## Tokenization
+### Tokenization
 
 ![Tokenization](media/tokenization.webp)
 
@@ -143,7 +143,7 @@ spaCy tokenizer:    ["Dr.", "Smith", "prescribed", "500", "mg", "ibuprofen", "."
                     ↑ splits numbers from units
 ```
 
-### Reference Card: Tokenization
+#### Reference Card: Tokenization
 
 | Category | Method | Purpose & Arguments | Typical Output |
 | :--- | :--- | :--- | :--- |
@@ -153,7 +153,7 @@ spaCy tokenizer:    ["Dr.", "Smith", "prescribed", "500", "mg", "ibuprofen", "."
 | **NLTK** | `RegexpTokenizer(pattern)` | Custom tokenizer using regex pattern (e.g., `r'\w+'` for words only). | `list[str]` via `.tokenize(text)` |
 | **spaCy** | `for token in doc` | Iterates tokens after `doc = nlp(text)`. | `Token` objects |
 
-### Code Snippet: Tokenization
+#### Code Snippet: Tokenization
 
 ```python
 import nltk
@@ -161,20 +161,20 @@ nltk.download('punkt_tab')
 
 text = "Dr. Smith prescribed 500mg ibuprofen. Take twice daily."
 
-# Naive split
+## Naive split
 print(text.split())
-# ['Dr.', 'Smith', 'prescribed', '500mg', 'ibuprofen.', 'Take', 'twice', 'daily.']
+## ['Dr.', 'Smith', 'prescribed', '500mg', 'ibuprofen.', 'Take', 'twice', 'daily.']
 
-# NLTK word tokenize
+## NLTK word tokenize
 print(nltk.word_tokenize(text))
-# ['Dr.', 'Smith', 'prescribed', '500mg', 'ibuprofen', '.', 'Take', 'twice', 'daily', '.']
+## ['Dr.', 'Smith', 'prescribed', '500mg', 'ibuprofen', '.', 'Take', 'twice', 'daily', '.']
 
-# NLTK sentence tokenize
+## NLTK sentence tokenize
 print(nltk.sent_tokenize(text))
-# ['Dr. Smith prescribed 500mg ibuprofen.', 'Take twice daily.']
+## ['Dr. Smith prescribed 500mg ibuprofen.', 'Take twice daily.']
 ```
 
-## Normalization
+### Normalization
 
 ![Normalization Pipeline](media/preprocess.png)
 
@@ -190,7 +190,7 @@ Normalization transforms tokens into a consistent form.
 
 **Punctuation removal** strips commas, periods, and other marks—unless they carry meaning (like hyphens in "COVID-19").
 
-### Reference Card: Normalization
+#### Reference Card: Normalization
 
 | Category | Method | Purpose & Arguments | Typical Output |
 | :--- | :--- | :--- | :--- |
@@ -198,7 +198,7 @@ Normalization transforms tokens into a consistent form.
 | **Punctuation** | `text.translate(str.maketrans('', '', string.punctuation))` | Removes all punctuation characters. | `str` |
 | **Stopwords** | `stopwords.words('english')` | Returns NLTK's English stopword list. | `list[str]` (179 words) |
 
-### Code Snippet: Normalization
+#### Code Snippet: Normalization
 
 ```python
 import string
@@ -218,10 +218,10 @@ stop_words = set(stopwords.words('english'))
 tokens = [t for t in tokens if t not in stop_words]
 
 print(tokens)
-# ['patient', 'age', '45', 'presents', 'chest', 'pain']
+## ['patient', 'age', '45', 'presents', 'chest', 'pain']
 ```
 
-## Stemming and Lemmatization
+### Stemming and Lemmatization
 
 Both techniques reduce words to a common base form, helping group related words together.
 
@@ -238,7 +238,7 @@ Word          Stemmer Output    Lemmatizer Output
 "universities" "univers"        "university"
 ```
 
-### Reference Card: Stemming & Lemmatization
+#### Reference Card: Stemming & Lemmatization
 
 | Category | Method | Purpose & Arguments | Typical Output |
 | :--- | :--- | :--- | :--- |
@@ -247,7 +247,7 @@ Word          Stemmer Output    Lemmatizer Output
 | **Lemmatization** | `WordNetLemmatizer().lemmatize(word, pos='v')` | Dictionary lookup. `pos`: 'n', 'v', 'a', 'r'. | `str` |
 | **Lemmatization** | `token.lemma_` | spaCy attribute, automatic in pipeline. | `str` |
 
-### Code Snippet: Stemming vs Lemmatization
+#### Code Snippet: Stemming vs Lemmatization
 
 ```python
 from nltk.stem import PorterStemmer, WordNetLemmatizer
@@ -265,13 +265,13 @@ for word in words:
 
 ![XKCD: Synonym Date](media/xkcd_synonym_date.png)
 
-# LIVE DEMO
+## LIVE DEMO
 
-# Part-of-Speech Tagging
+## Part-of-Speech Tagging
 
 Part-of-speech (POS) tagging labels each token with its grammatical role: noun, verb, adjective, etc.
 
-## Concepts
+### Concepts
 
 ![POS Tagging](media/pos_tag.png)
 
@@ -294,7 +294,7 @@ pain     → NN  (noun, singular)
 
 Tags follow standardized sets. **Penn Treebank** tags (NLTK) are the traditional English standard. **Universal Dependencies** tags (spaCy) work across languages.
 
-### Common POS Tags
+#### Common POS Tags
 
 | Tag | Description | Example |
 |-----|-------------|---------|
@@ -307,16 +307,16 @@ Tags follow standardized sets. **Penn Treebank** tags (NLTK) are the traditional
 | RB | Adverb | quickly, very |
 | DT | Determiner | the, a, an |
 
-## NLTK
+### NLTK
 
-### Reference Card: NLTK POS Tagging
+#### Reference Card: NLTK POS Tagging
 
 | Category | Method | Purpose & Arguments | Typical Output |
 | :--- | :--- | :--- | :--- |
 | **Tag** | `nltk.pos_tag(tokens)` | Tags list of tokens with POS. | `list[tuple[str, str]]` |
 | **Help** | `nltk.help.upenn_tagset('NN')` | Explains a Penn Treebank tag. | Printed description |
 
-### Code Snippet: NLTK POS Tagging
+#### Code Snippet: NLTK POS Tagging
 
 ```python
 import nltk
@@ -327,17 +327,17 @@ tokens = nltk.word_tokenize(text)
 tagged = nltk.pos_tag(tokens)
 
 print(tagged)
-# [('The', 'DT'), ('patient', 'NN'), ('reported', 'VBD'),
-#  ('severe', 'JJ'), ('chest', 'NN'), ('pain', 'NN'), ('.', '.')]
+## [('The', 'DT'), ('patient', 'NN'), ('reported', 'VBD'),
+##  ('severe', 'JJ'), ('chest', 'NN'), ('pain', 'NN'), ('.', '.')]
 
-# Find all nouns
+## Find all nouns
 nouns = [word for word, tag in tagged if tag.startswith('NN')]
 print(nouns)  # ['patient', 'chest', 'pain']
 ```
 
-## spaCy
+### spaCy
 
-### Reference Card: spaCy POS Tagging
+#### Reference Card: spaCy POS Tagging
 
 | Category | Method / Attribute | Purpose & Arguments | Typical Output |
 | :--- | :--- | :--- | :--- |
@@ -345,7 +345,7 @@ print(nouns)  # ['patient', 'chest', 'pain']
 | **Fine** | `token.tag_` | Fine-grained Penn Treebank style tag. | `str` (`"NN"`, `"VBD"`) |
 | **Help** | `spacy.explain(tag)` | Explains any spaCy tag. | `str` |
 
-### Code Snippet: spaCy POS Tagging
+#### Code Snippet: spaCy POS Tagging
 
 ```python
 import spacy
@@ -356,21 +356,21 @@ doc = nlp("The patient reported severe chest pain.")
 for token in doc:
     print(f"{token.text:12} {token.pos_:6} {token.tag_}")
 
-# The          DET    DT
-# patient      NOUN   NN
-# reported     VERB   VBD
-# severe       ADJ    JJ
-# chest        NOUN   NN
-# pain         NOUN   NN
+## The          DET    DT
+## patient      NOUN   NN
+## reported     VERB   VBD
+## severe       ADJ    JJ
+## chest        NOUN   NN
+## pain         NOUN   NN
 ```
 
 ![XKCD: Language Acquisition](media/xkcd_language_acquisition.png)
 
-# Named Entity Recognition
+## Named Entity Recognition
 
 Named Entity Recognition (NER) identifies and classifies specific entities in text: people, organizations, locations, dates. For clinical text, specialized models can extract medications, dosages, diagnoses, and procedures.
 
-## Concepts
+### Concepts
 
 ![Clinical NER](media/named_entity.png)
 
@@ -388,18 +388,18 @@ Named Entity Recognition (NER) identifies and classifies specific entities in te
 
 **Clinical NER entities** (specialized models): MEDICATION, DOSAGE, DIAGNOSIS, PROCEDURE, ANATOMY
 
-## NLTK
+### NLTK
 
 NLTK's NER requires POS-tagged input and returns a tree structure.
 
-### Reference Card: NLTK NER
+#### Reference Card: NLTK NER
 
 | Category | Method | Purpose & Arguments | Typical Output |
 | :--- | :--- | :--- | :--- |
 | **Extract** | `nltk.ne_chunk(tagged)` | Extracts named entities from POS-tagged tokens. | `nltk.Tree` |
 | **Binary** | `nltk.ne_chunk(tagged, binary=True)` | Labels NE vs non-entity only. | `nltk.Tree` |
 
-### Code Snippet: NLTK NER
+#### Code Snippet: NLTK NER
 
 ```python
 import nltk
@@ -414,12 +414,12 @@ entities = nltk.ne_chunk(tagged)
 for chunk in entities:
     if hasattr(chunk, 'label'):
         print(f"{' '.join(c[0] for c in chunk)}: {chunk.label()}")
-# UCSF: ORGANIZATION
+## UCSF: ORGANIZATION
 ```
 
-## spaCy
+### spaCy
 
-### Reference Card: spaCy NER
+#### Reference Card: spaCy NER
 
 | Category | Method / Attribute | Purpose & Arguments | Typical Output |
 | :--- | :--- | :--- | :--- |
@@ -428,7 +428,7 @@ for chunk in entities:
 | **Type** | `ent.label_` | Entity classification. | `str` (`"PERSON"`, `"ORG"`) |
 | **Position** | `ent.start`, `ent.end` | Token indices of entity span. | `int` |
 
-### Code Snippet: spaCy NER
+#### Code Snippet: spaCy NER
 
 ```python
 import spacy
@@ -439,16 +439,16 @@ doc = nlp("Dr. Smith at UCSF prescribed medication on January 15.")
 for ent in doc.ents:
     print(f"{ent.text}: {ent.label_}")
 
-# Dr. Smith: PERSON
-# UCSF: ORG
-# January 15: DATE
+## Dr. Smith: PERSON
+## UCSF: ORG
+## January 15: DATE
 ```
 
-# Text Extraction
+## Text Extraction
 
 Beyond NER, we often need to extract specific patterns from text—vitals, dosages, dates, and other structured information. Regex is the workhorse for syntactic patterns; for more complex extraction, consider rule-based systems (spaCy's `Matcher`) or template filling.
 
-## Regex Patterns
+### Regex Patterns
 
 Regular expressions (regex, `import re`) are pattern-matching tools for extracting text that follows predictable formats. Use regex when:
 
@@ -476,7 +476,7 @@ Clinical patterns:
 • Date:    \d{1,2}/\d{1,2}/\d{4}  →  "01/15/2025"
 ```
 
-### Reference Card: Python `re` Module
+#### Reference Card: Python `re` Module
 
 | Category | Method | Purpose & Arguments | Typical Output |
 | :--- | :--- | :--- | :--- |
@@ -486,7 +486,7 @@ Clinical patterns:
 | **Extract** | `match.group()` | Returns the matched text. | `str` |
 | **Groups** | `match.groups()` | Returns all captured groups. | `tuple[str]` |
 
-### Code Snippet: Regex in the `re` Module
+#### Code Snippet: Regex in the `re` Module
 
 ```python
 import re
@@ -498,35 +498,35 @@ meds = re.findall(r'(\w+)\s+(\d+)(mg|ml)', note)          # [('Metformin', '500'
 cleaned = re.sub(r'\d{2}/\d{2}/\d{4}', '[DATE]', note)    # redact dates
 ```
 
-## Regex Across NLP Tools
+### Regex Across NLP Tools
 
 Regex patterns appear throughout the NLP toolkit—not just in the `re` module. Learning regex syntax pays off because you'll reuse it in many contexts.
 
 ```python
-# TOKENIZATION: RegexpTokenizer uses regex to define what counts as a token
+## TOKENIZATION: RegexpTokenizer uses regex to define what counts as a token
 from nltk.tokenize import RegexpTokenizer
 tokenizer = RegexpTokenizer(r'\w+')           # words only, no punctuation
 tokenizer.tokenize("Hello, world!")           # ['Hello', 'world']
 
-# PANDAS: .str methods accept regex for text columns
+## PANDAS: .str methods accept regex for text columns
 import pandas as pd
 df = pd.DataFrame({'notes': ['BP 120/80', 'BP 130/85']})
 df['systolic'] = df['notes'].str.extract(r'(\d+)/\d+')   # extract first number
 
-# SPACY MATCHER: pattern-based matching (not regex, but similar concept)
-# from spacy.matcher import Matcher
-# matcher.add("BP_PATTERN", [[{"SHAPE": "ddd"}, {"TEXT": "/"}, {"SHAPE": "dd"}]])
+## SPACY MATCHER: pattern-based matching (not regex, but similar concept)
+## from spacy.matcher import Matcher
+## matcher.add("BP_PATTERN", [[{"SHAPE": "ddd"}, {"TEXT": "/"}, {"SHAPE": "dd"}]])
 ```
 
 ![XKCD: Regex Golf](media/xkcd_regex_golf.png)
 
-# LIVE DEMO
+## LIVE DEMO
 
-# Text Representation
+## Text Representation
 
 To use text in machine learning, we need numerical representations. These classical approaches convert documents into vectors (lists of numbers).
 
-## Bag of Words
+### Bag of Words
 
 **Bag of Words (BoW)** counts how many times each word appears, ignoring order. The result is a **document-term matrix** where each row is a document and each column is a word from the **vocabulary** (all unique words across documents).
 
@@ -553,7 +553,7 @@ Doc 3        0       0        1       0       1        1
 - Creates **sparse matrices** (most values are 0)
 - Common words dominate the counts
 
-### Reference Card: `CountVectorizer`
+#### Reference Card: `CountVectorizer`
 
 | Category | Method | Purpose & Arguments | Typical Output |
 | :--- | :--- | :--- | :--- |
@@ -562,7 +562,7 @@ Doc 3        0       0        1       0       1        1
 | **Inspect** | `.get_feature_names_out()` | Returns learned vocabulary. | `ndarray[str]` |
 | **Convert** | `.toarray()` | Converts sparse matrix to dense array. | `ndarray` |
 
-### Code Snippet: Bag of Words
+#### Code Snippet: Bag of Words
 
 ```python
 from sklearn.feature_extraction.text import CountVectorizer
@@ -577,15 +577,15 @@ vectorizer = CountVectorizer()
 X = vectorizer.fit_transform(docs)
 
 print(vectorizer.get_feature_names_out())
-# ['chest' 'denies' 'headache' 'pain' 'patient' 'reports']
+## ['chest' 'denies' 'headache' 'pain' 'patient' 'reports']
 
 print(X.toarray())
-# [[1 0 0 1 1 1]
-#  [1 1 0 1 1 0]
-#  [0 0 1 0 1 1]]
+## [[1 0 0 1 1 1]
+##  [1 1 0 1 1 0]
+##  [0 0 1 0 1 1]]
 ```
 
-## TF-IDF
+### TF-IDF
 
 **TF-IDF (Term Frequency–Inverse Document Frequency)** improves on raw counts by weighting words based on how distinctive they are. Words that appear in every document get downweighted; rare, specific terms get upweighted.
 
@@ -600,7 +600,7 @@ $$\text{TF-IDF}(word, doc) = \text{TF}(word, doc) \times \text{IDF}(word)$$
 
 **Example:** "diabetes" appears in 10 of 1000 documents → high IDF (distinctive). "patient" appears in 900 of 1000 → low IDF (common).
 
-### Reference Card: `TfidfVectorizer`
+#### Reference Card: `TfidfVectorizer`
 
 | Category | Method | Purpose & Arguments | Typical Output |
 | :--- | :--- | :--- | :--- |
@@ -609,7 +609,7 @@ $$\text{TF-IDF}(word, doc) = \text{TF}(word, doc) \times \text{IDF}(word)$$
 | **Transform** | `.transform(new_docs)` | Transforms new text using learned vocabulary (no refitting). | Sparse matrix |
 | **Inspect** | `.idf_` | Learned IDF weights for each term. | `ndarray[float]` |
 
-### Code Snippet: TF-IDF
+#### Code Snippet: TF-IDF
 
 ```python
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -626,11 +626,11 @@ X = vectorizer.fit_transform(docs)
 for word, idf in zip(vectorizer.get_feature_names_out(), vectorizer.idf_):
     print(f"{word}: IDF = {idf:.2f}")
 
-# patient: IDF = 1.00   ← appears in all docs, lowest IDF
-# denies: IDF = 1.69    ← appears in only 1 doc, high IDF
+## patient: IDF = 1.00   ← appears in all docs, lowest IDF
+## denies: IDF = 1.69    ← appears in only 1 doc, high IDF
 ```
 
-## N-grams
+### N-grams
 
 ![N-grams Diagram](media/n-grams.webp)
 
@@ -645,7 +645,7 @@ Single words (**unigrams**) lose context. **N-grams** capture sequences of N con
 - "denies chest pain" captures negation context
 - "no chest pain" vs "chest pain" mean opposite things
 
-### Reference Card: N-grams
+#### Reference Card: N-grams
 
 | Category | Method | Purpose & Arguments | Example Output |
 | :--- | :--- | :--- | :--- |
@@ -655,7 +655,7 @@ Single words (**unigrams**) lose context. **N-grams** capture sequences of N con
 
 Use with `CountVectorizer` or `TfidfVectorizer`.
 
-### Code Snippet: N-grams
+#### Code Snippet: N-grams
 
 ```python
 from sklearn.feature_extraction.text import CountVectorizer
@@ -666,23 +666,23 @@ vectorizer = CountVectorizer(ngram_range=(1, 2))
 X = vectorizer.fit_transform(docs)
 
 print(vectorizer.get_feature_names_out())
-# ['chest', 'chest pain', 'denies', 'denies chest', 'pain',
-#  'patient', 'patient denies', 'patient reports', 'reports', 'reports chest']
+## ['chest', 'chest pain', 'denies', 'denies chest', 'pain',
+##  'patient', 'patient denies', 'patient reports', 'reports', 'reports chest']
 ```
 
 ![XKCD: Automation](media/xkcd_automation.png)
 
-## Word Vectors
+### Word Vectors
 
 The representations above treat each word independently—"diabetes" and "hypertension" are just as different as "diabetes" and "pizza." **Word vectors** (embeddings) capture semantic similarity: related words have similar vectors.
 
 spaCy's medium and large models (`en_core_web_md`, `en_core_web_lg`) include pre-computed word vectors. We'll cover how embeddings work in Lecture 07.
 
-### Code Snippet: Word Vectors
+#### Code Snippet: Word Vectors
 
 ```python
 import spacy
-# Note: en_core_web_sm has no vectors; use _md or _lg for word vectors
+## Note: en_core_web_sm has no vectors; use _md or _lg for word vectors
 nlp = spacy.load("en_core_web_md")  # medium model has vectors
 doc = nlp("diabetes hypertension")
 print(doc[0].vector.shape)          # (300,) - 300-dimensional vector
@@ -693,11 +693,11 @@ For classical NLP, TF-IDF is your go-to representation: interpretable, effective
 
 ![XKCD: Spelling](media/xkcd_spelling.png)
 
-# Document Similarity
+## Document Similarity
 
 With text represented as vectors, we can measure how similar documents are. This enables search, clustering, and recommendation systems. Cosine similarity is the standard choice for text; alternatives include Jaccard similarity (for sets of words) and Euclidean distance (sensitive to document length).
 
-## Cosine Similarity
+### Cosine Similarity
 
 **Cosine similarity** measures the angle between two vectors rather than their distance. This makes it robust to document length—a long document and a short document about the same topic will have high similarity.
 
@@ -709,7 +709,7 @@ $$\cos(\theta) = \frac{A \cdot B}{\|A\| \times \|B\|}$$
 - **1.0** = identical direction (very similar)
 - **0.0** = perpendicular (no shared words)
 
-### Reference Card: Document Similarity
+#### Reference Card: Document Similarity
 
 | Category | Method | Purpose & Arguments | Typical Output |
 | :--- | :--- | :--- | :--- |
@@ -718,7 +718,7 @@ $$\cos(\theta) = \frac{A \cdot B}{\|A\| \times \|B\|}$$
 | **Distance** | `spatial.distance.cosine(u, v)` | Cosine distance (1 - similarity). | `float` |
 | **Jaccard** | `jaccard_score(set1, set2)` | Intersection/union of word sets. | `float` (0-1) |
 
-### Code Snippet: Document Similarity
+#### Code Snippet: Document Similarity
 
 ```python
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -735,19 +735,19 @@ X = vectorizer.fit_transform(docs)
 
 similarities = cosine_similarity(X)
 print(similarities)
-# [[1.   0.35 0.11]
-#  [0.35 1.   0.11]
-#  [0.11 0.11 1.  ]]
-# Docs 0 and 1 are most similar (both about chest/breathing)
+## [[1.   0.35 0.11]
+##  [0.35 1.   0.11]
+##  [0.11 0.11 1.  ]]
+## Docs 0 and 1 are most similar (both about chest/breathing)
 
-# Jaccard: compare word sets (ignores frequency)
+## Jaccard: compare word sets (ignores frequency)
 words0 = set(docs[0].lower().split())
 words1 = set(docs[1].lower().split())
 jaccard = len(words0 & words1) / len(words0 | words1)
 print(f"Jaccard: {jaccard:.2f}")  # 0.31
 ```
 
-# Specialized Tools
+## Specialized Tools
 
 General NLP tools work well for common text, but clinical language requires specialized models.
 
@@ -760,7 +760,7 @@ General NLP tools work well for common text, but clinical language requires spec
 
 **UMLS** (Unified Medical Language System) is a biomedical vocabulary database from the National Library of Medicine. It maps between coding systems (ICD, SNOMED, RxNorm) and provides standardized concept identifiers. Tools like MetaMap and QuickUMLS link free-text mentions to UMLS concepts.
 
-# Challenges
+## Challenges
 
 ![Clinical NLP Challenges](media/clinical_negation.jpg)
 
@@ -780,15 +780,15 @@ General NLP tools struggle with clinical text:
 
 ![XKCD: Easily Confused Acronyms](media/xkcd_confused_acronyms.png)
 
-# Pipelines
+## Pipelines
 
 Putting it all together: combine preprocessing, analysis, and extraction into reusable pipelines.
 
-## NLTK Pipeline
+### NLTK Pipeline
 
 NLTK requires manual assembly—each step is explicit and configurable.
 
-### Code Snippet: NLTK Pipeline
+#### Code Snippet: NLTK Pipeline
 
 ```python
 import nltk
@@ -831,18 +831,18 @@ result = nltk_pipeline(note)
 print(f"Tokens: {result['tokens']}")
 print(f"Nouns: {result['nouns']}")
 print(f"BP: {result['blood_pressure']}")
-# Tokens: ['patient', 'john', 'smith', 'age', '45', 'present', 'bp', '140/90', 'chest', 'pain']
-# Nouns: ['patient', 'john', 'smith', 'age', 'bp', 'chest', 'pain']
-# BP: ['140/90']
+## Tokens: ['patient', 'john', 'smith', 'age', '45', 'present', 'bp', '140/90', 'chest', 'pain']
+## Nouns: ['patient', 'john', 'smith', 'age', 'bp', 'chest', 'pain']
+## BP: ['140/90']
 ```
 
 ![XKCD: Python Environment](media/xkcd_python_environment.png)
 
-## spaCy Pipeline
+### spaCy Pipeline
 
 spaCy's pipeline is integrated—one call processes everything.
 
-### Code Snippet: spaCy Pipeline
+#### Code Snippet: spaCy Pipeline
 
 ```python
 import spacy
@@ -866,12 +866,12 @@ result = spacy_pipeline(note)
 print(f"Nouns: {result['nouns']}")
 print(f"Entities: {result['entities']}")
 print(f"BP: {result['blood_pressure']}")
-# Nouns: ['Dr.', 'UCSF', 'Metformin', 'glucose', 'control']
-# Entities: [('Dr. Martinez', 'PERSON'), ('UCSF', 'ORG'), ('01/15/2025', 'DATE')]
-# BP: []
+## Nouns: ['Dr.', 'UCSF', 'Metformin', 'glucose', 'control']
+## Entities: [('Dr. Martinez', 'PERSON'), ('UCSF', 'ORG'), ('01/15/2025', 'DATE')]
+## BP: []
 ```
 
-### Reference Card: spaCy Pipeline
+#### Reference Card: spaCy Pipeline
 
 | Category | Method / Attribute | Purpose & Arguments | Typical Output |
 | :--- | :--- | :--- | :--- |
@@ -882,7 +882,7 @@ print(f"BP: {result['blood_pressure']}")
 | **Token** | `token.is_stop`, `token.is_punct` | Boolean filters. | `bool` |
 | **Doc** | `doc.ents` | Named entities found. | `tuple[Span]` |
 
-## Comparing the Approaches
+### Comparing the Approaches
 
 | Aspect | NLTK Pipeline | spaCy Pipeline |
 |--------|---------------|----------------|
@@ -892,6 +892,6 @@ print(f"BP: {result['blood_pressure']}")
 | NER quality | Basic | Better out-of-box |
 | Speed | Slower | Faster |
 
-# LIVE DEMO
+## LIVE DEMO
 
 ![XKCD: Machine Learning](media/xkcd_machine_learning.png)

@@ -3,14 +3,14 @@ lecture_number: 10
 pdf: false
 ---
 
-# A/B Testing and Causal Inference
+## A/B Testing and Causal Inference
 
-## Theory to Practice with Dr. Demetri Pananos
+### Theory to Practice with Dr. Demetri Pananos
 
 
 ([pdf](media/ab_testing_lecture.pdf))
 
-## Who Am I?
+### Who Am I?
 
 * Dr. Demetri Pananos
 
@@ -20,7 +20,7 @@ pdf: false
 - Late 2023 - Late 2024: A foray into Media Mixed Modelling
 - Late 2024 - Now: Statistics Engineer at Eppo/Datadog.
 
-## Causal Inference? In This Economy?
+### Causal Inference? In This Economy?
 
 * Hot take: _All business questions are causal._
 
@@ -30,7 +30,7 @@ pdf: false
 	* Thinking a decision will impact a lot when it won't
 	* Thinking we are pulling a lever when we aren't
 
-## Causal Inference for Cheap
+### Causal Inference for Cheap
 
 - A/B tests are the easiest way to answer causal questions.
 - Much to know!
@@ -38,7 +38,7 @@ pdf: false
 	* Influencing Teams
 	* When you need more math and when you don't
 
-## Agenda
+### Agenda
 
 * Stats refresher
 * Pokemon and Causal Inference
@@ -49,9 +49,9 @@ _Break_
 * Practical Guidance for Running A/B Tests
 
 
-# Stats Refresher
+## Stats Refresher
 
-## The Central Limit Theorem
+### The Central Limit Theorem
 
 The Central Limit Theorem tells us that the sample mean can be thought of as a normal random variable. Let $Y_1, \cdots, Y_n$ be i.i.d random variables so that $E[Y] = \mu$ and $\operatorname{Var}(Y) = \sigma^2$.
 
@@ -61,7 +61,7 @@ CLT says $$ \bar Y \sim \operatorname{Normal}(\mu, \tfrac{\sigma^2}{n}) $$
 
 This means that $E[\bar Y] =  \mu$ and  $\operatorname{Var}(\bar Y) = \tfrac{\sigma^2}{n}$.
 
-## Thought Exercise: Calculus Grades
+### Thought Exercise: Calculus Grades
 
 I want you to imagine:
 
@@ -75,11 +75,11 @@ Consider:
 * What happens as $N$ gets bigger and bigger?
 * Does the distribution of the actual grades matter for the answer above?
 
-## Example of CLT in Action
+### Example of CLT in Action
 
 ![](media/clt_example.png)
 
-## Hypothesis Tests For Means
+### Hypothesis Tests For Means
 
 We can perform a hypothesis test for the mean by computing the following test statistic
 
@@ -89,7 +89,7 @@ The test statistic for two means being equal is
 
 $$ Z = \dfrac{\bar x - \bar y}{\sqrt{\tfrac{s^2_x}{n_x}  + \tfrac{s^2_y}{n_y}}} $$
 
-## Confidence Intervals & P Values
+### Confidence Intervals & P Values
 
 Two ways to talk about a hypothesis test:
 
@@ -99,9 +99,9 @@ Two ways to talk about a hypothesis test:
 
 ![](media/ci_diagram.png)
 
-# Pokemon and Causal Inference
+## Pokemon and Causal Inference
 
-## Fossils at Mt. Moon
+### Fossils at Mt. Moon
 
 ![](media/mtmoon.png)
 
@@ -110,7 +110,7 @@ Two ways to talk about a hypothesis test:
 * Hypothetically two possible games!  One in which you take dome fossil and one in which you take helix.
 * What can Pokemon teach us about causal inference?
 
-## Rubin's Causal Model & Potential Outcomes
+### Rubin's Causal Model & Potential Outcomes
 
 Let $A_i=0, 1$ be an indicator for some treatment.  Then $Y_i(A_i)$ is the potential outcome under that treatment.
 
@@ -119,7 +119,7 @@ Example: "_My headache went away because I took an aspirin_"
 * $A_i=0$ means not taking the aspirin, and $Y_i(A_i=0)$ is my headache status having not taken the aspirin.
 * $A_i=1$ means taking the aspirin, and $Y(A_i=1)$ is my headache status having taken the aspirin.
 
-## We Never See Both Potential Outcomes
+### We Never See Both Potential Outcomes
 
 In reality, we never know both $Y_i(A_i=0)$ and $Y_i(A_i=1)$ -- we can only ever see one.
 
@@ -127,7 +127,7 @@ We can relate the observed data to the potential outcomes via the _switching equ
 
 $$ Y_i = A_i Y_i(A_i=1) + (1-A_i) Y_i(A_i=0) $$
 
-## Causal Effects
+### Causal Effects
 
 If I knew both potential outcomes, I could compute the casual effect of the action
 
@@ -139,7 +139,7 @@ Let's assume $Y_i(A)$ can be 0 (no headache) or 1 (headache). What each of these
 * $\tau_i = -1$
 
 
-## Average Causal Effects
+### Average Causal Effects
 
 We can talk about the average potential outcome $E[Y(A)]$.   This is different than $E[Y\mid A]$!
 
@@ -154,7 +154,7 @@ $$ \lambda = \dfrac{E[Y_i(A_i=1)]}{E[Y_i(A_i=0)]} - 1 $$
 
 
 
-## How Can We Estimate Causal Effects?
+### How Can We Estimate Causal Effects?
 
 If we can only ever see one potential outcome, how can we ever estimate causal effects?
 
@@ -167,7 +167,7 @@ What if:
 
 Discuss
 
-## Confounding
+### Confounding
 
 Confounding: type of bias that occurs when the association you observe between an exposure and an outcome is distorted by a third variable
 
@@ -175,28 +175,28 @@ Note that **generally** $E[Y(A)] \neq E[Y|A]$!  This is a subtle distinction her
 
 Let's look at an example
 
-## Confounding Example
+### Confounding Example
 
 ```r
-# True causal effect:
+## True causal effect:
   # Aspirin relieves headache
   #  = 2/5 - 3/5
 mean(d$y1) - mean(d$y0)
 
-# If we just looked at data:
+## If we just looked at data:
   # Aspirin increases headache
   # = 2/3 - 1/2
 mean(d$y[d$a==1]) - mean(d$y[d$a==0])
 ```
 
-## How Can We Do Causal Inference At All?
+### How Can We Do Causal Inference At All?
 
 * Never observe the two potential outcomes
 * Confounding means we can't just look at data
 
 How can we ever do causal inference at all?  Is this hopeless?
 
-## 3 Assumptions for Causal Inference
+### 3 Assumptions for Causal Inference
 
 I said **generally** $E[Y(A)] \neq E[Y|A]$, but under these 3 assumptions $E[Y(A)] = E[Y|A]$, and we can do causal inference!
 
@@ -207,7 +207,7 @@ I said **generally** $E[Y(A)] \neq E[Y|A]$, but under these 3 assumptions $E[Y(A
 
 If we have consistency, positivity, and exchangeability, then it is safe to assume $E[Y_i \mid A=a] = E[Y_i(A=a)]$.
 
-## Randomization Gives Us All 3!
+### Randomization Gives Us All 3!
 
 The easiest way to achieve all 3 is via randomization.
 
@@ -217,17 +217,17 @@ The easiest way to achieve all 3 is via randomization.
 
 So long as we can randomize, we can compare group means and that is a valid estimate of the causal effect!
 
-## Sounds Simple, Right?
+### Sounds Simple, Right?
 
 * Just randomize and run a z-test and we're good?
 * "_Experimentation is not a math problem; it is a people problem_" -- Demetri Pananos, Ph.D.
 * In the next section, we will discuss what it means to run A/B tests in real life.  As we will see, it is much different than a statistics class may make it seem.
 
-# Break
+## Break
 
-# Practical A/B Testing
+## Practical A/B Testing
 
-## Steps To an A/B Test
+### Steps To an A/B Test
 
 1. Convince people to run an A/B test
 2. Get Specific!
@@ -237,21 +237,21 @@ So long as we can randomize, we can compare group means and that is a valid esti
 6. Analyze the test
 7. Communicate results
 
-## A "Real Example"
+### A "Real Example"
 
 * You're a DS at a company.
 * New idea to increase upgrades & retention.
 * You think randomizing newly signed up users is a good way to test this.
 * Let's put these into action.
 
-## Convince People To Run an A/B Test
+### Convince People To Run an A/B Test
 
 * A/B Tests take time, teams want to make decisions now.
 * "Can't we roll out and compare before and after?" -- think about exchangeability here.
 * Benefits to experimentation: Avoiding bias in decision making (HiPPO principle) and evidenced based decision making.
 * Your job is to improve decision making, not force statistics on people.  Be compassionate and listen to people's fears and desires.
 
-## Get Specific!
+### Get Specific!
 
 * "We think this will increase upgrades"
   - What counts as an upgrade? (e.g. last through the free trial?  What if there is a refund? Does time matter?)
@@ -261,13 +261,13 @@ So long as we can randomize, we can compare group means and that is a valid esti
 * Ensure your organization aligns with metric definitions.
 * When are we going to run the test?
 
-## Determine How Long the Test Should Run
+### Determine How Long the Test Should Run
 
 * Run a power calculation.  To do this, you need to know your metric's mean and standard error.
 * Express the MDE (minimal detectable effect) as a function of run time.
 * If you're doing a 50/50 split and using $\alpha = 0.05$ and $1-\beta = 0.8$, then $MDE \approx \dfrac{2.8 \sqrt{2 \tfrac{\sigma^2}{N}}}{\mu}$
 
-## Align With Engineering
+### Align With Engineering
 
 * Assignments are created using feature flags, data are created from events.
   * Does the flag fire at the right entry point?
@@ -275,7 +275,7 @@ So long as we can randomize, we can compare group means and that is a valid esti
   * Are we firing _counterfactual events_?
 
 
-## Run The Test and Monitor
+### Run The Test and Monitor
 
 * Stuff Breaks!  It is best to catch it early if possible.  Try to check:
   * You don't have a sample ratio mismatch
@@ -283,7 +283,7 @@ So long as we can randomize, we can compare group means and that is a valid esti
   * You have metric data for both groups
 
 
-## Run The Test and Monitor
+### Run The Test and Monitor
 
 * Sample Ratio Mismatch: When observed fractions allocated to treatment/control do not match intended.
 
@@ -291,12 +291,12 @@ So long as we can randomize, we can compare group means and that is a valid esti
 chisq.test(c(34603, 34583), p = c(0.5, 0.5))
 ```
 
-## Analyze The Test
+### Analyze The Test
 
 * If all looks good and you hit your sample size, you can analyze the test.
 * A z-test is perfectly fine in most cases*
 
-## Analyze The Test
+### Analyze The Test
 
 * A lot of places report "The Lift", which is estimated as
 
@@ -317,7 +317,7 @@ $$
 $$
 
 
-## Communicate Results
+### Communicate Results
 
 * Point estimates are not enough, always report a confidence interval.  In our case
 
@@ -325,7 +325,7 @@ $$
 
 >"The treatment had an estimated lift of 4.31%.  If we had run this test at a different time, or on a different group of users, we would expect the lift would be between -0.58% and 9.2%.  Since the confidence interval contains negative lifts, my recommendation would be to ship control"
 
-## Communicate Results
+### Communicate Results
 
 * _Most_ AB tests are not winners.
 * Twyman's law:
@@ -333,7 +333,7 @@ $$
 * Winner's Curse:
   - Statistically significant results are often over estimates of the true effect
 
-## The Peeking Problem
+### The Peeking Problem
 
 * Many of the statistical guarantees only apply if you look once.
 * **Peeking**: Taking many looks at the data and actioning whenever there is statistical significance.
@@ -342,7 +342,7 @@ $$
 * Example: Consider collecting half the planned sample, then testing each half.  If any of the 2 are stat sig, ship.
 * Under the null, this results in a false positive rate of ~8.2%.  Should be around 5%!
 
-## Always Valid Confidence Intervals
+### Always Valid Confidence Intervals
 
 * There exist "always valid" ([sequential](https://docs.geteppo.com/statistics/confidence-intervals/analysis-methods/#sequential-analysis)) methods.
 * Pros:
@@ -356,7 +356,7 @@ $$
 
 [Link: https://docs.geteppo.com/statistics/confidence-intervals/statistical-nitty-gritty/#sequential](https://docs.geteppo.com/statistics/confidence-intervals/statistical-nitty-gritty/#sequential)
 
-## PMs Want To Go Fast
+### PMs Want To Go Fast
 
 * Time is always the biggest constraint/scarcest resource.
 
@@ -364,7 +364,7 @@ $$ MDE \approx  \dfrac{2.8 \sqrt{2 \dfrac{\sigma^2}{N}}}{\mu}$$
 
 * Samples = Time.  "We Need this $N$ samples" -- not actually!  What other lever can we pull?
 
-## CUPED
+### CUPED
 
 * CUPED is a technique for _variance reduction_ (essentially making $\sigma^2$ smaller).
 * Idea: Find something that is correlated with $y$, but is not affected by the treatment.
@@ -374,7 +374,7 @@ $$\operatorname{Var}(\tilde Y) = \operatorname{Var}(Y)(1-\rho^2) $$
 * Easiest thing to do: Use the outcome (e.g. past revenue) from before the experiment?
 * Rationale:  People who spent a lot before the period are likely to spend a lot again!  Hence, correlation!
 
-## CUPED: How It Works
+### CUPED: How It Works
 
 1. Pick a pre-experiment covariate $X$ (e.g. total revenue in the 28 days _before_ the test).
 2. Compute the adjusted outcome for each user:
@@ -387,11 +387,11 @@ where $\theta = \operatorname{Cov}(Y, X) / \operatorname{Var}(X)$ (i.e. a regres
 
 Because $\operatorname{Var}(\tilde Y) = \operatorname{Var}(Y)(1 - \rho^2)$, a correlation of $\rho = 0.5$ cuts variance by 25%.
 
-## CUPED: Illustration
+### CUPED: Illustration
 
 ![](media/cuped_comparison.png)
 
-## CUPED: Takeaways
+### CUPED: Takeaways
 
 * CUPED is like regression adjustment.
 * The higher $\rho$ between pre-experiment covariate and outcome, the bigger the variance reduction.
@@ -401,9 +401,9 @@ Because $\operatorname{Var}(\tilde Y) = \operatorname{Var}(Y)(1 - \rho^2)$, a co
   - The covariate **must** be measured _before_ randomization so it is not affected by treatment.
   - Most A/B testing platforms (Eppo, Statsig, etc.) support CUPED and can use _multiple_ pre experiment variables to reduce variance even further!
 
-## A Lot To Learn
+### A Lot To Learn
 
 * Don't be discouraged, there is a lot to learn!
 * Don't try to be perfect, try to make justifiable decisions.
 
-# Fin
+## Fin

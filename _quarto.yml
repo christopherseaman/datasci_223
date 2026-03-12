@@ -18,10 +18,8 @@ website:
   repo-url: https://github.com/christopherseaman/datasci_223
 
 format:
-  html:
+  dashboard:
     theme: cyborg
-    toc: true
-    code-overflow: wrap
 
 filters:
   - _filters/obsidian-callouts.lua
