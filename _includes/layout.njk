@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ title or "DataSci 223" }}</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/prismjs@1.29.0/themes/prism-okaidia.min.css">
   <style>
 @import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Fira+Mono:wght@400;600&display=swap');
 
@@ -301,52 +302,6 @@ body.nav-hidden .main-content {
   border-top: 1px solid #7a828e;
   margin: 2em 0;
 }
-
-/* Syntax highlighting — GitHub Dark High Contrast */
-code[class*="language-"],
-pre[class*="language-"] {
-  color: #f0f3f6;
-  background: none;
-  font-family: "Fira Mono", monospace;
-  font-size: 0.85em;
-  text-align: left;
-  white-space: pre;
-  word-spacing: normal;
-  word-break: normal;
-  word-wrap: normal;
-  line-height: 1.5;
-  tab-size: 4;
-  hyphens: none;
-}
-
-pre[class*="language-"] {
-  padding: 1em;
-  margin: 0.5em 0;
-  overflow: auto;
-  border-radius: 6px;
-  background: #0a0a0a;
-  border: 1px solid #7a828e;
-}
-
-:not(pre) > code[class*="language-"] {
-  padding: 0.1em 0.3em;
-  border-radius: 0.3em;
-  background: #1a1a1a;
-}
-
-.token.comment, .token.block-comment, .token.prolog, .token.doctype, .token.cdata { color: #7a828e; }
-.token.punctuation { color: #d9dee3; }
-.token.tag, .token.attr-name, .token.namespace, .token.deleted { color: #ff9492; }
-.token.function-name { color: #71b7ff; }
-.token.boolean, .token.number, .token.function { color: #71b7ff; }
-.token.property, .token.class-name, .token.constant, .token.symbol { color: #f0b72f; }
-.token.selector, .token.important, .token.atrule, .token.keyword, .token.builtin { color: #cb9eff; }
-.token.string, .token.char, .token.attr-value, .token.regex, .token.variable { color: #91cbff; }
-.token.operator, .token.entity, .token.url { color: #39c5cf; }
-.token.important, .token.bold { font-weight: bold; }
-.token.italic { font-style: italic; }
-.token.entity { cursor: help; }
-.token.inserted { color: #26cd4d; }
 
 /* Hamburger toggle */
 .nav-toggle {
