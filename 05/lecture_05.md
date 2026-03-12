@@ -1,32 +1,32 @@
 # 05: Classification: Putting a Label on Things
 
-# References
+## References
 
 <details>
 <summary>Details</summary>
 
-## Documentation
+### Documentation
 
 - [Scikit-learn Classification](https://scikit-learn.org/stable/supervised_learning.html#supervised-learning)
 - [XGBoost Documentation](https://xgboost.readthedocs.io/)
 - [LightGBM Documentation](https://lightgbm.readthedocs.io/)
 - [Featuretools Documentation](https://featuretools.alteryx.com/en/stable/)
 
-## Deep Learning Frameworks
+### Deep Learning Frameworks
 
 - [Keras Getting Started](https://keras.io/getting_started/)
 - [PyTorch Tutorials](https://pytorch.org/tutorials/)
 - [TensorFlow Beginner Quickstart](https://www.tensorflow.org/tutorials/quickstart/beginner)
 - [JAX Quickstart](https://jax.readthedocs.io/en/latest/notebooks/quickstart.html)
 
-## Books
+### Books
 
 - [Python Data Science Handbook](https://jakevdp.github.io/PythonDataScienceHandbook/) - Jake VanderPlas (free online)
 - [Hands-On Machine Learning](https://www.oreilly.com/library/view/hands-on-machine-learning/9781098125967/) - Aurélien Géron
 - [Introduction to Statistical Learning](https://www.statlearning.com/) - James, Witten, Hastie, Tibshirani (free PDF)
 - [Interpretable Machine Learning](https://christophm.github.io/interpretable-ml-book/) - Christoph Molnar (free online)
 
-## Tutorials & Articles
+### Tutorials & Articles
 
 - [A Visual Introduction to Machine Learning](http://www.r2d3.us/visual-intro-to-machine-learning-part-1/)
 - [ROC Curves Explained](https://developers.google.com/machine-learning/crash-course/classification/roc-and-auc) - Google ML Crash Course
@@ -38,7 +38,7 @@
 - [Unsupervised Learning: Algorithms and Examples](https://www.altexsoft.com/blog/unsupervised-machine-learning/) - AltexSoft
 - [Environment and Distribution Shift](https://d2l.ai/chapter_linear-classification/environment-and-distribution-shift.html) - Dive into Deep Learning
 
-## Health Data Examples
+### Health Data Examples
 
 - [Cancer Classification (EDA, PCA, Random Forest)](https://www.kaggle.com/code/nandita711/cancer-classification-eda-pca-random-forest) - Kaggle
 - [XGBoost, Random Forest, and Nomograph for Disease Severity Prediction](https://www.frontiersin.org/articles/10.3389/fcimb.2022.819267/full) - Frontiers
@@ -46,7 +46,7 @@
 
 </details>
 
-# Crash Course in Classification
+## Crash Course in Classification
 
 ![XKCD classification](media/xkcd_classification.png)
 
@@ -55,11 +55,11 @@ The building blocks of ML are algorithms for **regression** and **classification
 - **Regression**: predicting continuous quantities
 - **Classification**: predicting _discrete class labels_ (categories)
 
-## Classification Methods
+### Classification Methods
 
 Classification algorithms learn to assign labels to data points based on their features. In health data, this might mean predicting whether a patient has a disease based on lab results.
 
-### Reference Card: Common Classification Methods
+#### Reference Card: Common Classification Methods
 
 | Method | Description | Strengths |
 |:---|:---|:---|
@@ -72,7 +72,7 @@ Classification algorithms learn to assign labels to data points based on their f
 
 ![it's all statistics](media/its_all_statistics.jpg)
 
-## Model Evaluation
+### Model Evaluation
 
 There are many more classification approaches than data scientists, so choosing the best one for your application can be daunting. Thankfully, all of them output predicted classes for each data point. We can use this similarity to define objective performance criteria based on how often the predicted class matches the underlying truth.
 
@@ -106,7 +106,7 @@ I get in trouble with the data science police if I don't include something about
 
 ![](media/accuracy.webp)
 
-### Reference Card: `confusion_matrix`
+#### Reference Card: `confusion_matrix`
 
 | Component | Details |
 |:---|:---|
@@ -115,7 +115,7 @@ I get in trouble with the data science police if I don't include something about
 | **Key Parameters** | • `y_true`: Ground truth target values<br>• `y_pred`: Estimated targets from classifier<br>• `labels`: List of labels to index the matrix<br>• `normalize`: Normalize over 'true', 'pred', 'all', or None |
 | **Returns** | Array where rows are actual, columns are predicted |
 
-### Code Snippet: Confusion Matrix
+#### Code Snippet: Confusion Matrix
 
 ```python
 from sklearn.metrics import confusion_matrix
@@ -128,11 +128,11 @@ print(cm)
 #  [FN, TP]]
 ```
 
-## Classification Report
+### Classification Report
 
 The `classification_report` function provides a comprehensive summary of precision, recall, and F1-score for each class in a single call—essential for evaluating multi-class models.
 
-### Reference Card: `classification_report`
+#### Reference Card: `classification_report`
 
 | Component | Details |
 |:---|:---|
@@ -141,7 +141,7 @@ The `classification_report` function provides a comprehensive summary of precisi
 | **Key Parameters** | • `y_true`: Ground truth target values<br>• `y_pred`: Estimated targets from classifier<br>• `target_names`: Display names for classes<br>• `output_dict`: Return dict instead of string |
 | **Returns** | String (or dict) with precision, recall, F1-score, support per class |
 
-### Code Snippet: Classification Report
+#### Code Snippet: Classification Report
 
 ```python
 from sklearn.metrics import classification_report
@@ -161,7 +161,7 @@ print(classification_report(y_true, y_pred, target_names=['No Disease', 'Mild', 
 # weighted avg       0.71      0.71      0.71         7
 ```
 
-## ROC Curve and AUC
+### ROC Curve and AUC
 
 An **ROC curve** (Receiver Operating Characteristic curve) shows how a classifier's performance changes as you vary the threshold for predicting "positive." It plots:
 
@@ -174,7 +174,7 @@ An **ROC curve** (Receiver Operating Characteristic curve) shows how a classifie
 
 ![](media/auc.png)
 
-### Reference Card: `roc_curve` and `roc_auc_score`
+#### Reference Card: `roc_curve` and `roc_auc_score`
 
 | Component | Details |
 |:---|:---|
@@ -183,7 +183,7 @@ An **ROC curve** (Receiver Operating Characteristic curve) shows how a classifie
 | **Key Parameters** | • `y_true`: True binary labels<br>• `y_score`: Probability estimates (use `predict_proba()[:, 1]`) |
 | **Interpretation** | AUC = 0.5 is random guessing; AUC = 1.0 is perfect |
 
-### Code Snippet: ROC and AUC
+#### Code Snippet: ROC and AUC
 
 ```python
 from sklearn.metrics import roc_curve, roc_auc_score
@@ -206,7 +206,7 @@ However, both these reasons come with caveats:
 - **Scale invariance is not always desirable.** Sometimes we need well calibrated probability outputs, and AUC won't tell us about that.
 - **Classification-threshold invariance is not always desirable.** In cases where there are wide disparities in the cost of false negatives vs. false positives, AUC isn't the right metric.
 
-# Supervised vs. Unsupervised
+## Supervised vs. Unsupervised
 
 There are two(-ish) overarching categories of classification algorithms: **supervised** and **unsupervised**. There are many possible approaches in each category, and some that work well in both (deep learning, for example).
 
@@ -216,7 +216,7 @@ There are two(-ish) overarching categories of classification algorithms: **super
 
 ![](media/supervisor.gif)
 
-## Supervised Models
+### Supervised Models
 
 To fairly evaluate each model, we must **test** its performance on different data than it was **train**ed on. So we split our dataset into two partitions: **test** and **train**:
 
@@ -230,7 +230,7 @@ To fairly evaluate each model, we must **test** its performance on different dat
 
 > **A note on terminology:** The standard convention is **train/validation/test**, where validation is used for model development and test is the final holdout. However, sklearn's function is called `train_test_split()` and cross-validation literature often refers to "test folds"—so you'll see some inconsistency in practice. We'll follow the standard: validation for tuning/selection, test for final evaluation.
 
-### Reference Card: `train_test_split`
+#### Reference Card: `train_test_split`
 
 | Component | Details |
 |:---|:---|
@@ -241,7 +241,7 @@ To fairly evaluate each model, we must **test** its performance on different dat
 
 > **Tip:** Always use `stratify=y` for classification tasks—especially with imbalanced classes—to ensure both train and test sets have similar class distributions.
 
-### Code Snippet: Train/Test Split
+#### Code Snippet: Train/Test Split
 
 ```python
 from sklearn.model_selection import train_test_split
@@ -257,7 +257,7 @@ print("X_train shape:", X_train.shape)
 print("X_test shape:", X_test.shape)
 ```
 
-## Cross-Validation for Model Comparison
+### Cross-Validation for Model Comparison
 
 A single train/test split can be misleading if the split happens to be particularly easy or hard. **Cross-validation** provides more robust performance estimates by training and testing on multiple different splits of the data.
 
@@ -268,7 +268,7 @@ A single train/test split can be misleading if the split happens to be particula
 3. Repeat k times, each fold serving as test once
 4. Average the results for final performance estimate
 
-### Reference Card: `cross_val_score`
+#### Reference Card: `cross_val_score`
 
 | Component | Details |
 |:---|:---|
@@ -279,7 +279,7 @@ A single train/test split can be misleading if the split happens to be particula
 
 ![](media/cross-validation-k-fold.jpg)
 
-### Code Snippet: Cross-Validation
+#### Code Snippet: Cross-Validation
 
 ```python
 from sklearn.model_selection import cross_val_score, StratifiedKFold
@@ -297,7 +297,7 @@ print(f"F1 scores per fold: {scores}")
 print(f"Mean F1: {scores.mean():.3f} (+/- {scores.std() * 2:.3f})")
 ```
 
-### Reference Card: `StratifiedKFold`
+#### Reference Card: `StratifiedKFold`
 
 | Component | Details |
 |:---|:---|
@@ -306,7 +306,7 @@ print(f"Mean F1: {scores.mean():.3f} (+/- {scores.std() * 2:.3f})")
 | **Key Parameters** | • `n_splits`: Number of folds (default 5)<br>• `shuffle`: Shuffle data before splitting<br>• `random_state`: Seed for reproducibility |
 | **Use With** | Pass to `cross_val_score(cv=...)` or iterate manually |
 
-### Code Snippet: StratifiedKFold
+#### Code Snippet: StratifiedKFold
 
 ```python
 from sklearn.model_selection import StratifiedKFold
@@ -323,7 +323,7 @@ for fold, (train_idx, val_idx) in enumerate(skf.split(X, y)):
 
 ![](media/cross-validation-stratified.webp)
 
-## Model Comparison Workflow
+### Model Comparison Workflow
 
 Once you have evaluation metrics and cross-validation set up, the typical workflow for comparing models is:
 
@@ -374,7 +374,7 @@ flowchart TB
     style FoldRow fill:none,stroke:none
 ```
 
-### Code Snippet: Comparing Multiple Models
+#### Code Snippet: Comparing Multiple Models
 
 ```python
 from sklearn.model_selection import cross_val_score, StratifiedKFold
@@ -398,9 +398,9 @@ for name, model in models.items():
     print(f"{name}: F1 = {scores.mean():.3f} (+/- {scores.std() * 2:.3f})")
 ```
 
-# LIVE DEMO
+## LIVE DEMO
 
-# Quick Supervised Model Overview
+## Quick Supervised Model Overview
 
 Let's look at a few tools that you should get a lot of use out of:
 
@@ -411,7 +411,7 @@ Let's look at a few tools that you should get a lot of use out of:
 
     _Deep Learning models may also be used in unsupervised settings_
 
-## Logistic Regression
+### Logistic Regression
 
 Logistic regression works similarly to linear regression but uses a sigmoid curve that squeezes our straight line into an S-curve. Note that logistic regression actually "fits" by training linear-like terms inside a more complex function.
 
@@ -423,7 +423,7 @@ Additionally, it uses **log loss** (also called **cross-entropy loss**: a cost t
 
 ![Approximation optimization](media/approx_optimization.png)
 
-### Reference Card: `LogisticRegression`
+#### Reference Card: `LogisticRegression`
 
 | Component | Details |
 |:---|:---|
@@ -432,7 +432,7 @@ Additionally, it uses **log loss** (also called **cross-entropy loss**: a cost t
 | **Key Parameters** | • `penalty`: Regularization ('l2', 'l1', 'elasticnet')<br>• `C`: Inverse regularization strength (smaller = stronger)<br>• `solver`: Optimization algorithm<br>• `max_iter`: Max iterations for convergence |
 | **Key Methods** | `.fit()`, `.predict()`, `.predict_proba()` |
 
-### Code Snippet: Logistic Regression
+#### Code Snippet: Logistic Regression
 
 ```python
 from sklearn.linear_model import LogisticRegression
@@ -442,7 +442,7 @@ model = LogisticRegression().fit(X, y)
 print(model.predict([[2, 2]]))  # Predicts class label
 ```
 
-## Random Forest
+### Random Forest
 
 Each of the steps can be tweaked, but the general flow goes:
 
@@ -452,7 +452,7 @@ Each of the steps can be tweaked, but the general flow goes:
 
 ![](media/random_forest.jpg)
 
-### Reference Card: `RandomForestClassifier`
+#### Reference Card: `RandomForestClassifier`
 
 | Component | Details |
 |:---|:---|
@@ -463,7 +463,7 @@ Each of the steps can be tweaked, but the general flow goes:
 
 ![](media/feature_importance.webp)
 
-### Code Snippet: Random Forest
+#### Code Snippet: Random Forest
 
 ```python
 from sklearn.ensemble import RandomForestClassifier
@@ -476,7 +476,7 @@ print(model.predict([[2, 2]]))
 
 ![XKCD Ensemble Model](media/xkcd_ensemble_model.png)
 
-## XGBoost
+### XGBoost
 
 XGBoost stands for **Extreme Gradient Boosting**. Like other tree algorithms, XGBoost considers each instance with a series of `if` statements, resulting in a leaf with associated class assignment scores. Where XGBoost differs is that it uses gradient boosting to focus on weak-performing areas of the previous tree.
 
@@ -485,7 +485,7 @@ XGBoost stands for **Extreme Gradient Boosting**. Like other tree algorithms, XG
 
 ![XGBoost diagram](media/xgboost.png)
 
-### Reference Card: `XGBClassifier`
+#### Reference Card: `XGBClassifier`
 
 | Component | Details |
 |:---|:---|
@@ -494,7 +494,7 @@ XGBoost stands for **Extreme Gradient Boosting**. Like other tree algorithms, XG
 | **Key Parameters** | • `n_estimators`: Number of boosting rounds<br>• `learning_rate`: Step size shrinkage (eta)<br>• `max_depth`: Maximum tree depth<br>• `subsample`: Training instance subsample ratio |
 | **Install** | `pip install xgboost` |
 
-### Code Snippet: XGBoost
+#### Code Snippet: XGBoost
 
 ```python
 import xgboost as xgb
@@ -505,7 +505,7 @@ model = xgb.XGBClassifier(n_estimators=10).fit(X, y)
 print(model.predict([[2, 2]]))
 ```
 
-## LightGBM: A Faster Alternative
+### LightGBM: A Faster Alternative
 
 **LightGBM** (Light Gradient Boosting Machine) is Microsoft's gradient boosting framework, optimized for speed and memory efficiency. It's often faster than XGBoost, especially on large datasets.
 
@@ -515,7 +515,7 @@ Key differences from XGBoost:
 - **Histogram-based splitting** - bins continuous features into discrete bins for faster training
 - **Native categorical support** - handles categorical features directly without one-hot encoding
 
-### Reference Card: `LGBMClassifier`
+#### Reference Card: `LGBMClassifier`
 
 | Component | Details |
 |:---|:---|
@@ -524,7 +524,7 @@ Key differences from XGBoost:
 | **Key Parameters** | • `n_estimators`: Number of boosting rounds<br>• `learning_rate`: Step size shrinkage<br>• `num_leaves`: Max number of leaves per tree<br>• `max_depth`: Limit tree depth (-1 for no limit) |
 | **Install** | `pip install lightgbm` |
 
-### Code Snippet: LightGBM
+#### Code Snippet: LightGBM
 
 ```python
 from lightgbm import LGBMClassifier
@@ -541,7 +541,7 @@ print(model.predict([[2, 2]]))
 - **LightGBM** - faster training, lower memory, good for large datasets
 - Both are excellent choices for tabular data classification
 
-## Deep Learning
+### Deep Learning
 
 **Deep learning** is a subfield of machine learning that uses artificial neural networks with multiple layers to learn complex patterns from data. These models use back-propagation to adjust the weights in each layer during training, allowing them to model very large and complex datasets.
 
@@ -556,7 +556,7 @@ More on neural networks later in the course...
 
 ![](media/better_than_me.png)
 
-### Reference Card: Keras Sequential Model
+#### Reference Card: Keras Sequential Model
 
 | Component | Details |
 |:---|:---|
@@ -565,7 +565,7 @@ More on neural networks later in the course...
 | **`model.compile()`** | Configure for training (optimizer, loss, metrics) |
 | **Common Activations** | 'relu', 'sigmoid', 'softmax', 'tanh' |
 
-### Code Snippet: Simple Neural Network
+#### Code Snippet: Simple Neural Network
 
 ```python
 from tensorflow import keras
@@ -579,7 +579,7 @@ model.compile(optimizer='adam', loss='binary_crossentropy')
 model.fit(X_train, y_train, epochs=10)
 ```
 
-## Unsupervised Models (Further Reading)
+### Unsupervised Models (Further Reading)
 
 Unsupervised models are used when you don't have labeled data. While this course focuses on supervised classification, it's worth knowing what's available:
 
@@ -589,9 +589,9 @@ Unsupervised models are used when you don't have labeled data. While this course
 
 ![unsupervised](media/unsupervised.png)
 
-# LIVE DEMO
+## LIVE DEMO
 
-# How Models Fail
+## How Models Fail
 
 Even the best models can fail if the data is messy, the problem is hard, or the world changes. Common failure modes include:
 
@@ -601,7 +601,7 @@ Even the best models can fail if the data is messy, the problem is hard, or the 
 - Hidden confounders (Simpson's paradox)
 - Imbalanced or "troublesome" classes
 
-## Labeling
+### Labeling
 
 Oh, labeling…
 
@@ -613,7 +613,7 @@ Labeling issues can arise when the data is not labeled correctly or consistently
 - **Ambiguous labeling**: Labels that are assigned to data points are not clear or specific.
 - **Inconsistent labeling**: Labels that are assigned to similar data points are not the same
 
-## Fit
+### Fit
 
 A model may fail to fit the data in one of two ways: under-fitting or over-fitting:
 
@@ -626,7 +626,7 @@ A model may fail to fit the data in one of two ways: under-fitting or over-fitti
 
 ![XKCD Curve Fitting](media/xkcd_curve_fitting.png)
 
-## Dataset Shift
+### Dataset Shift
 
 Dataset shift occurs when the distribution of the data changes between the training and test sets. Dataset shift can be divided into three types:
 
@@ -642,13 +642,13 @@ Production data (2018+): "...nevermind"
 
 ![Fidget spinner crash](media/fidget_spinner_crash.png)
 
-## Simpson's Paradox
+### Simpson's Paradox
 
 **Simpson's paradox** occurs when a trend appears in several different groups of data, but disappears or reverses when these groups are combined. It is a common problem in statistics and machine learning that can occur when there are confounding variables that affect the relationship between the independent and dependent variables.
 
 ![Simpson's paradox](media/simpsons_paradox.png)
 
-## Troublesome Classes
+### Troublesome Classes
 
 Certain classes or categories in a dataset may be more difficult to classify accurately than others. This can be due to imbalanced class distribution, noisy data, or other factors. Identifying and addressing troublesome classes is an important step in building effective classification models.
 
@@ -656,17 +656,17 @@ Certain classes or categories in a dataset may be more difficult to classify acc
 
 ![XKCD Extrapolating](media/xkcd_extrapolating.png)
 
-# Model Interpretation
+## Model Interpretation
 
 Understanding **why** a model makes its predictions is crucial in health data science—especially when decisions impact patient care.
 
 ![what the hell is this](media/what_the_hell_is_this.jpg)
 
-## SHAP Values for Feature Importance
+### SHAP Values for Feature Importance
 
 **SHAP** (SHapley Additive exPlanations) assigns each feature an importance value for a particular prediction, based on cooperative game theory. SHAP provides more rigorous explanations than simpler methods but takes longer to compute.
 
-### Reference Card: SHAP
+#### Reference Card: SHAP
 
 | Component | Details |
 |:---|:---|
@@ -676,7 +676,7 @@ Understanding **why** a model makes its predictions is crucial in health data sc
 | **`dependence_plot()`** | Show feature interactions |
 | **Install** | `pip install shap` |
 
-### Code Snippet: SHAP
+#### Code Snippet: SHAP
 
 ```python
 import shap
@@ -700,11 +700,11 @@ _Example SHAP summary plot: Each dot shows a feature's impact on a prediction. C
 
 _Example SHAP dependence plot: Shows how the effect of one feature depends on the value of another feature._
 
-## eli5 for Model Inspection
+### eli5 for Model Inspection
 
 **eli5** is a Python library that helps demystify machine learning models by showing feature weights and decision paths.
 
-### Reference Card: eli5
+#### Reference Card: eli5
 
 | Component | Details |
 |:---|:---|
@@ -714,7 +714,7 @@ _Example SHAP dependence plot: Shows how the effect of one feature depends on th
 | **Key Parameters** | • `estimator`: Trained model<br>• `feature_names`: List of feature names<br>• `top`: Number of top features to show |
 | **Install** | `pip install eli5` |
 
-### Code Snippet: eli5
+#### Code Snippet: eli5
 
 ```python
 import eli5
@@ -731,15 +731,15 @@ eli5.show_weights(model, feature_names=['feature1', 'feature2'])
 
 ![eli5 prediction explanation](media/eli5_explain_prediction.png)
 
-# Practical Data Preparation
+## Practical Data Preparation
 
 Preparing your data is just as important as choosing the right model. Good data prep can make or break your results—especially with real-world health data, which is often messy, imbalanced, and full of categorical variables.
 
-## Feature Scaling with StandardScaler
+### Feature Scaling with StandardScaler
 
 Many algorithms (especially logistic regression, SVMs, and neural networks) perform better when features are on similar scales. **StandardScaler** transforms features to have mean=0 and standard deviation=1.
 
-### Reference Card: `StandardScaler`
+#### Reference Card: `StandardScaler`
 
 | Component | Details |
 |:---|:---|
@@ -748,7 +748,7 @@ Many algorithms (especially logistic regression, SVMs, and neural networks) perf
 | **Key Methods** | • `fit(X)`: Compute mean and std from training data<br>• `transform(X)`: Apply standardization<br>• `fit_transform(X)`: Fit and transform in one step<br>• `inverse_transform(X)`: Reverse the transformation |
 | **When to Use** | Logistic regression, SVM, neural networks, K-means, PCA |
 
-### Code Snippet: StandardScaler
+#### Code Snippet: StandardScaler
 
 ```python
 from sklearn.preprocessing import StandardScaler
@@ -764,11 +764,11 @@ print("Scaled:\n", X_scaled)
 # Each column now has mean≈0, std≈1
 ```
 
-## LabelEncoder for Target Variables
+### LabelEncoder for Target Variables
 
 Some classifiers (like XGBoost) require target labels to be consecutive integers starting from 0. **LabelEncoder** transforms arbitrary labels like [5, 7, 9] into [0, 1, 2].
 
-### Reference Card: `LabelEncoder`
+#### Reference Card: `LabelEncoder`
 
 | Component | Details |
 |:---|:---|
@@ -777,7 +777,7 @@ Some classifiers (like XGBoost) require target labels to be consecutive integers
 | **Key Methods** | • `fit(y)`: Learn label mapping<br>• `transform(y)`: Apply encoding<br>• `fit_transform(y)`: Fit and transform in one step<br>• `inverse_transform(y)`: Convert back to original labels |
 | **When to Use** | XGBoost with multi-class labels, or when algorithms require 0-indexed labels |
 
-### Code Snippet: LabelEncoder
+#### Code Snippet: LabelEncoder
 
 ```python
 from sklearn.preprocessing import LabelEncoder
@@ -794,13 +794,13 @@ y_original = encoder.inverse_transform(y_encoded)
 print(y_original)  # [5, 7, 9, 5, 7, 9]
 ```
 
-## OneHotEncoder for Categorical Variables
+### OneHotEncoder for Categorical Variables
 
 Many machine learning models require all input features to be numeric. **One-hot encoding** transforms categorical variables (like "smoker" or "blood type") into a set of binary columns.
 
 ![onehotencoder](media/onehotencoder.png)
 
-### Reference Card: `OneHotEncoder`
+#### Reference Card: `OneHotEncoder`
 
 | Component | Details |
 |:---|:---|
@@ -808,7 +808,7 @@ Many machine learning models require all input features to be numeric. **One-hot
 | **Purpose** | Encode categorical features as binary columns |
 | **Key Parameters** | • `categories`: Categories per feature ('auto')<br>• `drop`: Drop category to avoid multicollinearity<br>• `sparse_output`: Return sparse matrix or array<br>• `handle_unknown`: How to handle unknown categories |
 
-### Code Snippet: OneHotEncoder
+#### Code Snippet: OneHotEncoder
 
 ```python
 from sklearn.preprocessing import OneHotEncoder
@@ -820,7 +820,7 @@ encoded = encoder.fit_transform(df[['smoker']])
 print(encoded)
 ```
 
-## Handling Imbalanced Classes with Evaluation Metrics
+### Handling Imbalanced Classes with Evaluation Metrics
 
 Consider metrics that penalize misclassifications unequally, like:
 
@@ -828,13 +828,13 @@ Consider metrics that penalize misclassifications unequally, like:
 - **Precision**: Proportion of positive identifications that were actually correct
 - **Recall**: Proportion of actual positives that were identified correctly
 
-## Handling Imbalanced Data with SMOTE
+### Handling Imbalanced Data with SMOTE
 
 In health data, one class (like "disease present") is often much rarer than the other. **SMOTE** (Synthetic Minority Over-sampling Technique) creates synthetic examples of the minority class to balance the dataset.
 
 ![smote](media/smote.png)
 
-### Reference Card: `SMOTE`
+#### Reference Card: `SMOTE`
 
 | Component | Details |
 |:---|:---|
@@ -843,7 +843,7 @@ In health data, one class (like "disease present") is often much rarer than the 
 | **Key Parameters** | • `sampling_strategy`: Target class distribution<br>• `k_neighbors`: Neighbors used for interpolation<br>• `random_state`: For reproducibility |
 | **Install** | `pip install imbalanced-learn` |
 
-### Code Snippet: SMOTE
+#### Code Snippet: SMOTE
 
 ```python
 from imblearn.over_sampling import SMOTE
@@ -860,11 +860,11 @@ print("Resampled:", collections.Counter(y_resampled))
 
 ![imbalance](media/imbalanced_classes.jpg)
 
-## Feature Engineering
+### Feature Engineering
 
 Good features often matter more than the choice of algorithm. Feature engineering combines domain knowledge with data transformation to create inputs that help models learn.
 
-## Domain-Specific Feature Derivations
+### Domain-Specific Feature Derivations
 
 The best features often come from domain knowledge—knowing what matters in health data:
 
@@ -873,11 +873,11 @@ The best features often come from domain knowledge—knowing what matters in hea
 - Creating a "polypharmacy" flag for patients on multiple medications
 - Age buckets for risk stratification
 
-## Automated Feature Engineering (Further Reading)
+### Automated Feature Engineering (Further Reading)
 
 For complex relational datasets, libraries like **featuretools** can automatically generate features using Deep Feature Synthesis. This is especially useful for time series and multi-table data.
 
-## When and How to Combine Techniques
+### When and How to Combine Techniques
 
 Often, you'll need to use several data prep techniques together. The order is crucial to prevent **data leakage**—when information from the test set accidentally influences training, leading to overly optimistic performance estimates.
 
@@ -900,4 +900,4 @@ Often, you'll need to use several data prep techniques together. The order is cr
 - **Precision, Recall, F1-score:** Especially for minority class
 - **ROC AUC:** Or Precision-Recall AUC for imbalanced data
 
-# LIVE DEMO
+## LIVE DEMO

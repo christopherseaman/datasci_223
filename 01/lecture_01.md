@@ -1,6 +1,6 @@
 # 01: Defensive Programming and Debugging 🐛
 
-# Links & Self-Guided Review
+## Links & Self-Guided Review
 
 <details>
 <summary>Details</summary>
@@ -14,16 +14,16 @@
 
 </details>
 
-# But First, A Blast from the Past
+## But First, A Blast from the Past
 
-## Carryovers from DataSci-217
+### Carryovers from DataSci-217
 
 ![XKCD: Git](media/xkcd_git.png)
 
 - You already know Python, git/Markdown, and VS Code basics—this lecture focuses on reliability and debugging.
 - Pick a workflow (local venv or Codespaces) and stick with it to reduce surprises.
 
-### Reference: DS-217 carryovers
+#### Reference: DS-217 carryovers
 
 | Topic         | What to reuse                       |
 | ------------- | ----------------------------------- |
@@ -31,19 +31,19 @@
 | Git hygiene   | Small commits, meaningful messages  |
 | Markdown      | Headings, fenced code blocks, links |
 
-### Code Snippet: Warmup commands
+#### Code Snippet: Warmup commands
 
 ```bash
 python -m venv .venv && source .venv/bin/activate
 git status && git commit -am "chore: warm up"
 ```
 
-## Command line quick hits
+### Command line quick hits
 
 - Same commands everywhere: use the CLI for speed and reproducibility.
 - Shell in Jupyter works too (`!ls`, `!pwd`), but keep paths relative.
 
-### Reference: Workflow commands
+#### Reference: Workflow commands
 
 | Command          | Purpose                   |
 | ---------------- | ------------------------- |
@@ -54,7 +54,7 @@ git status && git commit -am "chore: warm up"
 | `mv <src> <dst>` | Move/rename               |
 | `rm <file>`      | Remove file (careful)     |
 
-### Code Snippet: Shell basics
+#### Code Snippet: Shell basics
 
 ```bash
 pwd
@@ -62,7 +62,7 @@ ls -la
 cd lectures/01
 ```
 
-## Workflow: local venv or Codespaces
+### Workflow: local venv or Codespaces
 
 ![Python import tips](media/python_import.webp)
 
@@ -74,7 +74,7 @@ cd lectures/01
 > [!WARNING]
 > Beware of Symantec Firewall and WSL, they do **NOT** like each other.
 
-### Reference: Workflow setup
+#### Reference: Workflow setup
 
 | Command                           | Purpose                     |
 | --------------------------------- | --------------------------- |
@@ -83,7 +83,7 @@ cd lectures/01
 | `.venv\\Scripts\\activate`        | Activate venv (Windows)     |
 | `pip install -r requirements.txt` | Install course dependencies |
 
-### Code Snippet: venv + install
+#### Code Snippet: venv + install
 
 ```bash
 python -m venv .venv
@@ -91,7 +91,7 @@ source .venv/bin/activate  # Windows: .venv\\Scripts\\activate
 pip install -r requirements.txt
 ```
 
-## Notebook hygiene and reproducibility
+### Notebook hygiene and reproducibility
 
 ![](media/clinically_tested.png)
 
@@ -99,7 +99,7 @@ pip install -r requirements.txt
 - Clear outputs before commits unless the output is the point.
 - Keep configs/paths in YAML or `.env`
 
-### Reference: Notebook hygiene
+#### Reference: Notebook hygiene
 
 | Practice             | Why it matters                    |
 | -------------------- | --------------------------------- |
@@ -107,7 +107,7 @@ pip install -r requirements.txt
 | Defined requirements | Reproducible environments         |
 | Relative paths       | Portability across machines       |
 
-### Code Snippet: Clear outputs
+#### Code Snippet: Clear outputs
 
 ```bash
 jupyter nbconvert --ClearOutputPreprocessor.enabled=True --inplace lecture.ipynb
@@ -115,14 +115,14 @@ jupyter nbconvert --ClearOutputPreprocessor.enabled=True --inplace lecture.ipynb
 
 ![Notebook cleared outputs](media/jupyter_clear.png)
 
-## YAML essentials for config files 🧾
+### YAML essentials for config files 🧾
 
 - YAML = “Yet Another Markup Language,” but think “plain-English JSON” with indentation-based structure.
 - Use **spaces, not tabs**, and keep indentation consistent (two spaces is plenty).
 - Strings don’t need quotes unless they contain special characters; `#` starts a comment.
 - Great for centralizing run-time knobs like file paths, thresholds, or feature flags.
 
-### Reference Card: YAML building blocks
+#### Reference Card: YAML building blocks
 
 | Concept          | YAML syntax example                      | Tip for beginners                        |
 | ---------------- | ---------------------------------------- | ---------------------------------------- |
@@ -131,7 +131,7 @@ jupyter nbconvert --ClearOutputPreprocessor.enabled=True --inplace lecture.ipynb
 | Lists            | `emails:\n  - alice@example.com`         | Dashes introduce list items              |
 | Inline objects   | `height_cm: { min: 120, max: 230 }`      | Use cautiously; easier to read multiline |
 
-### Code Snippet: Sample `config.yaml`
+#### Code Snippet: Sample `config.yaml`
 
 ```yaml
 data:
@@ -151,7 +151,7 @@ bmi_thresholds:
     overweight: 30 # obese is anything above this
 ```
 
-### Code Snippet: Load YAML safely
+#### Code Snippet: Load YAML safely
 
 ```python
 from pathlib import Path
@@ -165,16 +165,16 @@ with CONFIG_PATH.open() as f:
 print("BMI thresholds:", config["bmi_thresholds"])
 ```
 
-## Config Alternative: `.env`
+### Config Alternative: `.env`
 
 `dot-env` is a simple way to manage environment variables in Python. It allows you to store sensitive information like API keys and database credentials in a `.env` file, which is not committed to version control.
 
-### Reference: `.env`
+#### Reference: `.env`
 
 - [Python-dotenv](https://github.com/theskumar/python-dotenv)
 - [os](https://docs.python.org/3/library/os.html)
 
-### Code Snippet: `.env`
+#### Code Snippet: `.env`
 
 ```bash
 # This would be the .env file
@@ -195,11 +195,11 @@ DB_PASSWORD = os.getenv("DB_PASSWORD")
 
 ```
 
-## Jupyter magics & shell in notebooks
+### Jupyter magics & shell in notebooks
 
 - Magics speed up debugging and profiling; shell commands help inspect files without leaving the notebook.
 
-### Reference: Jupyter magics
+#### Reference: Jupyter magics
 
 | Magic            | Purpose                     |
 | ---------------- | --------------------------- |
@@ -209,7 +209,7 @@ DB_PASSWORD = os.getenv("DB_PASSWORD")
 | `%%bash`         | Run a bash cell             |
 | `!ls data`       | Shell command from a cell   |
 
-### Code Snippet: Magics
+#### Code Snippet: Magics
 
 ```python
 %pwd
@@ -217,7 +217,7 @@ DB_PASSWORD = os.getenv("DB_PASSWORD")
 !ls data
 ```
 
-## Git/GitHub/Markdown in 5 minutes
+### Git/GitHub/Markdown in 5 minutes
 
 ![Git branches at a glance](media/git_branches.png)
 
@@ -225,7 +225,7 @@ DB_PASSWORD = os.getenv("DB_PASSWORD")
 - Markdown: one `# Title`, structured headings, fenced code blocks.
 - GUI (VS Code Source Control) is fine if it keeps you moving.
 
-### Reference: Git/Markdown cheatsheet
+#### Reference: Git/Markdown cheatsheet
 
 | Command                         | Purpose                     |
 | ------------------------------- | --------------------------- |
@@ -246,7 +246,7 @@ DB_PASSWORD = os.getenv("DB_PASSWORD")
 | `_italic_` | Italic text               |
 | `> quote`     | Blockquotes               |
 
-### Code Snippet: Git loop
+#### Code Snippet: Git loop
 
 ```bash
 git status
@@ -257,11 +257,11 @@ git push
 
 ![](media/read-the-docs.jpeg)
 
-# LIVE DEMO
+## LIVE DEMO
 
-# Defensive programming for data science
+## Defensive programming for data science
 
-## Common failure modes in data projects
+### Common failure modes in data projects
 
 ![XKCD: Error Types](media/xkcd_error_types.png)
 
@@ -269,7 +269,7 @@ git push
 - Environment drift: different Python versions or stale venvs.
 - PHI leaks via logs or screenshots.
 
-### Reference: Failure modes
+#### Reference: Failure modes
 
 | Risk            | Quick defense                         |
 | --------------- | ------------------------------------- |
@@ -277,7 +277,7 @@ git push
 | Unit drift      | Normalize units + validate ranges     |
 | Stale env       | Recreate venv from `requirements.txt` |
 
-### Code Snippet: Assert schema
+#### Code Snippet: Assert schema
 
 ```python
 def assert_expected_columns(df, expected):
@@ -286,7 +286,7 @@ def assert_expected_columns(df, expected):
         raise ValueError(f"Missing columns: {missing}")
 ```
 
-## DRY + KISS (and pure functions)
+### DRY + KISS (and pure functions)
 
 These are important principles in software development, but they are not hard rules. They are guidelines that help you write better code. They are often stored together in a shared `lib/` library directory.
 
@@ -294,7 +294,7 @@ These are important principles in software development, but they are not hard ru
 - KISS: fewer moving parts means fewer places for bugs to hide.
 - Pure functions (same input → same output) are easier to test and debug.
 
-### Reference Card: DRY/KISS and pure functions
+#### Reference Card: DRY/KISS and pure functions
 
 | Idea          | Meaning                                               | Why it matters                            |
 | ------------- | ----------------------------------------------------- | ----------------------------------------- |
@@ -302,7 +302,7 @@ These are important principles in software development, but they are not hard ru
 | KISS          | Keep it simple (small functions, clear names)         | Easier to read, debug, and refactor       |
 | Pure function | No hidden changes; returns a value instead of “doing” | Simple unit tests; fewer surprise effects |
 
-### Code Snippet: A tiny “pure helper” function
+#### Code Snippet: A tiny “pure helper” function
 
 ```python
 # Define a function once and use it everywhere!
@@ -310,7 +310,7 @@ def normalize_column_name(name: str) -> str:
     return name.strip().lower().replace(" ", "_")
 ```
 
-## Linters (catch issues early)
+### Linters (catch issues early)
 
 ![Linter reminder](media/linter.png)
 
@@ -318,13 +318,13 @@ def normalize_column_name(name: str) -> str:
 - They catch typos, unused imports, and inconsistent style.
 - In VS Code, they show up as warnings while you type.
 
-### Reference Card: Linters in practice
+#### Reference Card: Linters in practice
 
 | Tool   | What it catches early               | Where you see it                  |
 | ------ | ----------------------------------- | --------------------------------- |
 | Linter | Unused imports, typos, style issues | VS Code “Problems”, squiggles, CI |
 
-## Config files (stop hardcoding)
+### Config files (stop hardcoding)
 
 - Config files keep settings out of your code.
 - Typical config values: file paths, URLs, API keys (never commit real secrets).
@@ -333,14 +333,14 @@ def normalize_column_name(name: str) -> str:
     - `.yaml` - Very human-friendly
     - `.json` - Most common with Javascript and web applications
 
-### Reference Card: What belongs in config vs code
+#### Reference Card: What belongs in config vs code
 
 | Put it in… | Examples                                         |
 | ---------- | ------------------------------------------------ |
 | Config     | data paths, environment names, API endpoints     |
 | Code       | data cleaning logic, feature engineering, models |
 
-### Code Snippet: Config helper
+#### Code Snippet: Config helper
 
 ```bash
 # config.yaml
@@ -361,19 +361,19 @@ data = pd.read_csv(settings["data"]["path"])
 data = pd.read_parquet(settings["data"]["path"])
 ```
 
-## Code quality tools
+### Code quality tools
 
 - Formatters and linters (`ruff`) keep code clean; tests catch regressions.
 - Run before committing or wire into a pre-commit hook.
 
-### Reference: Quality tools
+#### Reference: Quality tools
 
 | Tool     | Purpose                |
 | -------- | ---------------------- |
 | `ruff`   | Lint/format fast       |
 | `black`  | Consistent formatting  |
 
-### Code Snippet: Lint/format/test
+#### Code Snippet: Lint/format/test
 
 ```bash
 $ uv run ruff check # or just `ruff check` if installed globally
@@ -422,7 +422,7 @@ def _make_ssl_transport(
         extra = {}
 ```
 
-## Automated Testing: `pytest`
+### Automated Testing: `pytest`
 
 This is what we use to automate grading. The tests are run automatically on every commit, but they are not magical. They are only as good as the person who writes them.
 
@@ -431,7 +431,7 @@ This is what we use to automate grading. The tests are run automatically on ever
 - Tests pass or fail deterministically.
 - `pytest` will run all files of the form `test_*.py` or `*_test.py`
 
-### Reference: `pytest` outcomes
+#### Reference: `pytest` outcomes
 
 | Behavior | Result | Example |
 | --- | --- | --- |
@@ -443,7 +443,7 @@ This is what we use to automate grading. The tests are run automatically on ever
 | Timeout or infinite loop | ✗ FAIL | Exceeds max duration |
 | Import error or syntax error | ✗ ERROR | `import bad_module` |
 
-### Code Snippet: `pytest`
+#### Code Snippet: `pytest`
 
 ```python
 import pytest
@@ -457,7 +457,7 @@ def test_example():
 
 ![XKCD: Compiler Complaint](media/xkcd_compiler_complaint.png)
 
-## Raising exceptions
+### Raising exceptions
 
 _Exceptions_ represent errors or unusual conditions during program execution. When Python encounters a problem (missing file, bad type, invalid value), it raises an exception; if not caught, the program stops with an error message.
 
@@ -465,7 +465,7 @@ _Exceptions_ represent errors or unusual conditions during program execution. Wh
 - Let exceptions bubble up unless you can recover.
 - Catch only what you can handle; re-raise if unsure.
 
-### Reference: Exception types
+#### Reference: Exception types
 
 | Exception | When to raise | Avoid |
 | --- | --- | --- |
@@ -474,7 +474,7 @@ _Exceptions_ represent errors or unusual conditions during program execution. Wh
 | `KeyError` | Missing dict key | Generic `Exception()` |
 | `TypeError` | Wrong type | Swallowing errors silently |
 
-### Code Snippet: Specific exceptions
+#### Code Snippet: Specific exceptions
 
 ```python
 from pathlib import Path
@@ -488,7 +488,7 @@ def load_data(path: str) -> list[dict]:
     return csv_path.read_text().splitlines()
 ```
 
-## Catching and handling exceptions
+### Catching and handling exceptions
 
 Sometimes you can recover from an error (e.g., missing file → use default). In those cases, catch the exception and handle it gracefully.
 
@@ -496,7 +496,7 @@ Sometimes you can recover from an error (e.g., missing file → use default). In
 - Be specific: catch the exact exception type, not `Exception` or bare `except`.
 - Use `finally` for cleanup (file closes, locks release) regardless of success or failure.
 
-### Reference: try/except/finally patterns
+#### Reference: try/except/finally patterns
 
 | Pattern | Use when | Example |
 | --- | --- | --- |
@@ -505,7 +505,7 @@ Sometimes you can recover from an error (e.g., missing file → use default). In
 | `try`/`except`/`finally` | Both: recover AND clean up | Read file, handle error, close handle |
 | Re-raise with `raise` | You caught it but can't fix it | Log error, then re-raise |
 
-### Code Snippet: try/except/finally
+#### Code Snippet: try/except/finally
 
 ```python
 from pathlib import Path
@@ -529,7 +529,7 @@ def read_patient_data(path: str) -> list[dict]:
             file_handle.close()  # Always runs
 ```
 
-## Logging
+### Logging
 
 There is more to effective logging than just sprinkling `print()` statements everywhere. Use the built-in `logging` module to log at different levels (DEBUG, INFO, WARNING, ERROR).
 
@@ -538,7 +538,7 @@ There is more to effective logging than just sprinkling `print()` statements eve
 - Configure logging format and level at the start of your program.
 - Remember: logs are the first place to look when something breaks.
 
-### Reference: Logging levels
+#### Reference: Logging levels
 
 | Level   | Use for                    | Example |
 | --- | --- | --- |
@@ -547,7 +547,7 @@ There is more to effective logging than just sprinkling `print()` statements eve
 | WARNING | Non-blocking issues        | `logging.warning("Missing value at row %d", i)` |
 | ERROR   | Failures needing attention | `logging.error("Failed to parse")` |
 
-### Code Snippet: Logging with checks
+#### Code Snippet: Logging with checks
 
 ```python
 import logging
@@ -568,13 +568,13 @@ def load_clean_data(path: str) -> list[dict]:
     return csv_path.read_text().splitlines()
 ```
 
-## Fail fast with actionable messages
+### Fail fast with actionable messages
 
 - Detect problems early in the pipeline.
 - Include context in error messages (values, paths, hints).
 - Stop gracefully instead of silently producing wrong results.
 
-### Reference: Actionable messages
+#### Reference: Actionable messages
 
 | Bad | Better | Why |
 | --- | --- | --- |
@@ -582,7 +582,7 @@ def load_clean_data(path: str) -> list[dict]:
 | `assert len(df) > 0` | `if len(df) == 0: raise ValueError("Empty input file")` | Name the failure, don't just assert |
 | Silent `pass` | Raise or log the issue | Prevents hours of debugging downstream |
 
-### Code Snippet: Guard clauses
+#### Code Snippet: Guard clauses
 
 ```python
 def process_patients(df):
@@ -596,18 +596,18 @@ def process_patients(df):
     return df  # Safe to continue
 ```
 
-# LIVE DEMO
+## LIVE DEMO
 
-# Debugging in VS Code + Jupyter
+## Debugging in VS Code + Jupyter
 
 ![When code works first time (suspicious)](media/code-worked-the-first-time-suspicious.jpg)
 
-## Debugging toolkit overview
+### Debugging toolkit overview
 
 - Start simple with prints/logging; move to pdb/VS Code for deeper inspection.
 - Breakpoints + Variables/Watch/Debug Console = see state without littering prints.
 
-### Reference: Debugging toolkit
+#### Reference: Debugging toolkit
 
 | Tool               | Use case                   |
 | ------------------ | -------------------------- |
@@ -615,7 +615,7 @@ def process_patients(df):
 | `breakpoint()`     | Drop into pdb              |
 | VS Code debugger   | Visual stepping/inspection |
 
-### Code Snippet: Print + calc
+#### Code Snippet: Print + calc
 
 ```python
 def calculate_bmi(weight_kg, height_m):
@@ -625,7 +625,7 @@ def calculate_bmi(weight_kg, height_m):
     return bmi
 ```
 
-## Print debugging: start here
+### Print debugging: start here
 
 ![XKCD: Debugging](media/xkcd_debugging.png)
 ![#FIXME: screenshot of VS Code gutter breakpoint set on BMI script](media/xkcd_debugging.png)
@@ -633,7 +633,7 @@ def calculate_bmi(weight_kg, height_m):
 - Use f-strings with `{var=}` to see names + values.
 - Remove prints before commit or migrate to logging.
 
-### Reference: Print patterns
+#### Reference: Print patterns
 
 | Pattern                 | Purpose            |
 | ----------------------- | ------------------ |
@@ -641,7 +641,7 @@ def calculate_bmi(weight_kg, height_m):
 | `print(f"{row=}")`      | Inspect loop state |
 | `print(f"{result=}")`   | Verify outputs     |
 
-### Code Snippet: Print debugging
+#### Code Snippet: Print debugging
 
 ```python
 def calculate_bmi(weight_kg, height_m):
@@ -649,12 +649,12 @@ def calculate_bmi(weight_kg, height_m):
     return weight_kg / (height_m ** 2)
 ```
 
-## VS Code debugger
+### VS Code debugger
 
 - `pdb` or `ipdb` for terminal; VS Code for visuals and conditional breakpoints.
 - Break on exception with `breakpoint()` inside `except`.
 
-### Reference: Breakpoints & commands
+#### Reference: Breakpoints & commands
 
 | Tool/command   | Purpose                      |
 | -------------- | ---------------------------- |
@@ -667,7 +667,7 @@ def calculate_bmi(weight_kg, height_m):
 
 ![Gutter bullets](media/gutter_bullet.png)]
 
-### Code Snippet: Conditional + logpoint
+#### Code Snippet: Conditional + logpoint
 
 ```python
 try:
@@ -679,7 +679,7 @@ except Exception:
 # Message example: "value={value}"
 ```
 
-## Runtime variable inspection in VS Code
+### Runtime variable inspection in VS Code
 
 - Variables panel shows locals/globals; expand DataFrames.
 - Watch expressions track custom values.
@@ -687,7 +687,7 @@ except Exception:
 
 ![VS Code debug panels](media/debug_view.png)
 
-### Reference: VS Code panels
+#### Reference: VS Code panels
 
 | Panel         | Purpose                         |
 | ------------- | ------------------------------- |
@@ -695,7 +695,7 @@ except Exception:
 | Watch         | Track expressions (`df.shape`)  |
 | Debug Console | Run ad-hoc checks (`df.head()`) |
 
-### Code Snippet: Inspect while paused
+#### Code Snippet: Inspect while paused
 
 ```python
 # Pause at breakpoint, then:
@@ -704,7 +704,7 @@ except Exception:
 # - Debug Console: df.dtypes
 ```
 
-## VS Code debugger basics (scripts)
+### VS Code debugger basics (scripts)
 
 ![Debug run button](media/debug-run.png)
 
@@ -713,7 +713,7 @@ except Exception:
 - Inspect call stack, Variables, and Watch panels while stepping; launch.json is optional because the Python extension supplies defaults.
 - Debugger will use the default selected Python interpreter in VS Code. Can override in launch.json.
 
-### Reference: launch.json fields
+#### Reference: launch.json fields
 
 | Field     | Meaning              |
 | --------- | -------------------- |
@@ -721,7 +721,7 @@ except Exception:
 | `request` | `launch` vs `attach` |
 | `type`    | `python`             |
 
-### Code Snippet: launch config
+#### Code Snippet: launch config
 
 Example override to debug a specific script with args, env vars, and specific venv. These would equivalent:
 
@@ -754,7 +754,7 @@ python lectures/01/demo/03a_buggy_bmi.py
 }
 ```
 
-## Debugging Notebooks in VS Code
+### Debugging Notebooks in VS Code
 
 ![XKCD: Debugger](media/xkcd_debugger.png)
 
@@ -763,7 +763,7 @@ python lectures/01/demo/03a_buggy_bmi.py
 
 ![Debug notebook cell](media/debug_cell.png)
 
-### Reference: Notebook debugging steps
+#### Reference: Notebook debugging steps
 
 | Step                | Purpose                        |
 | ------------------- | ------------------------------ |
@@ -771,7 +771,7 @@ python lectures/01/demo/03a_buggy_bmi.py
 | Breakpoints in cell | Pause where needed             |
 | Restart kernel      | Clear state after debugging    |
 
-## Debugging checklist for messy data
+### Debugging checklist for messy data
 
 ![XKCD: Existential Bug Reports](media/xkcd_existential_bug_reports.png)
 
@@ -780,7 +780,7 @@ python lectures/01/demo/03a_buggy_bmi.py
 - Add assertions/logging near the failure and rerun.
 - Write a test to prevent regression.
 
-### Reference: Debugging checklist
+#### Reference: Debugging checklist
 
 | Step      | Goal                            |
 | --------- | ------------------------------- |
@@ -789,12 +789,12 @@ python lectures/01/demo/03a_buggy_bmi.py
 | Guard     | Assertions/logging close to bug |
 | Test      | Lock in the fix with pytest     |
 
-## Tests to lock in fixes
+### Tests to lock in fixes
 
 - Save failing fixtures and add tiny tests so bugs stay fixed.
 - Prefer small, deterministic inputs; avoid brittle expectations.
 
-### Code Snippet: Column validation helper
+#### Code Snippet: Column validation helper
 
 ```python
 def has_required_columns(df: pd.DataFrame, required: list[str]) -> bool:
@@ -812,7 +812,7 @@ if not has_required_columns(df, required):
     raise ValueError(f"Missing required columns: {missing}")
 ```
 
-### Code Snippet: Test column validation
+#### Code Snippet: Test column validation
 
 ```python
 import pytest
@@ -829,10 +829,10 @@ def test_detects_missing_height_column():
     assert has_required_columns(df, required) is False
 ```
 
-## Rubber ducking
+### Rubber ducking
 
 Rubber ducking is still undefeated for finding your own bugs.
 
 ![](media/ducky.jpg)
 
-# LIVE DEMO
+## LIVE DEMO
