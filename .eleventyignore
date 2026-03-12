@@ -14,13 +14,7 @@ lectures_24/
 
 # Supporting files
 refs/
-overrides/
 scripts/
-
-# MkDocs config (no longer used for build)
-mkdocs.yml
-build.sh
-requirements.txt
 
 # Misc
 .git/
@@ -33,4 +27,5 @@ all_xkcd.*
 CLAUDE.md
 AGENTS.md
 TODO.md
+L09_REVIEW.md
 .pytest_cache/
