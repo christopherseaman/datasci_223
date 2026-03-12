@@ -32,13 +32,6 @@ module.exports = function (eleventyConfig) {
       const lecture = nav.lectures.find((l) => l.id === match[1]);
       return lecture ? `${match[1]}: ${lecture.label}` : undefined;
     },
-    navHidden: (data) => {
-      // Frontmatter `nav_visible: true` overrides the default
-      if (data.nav_visible === true) return false;
-      if (data.nav_visible === false) return true;
-      // Lectures hide nav by default; other pages show it
-      return /^\.\/?(\d{2})\/lecture_\d{2}\.md$/.test(data.page?.inputPath || "");
-    },
     permalink: (data) => {
       if (data.permalink) return data.permalink;
       const inputPath = data.page?.inputPath || "";

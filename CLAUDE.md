@@ -4,7 +4,7 @@ Applied Data Science with Python course materials (UCSF DataSci 223, Spring 2025
 
 **Course structure**: Applied survey course—each week covers a single topic, either standalone (e.g., SQL) or as part of a series building complexity (classification → neural networks → LLMs → LLM API/agentic/workflows).
 
-**GitHub Pages site URL**: `https://christopherseaman.github.io/datasci_223/` (configured in `mkdocs.yml` as `site_url`; images use relative paths from the referring document, e.g., `media/xkcd_selection_bias.png` from `lectures/03/lecture_03.md`)
+**GitHub Pages site URL**: `https://christopherseaman.github.io/datasci_223/` (deployed via Eleventy; images use relative paths from the referring document, e.g., `media/xkcd_selection_bias.png` from `03/lecture_03.md`)
 
 **IDE**: VS Code is the common IDE for this class.
 
@@ -15,30 +15,27 @@ Applied Data Science with Python course materials (UCSF DataSci 223, Spring 2025
 
 ## Repository layout
 
-- `lectures/`: Current year's content (MkDocs source). Being built out to 11 lectures. `index.md` symlinks to repo `README.md`.
+- `XX/`: Current year's lecture directories (01–10), each containing `lecture_XX.md`, `media/`, `demo/`, `assignment/`.
+- `_includes/`: Eleventy templates (`layout.njk`, `sidebar.njk`).
+- `_data/nav.js`: Site navigation structure (lectures, links, tracks).
+- `.eleventy.js`: Eleventy build config (passthrough copy, computed titles/permalinks, collections).
+- `css/`: Site styles (`theme.css`, `prism-dark.css`).
+- `package.json`: Node dependencies (Eleventy, syntax highlighting, markdown-it plugins).
 - `lectures_25/`: Last year's content (10 lectures). Reference material to adapt/update from.
-- `docs/`: MkDocs build output (generated, gitignored for local dev but used for GitHub Pages).
-- `mkdocs.yml`: MkDocs Material config; nav lists lectures/exercises.
-- `build.sh`: Installs Playwright Chromium for PDF export buttons, then runs `mkdocs build`.
-- `overrides/`: Theme customizations (favicon, fonts, `extra.css`, template `main.html`).
-- `requirements.txt`: MkDocs plugins (material, exporter, charts, callouts, minify, macros) plus teaching libs (altair, pandas, dash, plotly, selenium, playwright helpers).
-- `lectures/planned_lectures.md`: Current year's 11-lecture plan.
-- `lectures_25/planned_lectures.md`: Last year's outlines (reference).
 - `refs/`: Supporting notes, data links, and meta authoring guide (`refs/instructions.md`). Also includes PhysioNet notes, SQL guide, debugging tips, etc.
+- `scripts/`: Utilities (e.g., `fetch_xkcd_2x.py` for downloading XKCD comics).
 - `all_xkcd.html` / `all_xkcd.csv`: Index of available XKCD comics for reference.
 
 ## Build and preview
 
-- Python 3.11/3.12. **Prefer `uv`** for local dev (`uv venv .venv && uv pip install -r requirements.txt`); student default is `python -m venv`.
-- `pip install -r requirements.txt` (mkdocs-material stack + exporter).
-- Local preview: `mkdocs serve -f mkdocs.yml`.
-- Static build: `mkdocs build` or `./build.sh` (runs `playwright install chromium` for PDF export).
-- Deploy: `mkdocs gh-deploy --force` (CI auto-deploys on push to main via `.github/workflows/deploy.yml`).
+- **Site (Eleventy)**: Node.js 24+. `npm install`, then `npm start` for local preview or `npm run build` for static output to `_site/`.
+- **Demos/assignments (Python)**: Python 3.12. **Prefer `uv`** for local dev (`uv venv .venv && uv pip install -r requirements.txt`); student default is `python -m venv`.
+- Deploy: CI auto-deploys on push to main via `.github/workflows/deploy.yml` (Eleventy build + GitHub Pages artifact).
 
 ## Authoring workflow
 
 - Follow `refs/instructions.md` for extended examples and guidance, but treat `AGENTS.md` as canonical.
-- **Notion format quirk**: Lectures served from Notion allow no page title and multiple H1s (`#`) in a single document.
+- **Heading hierarchy**: Each lecture has a single `# Title` (rendered as `<h1>`), with content sections using `##` and subsections using `###`/`####`.
 
 ### Lecture style (student-facing)
 
@@ -49,8 +46,7 @@ Applied Data Science with Python course materials (UCSF DataSci 223, Spring 2025
 
 ### Lecture formatting
 
-- Title line is plain text (no leading `#`).
-- Main headings use a single `#` with real sub-sections via `##`/`###` (never bolded fake headings).
+- Title is a single `# Title` heading; main sections use `##`, subsections `###`/`####` (never bolded fake headings).
 - Prefer concise bullets over long prose with 4-space indents for nesting.
 - Each major section should usually include:
   - freeform intro — can be multiple paragraphs; this is where concepts are explained, analogies drawn, and connections to previous lectures made. Prior years' lecture content (see `lectures_25/` and `lectures_24/`) is a good source of content to adapt here.
@@ -58,7 +54,7 @@ Applied Data Science with Python course materials (UCSF DataSci 223, Spring 2025
   - a `### Reference Card: ...` table
   - a short `### Code Snippet: ...`
 - Place visuals before code.
-- Mark demo breaks only with `# LIVE DEMO!`, `# LIVE DEMO!!`, `# LIVE DEMO!!!` (first/second/third demo). Each marker should correspond to a concrete walkthrough in `lectures/XX/demo/`.
+- Mark demo breaks only with `## LIVE DEMO!`, `## LIVE DEMO!!`, `## LIVE DEMO!!!` (first/second/third demo). Each marker should correspond to a concrete walkthrough in `XX/demo/`.
 - Skip "Summary" sections.
 
 ### Reference card formats
@@ -94,8 +90,8 @@ Two standard formats for reference cards:
 
 ### Assets and links
 
-- Assets live alongside their lecture folder (e.g., `lectures/01/media/...`).
-- Images use relative paths from the referring document (e.g., `media/xkcd_selection_bias.png` from `lectures/03/lecture_03.md`), NOT absolute paths like `03/media/...`.
+- Assets live alongside their lecture folder (e.g., `01/media/...`).
+- Images use relative paths from the referring document (e.g., `media/xkcd_selection_bias.png` from `03/lecture_03.md`), NOT absolute paths.
 - Prefer local comics/images. If reusing from elsewhere, copy into the lecture's `media/` subdir first.
 - XKCD helper: `scripts/fetch_xkcd_2x.py` downloads comics via explainxkcd file pages (2x "Original file" links). Usage: `./scripts/fetch_xkcd_2x.py 1597:Git 1722:Debugging:xkcd_debugging.png`
 
@@ -132,7 +128,7 @@ Lectures include 3 hands-on demos at ~1/3, ~2/3, and end of 90-minute session. D
 Weekly assignments are **pass/fail** and should be straightforward for students who understand the lecture content. Coursework uses GitHub Classroom with pytest-based autograding via GitHub Actions.
 
 ```
-lectures/XX/assignment/
+XX/assignment/
 ├── README.md                 # Instructions
 ├── {source_files}.py         # Starter/solution code
 ├── hints.md                  # Optional hints
@@ -170,9 +166,9 @@ Do not declare work complete without validation.
 
 ### Lecture ↔ demo alignment
 
-- `lectures/XX/lecture_XX.md` includes exactly three break markers: `# LIVE DEMO!`, `# LIVE DEMO!!`, `# LIVE DEMO!!!`.
-- Each break marker has a corresponding, concrete walkthrough in `lectures/XX/demo/`.
-- Lecture does not embed full demo walkthrough steps (those live in `lectures/XX/demo/`).
+- `XX/lecture_XX.md` includes exactly three break markers: `## LIVE DEMO!`, `## LIVE DEMO!!`, `## LIVE DEMO!!!`.
+- Each break marker has a corresponding, concrete walkthrough in `XX/demo/`.
+- Lecture does not embed full demo walkthrough steps (those live in `XX/demo/`).
 
 ### Demo correctness (including intentional failures)
 
@@ -188,14 +184,14 @@ Do not declare work complete without validation.
 
 ### Assignment alignment and completability
 
-- `lectures/XX/assignment/README.md` is solvable using only lecture content + demos.
+- `XX/assignment/README.md` is solvable using only lecture content + demos.
 - Assignment prompts match autograder expectations (required artifacts, behaviors, fixed strings if any).
 
 ### Scratch-dir completion test (recommended when assignments change)
 
 Test what a student does from a clean copy of the assignment folder.
 
-- Copy `lectures/XX/assignment/` to a fresh temp directory.
+- Copy `XX/assignment/` to a fresh temp directory.
 - Run the student workflow there (create venv, install deps, run scripts/notebooks, generate artifacts).
 - Run the autograder tests from inside the copied assignment directory.
 
@@ -204,13 +200,13 @@ Test what a student does from a clean copy of the assignment folder.
 **Practical pattern (example):**
 
 - Create scratch dir: `tmp_dir=$(mktemp -d)`
-- Copy: `cp -R lectures/XX/assignment "$tmp_dir"`
+- Copy: `cp -R XX/assignment "$tmp_dir"`
 - Run tests from scratch: `python -m pytest .github/tests -q`
 
-### When to run `mkdocs build`
+### When to run the Eleventy build
 
-- Do not run `mkdocs build` as routine validation.
-- Run it only when changing MkDocs configuration, theme overrides, macros, plugins, or site navigation (`mkdocs.yml`, `overrides/`, or cross-site linking patterns).
+- Do not run `npx @11ty/eleventy` as routine validation.
+- Run it only when changing Eleventy configuration, templates, CSS, or site navigation (`.eleventy.js`, `_includes/`, `_data/nav.js`, `css/`).
 
 ## Engineering guardrails (per ~/.claude/CLAUDE.md)
 
