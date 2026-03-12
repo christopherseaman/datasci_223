@@ -101,7 +101,7 @@ Two standard formats for reference cards:
 ### Notes
 
 - Place speaking notes in `NOTES.md` with matching headings after the lecture text is complete.
-- Address common beginner mistakes/misconceptions in `NOTES.md` or in tightly-scoped callouts when it improves clarity.
+- Notes should contain the actual things to say — short talking points, anecdotes, clarifications, common mistakes to call out — not instructions like "talk about X" or restatements of what's already in the lecture.
 - No inline HTML comment speaking notes in the lecture text.
 
 ## Demo structure and conventions
