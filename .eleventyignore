@@ -8,11 +8,7 @@ docs/
 */scripts/
 */NOTES.md
 
-# Prior year content
-lectures_25/
-lectures_24/
-
-# Supporting files
+# Reference material (prior year content, notes, scripts)
 refs/
 scripts/
 
@@ -27,5 +23,4 @@ all_xkcd.*
 CLAUDE.md
 AGENTS.md
 TODO.md
-L09_REVIEW.md
 .pytest_cache/

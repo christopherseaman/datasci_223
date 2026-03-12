@@ -1,6 +1,6 @@
 # AGENTS
 
-Applied Data Science with Python course materials (UCSF DataSci 223, Spring 2025). Documentation-heavy repo for beginners; lectures are long-form Markdown with demos. Adapt/update previous year's content from `lectures_25/` when possible.
+Applied Data Science with Python course materials (UCSF DataSci 223, Spring 2025). Documentation-heavy repo for beginners; lectures are long-form Markdown with demos. Adapt/update previous year's content from `refs/lectures_25/` when possible.
 
 **Course structure**: Applied survey course—each week covers a single topic, either standalone (e.g., SQL) or as part of a series building complexity (classification → neural networks → LLMs → LLM API/agentic/workflows).
 
@@ -22,8 +22,7 @@ Applied Data Science with Python course materials (UCSF DataSci 223, Spring 2025
 - `.eleventy.js`: Eleventy build config (passthrough copy, computed titles/permalinks, collections).
 - `css/`: Site styles (`theme.css`, `prism-dark.css`).
 - `package.json`: Node dependencies (Eleventy, syntax highlighting, markdown-it plugins).
-- `lectures_25/`: Last year's content (10 lectures). Reference material to adapt/update from.
-- `refs/`: Supporting notes and data links. Includes PhysioNet notes, SQL guide, debugging tips, etc.
+- `refs/`: Reference material — prior year lectures (`refs/lectures_24/`, `refs/lectures_25/`), data links, PhysioNet notes, SQL guide, debugging tips, etc.
 - `scripts/`: Utilities (e.g., `fetch_xkcd_2x.py` for downloading XKCD comics).
 - `all_xkcd.html` / `all_xkcd.csv`: Index of available XKCD comics for reference.
 
@@ -52,7 +51,7 @@ Applied Data Science with Python course materials (UCSF DataSci 223, Spring 2025
 - Title is a single `# Title` heading; main sections use `##`, subsections `###`/`####` (never bolded fake headings).
 - Prefer concise bullets over long prose with 4-space indents for nesting.
 - Each major section should usually include:
-  - freeform intro — can be multiple paragraphs; this is where concepts are explained, analogies drawn, and connections to previous lectures made. Prior years' lecture content (see `lectures_25/` and `lectures_24/`) is a good source of content to adapt here.
+  - freeform intro — can be multiple paragraphs; this is where concepts are explained, analogies drawn, and connections to previous lectures made. Prior years' lecture content (see `refs/lectures_25/` and `refs/lectures_24/`) is a good source of content to adapt here.
   - a visual/table/output (or `#FIXME` placeholder)
   - a `### Reference Card: ...` table
   - a short `### Code Snippet: ...`
