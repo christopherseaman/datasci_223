@@ -11,8 +11,7 @@ module.exports = function (eleventyConfig) {
     .use(markdownItCallouts);
   eleventyConfig.setLibrary("md", md);
 
-  // Passthrough copy — lecture media and CSS
-  eleventyConfig.addPassthroughCopy("css");
+  // Passthrough copy — lecture media
   // Copy XX/media/ → XX/media/ so relative paths work from /XX/
   for (const id of ["01","02","03","04","05","06","07","08","09","10","11"]) {
     eleventyConfig.addPassthroughCopy({
@@ -52,7 +51,7 @@ module.exports = function (eleventyConfig) {
       });
   });
 
-  eleventyConfig.addWatchTarget("css/");
+  eleventyConfig.addWatchTarget("_includes/");
 
   return {
     dir: { input: ".", output: "_site", includes: "_includes", data: "_data" },

@@ -17,10 +17,9 @@ Applied Data Science with Python course materials (UCSF DataSci 223, Spring 2025
 ## Repository layout
 
 - `XX/`: Current year's lecture directories (01–10), each containing `lecture_XX.md`, `media/`, `demo/`, `assignment/`.
-- `_includes/`: Eleventy templates (`layout.njk`, `sidebar.njk`).
+- `_includes/`: Eleventy templates and inline CSS (`layout.njk`, `sidebar.njk`).
 - `_data/nav.js`: Site navigation structure (lectures, links, tracks).
 - `.eleventy.js`: Eleventy build config (passthrough copy, computed titles/permalinks, collections).
-- `css/`: Site styles (`theme.css`, `prism-dark.css`).
 - `package.json`: Node dependencies (Eleventy, syntax highlighting, markdown-it plugins).
 - `refs/`: Reference material — prior year lectures (`refs/lectures_24/`, `refs/lectures_25/`), data links, PhysioNet notes, SQL guide, debugging tips, etc.
 - `scripts/`: Utilities (e.g., `fetch_xkcd_2x.py` for downloading XKCD comics).
@@ -211,7 +210,7 @@ Test what a student does from a clean copy of the assignment folder.
 ### When to run the Eleventy build
 
 - Do not run `npx @11ty/eleventy` as routine validation.
-- Run it only when changing Eleventy configuration, templates, CSS, or site navigation (`.eleventy.js`, `_includes/`, `_data/nav.js`, `css/`).
+- Run it only when changing Eleventy configuration, templates, or site navigation (`.eleventy.js`, `_includes/`, `_data/nav.js`).
 
 ## Engineering guardrails (per ~/.claude/CLAUDE.md)
 
