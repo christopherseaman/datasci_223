@@ -1,3 +1,17 @@
+-- Map Obsidian callout types to Bootstrap alert classes
+local alert_map = {
+  info = "info",
+  note = "info",
+  tip = "success",
+  hint = "success",
+  warning = "warning",
+  caution = "warning",
+  danger = "danger",
+  error = "danger",
+  important = "primary",
+  question = "secondary",
+}
+
 function BlockQuote(el)
   local start = el.content[1]
   if start == nil or start.t ~= "Para" then
@@ -14,13 +28,15 @@ function BlockQuote(el)
     return el
   end
 
-  -- Build title from remaining inlines in the first paragraph (after [!TYPE] and any space)
+  local alert_class = alert_map[ctype:lower()] or "info"
+
+  -- Build title inlines from the rest of the first paragraph
   local title_inlines = pandoc.List()
   local skip = true
   for i, inline in ipairs(start.content) do
     if skip then
       if i == 1 then
-        -- skip the [!TYPE] token
+        -- skip [!TYPE]
       elseif inline.t == "Space" or inline.t == "SoftBreak" then
         -- skip whitespace after [!TYPE]
       else
@@ -32,17 +48,21 @@ function BlockQuote(el)
     end
   end
 
-  local title = pandoc.utils.stringify(pandoc.Inlines(title_inlines))
+  -- Build alert content
+  local blocks = pandoc.List()
 
-  -- Body is everything after the first paragraph
-  local body = pandoc.List()
-  for i = 2, #el.content do
-    body:insert(el.content[i])
+  -- Add title as strong text if present
+  if #title_inlines > 0 then
+    blocks:insert(pandoc.Para({pandoc.Strong(title_inlines)}))
   end
 
-  return quarto.Callout({
-    type = ctype:lower(),
-    title = title,
-    content = body
-  })
+  -- Add body (everything after first paragraph)
+  for i = 2, #el.content do
+    blocks:insert(el.content[i])
+  end
+
+  -- Wrap in Bootstrap alert div
+  local div = pandoc.Div(blocks)
+  div.attr = pandoc.Attr("", {"alert", "alert-" .. alert_class}, {role = "alert"})
+  return div
 end
