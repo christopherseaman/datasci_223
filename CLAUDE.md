@@ -8,10 +8,11 @@ Applied Data Science with Python course materials (UCSF DataSci 223, Spring 2025
 
 **IDE**: VS Code is the common IDE for this class.
 
+**Audience**: Health data science masters students who are beginners in programming (Python, git, shell commands).
+
 ## Source of truth
 
-- `AGENTS.md` is the source of truth for agent work in this repo.
-- `refs/instructions.md` is supplemental guidance and examples; if it conflicts with `AGENTS.md`, follow `AGENTS.md`.
+- `CLAUDE.md` (aliased as `AGENTS.md`) is the source of truth for agent work in this repo.
 
 ## Repository layout
 
@@ -22,7 +23,7 @@ Applied Data Science with Python course materials (UCSF DataSci 223, Spring 2025
 - `css/`: Site styles (`theme.css`, `prism-dark.css`).
 - `package.json`: Node dependencies (Eleventy, syntax highlighting, markdown-it plugins).
 - `lectures_25/`: Last year's content (10 lectures). Reference material to adapt/update from.
-- `refs/`: Supporting notes, data links, and meta authoring guide (`refs/instructions.md`). Also includes PhysioNet notes, SQL guide, debugging tips, etc.
+- `refs/`: Supporting notes and data links. Includes PhysioNet notes, SQL guide, debugging tips, etc.
 - `scripts/`: Utilities (e.g., `fetch_xkcd_2x.py` for downloading XKCD comics).
 - `all_xkcd.html` / `all_xkcd.csv`: Index of available XKCD comics for reference.
 
@@ -34,12 +35,14 @@ Applied Data Science with Python course materials (UCSF DataSci 223, Spring 2025
 
 ## Authoring workflow
 
-- Follow `refs/instructions.md` for extended examples and guidance, but treat `AGENTS.md` as canonical.
 - **Heading hierarchy**: Each lecture has a single `# Title` (rendered as `<h1>`), with content sections using `##` and subsections using `###`/`####`.
 
 ### Lecture style (student-facing)
 
 - **Primary goal**: students should be able to read/scan the lecture and understand concepts on first exposure.
+- **Beginner-friendly**: avoid jargon; define terms when introduced. Build knowledge incrementally.
+- **Visual learning**: prefer diagrams, screenshots, and concrete outputs over walls of text.
+- **Content balance**: each major topic should blend conceptual foundations, reference material, practical examples, and hands-on demos.
 - **Tone**: professional and clear; informal/fun is fine, but not a script. The lecturer speaks *to* the content; the content itself should not read like speaking notes.
 - **Humor & emojis**: allowed and encouraged when used sparingly and placed between relevant sections/sub-sections; avoid making the *core* explanation itself jokey in a way that obscures meaning.
 - **No time estimates**: do not include time cues/estimates for sections, demos, or assignments.
@@ -98,6 +101,7 @@ Two standard formats for reference cards:
 ### Notes
 
 - Place speaking notes in `NOTES.md` with matching headings after the lecture text is complete.
+- Address common beginner mistakes/misconceptions in `NOTES.md` or in tightly-scoped callouts when it improves clarity.
 - No inline HTML comment speaking notes in the lecture text.
 
 ## Demo structure and conventions
@@ -108,7 +112,9 @@ Lectures include 3 hands-on demos at ~1/3, ~2/3, and end of 90-minute session. D
 
 - **Lecture code blocks:** Short, simple, minimal examples demonstrating single concepts
 - **Demo code:** Realistic complexity with health data, multiple steps, edge cases—mirrors real-world usage
+- **Progressive difficulty:** Start simple, build complexity across the three demos
 - Demos should be completable in a short session with clear success checkpoints
+- Include ways to confirm completion (visual/tabular output after each step)
 
 **File naming convention:** `0Xy_description.suffix`
 
