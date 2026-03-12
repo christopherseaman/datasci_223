@@ -1,10 +1,9 @@
-Reading Rocks!
-
-(Natural Language Processing)
-
-- [https://classroom.github.com/a/78aoV6u5](https://classroom.github.com/a/78aoV6u5)
+# 04: Reading Rocks! (Natural Language Processing)
 
 # Links & Self-Guided Review
+
+<details>
+<summary>Details</summary>
 
 - TB Hack Day on Feb 11th! Register at <https://seatrac.uw.edu/training/i4tbworkinggroup>
 
@@ -16,6 +15,8 @@ Reading Rocks!
 - [Real Python: NLP with spaCy](https://realpython.com/natural-language-processing-spacy-python/) — hands-on tutorial
 - [Regex101](https://regex101.com/) — interactive regex tester with explanation
 - [scispaCy](https://allenai.github.io/scispacy/) — biomedical NLP models
+
+</details>
 
 # Natural Language Processing
 

@@ -1,11 +1,9 @@
----
-lecture_number: 09
-pdf: false
----
-
-Computer Vision: Mirrorshades
+# 09: Computer Vision: Mirrorshades
 
 # Links
+
+<details>
+<summary>Details</summary>
 
 ## Recent News
 
@@ -56,6 +54,8 @@ Computer Vision: Mirrorshades
 - Kirillov et al. (2023). Segment Anything (SAM) — foundation model for segmentation
 
 ![](media/xkcd_pixels.png)
+
+</details>
 
 # What Is Computer Vision?
 

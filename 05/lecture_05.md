@@ -1,8 +1,9 @@
-Classification: Putting a Label on Things
-
-- hw05 #FIXME
+# 05: Classification: Putting a Label on Things
 
 # References
+
+<details>
+<summary>Details</summary>
 
 ## Documentation
 
@@ -42,6 +43,8 @@ Classification: Putting a Label on Things
 - [Cancer Classification (EDA, PCA, Random Forest)](https://www.kaggle.com/code/nandita711/cancer-classification-eda-pca-random-forest) - Kaggle
 - [XGBoost, Random Forest, and Nomograph for Disease Severity Prediction](https://www.frontiersin.org/articles/10.3389/fcimb.2022.819267/full) - Frontiers
 - [Prediction Method for Hypertension](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6963807/) - Diagnostics Journal
+
+</details>
 
 # Crash Course in Classification
 

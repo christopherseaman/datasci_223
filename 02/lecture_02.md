@@ -1,13 +1,9 @@
----
-lecture_number: 02
-pdf: true
----
-
-02: Scaling Tabular Workflows with Polars ⚡
-
-- hw02 - #FIXME add GitHub Classroom link once ready
+# 02: Scaling Tabular Workflows with Polars ⚡
 
 # Links & Self-Guided Review
+
+<details>
+<summary>Details</summary>
 
 - [Polars User Guide](https://docs.pola.rs/user-guide/) – official docs with eager + lazy API examples
 - [Apache Arrow Columnar Format](https://arrow.apache.org/overview/) – why columnar memory layouts matter
@@ -15,6 +11,8 @@ pdf: true
 - [Real Python: Working With Large CSVs](https://realpython.com/csv-python/#working-with-large-csv-files-using-pandas) – diagnosing `MemoryError`
 - [VS Code: Python performance tips](https://code.visualstudio.com/docs/python/python-tutorial) – environment setup + profiling
 - `scripts/fetch_xkcd_2x.py` – grab XKCD comics (see `all_xkcd.csv` index) for lecture visuals
+
+</details>
 
 # Why Memory Limits Sneak Up On Us
 

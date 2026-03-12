@@ -1,9 +1,4 @@
----
-lecture_number: 10
-pdf: false
----
-
-# A/B Testing and Causal Inference
+# 10: A/B Testing and Causal Inference
 
 ## Theory to Practice with Dr. Demetri Pananos
 

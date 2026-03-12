@@ -1,8 +1,9 @@
-Transformers: More than Meets the Eye
-
-- hw07 #FIXME:URL
+# 07: Transformers: More than Meets the Eye
 
 # Links
+
+<details>
+<summary>Details</summary>
 
 ## Transformers & Attention
 
@@ -52,6 +53,8 @@ Transformers: More than Meets the Eye
 - [OpenAI Platform](https://platform.openai.com/)
 
 ![](media/xkcd_transformers.png)
+
+</details>
 
 # From Neural Networks to Transformers
 

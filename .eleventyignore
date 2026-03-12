@@ -3,10 +3,10 @@ _site/
 docs/
 
 # Non-content lecture subdirs
-lectures/*/assignment/
-lectures/*/demo/
-lectures/*/scripts/
-lectures/*/NOTES.md
+*/assignment/
+*/demo/
+*/scripts/
+*/NOTES.md
 
 # Prior year content
 lectures_25/
@@ -30,8 +30,6 @@ requirements.txt
 *.csv
 *.html
 all_xkcd.*
-lectures/planned_lectures.md
-lectures/index.md
 CLAUDE.md
 AGENTS.md
 TODO.md

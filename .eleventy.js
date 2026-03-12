@@ -13,10 +13,10 @@ module.exports = function (eleventyConfig) {
 
   // Passthrough copy — lecture media and CSS
   eleventyConfig.addPassthroughCopy("css");
-  // Map lectures/XX/media/ → XX/media/ so relative paths work from /XX/
+  // Copy XX/media/ → XX/media/ so relative paths work from /XX/
   for (const id of ["01","02","03","04","05","06","07","08","09","10","11"]) {
     eleventyConfig.addPassthroughCopy({
-      [`lectures/${id}/media`]: `${id}/media`,
+      [`${id}/media`]: `${id}/media`,
     });
   }
 
@@ -26,7 +26,7 @@ module.exports = function (eleventyConfig) {
     title: (data) => {
       if (data.title) return data.title;
       const inputPath = data.page?.inputPath || "";
-      const match = inputPath.match(/lectures\/(\d{2})\//);
+      const match = inputPath.match(/(\d{2})\/lecture_\d{2}\.md$/);
       if (!match) return undefined;
       const nav = require("./_data/nav.js");
       const lecture = nav.lectures.find((l) => l.id === match[1]);
@@ -37,12 +37,12 @@ module.exports = function (eleventyConfig) {
       if (data.nav_visible === true) return false;
       if (data.nav_visible === false) return true;
       // Lectures hide nav by default; other pages show it
-      return /lectures\/\d{2}\//.test(data.page?.inputPath || "");
+      return /^\.\/?(\d{2})\/lecture_\d{2}\.md$/.test(data.page?.inputPath || "");
     },
     permalink: (data) => {
       if (data.permalink) return data.permalink;
       const inputPath = data.page?.inputPath || "";
-      const lectureMatch = inputPath.match(/lectures\/(\d{2})\/lecture_\d{2}\.md$/);
+      const lectureMatch = inputPath.match(/(\d{2})\/lecture_\d{2}\.md$/);
       if (lectureMatch) return `/${lectureMatch[1]}/`;
       return undefined;
     },
@@ -51,10 +51,10 @@ module.exports = function (eleventyConfig) {
   // Lecture collection for index page listing
   eleventyConfig.addCollection("lectures", (collectionApi) => {
     return collectionApi
-      .getFilteredByGlob("lectures/*/lecture_*.md")
+      .getFilteredByGlob("*/lecture_*.md")
       .sort((a, b) => {
-        const numA = a.inputPath.match(/lectures\/(\d{2})\//)?.[1] || "0";
-        const numB = b.inputPath.match(/lectures\/(\d{2})\//)?.[1] || "0";
+        const numA = a.inputPath.match(/(\d{2})\/lecture_\d{2}\.md$/)?.[1] || "0";
+        const numB = b.inputPath.match(/(\d{2})\/lecture_\d{2}\.md$/)?.[1] || "0";
         return numA.localeCompare(numB);
       });
   });

@@ -1,13 +1,9 @@
----
-lecture_number: 01
-pdf: true
----
-
-01: Defensive Programming and Debugging 🐛
-
-- hw01 - <https://classroom.github.com/a/UIovekSt>
+# 01: Defensive Programming and Debugging 🐛
 
 # Links & Self-Guided Review
+
+<details>
+<summary>Details</summary>
 
 - [GitHub Education](https://education.github.com/pack)
 - [DS-217 Lecture 01](https://www.notion.so/01-Python-the-Command-Line-and-VS-Code-271d9fdd1a1a805784e1fe68dc985696?pvs=21)
@@ -15,6 +11,8 @@ pdf: true
 - [Shell Basics](https://swcarpentry.github.io/shell-novice/)
 - [Exercism Python Basics](https://exercism.org/tracks/python)
 - [GitHub Hello World](https://docs.github.com/en/get-started/start-your-journey/hello-world)
+
+</details>
 
 # But First, A Blast from the Past
 
