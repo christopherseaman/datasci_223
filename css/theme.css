@@ -128,19 +128,20 @@ body.nav-hidden .main-content {
 
 .content h2 {
   color: #ffffff;
+  font-size: 2em;
   margin-top: 2em;
   font-weight: bold;
 }
 
 .content h3 {
   color: #d9dee3;
-  font-size: 1.25em;
+  font-size: 1.5em;
   font-weight: bold;
 }
 
 .content h4 {
   color: #9ea7b3;
-  font-size: 1.15em;
+  font-size: 1.25em;
   font-weight: bold;
 }
 
