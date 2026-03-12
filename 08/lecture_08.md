@@ -1,6 +1,7 @@
 # 08: LLM Applications & Workflows
 
-## Links
+<details>
+<summary>Links</summary>
 
 ### Prompt Engineering Guides
 
@@ -68,6 +69,8 @@
 
 ![](media/xkcd_skynet.png)
 
+</details>
+
 ## When to Use LLMs
 
 Before diving into agents, RAG, and workflows — the most important skill is knowing **when** to use LLMs and when not to.
@@ -101,8 +104,8 @@ Conversely, some tasks look like they should work but consistently produce poor 
 
 ## Common Failure Modes
 
-!!! warning
-If you don't know how to do something yourself, you won't know if an LLM is doing it well. LLMs amplify expertise — they don't replace it.
+> [!WARNING]
+> If you don't know how to do something yourself, you won't know if an LLM is doing it well. LLMs amplify expertise — they don't replace it.
 
 Understanding how LLMs fail helps you design better systems and set appropriate expectations. [Fighting With AI](https://www.fightingwithai.com/) covers these patterns in depth with actionable mitigation strategies.
 
@@ -330,8 +333,8 @@ In Lecture 7 you learned chain-of-thought and prompt chaining. Agents extend the
 | **Reflection**         | Agent critiques its own output, surfaces uncertainty and assumptions      | Complex tasks where errors are costly                 |
 | **Tree of Thought**    | Explore multiple solution branches, prune unpromising paths               | Planning and multi-step reasoning tasks               |
 
-!!! warning
-    "Reasoning" in LLMs is not thinking. Models like o1/o3 use chain-of-thought at inference time, which can improve results on some tasks — but it doesn't always help, it's always more expensive, and it can create a false sense of confidence. See Apple's ["Illusion of Thinking"](https://machinelearning.apple.com/research/illusion-of-thinking) research.
+> [!WARNING]
+> "Reasoning" in LLMs is not thinking. Models like o1/o3 use chain-of-thought at inference time, which can improve results on some tasks — but it doesn't always help, it's always more expensive, and it can create a false sense of confidence. See Apple's ["Illusion of Thinking"](https://machinelearning.apple.com/research/illusion-of-thinking) research.
 
 ![](media/xkcd_robot_future.png)
 
@@ -412,8 +415,8 @@ def rag_query(question, n_results=3):
 
 MCP provides a standardized way to connect LLMs to external data sources and tools. Instead of writing custom integrations for each tool, MCP offers pre-built servers that expose capabilities in a consistent format.
 
-!!! note
-    MCP servers often run as Node.js processes. Install Node.js (`brew install node` on macOS, or [nodejs.org](https://nodejs.org)) to use them.
+> [!NOTE]
+> MCP servers often run as Node.js processes. Install Node.js (`brew install node` on macOS, or [nodejs.org](https://nodejs.org)) to use them.
 
 ### Why MCP?
 

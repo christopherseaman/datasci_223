@@ -1,6 +1,7 @@
 # 01: Defensive Programming and Debugging 🐛
 
-## Links & Self-Guided Review
+<details>
+<summary>Links & Self-Guided Review</summary>
 
 - [GitHub Education](https://education.github.com/pack)
 - [DS-217 Lecture 01](https://www.notion.so/01-Python-the-Command-Line-and-VS-Code-271d9fdd1a1a805784e1fe68dc985696?pvs=21)
@@ -8,6 +9,8 @@
 - [Shell Basics](https://swcarpentry.github.io/shell-novice/)
 - [Exercism Python Basics](https://exercism.org/tracks/python)
 - [GitHub Hello World](https://docs.github.com/en/get-started/start-your-journey/hello-world)
+
+</details>
 
 ## But First, A Blast from the Past
 

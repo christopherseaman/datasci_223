@@ -1,6 +1,7 @@
 # 04: Reading Rocks! (Natural Language Processing)
 
-## Links & Self-Guided Review
+<details>
+<summary>Links & Self-Guided Review</summary>
 
 - TB Hack Day on Feb 11th! Register at <https://seatrac.uw.edu/training/i4tbworkinggroup>
 
@@ -12,6 +13,8 @@
 - [Real Python: NLP with spaCy](https://realpython.com/natural-language-processing-spacy-python/) — hands-on tutorial
 - [Regex101](https://regex101.com/) — interactive regex tester with explanation
 - [scispaCy](https://allenai.github.io/scispacy/) — biomedical NLP models
+
+</details>
 
 ## Natural Language Processing
 

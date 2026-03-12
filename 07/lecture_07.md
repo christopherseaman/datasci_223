@@ -1,6 +1,7 @@
 # 07: Transformers: More than Meets the Eye
 
-## Links
+<details>
+<summary>Links</summary>
 
 ### Transformers & Attention
 
@@ -50,6 +51,8 @@
 - [OpenAI Platform](https://platform.openai.com/)
 
 ![](media/xkcd_transformers.png)
+
+</details>
 
 ## From Neural Networks to Transformers
 

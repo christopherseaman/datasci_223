@@ -1,6 +1,7 @@
 # 06: Neural Networks: If I Only Had a Brain
 
-## Links
+<details>
+<summary>Links</summary>
 
 ### Books
 
@@ -30,6 +31,8 @@
 - Rajpurkar et al. (2017). CheXNet: Radiologist-level pneumonia detection on chest X-rays with deep learning
 
 ![](media/junior_dev_vs_nn.jpeg)
+
+</details>
 
 ## Neural Networks Overview
 

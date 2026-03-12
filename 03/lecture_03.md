@@ -1,12 +1,15 @@
 # 03: Join the DISTINCT with SQL
 
-## Links & Self-Guided Review
+<details>
+<summary>Links & Self-Guided Review</summary>
 
 - [DuckDB docs](https://duckdb.org/docs/) - embedded analytics database with strong CSV support
 - [JupySQL](https://jupysql.ploomber.io/) - SQL magics for notebooks
 - [SQL Style Guide (Mode)](https://mode.com/sql-tutorial/sql-style-guide/) - readable query conventions
 - [SQLite docs](https://www.sqlite.org/docs.html) - lightweight SQL reference
 - [PostgreSQL docs](https://www.postgresql.org/docs/) - production SQL dialect used widely in health systems
+
+</details>
 
 ## Outline
 
