@@ -1,0 +1,3234 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>lecture_03 – DataSci-223</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-d94228c28a1234acf2b6c10d2198ec8e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../01/index.html">Foundation</a></li><li class="breadcrumb-item"><a href="../03/index.html">03. SQL</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">DataSci-223</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="https://github.com/christopherseaman/datasci_223" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GitHub</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="https://discord.gg/QdTYgR45er" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Discord</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Foundation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../01/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">01. Debugging</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../02/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">02. Polars</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../03/index.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">03. SQL</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../04/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">04. NLP</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Machine Learning</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../05/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">05. Classification</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../06/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">06. Neural Networks</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../07/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">07. Transformers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../08/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">08. LLM Workflows</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Applications</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../09/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">09. Computer Vision</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../10/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10. A/B Testing</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#links-self-guided-review" id="toc-links-self-guided-review" class="nav-link active" data-scroll-target="#links-self-guided-review">Links &amp; Self-Guided Review</a></li>
+  <li><a href="#outline" id="toc-outline" class="nav-link" data-scroll-target="#outline">Outline</a></li>
+  <li><a href="#why-sql-still-runs-the-data-world" id="toc-why-sql-still-runs-the-data-world" class="nav-link" data-scroll-target="#why-sql-still-runs-the-data-world">Why SQL still runs the data world</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-why-sql-matters" id="toc-reference-card-why-sql-matters" class="nav-link" data-scroll-target="#reference-card-why-sql-matters">Reference Card: Why SQL matters</a></li>
+  <li><a href="#code-snippet-smallest-useful-query" id="toc-code-snippet-smallest-useful-query" class="nav-link" data-scroll-target="#code-snippet-smallest-useful-query">Code Snippet: Smallest useful query</a></li>
+  </ul></li>
+  <li><a href="#sql-in-notebooks-jupysql-duckdbsqlite" id="toc-sql-in-notebooks-jupysql-duckdbsqlite" class="nav-link" data-scroll-target="#sql-in-notebooks-jupysql-duckdbsqlite">SQL in notebooks (JupySQL + DuckDB/SQLite)</a>
+  <ul class="collapse">
+  <li><a href="#jupysql-magics" id="toc-jupysql-magics" class="nav-link" data-scroll-target="#jupysql-magics">JupySQL magics</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-jupysql-magics" id="toc-reference-card-jupysql-magics" class="nav-link" data-scroll-target="#reference-card-jupysql-magics">Reference Card: JupySQL magics</a></li>
+  <li><a href="#code-snippet-one-line-query" id="toc-code-snippet-one-line-query" class="nav-link" data-scroll-target="#code-snippet-one-line-query">Code Snippet: One-line query</a></li>
+  </ul></li>
+  <li><a href="#duckdb-and-sqlite-connections" id="toc-duckdb-and-sqlite-connections" class="nav-link" data-scroll-target="#duckdb-and-sqlite-connections">DuckDB and SQLite connections</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-local-connections" id="toc-reference-card-local-connections" class="nav-link" data-scroll-target="#reference-card-local-connections">Reference Card: Local connections</a></li>
+  <li><a href="#code-snippet-connect-to-duckdb" id="toc-code-snippet-connect-to-duckdb" class="nav-link" data-scroll-target="#code-snippet-connect-to-duckdb">Code Snippet: Connect to DuckDB</a></li>
+  </ul></li>
+  <li><a href="#duckdb-sqlite-attachments" id="toc-duckdb-sqlite-attachments" class="nav-link" data-scroll-target="#duckdb-sqlite-attachments">DuckDB + SQLite attachments</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-duckdb-sqlite-attach" id="toc-reference-card-duckdb-sqlite-attach" class="nav-link" data-scroll-target="#reference-card-duckdb-sqlite-attach">Reference Card: DuckDB SQLite attach</a></li>
+  <li><a href="#code-snippet-attach-sqlite-in-duckdb" id="toc-code-snippet-attach-sqlite-in-duckdb" class="nav-link" data-scroll-target="#code-snippet-attach-sqlite-in-duckdb">Code Snippet: Attach SQLite in DuckDB</a></li>
+  <li><a href="#reference-card-notebook-setup" id="toc-reference-card-notebook-setup" class="nav-link" data-scroll-target="#reference-card-notebook-setup">Reference Card: Notebook setup</a></li>
+  <li><a href="#code-snippet-minimal-setup" id="toc-code-snippet-minimal-setup" class="nav-link" data-scroll-target="#code-snippet-minimal-setup">Code Snippet: Minimal setup</a></li>
+  <li><a href="#code-snippet-return-dataframe-assignment" id="toc-code-snippet-return-dataframe-assignment" class="nav-link" data-scroll-target="#code-snippet-return-dataframe-assignment">Code Snippet: Return DataFrame (assignment)</a></li>
+  <li><a href="#code-snippet-return-dataframe-variable-capture" id="toc-code-snippet-return-dataframe-variable-capture" class="nav-link" data-scroll-target="#code-snippet-return-dataframe-variable-capture">Code Snippet: Return DataFrame (variable capture)</a></li>
+  </ul></li>
+  <li><a href="#querying-dataframes-with-sql" id="toc-querying-dataframes-with-sql" class="nav-link" data-scroll-target="#querying-dataframes-with-sql">Querying DataFrames with SQL</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-dataframe-queries" id="toc-reference-card-dataframe-queries" class="nav-link" data-scroll-target="#reference-card-dataframe-queries">Reference Card: DataFrame queries</a></li>
+  <li><a href="#code-snippet-query-a-dataframe" id="toc-code-snippet-query-a-dataframe" class="nav-link" data-scroll-target="#code-snippet-query-a-dataframe">Code Snippet: Query a DataFrame</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#sql-basics" id="toc-sql-basics" class="nav-link" data-scroll-target="#sql-basics">SQL basics</a>
+  <ul class="collapse">
+  <li><a href="#comments-semicolons-and-nulls" id="toc-comments-semicolons-and-nulls" class="nav-link" data-scroll-target="#comments-semicolons-and-nulls">Comments, semicolons, and NULLs</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-null-handling" id="toc-reference-card-null-handling" class="nav-link" data-scroll-target="#reference-card-null-handling">Reference Card: NULL handling</a></li>
+  <li><a href="#code-snippet-null-safe-filtering" id="toc-code-snippet-null-safe-filtering" class="nav-link" data-scroll-target="#code-snippet-null-safe-filtering">Code Snippet: NULL safe filtering</a></li>
+  </ul></li>
+  <li><a href="#coalesce" id="toc-coalesce" class="nav-link" data-scroll-target="#coalesce">COALESCE</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-coalesce" id="toc-reference-card-coalesce" class="nav-link" data-scroll-target="#reference-card-coalesce">Reference Card: COALESCE</a></li>
+  <li><a href="#code-snippet-fill-nulls" id="toc-code-snippet-fill-nulls" class="nav-link" data-scroll-target="#code-snippet-fill-nulls">Code Snippet: Fill NULLs</a></li>
+  </ul></li>
+  <li><a href="#select-where-order-by-limit-distinct" id="toc-select-where-order-by-limit-distinct" class="nav-link" data-scroll-target="#select-where-order-by-limit-distinct">SELECT, WHERE, ORDER BY, LIMIT, DISTINCT</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-core-clauses" id="toc-reference-card-core-clauses" class="nav-link" data-scroll-target="#reference-card-core-clauses">Reference Card: Core clauses</a></li>
+  <li><a href="#reference-card-where-operators" id="toc-reference-card-where-operators" class="nav-link" data-scroll-target="#reference-card-where-operators">Reference Card: WHERE operators</a></li>
+  <li><a href="#code-snippet-basic-filtering" id="toc-code-snippet-basic-filtering" class="nav-link" data-scroll-target="#code-snippet-basic-filtering">Code Snippet: Basic filtering</a></li>
+  </ul></li>
+  <li><a href="#case-when" id="toc-case-when" class="nav-link" data-scroll-target="#case-when">CASE WHEN</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-case-when" id="toc-reference-card-case-when" class="nav-link" data-scroll-target="#reference-card-case-when">Reference Card: CASE WHEN</a></li>
+  <li><a href="#code-snippet-conditional-labels" id="toc-code-snippet-conditional-labels" class="nav-link" data-scroll-target="#code-snippet-conditional-labels">Code Snippet: Conditional labels</a></li>
+  </ul></li>
+  <li><a href="#countdistinct" id="toc-countdistinct" class="nav-link" data-scroll-target="#countdistinct">COUNT(DISTINCT …)</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-count-distinct" id="toc-reference-card-count-distinct" class="nav-link" data-scroll-target="#reference-card-count-distinct">Reference Card: COUNT DISTINCT</a></li>
+  <li><a href="#code-snippet-unique-patients-per-department" id="toc-code-snippet-unique-patients-per-department" class="nav-link" data-scroll-target="#code-snippet-unique-patients-per-department">Code Snippet: Unique patients per department</a></li>
+  </ul></li>
+  <li><a href="#distinct-vs-group-by" id="toc-distinct-vs-group-by" class="nav-link" data-scroll-target="#distinct-vs-group-by">DISTINCT vs GROUP BY</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-distinct-vs-group-by" id="toc-reference-card-distinct-vs-group-by" class="nav-link" data-scroll-target="#reference-card-distinct-vs-group-by">Reference Card: DISTINCT vs GROUP BY</a></li>
+  <li><a href="#code-snippet-unique-departments" id="toc-code-snippet-unique-departments" class="nav-link" data-scroll-target="#code-snippet-unique-departments">Code Snippet: Unique departments</a></li>
+  </ul></li>
+  <li><a href="#in-vs-exists" id="toc-in-vs-exists" class="nav-link" data-scroll-target="#in-vs-exists">IN vs EXISTS</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-in-vs-exists" id="toc-reference-card-in-vs-exists" class="nav-link" data-scroll-target="#reference-card-in-vs-exists">Reference Card: IN vs EXISTS</a></li>
+  <li><a href="#code-snippet-exists-pattern" id="toc-code-snippet-exists-pattern" class="nav-link" data-scroll-target="#code-snippet-exists-pattern">Code Snippet: EXISTS pattern</a></li>
+  </ul></li>
+  <li><a href="#like-vs-ilike" id="toc-like-vs-ilike" class="nav-link" data-scroll-target="#like-vs-ilike">LIKE vs ILIKE</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-like-vs-ilike" id="toc-reference-card-like-vs-ilike" class="nav-link" data-scroll-target="#reference-card-like-vs-ilike">Reference Card: LIKE vs ILIKE</a></li>
+  <li><a href="#code-snippet-pattern-matching" id="toc-code-snippet-pattern-matching" class="nav-link" data-scroll-target="#code-snippet-pattern-matching">Code Snippet: Pattern matching</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#live-demo" id="toc-live-demo" class="nav-link" data-scroll-target="#live-demo">LIVE DEMO!</a></li>
+  <li><a href="#importing-data-and-defining-tables" id="toc-importing-data-and-defining-tables" class="nav-link" data-scroll-target="#importing-data-and-defining-tables">Importing data and defining tables</a>
+  <ul class="collapse">
+  <li><a href="#duckdb-read_csv_auto" id="toc-duckdb-read_csv_auto" class="nav-link" data-scroll-target="#duckdb-read_csv_auto">DuckDB <code>read_csv_auto</code></a>
+  <ul class="collapse">
+  <li><a href="#reference-card-read_csv_auto-duckdb" id="toc-reference-card-read_csv_auto-duckdb" class="nav-link" data-scroll-target="#reference-card-read_csv_auto-duckdb">Reference Card: <code>read_csv_auto</code> (DuckDB)</a></li>
+  <li><a href="#code-snippet-quick-csv-scan" id="toc-code-snippet-quick-csv-scan" class="nav-link" data-scroll-target="#code-snippet-quick-csv-scan">Code Snippet: Quick CSV scan</a></li>
+  </ul></li>
+  <li><a href="#duckdb-read_parquet" id="toc-duckdb-read_parquet" class="nav-link" data-scroll-target="#duckdb-read_parquet">DuckDB <code>read_parquet</code></a>
+  <ul class="collapse">
+  <li><a href="#reference-card-read_parquet-duckdb" id="toc-reference-card-read_parquet-duckdb" class="nav-link" data-scroll-target="#reference-card-read_parquet-duckdb">Reference Card: <code>read_parquet</code> (DuckDB)</a></li>
+  <li><a href="#code-snippet-parquet-scan" id="toc-code-snippet-parquet-scan" class="nav-link" data-scroll-target="#code-snippet-parquet-scan">Code Snippet: Parquet scan</a></li>
+  </ul></li>
+  <li><a href="#copy-for-bulk-load" id="toc-copy-for-bulk-load" class="nav-link" data-scroll-target="#copy-for-bulk-load">COPY for bulk load</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-copy" id="toc-reference-card-copy" class="nav-link" data-scroll-target="#reference-card-copy">Reference Card: COPY</a></li>
+  <li><a href="#code-snippet-copy-from-csv" id="toc-code-snippet-copy-from-csv" class="nav-link" data-scroll-target="#code-snippet-copy-from-csv">Code Snippet: COPY from CSV</a></li>
+  </ul></li>
+  <li><a href="#copy-for-exports" id="toc-copy-for-exports" class="nav-link" data-scroll-target="#copy-for-exports">COPY for exports</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-copy-to" id="toc-reference-card-copy-to" class="nav-link" data-scroll-target="#reference-card-copy-to">Reference Card: COPY TO</a></li>
+  <li><a href="#code-snippet-export-to-csv-and-parquet" id="toc-code-snippet-export-to-csv-and-parquet" class="nav-link" data-scroll-target="#code-snippet-export-to-csv-and-parquet">Code Snippet: Export to CSV and Parquet</a></li>
+  </ul></li>
+  <li><a href="#create-table-as-copy" id="toc-create-table-as-copy" class="nav-link" data-scroll-target="#create-table-as-copy">CREATE TABLE AS COPY</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-create-table-as-copy" id="toc-reference-card-create-table-as-copy" class="nav-link" data-scroll-target="#reference-card-create-table-as-copy">Reference Card: CREATE TABLE AS COPY</a></li>
+  <li><a href="#code-snippet-create-table-load" id="toc-code-snippet-create-table-load" class="nav-link" data-scroll-target="#code-snippet-create-table-load">Code Snippet: Create table + load</a></li>
+  <li><a href="#reference-card-common-import-patterns" id="toc-reference-card-common-import-patterns" class="nav-link" data-scroll-target="#reference-card-common-import-patterns">Reference Card: Common import patterns</a></li>
+  <li><a href="#code-snippet-create-table-from-csv" id="toc-code-snippet-create-table-from-csv" class="nav-link" data-scroll-target="#code-snippet-create-table-from-csv">Code Snippet: Create table from CSV</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#filtering-and-aggregation" id="toc-filtering-and-aggregation" class="nav-link" data-scroll-target="#filtering-and-aggregation">Filtering and aggregation</a>
+  <ul class="collapse">
+  <li><a href="#where-vs-having" id="toc-where-vs-having" class="nav-link" data-scroll-target="#where-vs-having">WHERE vs HAVING</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-where-vs-having" id="toc-reference-card-where-vs-having" class="nav-link" data-scroll-target="#reference-card-where-vs-having">Reference Card: WHERE vs HAVING</a></li>
+  </ul></li>
+  <li><a href="#group-by-and-aggregates" id="toc-group-by-and-aggregates" class="nav-link" data-scroll-target="#group-by-and-aggregates">GROUP BY and aggregates</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-aggregates" id="toc-reference-card-aggregates" class="nav-link" data-scroll-target="#reference-card-aggregates">Reference Card: Aggregates</a></li>
+  <li><a href="#reference-card-filtering-aggregates" id="toc-reference-card-filtering-aggregates" class="nav-link" data-scroll-target="#reference-card-filtering-aggregates">Reference Card: Filtering + aggregates</a></li>
+  <li><a href="#code-snippet-filter-then-group" id="toc-code-snippet-filter-then-group" class="nav-link" data-scroll-target="#code-snippet-filter-then-group">Code Snippet: Filter then group</a></li>
+  </ul></li>
+  <li><a href="#round" id="toc-round" class="nav-link" data-scroll-target="#round">ROUND</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-round" id="toc-reference-card-round" class="nav-link" data-scroll-target="#reference-card-round">Reference Card: ROUND</a></li>
+  <li><a href="#code-snippet-rounded-averages" id="toc-code-snippet-rounded-averages" class="nav-link" data-scroll-target="#code-snippet-rounded-averages">Code Snippet: Rounded averages</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#joins-combine-tables-safely" id="toc-joins-combine-tables-safely" class="nav-link" data-scroll-target="#joins-combine-tables-safely">Joins: combine tables safely</a>
+  <ul class="collapse">
+  <li><a href="#joins" id="toc-joins" class="nav-link" data-scroll-target="#joins">Joins</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-join-checks" id="toc-reference-card-join-checks" class="nav-link" data-scroll-target="#reference-card-join-checks">Reference Card: Join checks</a></li>
+  <li><a href="#code-snippet-pre-join-key-check" id="toc-code-snippet-pre-join-key-check" class="nav-link" data-scroll-target="#code-snippet-pre-join-key-check">Code Snippet: Pre-join key check</a></li>
+  </ul></li>
+  <li><a href="#join-types" id="toc-join-types" class="nav-link" data-scroll-target="#join-types">Join types</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-join-types" id="toc-reference-card-join-types" class="nav-link" data-scroll-target="#reference-card-join-types">Reference Card: Join types</a></li>
+  <li><a href="#code-snippet-encounter-demographics" id="toc-code-snippet-encounter-demographics" class="nav-link" data-scroll-target="#code-snippet-encounter-demographics">Code Snippet: Encounter + demographics</a></li>
+  </ul></li>
+  <li><a href="#on-vs-using" id="toc-on-vs-using" class="nav-link" data-scroll-target="#on-vs-using">ON vs USING</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-on-vs-using" id="toc-reference-card-on-vs-using" class="nav-link" data-scroll-target="#reference-card-on-vs-using">Reference Card: ON vs USING</a></li>
+  <li><a href="#code-snippet-using-clause" id="toc-code-snippet-using-clause" class="nav-link" data-scroll-target="#code-snippet-using-clause">Code Snippet: USING clause</a></li>
+  </ul></li>
+  <li><a href="#union-all" id="toc-union-all" class="nav-link" data-scroll-target="#union-all">UNION ALL</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-union-all" id="toc-reference-card-union-all" class="nav-link" data-scroll-target="#reference-card-union-all">Reference Card: UNION ALL</a></li>
+  <li><a href="#code-snippet-stack-row-counts" id="toc-code-snippet-stack-row-counts" class="nav-link" data-scroll-target="#code-snippet-stack-row-counts">Code Snippet: Stack row counts</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#sql-statement-structure-and-execution-order" id="toc-sql-statement-structure-and-execution-order" class="nav-link" data-scroll-target="#sql-statement-structure-and-execution-order">SQL statement structure and execution order</a>
+  <ul class="collapse">
+  <li><a href="#statement-structure" id="toc-statement-structure" class="nav-link" data-scroll-target="#statement-structure">Statement structure</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-readable-structure" id="toc-reference-card-readable-structure" class="nav-link" data-scroll-target="#reference-card-readable-structure">Reference Card: Readable structure</a></li>
+  <li><a href="#code-snippet-skeleton-query" id="toc-code-snippet-skeleton-query" class="nav-link" data-scroll-target="#code-snippet-skeleton-query">Code Snippet: Skeleton query</a></li>
+  </ul></li>
+  <li><a href="#execution-order" id="toc-execution-order" class="nav-link" data-scroll-target="#execution-order">Execution order</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-execution-order-simplified" id="toc-reference-card-execution-order-simplified" class="nav-link" data-scroll-target="#reference-card-execution-order-simplified">Reference Card: Execution order (simplified)</a></li>
+  <li><a href="#code-snippet-readable-query-template" id="toc-code-snippet-readable-query-template" class="nav-link" data-scroll-target="#code-snippet-readable-query-template">Code Snippet: Readable query template</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#live-demo-1" id="toc-live-demo-1" class="nav-link" data-scroll-target="#live-demo-1">LIVE DEMO!!</a></li>
+  <li><a href="#subqueries-and-ctes" id="toc-subqueries-and-ctes" class="nav-link" data-scroll-target="#subqueries-and-ctes">Subqueries and CTEs</a>
+  <ul class="collapse">
+  <li><a href="#subqueries" id="toc-subqueries" class="nav-link" data-scroll-target="#subqueries">Subqueries</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-subqueries" id="toc-reference-card-subqueries" class="nav-link" data-scroll-target="#reference-card-subqueries">Reference Card: Subqueries</a></li>
+  <li><a href="#code-snippet-subquery-filter" id="toc-code-snippet-subquery-filter" class="nav-link" data-scroll-target="#code-snippet-subquery-filter">Code Snippet: Subquery filter</a></li>
+  </ul></li>
+  <li><a href="#ctes" id="toc-ctes" class="nav-link" data-scroll-target="#ctes">CTEs</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-ctes" id="toc-reference-card-ctes" class="nav-link" data-scroll-target="#reference-card-ctes">Reference Card: CTEs</a></li>
+  <li><a href="#reference-card-subqueries-vs-ctes" id="toc-reference-card-subqueries-vs-ctes" class="nav-link" data-scroll-target="#reference-card-subqueries-vs-ctes">Reference Card: Subqueries vs CTEs</a></li>
+  <li><a href="#code-snippet-cte-for-a-cohort" id="toc-code-snippet-cte-for-a-cohort" class="nav-link" data-scroll-target="#code-snippet-cte-for-a-cohort">Code Snippet: CTE for a cohort</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#window-functions" id="toc-window-functions" class="nav-link" data-scroll-target="#window-functions">Window functions</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-window-function-patterns" id="toc-reference-card-window-function-patterns" class="nav-link" data-scroll-target="#reference-card-window-function-patterns">Reference Card: Window function patterns</a></li>
+  <li><a href="#code-snippet-running-total-per-patient" id="toc-code-snippet-running-total-per-patient" class="nav-link" data-scroll-target="#code-snippet-running-total-per-patient">Code Snippet: Running total per patient</a></li>
+  </ul></li>
+  <li><a href="#data-modification-insert-update-delete" id="toc-data-modification-insert-update-delete" class="nav-link" data-scroll-target="#data-modification-insert-update-delete">Data modification (INSERT, UPDATE, DELETE)</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-data-modification-statements" id="toc-reference-card-data-modification-statements" class="nav-link" data-scroll-target="#reference-card-data-modification-statements">Reference Card: Data modification statements</a></li>
+  <li><a href="#insert" id="toc-insert" class="nav-link" data-scroll-target="#insert">INSERT</a>
+  <ul class="collapse">
+  <li><a href="#code-snippet-safe-insert" id="toc-code-snippet-safe-insert" class="nav-link" data-scroll-target="#code-snippet-safe-insert">Code Snippet: Safe insert</a></li>
+  </ul></li>
+  <li><a href="#update" id="toc-update" class="nav-link" data-scroll-target="#update">UPDATE</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-update" id="toc-reference-card-update" class="nav-link" data-scroll-target="#reference-card-update">Reference Card: UPDATE</a></li>
+  <li><a href="#code-snippet-safe-update" id="toc-code-snippet-safe-update" class="nav-link" data-scroll-target="#code-snippet-safe-update">Code Snippet: Safe update</a></li>
+  </ul></li>
+  <li><a href="#delete" id="toc-delete" class="nav-link" data-scroll-target="#delete">DELETE</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-delete" id="toc-reference-card-delete" class="nav-link" data-scroll-target="#reference-card-delete">Reference Card: DELETE</a></li>
+  <li><a href="#code-snippet-targeted-delete" id="toc-code-snippet-targeted-delete" class="nav-link" data-scroll-target="#code-snippet-targeted-delete">Code Snippet: Targeted delete</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#cast" id="toc-cast" class="nav-link" data-scroll-target="#cast">CAST</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-cast" id="toc-reference-card-cast" class="nav-link" data-scroll-target="#reference-card-cast">Reference Card: CAST</a></li>
+  <li><a href="#code-snippet-cast-to-date" id="toc-code-snippet-cast-to-date" class="nav-link" data-scroll-target="#code-snippet-cast-to-date">Code Snippet: Cast to DATE</a></li>
+  </ul></li>
+  <li><a href="#date_part" id="toc-date_part" class="nav-link" data-scroll-target="#date_part">date_part</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-date_part" id="toc-reference-card-date_part" class="nav-link" data-scroll-target="#reference-card-date_part">Reference Card: date_part</a></li>
+  <li><a href="#code-snippet-group-by-month" id="toc-code-snippet-group-by-month" class="nav-link" data-scroll-target="#code-snippet-group-by-month">Code Snippet: Group by month</a></li>
+  </ul></li>
+  <li><a href="#date_trunc" id="toc-date_trunc" class="nav-link" data-scroll-target="#date_trunc">DATE_TRUNC</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-date_trunc" id="toc-reference-card-date_trunc" class="nav-link" data-scroll-target="#reference-card-date_trunc">Reference Card: DATE_TRUNC</a></li>
+  <li><a href="#code-snippet-monthly-buckets" id="toc-code-snippet-monthly-buckets" class="nav-link" data-scroll-target="#code-snippet-monthly-buckets">Code Snippet: Monthly buckets</a></li>
+  </ul></li>
+  <li><a href="#views-and-materialized-views" id="toc-views-and-materialized-views" class="nav-link" data-scroll-target="#views-and-materialized-views">Views and materialized views</a>
+  <ul class="collapse">
+  <li><a href="#views" id="toc-views" class="nav-link" data-scroll-target="#views">Views</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-views" id="toc-reference-card-views" class="nav-link" data-scroll-target="#reference-card-views">Reference Card: Views</a></li>
+  </ul></li>
+  <li><a href="#materialized-views" id="toc-materialized-views" class="nav-link" data-scroll-target="#materialized-views">Materialized views</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-materialized-views" id="toc-reference-card-materialized-views" class="nav-link" data-scroll-target="#reference-card-materialized-views">Reference Card: Materialized views</a></li>
+  <li><a href="#code-snippet-create-a-view" id="toc-code-snippet-create-a-view" class="nav-link" data-scroll-target="#code-snippet-create-a-view">Code Snippet: Create a view</a></li>
+  <li><a href="#code-snippet-create-a-materialized-view" id="toc-code-snippet-create-a-materialized-view" class="nav-link" data-scroll-target="#code-snippet-create-a-materialized-view">Code Snippet: Create a materialized view</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#performance-basics" id="toc-performance-basics" class="nav-link" data-scroll-target="#performance-basics">Performance basics</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-performance-checklist" id="toc-reference-card-performance-checklist" class="nav-link" data-scroll-target="#reference-card-performance-checklist">Reference Card: Performance checklist</a></li>
+  <li><a href="#code-snippet-explain-a-query" id="toc-code-snippet-explain-a-query" class="nav-link" data-scroll-target="#code-snippet-explain-a-query">Code Snippet: Explain a query</a></li>
+  </ul></li>
+  <li><a href="#sql-python-workflows" id="toc-sql-python-workflows" class="nav-link" data-scroll-target="#sql-python-workflows">SQL + Python workflows</a>
+  <ul class="collapse">
+  <li><a href="#sql-for-reduction" id="toc-sql-for-reduction" class="nav-link" data-scroll-target="#sql-for-reduction">SQL for reduction</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-reduction-patterns" id="toc-reference-card-reduction-patterns" class="nav-link" data-scroll-target="#reference-card-reduction-patterns">Reference Card: Reduction patterns</a></li>
+  <li><a href="#code-snippet-reduce-before-pandas" id="toc-code-snippet-reduce-before-pandas" class="nav-link" data-scroll-target="#code-snippet-reduce-before-pandas">Code Snippet: Reduce before pandas</a></li>
+  </ul></li>
+  <li><a href="#python-for-analysis" id="toc-python-for-analysis" class="nav-link" data-scroll-target="#python-for-analysis">Python for analysis</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-pandas-entry-points" id="toc-reference-card-pandas-entry-points" class="nav-link" data-scroll-target="#reference-card-pandas-entry-points">Reference Card: pandas entry points</a></li>
+  <li><a href="#code-snippet-pandas-from-sqlalchemy" id="toc-code-snippet-pandas-from-sqlalchemy" class="nav-link" data-scroll-target="#code-snippet-pandas-from-sqlalchemy">Code Snippet: pandas from SQLAlchemy</a></li>
+  </ul></li>
+  <li><a href="#sqlite-connections" id="toc-sqlite-connections" class="nav-link" data-scroll-target="#sqlite-connections">SQLite connections</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-sqlite" id="toc-reference-card-sqlite" class="nav-link" data-scroll-target="#reference-card-sqlite">Reference Card: SQLite</a></li>
+  <li><a href="#code-snippet-sqlite-to-pandas" id="toc-code-snippet-sqlite-to-pandas" class="nav-link" data-scroll-target="#code-snippet-sqlite-to-pandas">Code Snippet: SQLite to pandas</a></li>
+  <li><a href="#reference-card-pandas-interop" id="toc-reference-card-pandas-interop" class="nav-link" data-scroll-target="#reference-card-pandas-interop">Reference Card: pandas interop</a></li>
+  <li><a href="#code-snippet-sqlalchemy-connection" id="toc-code-snippet-sqlalchemy-connection" class="nav-link" data-scroll-target="#code-snippet-sqlalchemy-connection">Code Snippet: SQLAlchemy connection</a></li>
+  <li><a href="#code-snippet-sql-to-dataframe" id="toc-code-snippet-sql-to-dataframe" class="nav-link" data-scroll-target="#code-snippet-sql-to-dataframe">Code Snippet: SQL to DataFrame</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#live-demo-2" id="toc-live-demo-2" class="nav-link" data-scroll-target="#live-demo-2">LIVE DEMO!!!</a></li>
+  <li><a href="#advanced-sql-patterns-optional" id="toc-advanced-sql-patterns-optional" class="nav-link" data-scroll-target="#advanced-sql-patterns-optional">Advanced SQL patterns (optional)</a>
+  <ul class="collapse">
+  <li><a href="#nullif-for-safe-division" id="toc-nullif-for-safe-division" class="nav-link" data-scroll-target="#nullif-for-safe-division">NULLIF for safe division</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-nullif" id="toc-reference-card-nullif" class="nav-link" data-scroll-target="#reference-card-nullif">Reference Card: NULLIF</a></li>
+  <li><a href="#code-snippet-safe-rate" id="toc-code-snippet-safe-rate" class="nav-link" data-scroll-target="#code-snippet-safe-rate">Code Snippet: Safe rate</a></li>
+  </ul></li>
+  <li><a href="#order-by-nulls-firstlast" id="toc-order-by-nulls-firstlast" class="nav-link" data-scroll-target="#order-by-nulls-firstlast">ORDER BY NULLS FIRST/LAST</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-null-ordering" id="toc-reference-card-null-ordering" class="nav-link" data-scroll-target="#reference-card-null-ordering">Reference Card: NULL ordering</a></li>
+  <li><a href="#code-snippet-explicit-null-ordering" id="toc-code-snippet-explicit-null-ordering" class="nav-link" data-scroll-target="#code-snippet-explicit-null-ordering">Code Snippet: Explicit NULL ordering</a></li>
+  </ul></li>
+  <li><a href="#limit-and-offset" id="toc-limit-and-offset" class="nav-link" data-scroll-target="#limit-and-offset">LIMIT and OFFSET</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-pagination" id="toc-reference-card-pagination" class="nav-link" data-scroll-target="#reference-card-pagination">Reference Card: Pagination</a></li>
+  <li><a href="#code-snippet-page-through-results" id="toc-code-snippet-page-through-results" class="nav-link" data-scroll-target="#code-snippet-page-through-results">Code Snippet: Page through results</a></li>
+  </ul></li>
+  <li><a href="#insert-select" id="toc-insert-select" class="nav-link" data-scroll-target="#insert-select">INSERT … SELECT</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-insert-select" id="toc-reference-card-insert-select" class="nav-link" data-scroll-target="#reference-card-insert-select">Reference Card: INSERT SELECT</a></li>
+  <li><a href="#code-snippet-insert-cohort" id="toc-code-snippet-insert-cohort" class="nav-link" data-scroll-target="#code-snippet-insert-cohort">Code Snippet: Insert cohort</a></li>
+  </ul></li>
+  <li><a href="#update-from" id="toc-update-from" class="nav-link" data-scroll-target="#update-from">UPDATE … FROM</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-update-from" id="toc-reference-card-update-from" class="nav-link" data-scroll-target="#reference-card-update-from">Reference Card: UPDATE FROM</a></li>
+  <li><a href="#code-snippet-update-with-join" id="toc-code-snippet-update-with-join" class="nav-link" data-scroll-target="#code-snippet-update-with-join">Code Snippet: Update with join</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../01/index.html">Foundation</a></li><li class="breadcrumb-item"><a href="../03/index.html">03. SQL</a></li></ol></nav></header>
+
+
+
+
+<p>03: Join the DISTINCT with SQL</p>
+<ul>
+<li><a href="https://classroom.github.com/a/Rn7-jPaj">hw03</a></li>
+</ul>
+<section id="links-self-guided-review" class="level1">
+<h1>Links &amp; Self-Guided Review</h1>
+<ul>
+<li><a href="https://duckdb.org/docs/">DuckDB docs</a> - embedded analytics database with strong CSV support</li>
+<li><a href="https://jupysql.ploomber.io/">JupySQL</a> - SQL magics for notebooks</li>
+<li><a href="https://mode.com/sql-tutorial/sql-style-guide/">SQL Style Guide (Mode)</a> - readable query conventions</li>
+<li><a href="https://www.sqlite.org/docs.html">SQLite docs</a> - lightweight SQL reference</li>
+<li><a href="https://www.postgresql.org/docs/">PostgreSQL docs</a> - production SQL dialect used widely in health systems</li>
+</ul>
+</section>
+<section id="outline" class="level1">
+<h1>Outline</h1>
+<ul>
+<li>Why SQL still runs the data world</li>
+<li>SQL in notebooks (JupySQL + DuckDB/SQLite)</li>
+<li>SQL basics: comments, NULLs, SELECT/WHERE</li>
+<li>Live demo 1</li>
+<li>SQL statement structure and execution order</li>
+<li>Importing data and defining tables</li>
+<li>Filtering and aggregation (WHERE vs HAVING)</li>
+<li>Joins, subqueries, CTEs, window functions</li>
+<li>Views, performance basics, SQL + Python workflows</li>
+<li>Live demo 2</li>
+<li>Live demo 3</li>
+</ul>
+</section>
+<section id="why-sql-still-runs-the-data-world" class="level1">
+<h1>Why SQL still runs the data world</h1>
+<p>SQL is how data teams ask precise questions of large relational datasets. In health data science, it shows up everywhere: EHR extracts, claims data, public health reporting, and analytics layers under dashboards.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Where SQL shows up</th>
+<th>What you use it for</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>EHR reporting</td>
+<td>Cohorts, encounters, lab results</td>
+</tr>
+<tr class="even">
+<td>Claims data</td>
+<td>Cost summaries, utilization, billing audits</td>
+</tr>
+<tr class="odd">
+<td>Research datasets</td>
+<td>Cleaning, joining, aggregating</td>
+</tr>
+<tr class="even">
+<td>Analytics stacks</td>
+<td>ELT pipelines (extract → load → transform), dashboards, scheduled reports</td>
+</tr>
+</tbody>
+</table>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/xkcd_data_point.png" class="img-fluid figure-img"></p>
+<figcaption>XKCD: Data Point</figcaption>
+</figure>
+</div>
+<section id="reference-card-why-sql-matters" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-why-sql-matters">Reference Card: Why SQL matters</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Strength</th>
+<th>Why it helps in practice</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Declarative</td>
+<td>You state what you want, not how to compute it</td>
+</tr>
+<tr class="even">
+<td>Scalable</td>
+<td>Works on datasets larger than laptop RAM</td>
+</tr>
+<tr class="odd">
+<td>Transferable</td>
+<td>Similar syntax across DuckDB, SQLite, PostgreSQL</td>
+</tr>
+<tr class="even">
+<td>Composable</td>
+<td>Queries can be layered and reused</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-smallest-useful-query" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-smallest-useful-query">Code Snippet: Smallest useful query</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> patient_id, age, sex</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> demographics</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">LIMIT</span> <span class="dv">5</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="sql-in-notebooks-jupysql-duckdbsqlite" class="level1">
+<h1>SQL in notebooks (JupySQL + DuckDB/SQLite)</h1>
+<p>DuckDB is an embedded analytics database that feels like SQLite but is optimized for analytics. JupySQL lets you run SQL directly in notebooks using <code>%sql</code> for single-line and <code>%%sql</code> for multi-line queries, and it works with any SQLAlchemy-supported engine (SQLAlchemy is a Python toolkit for database connections).</p>
+<section id="jupysql-magics" class="level2">
+<h2 class="anchored" data-anchor-id="jupysql-magics">JupySQL magics</h2>
+<p>Use <code>%sql</code> for quick, single-line queries and <code>%%sql</code> for multi-line blocks you want to read like a full query.</p>
+<section id="reference-card-jupysql-magics" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-jupysql-magics">Reference Card: JupySQL magics</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Magic</th>
+<th>Use case</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>%sql</code></td>
+<td>Single-line query</td>
+<td><code>%sql SELECT COUNT(*) FROM labs</code></td>
+</tr>
+<tr class="even">
+<td><code>%%sql</code></td>
+<td>Multi-line query</td>
+<td><code>%%sql</code> (cell header)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-one-line-query" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-one-line-query">Code Snippet: One-line query</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>sql SELECT COUNT(<span class="op">*</span>) FROM labs</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="duckdb-and-sqlite-connections" class="level2">
+<h2 class="anchored" data-anchor-id="duckdb-and-sqlite-connections">DuckDB and SQLite connections</h2>
+<p>Both use lightweight file-based databases, so connection strings point to a local file and keep everything reproducible.</p>
+<section id="reference-card-local-connections" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-local-connections">Reference Card: Local connections</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Engine</th>
+<th>Connection string</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>DuckDB</td>
+<td><code>duckdb:///clinic.db</code></td>
+<td>Fast analytics on local files</td>
+</tr>
+<tr class="even">
+<td>SQLite</td>
+<td><code>sqlite:///clinic.db</code></td>
+<td>Portable file-based database</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-connect-to-duckdb" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-connect-to-duckdb">Code Snippet: Connect to DuckDB</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>sql duckdb:<span class="op">///</span>clinic.db</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="duckdb-sqlite-attachments" class="level2">
+<h2 class="anchored" data-anchor-id="duckdb-sqlite-attachments">DuckDB + SQLite attachments</h2>
+<p>DuckDB can attach a SQLite database directly so you can query it without conversion. This is DuckDB-specific.</p>
+<section id="reference-card-duckdb-sqlite-attach" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-duckdb-sqlite-attach">Reference Card: DuckDB SQLite attach</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Step</th>
+<th>Purpose</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Install scanner</td>
+<td>Load SQLite extension</td>
+<td><code>INSTALL sqlite_scanner</code></td>
+</tr>
+<tr class="even">
+<td>Attach DB</td>
+<td>Connect file</td>
+<td><code>ATTACH 'chinook.sqlite' AS chinook (TYPE SQLITE)</code></td>
+</tr>
+<tr class="odd">
+<td>List tables</td>
+<td>Inspect schema</td>
+<td><code>SHOW TABLES FROM chinook</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-attach-sqlite-in-duckdb" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-attach-sqlite-in-duckdb">Code Snippet: Attach SQLite in DuckDB</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>INSTALL sqlite_scanner;</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>LOAD sqlite_scanner;</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>ATTACH <span class="st">'chinook.sqlite'</span> <span class="kw">AS</span> chinook (<span class="kw">TYPE</span> SQLITE);</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>SHOW <span class="kw">TABLES</span> <span class="kw">FROM</span> chinook;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/sql_to_pandas.png" class="img-fluid figure-img"></p>
+<figcaption>SQL to pandas flow</figcaption>
+</figure>
+</div>
+</section>
+<section id="reference-card-notebook-setup" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-notebook-setup">Reference Card: Notebook setup</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Step</th>
+<th>Command</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Install</td>
+<td><code>pip install duckdb duckdb-engine jupysql pandas</code></td>
+</tr>
+<tr class="even">
+<td>Load magic</td>
+<td><code>%load_ext sql</code></td>
+</tr>
+<tr class="odd">
+<td>Connect (DuckDB)</td>
+<td><code>%sql duckdb:///clinic.duckdb</code></td>
+</tr>
+<tr class="even">
+<td>Connect (SQLite)</td>
+<td><code>%sql sqlite:///clinic.sqlite</code></td>
+</tr>
+<tr class="odd">
+<td>Return DataFrame</td>
+<td><code>result = %sql SELECT * FROM table</code></td>
+</tr>
+<tr class="even">
+<td>Capture to variable</td>
+<td><code>%%sql result &lt;&lt; SELECT * FROM table</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-minimal-setup" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-minimal-setup">Code Snippet: Minimal setup</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> duckdb</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>load_ext sql</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>sql duckdb:<span class="op">///</span>clinic.db</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>sql</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>SELECT <span class="op">*</span> FROM demographics</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>LIMIT <span class="dv">5</span><span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="code-snippet-return-dataframe-assignment" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-return-dataframe-assignment">Code Snippet: Return DataFrame (assignment)</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> <span class="op">%</span>sql SELECT <span class="op">*</span> FROM demographics LIMIT <span class="dv">5</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="code-snippet-return-dataframe-variable-capture" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-return-dataframe-variable-capture">Code Snippet: Return DataFrame (variable capture)</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>sql invoice_counts <span class="op">&lt;&lt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>SELECT BillingCountry, COUNT(<span class="op">*</span>) AS invoice_count</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>FROM invoices</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>GROUP BY BillingCountry</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>ORDER BY invoice_count DESC</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="querying-dataframes-with-sql" class="level2">
+<h2 class="anchored" data-anchor-id="querying-dataframes-with-sql">Querying DataFrames with SQL</h2>
+<p>DuckDB can query pandas DataFrames directly using replacement scans: use the DataFrame variable name in your SQL query. <strong>Replacement scans must be enabled</strong> when using SQLAlchemy connections (which JupySQL uses with connection strings).</p>
+<section id="reference-card-dataframe-queries" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-dataframe-queries">Reference Card: DataFrame queries</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Pattern</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Enable scans (required)</td>
+<td><code>%sql SET python_scan_all_frames=true</code></td>
+</tr>
+<tr class="even">
+<td>Query DataFrame</td>
+<td><code>%sql SELECT * FROM df WHERE x &gt;= 5</code></td>
+</tr>
+<tr class="odd">
+<td>Capture result</td>
+<td><code>%%sql result &lt;&lt; SELECT * FROM df</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-query-a-dataframe" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-query-a-dataframe">Code Snippet: Query a DataFrame</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Assume we already have duckdb connected and pandas imported</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Enable DataFrame replacement scans (required for SQLAlchemy connections)</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>sql SET python_scan_all_frames<span class="op">=</span>true</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a DataFrame</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'patient_id'</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>],</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'age'</span>: [<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">35</span>, <span class="dv">40</span>, <span class="dv">45</span>],</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">'department'</span>: [<span class="st">'Cardio'</span>, <span class="st">'Neuro'</span>, <span class="st">'Cardio'</span>, <span class="st">'Neuro'</span>, <span class="st">'Cardio'</span>]</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Query it with SQL (now works because replacement scans are enabled)</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>sql SELECT department, COUNT(<span class="op">*</span>) AS count FROM df GROUP BY department</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+</section>
+<section id="sql-basics" class="level1">
+<h1>SQL basics</h1>
+<p>These are the building blocks of most queries. Treat them as a checklist when reading or writing SQL.</p>
+<section id="comments-semicolons-and-nulls" class="level2">
+<h2 class="anchored" data-anchor-id="comments-semicolons-and-nulls">Comments, semicolons, and NULLs</h2>
+<p>SQL statements end with semicolons, and comments start with <code>--</code>. NULL means missing, so comparisons need <code>IS NULL</code> rather than <code>=</code>.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Value</th>
+<th>Interpretation</th>
+<th>Correct check</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>NULL</code></td>
+<td>Missing value</td>
+<td><code>IS NULL</code> / <code>IS NOT NULL</code></td>
+</tr>
+<tr class="even">
+<td>Empty string</td>
+<td>Present but blank</td>
+<td><code>= ''</code></td>
+</tr>
+<tr class="odd">
+<td>Zero</td>
+<td>Numeric value</td>
+<td><code>= 0</code></td>
+</tr>
+</tbody>
+</table>
+<section id="reference-card-null-handling" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-null-handling">Reference Card: NULL handling</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Pattern</th>
+<th>Example</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Check missing</td>
+<td><code>WHERE lab_value IS NULL</code></td>
+<td>NULL is not equal to NULL</td>
+</tr>
+<tr class="even">
+<td>Fill missing</td>
+<td><code>COALESCE(lab_value, 0)</code></td>
+<td>Replace NULL with default</td>
+</tr>
+<tr class="odd">
+<td>Safer filters</td>
+<td><code>WHERE lab_value IS NOT NULL</code></td>
+<td>Avoid accidental drops</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-null-safe-filtering" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-null-safe-filtering">Code Snippet: NULL safe filtering</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> patient_id, test_name, <span class="fu">value</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> labs</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> <span class="fu">value</span> <span class="kw">IS</span> <span class="kw">NOT</span> <span class="kw">NULL</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> test_name;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="coalesce" class="level2">
+<h2 class="anchored" data-anchor-id="coalesce">COALESCE</h2>
+<p>Use <code>COALESCE</code> to replace missing values with a default during queries.</p>
+<section id="reference-card-coalesce" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-coalesce">Reference Card: COALESCE</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>Purpose</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>COALESCE</code></td>
+<td>Fill NULLs</td>
+<td><code>COALESCE(lab_value, 0)</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-fill-nulls" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-fill-nulls">Code Snippet: Fill NULLs</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> patient_id, <span class="fu">COALESCE</span>(lab_value, <span class="dv">0</span>) <span class="kw">AS</span> lab_value_filled</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> labs;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="select-where-order-by-limit-distinct" class="level2">
+<h2 class="anchored" data-anchor-id="select-where-order-by-limit-distinct">SELECT, WHERE, ORDER BY, LIMIT, DISTINCT</h2>
+<p>This is the core of most queries: choose columns, filter rows, and order the output. Learn these first and most day-to-day SQL becomes readable.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>patient_id</th>
+<th>encounter_date</th>
+<th>department</th>
+<th>total_cost</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>2009</td>
+<td>2024-03-06</td>
+<td>Cardiology</td>
+<td>560.00</td>
+</tr>
+<tr class="even">
+<td>2006</td>
+<td>2024-03-01</td>
+<td>Emergency</td>
+<td>980.00</td>
+</tr>
+<tr class="odd">
+<td>2010</td>
+<td>2024-02-28</td>
+<td>Emergency</td>
+<td>1500.00</td>
+</tr>
+</tbody>
+</table>
+<section id="reference-card-core-clauses" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-core-clauses">Reference Card: Core clauses</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Clause</th>
+<th>Purpose</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>SELECT</code></td>
+<td>Choose columns</td>
+<td><code>SELECT patient_id, age</code></td>
+</tr>
+<tr class="even">
+<td><code>WHERE</code></td>
+<td>Filter rows</td>
+<td><code>WHERE age &gt;= 18</code></td>
+</tr>
+<tr class="odd">
+<td><code>ORDER BY</code></td>
+<td>Sort results</td>
+<td><code>ORDER BY total_cost DESC</code></td>
+</tr>
+<tr class="even">
+<td><code>LIMIT</code></td>
+<td>Keep top N</td>
+<td><code>LIMIT 10</code></td>
+</tr>
+<tr class="odd">
+<td><code>DISTINCT</code></td>
+<td>Unique values</td>
+<td><code>SELECT DISTINCT department</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="reference-card-where-operators" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-where-operators">Reference Card: WHERE operators</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Operator</th>
+<th>Purpose</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Comparisons</td>
+<td>Match values</td>
+<td><code>age &gt;= 18</code></td>
+</tr>
+<tr class="even">
+<td>Logical</td>
+<td>Combine conditions</td>
+<td><code>age &gt;= 18 AND sex = 'F'</code></td>
+</tr>
+<tr class="odd">
+<td><code>IN</code></td>
+<td>Match a set</td>
+<td><code>department IN ('ER', 'ICU')</code></td>
+</tr>
+<tr class="even">
+<td><code>BETWEEN</code></td>
+<td>Match ranges</td>
+<td><code>total_cost BETWEEN 100 AND 500</code></td>
+</tr>
+<tr class="odd">
+<td><code>LIKE</code></td>
+<td>Pattern match</td>
+<td><code>test_name LIKE '%A1C%'</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-basic-filtering" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-basic-filtering">Code Snippet: Basic filtering</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> encounter_id, patient_id, department, total_cost</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> encounters</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> total_cost <span class="op">&gt;=</span> <span class="dv">500</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> total_cost <span class="kw">DESC</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="kw">LIMIT</span> <span class="dv">5</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="case-when" class="level2">
+<h2 class="anchored" data-anchor-id="case-when">CASE WHEN</h2>
+<p>Use <code>CASE WHEN</code> to create conditional categories inside a query.</p>
+<section id="reference-card-case-when" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-case-when">Reference Card: CASE WHEN</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Pattern</th>
+<th>Purpose</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>CASE WHEN ... THEN ... END</code></td>
+<td>Conditional logic</td>
+<td><code>CASE WHEN age &gt;= 65 THEN 'senior' ELSE 'adult' END</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-conditional-labels" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-conditional-labels">Code Snippet: Conditional labels</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> patient_id,</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">CASE</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">WHEN</span> age <span class="op">&gt;=</span> <span class="dv">65</span> <span class="cf">THEN</span> <span class="st">'senior'</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">WHEN</span> age <span class="op">&gt;=</span> <span class="dv">18</span> <span class="cf">THEN</span> <span class="st">'adult'</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">ELSE</span> <span class="st">'minor'</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">END</span> <span class="kw">AS</span> age_group</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> demographics;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="countdistinct" class="level2">
+<h2 class="anchored" data-anchor-id="countdistinct">COUNT(DISTINCT …)</h2>
+<p>Use <code>COUNT(DISTINCT ...)</code> to count unique values instead of rows.</p>
+<section id="reference-card-count-distinct" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-count-distinct">Reference Card: COUNT DISTINCT</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Pattern</th>
+<th>Purpose</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>COUNT(DISTINCT col)</code></td>
+<td>Unique count</td>
+<td><code>COUNT(DISTINCT patient_id)</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-unique-patients-per-department" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-unique-patients-per-department">Code Snippet: Unique patients per department</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> department, <span class="fu">COUNT</span>(<span class="kw">DISTINCT</span> patient_id) <span class="kw">AS</span> unique_patients</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> encounters</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> department;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="distinct-vs-group-by" class="level2">
+<h2 class="anchored" data-anchor-id="distinct-vs-group-by">DISTINCT vs GROUP BY</h2>
+<p>Use <code>DISTINCT</code> for unique row combinations and <code>GROUP BY</code> when you need aggregates.</p>
+<section id="reference-card-distinct-vs-group-by" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-distinct-vs-group-by">Reference Card: DISTINCT vs GROUP BY</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Tool</th>
+<th>Best for</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>DISTINCT</code></td>
+<td>Unique rows</td>
+<td><code>SELECT DISTINCT department FROM encounters</code></td>
+</tr>
+<tr class="even">
+<td><code>GROUP BY</code></td>
+<td>Aggregation</td>
+<td><code>SELECT department, COUNT(*) FROM encounters GROUP BY department</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-unique-departments" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-unique-departments">Code Snippet: Unique departments</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="kw">DISTINCT</span> department</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> encounters</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> department;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="in-vs-exists" class="level2">
+<h2 class="anchored" data-anchor-id="in-vs-exists">IN vs EXISTS</h2>
+<p>Use <code>IN</code> for small sets and <code>EXISTS</code> for correlated subqueries.</p>
+<section id="reference-card-in-vs-exists" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-in-vs-exists">Reference Card: IN vs EXISTS</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Tool</th>
+<th>Best for</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>IN</code></td>
+<td>Small list or subquery</td>
+<td><code>WHERE id IN (SELECT ...)</code></td>
+</tr>
+<tr class="even">
+<td><code>EXISTS</code></td>
+<td>Correlated checks</td>
+<td><code>WHERE EXISTS (SELECT 1 ...)</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-exists-pattern" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-exists-pattern">Code Snippet: EXISTS pattern</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> d.patient_id, d.age</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> demographics <span class="kw">AS</span> d</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> <span class="kw">EXISTS</span> (</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SELECT</span> <span class="dv">1</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FROM</span> labs <span class="kw">AS</span> l</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">WHERE</span> l.patient_id <span class="op">=</span> d.patient_id</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="like-vs-ilike" class="level2">
+<h2 class="anchored" data-anchor-id="like-vs-ilike">LIKE vs ILIKE</h2>
+<p>Use <code>LIKE</code> for case-sensitive matching and <code>ILIKE</code> for case-insensitive matching when supported.</p>
+<section id="reference-card-like-vs-ilike" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-like-vs-ilike">Reference Card: LIKE vs ILIKE</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Tool</th>
+<th>Purpose</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>LIKE</code></td>
+<td>Case-sensitive match</td>
+<td><code>test_name LIKE '%A1C%'</code></td>
+</tr>
+<tr class="even">
+<td><code>ILIKE</code></td>
+<td>Case-insensitive match</td>
+<td><code>test_name ILIKE '%a1c%'</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-pattern-matching" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-pattern-matching">Code Snippet: Pattern matching</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> patient_id, test_name</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> labs</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> test_name ILIKE <span class="st">'%a1c%'</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+</section>
+<section id="live-demo" class="level1">
+<h1>LIVE DEMO!</h1>
+</section>
+<section id="importing-data-and-defining-tables" class="level1">
+<h1>Importing data and defining tables</h1>
+<p>Real projects start with files. You can load CSVs directly, scan Parquet for columnar files (columnar means values are stored by column for faster analytics), or create tables with explicit types for safer analysis.</p>
+<pre class="mermaid"><code>flowchart LR
+    A[Raw CSV/Parquet files] --&gt; B[Ingest (read_csv_auto / read_parquet)]
+    B --&gt; C[Typed table]
+    C --&gt; D[Query and reuse]</code></pre>
+<section id="duckdb-read_csv_auto" class="level2">
+<h2 class="anchored" data-anchor-id="duckdb-read_csv_auto">DuckDB <code>read_csv_auto</code></h2>
+<p><code>read_csv_auto</code> is DuckDB-specific and auto-detects column types for quick exploration.</p>
+<section id="reference-card-read_csv_auto-duckdb" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-read_csv_auto-duckdb">Reference Card: <code>read_csv_auto</code> (DuckDB)</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Feature</th>
+<th>Benefit</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Auto schema</td>
+<td>Fast exploration</td>
+<td><code>SELECT * FROM read_csv_auto('file.csv')</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-quick-csv-scan" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-quick-csv-scan">Code Snippet: Quick CSV scan</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> read_csv_auto(<span class="st">'demographics.csv'</span>);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="duckdb-read_parquet" class="level2">
+<h2 class="anchored" data-anchor-id="duckdb-read_parquet">DuckDB <code>read_parquet</code></h2>
+<p><code>read_parquet</code> is DuckDB-specific and reads columnar Parquet files efficiently.</p>
+<section id="reference-card-read_parquet-duckdb" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-read_parquet-duckdb">Reference Card: <code>read_parquet</code> (DuckDB)</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Feature</th>
+<th>Benefit</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Columnar reads</td>
+<td>Faster analytics</td>
+<td><code>SELECT * FROM read_parquet('file.parquet')</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-parquet-scan" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-parquet-scan">Code Snippet: Parquet scan</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> read_parquet(<span class="st">'encounters.parquet'</span>);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="copy-for-bulk-load" class="level2">
+<h2 class="anchored" data-anchor-id="copy-for-bulk-load">COPY for bulk load</h2>
+<p>Use <code>COPY</code> when you need to ingest a large file quickly into a table.</p>
+<section id="reference-card-copy" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-copy">Reference Card: COPY</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Option</th>
+<th>Purpose</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>HEADER</code></td>
+<td>Skip header row</td>
+<td><code>HEADER true</code></td>
+</tr>
+<tr class="even">
+<td><code>DELIMITER</code></td>
+<td>Customize separator</td>
+<td><code>DELIMITER ','</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-copy-from-csv" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-copy-from-csv">Code Snippet: COPY from CSV</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> demographics</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> <span class="st">'demographics.csv'</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>(FORMAT CSV, <span class="kw">HEADER</span> <span class="kw">true</span>);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="copy-for-exports" class="level2">
+<h2 class="anchored" data-anchor-id="copy-for-exports">COPY for exports</h2>
+<p>Use <code>COPY ... TO</code> when you want to write query results to CSV or Parquet.</p>
+<section id="reference-card-copy-to" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-copy-to">Reference Card: COPY TO</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Format</th>
+<th>Example</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>CSV</td>
+<td><code>COPY (...) TO 'file.csv' (HEADER)</code></td>
+<td>Easy to inspect</td>
+</tr>
+<tr class="even">
+<td>Parquet</td>
+<td><code>COPY (...) TO 'file.parquet' (FORMAT PARQUET)</code></td>
+<td>Efficient analytics</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-export-to-csv-and-parquet" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-export-to-csv-and-parquet">Code Snippet: Export to CSV and Parquet</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> (<span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> demographics <span class="kw">LIMIT</span> <span class="dv">100</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="kw">TO</span> <span class="st">'demographics_sample.csv'</span> (<span class="kw">HEADER</span>, DELIMITER <span class="st">','</span>);</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> (<span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> demographics <span class="kw">LIMIT</span> <span class="dv">100</span>)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="kw">TO</span> <span class="st">'demographics_sample.parquet'</span> (FORMAT PARQUET);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="create-table-as-copy" class="level2">
+<h2 class="anchored" data-anchor-id="create-table-as-copy">CREATE TABLE AS COPY</h2>
+<p>Create and populate a table in one step when you want an explicit schema.</p>
+<section id="reference-card-create-table-as-copy" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-create-table-as-copy">Reference Card: CREATE TABLE AS COPY</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Benefit</th>
+<th>Use case</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Single step</td>
+<td>Reproducible loads</td>
+</tr>
+<tr class="even">
+<td>Explicit types</td>
+<td>Safer analysis</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-create-table-load" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-create-table-load">Code Snippet: Create table + load</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> demographics (</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    patient_id <span class="dt">INTEGER</span>,</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    age <span class="dt">INTEGER</span>,</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    sex TEXT</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>) <span class="kw">AS</span> <span class="kw">COPY</span> <span class="kw">FROM</span> <span class="st">'demographics.csv'</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="kw">WITH</span> (FORMAT CSV, <span class="kw">HEADER</span> <span class="kw">true</span>);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="reference-card-common-import-patterns" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-common-import-patterns">Reference Card: Common import patterns</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Pattern</th>
+<th>Use case</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>read_csv_auto</code></td>
+<td>Quick CSV exploration</td>
+<td><code>SELECT * FROM read_csv_auto('file.csv')</code></td>
+</tr>
+<tr class="even">
+<td><code>read_parquet</code></td>
+<td>Fast columnar reads</td>
+<td><code>SELECT * FROM read_parquet('file.parquet')</code></td>
+</tr>
+<tr class="odd">
+<td><code>CREATE TABLE AS</code></td>
+<td>Persist results</td>
+<td><code>CREATE TABLE t AS SELECT ...</code></td>
+</tr>
+<tr class="even">
+<td><code>COPY</code></td>
+<td>Fast bulk load</td>
+<td><code>COPY t FROM 'file.csv' (HEADER true)</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-create-table-from-csv" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-create-table-from-csv">Code Snippet: Create table from CSV</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> demographics <span class="kw">AS</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> read_csv_auto(<span class="st">'demographics.csv'</span>);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+</section>
+<section id="filtering-and-aggregation" class="level1">
+<h1>Filtering and aggregation</h1>
+<p>Filtering shrinks the data to what you need. Aggregation summarizes it to the level you want to report. Use <code>WHERE</code> to filter rows before grouping and <code>HAVING</code> to filter groups after aggregation; if you are unsure, start with <code>WHERE</code>.</p>
+<section id="where-vs-having" class="level2">
+<h2 class="anchored" data-anchor-id="where-vs-having">WHERE vs HAVING</h2>
+<p><code>WHERE</code> filters raw rows, and <code>HAVING</code> filters aggregated groups after <code>GROUP BY</code>.</p>
+<section id="reference-card-where-vs-having" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-where-vs-having">Reference Card: WHERE vs HAVING</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Clause</th>
+<th>Applies to</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>WHERE</code></td>
+<td>Rows before grouping</td>
+<td><code>WHERE total_cost &gt; 500</code></td>
+</tr>
+<tr class="even">
+<td><code>HAVING</code></td>
+<td>Groups after <code>GROUP BY</code></td>
+<td><code>HAVING COUNT(*) &gt; 3</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="group-by-and-aggregates" class="level2">
+<h2 class="anchored" data-anchor-id="group-by-and-aggregates">GROUP BY and aggregates</h2>
+<p>Aggregates like <code>COUNT</code> and <code>AVG</code> summarize each group into a single row of results.</p>
+<section id="reference-card-aggregates" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-aggregates">Reference Card: Aggregates</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>Purpose</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>COUNT</code></td>
+<td>Row counts</td>
+<td><code>COUNT(*)</code></td>
+</tr>
+<tr class="even">
+<td><code>AVG</code></td>
+<td>Mean</td>
+<td><code>AVG(total_cost)</code></td>
+</tr>
+<tr class="odd">
+<td><code>SUM</code></td>
+<td>Totals</td>
+<td><code>SUM(total_cost)</code></td>
+</tr>
+</tbody>
+</table>
+<pre class="mermaid"><code>flowchart LR
+    A[Raw rows] --&gt; B[WHERE filters rows]
+    B --&gt; C[GROUP BY aggregates]
+    C --&gt; D[HAVING filters groups]</code></pre>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Department</th>
+<th>Visit count</th>
+<th>Avg cost</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Cardiology</td>
+<td>7</td>
+<td>812.50</td>
+</tr>
+<tr class="even">
+<td>Oncology</td>
+<td>5</td>
+<td>1230.20</td>
+</tr>
+<tr class="odd">
+<td>Primary Care</td>
+<td>12</td>
+<td>210.30</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="reference-card-filtering-aggregates" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-filtering-aggregates">Reference Card: Filtering + aggregates</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Tool</th>
+<th>Example</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>GROUP BY</code></td>
+<td><code>GROUP BY department</code></td>
+<td>Define groups</td>
+</tr>
+<tr class="even">
+<td><code>HAVING</code></td>
+<td><code>HAVING COUNT(*) &gt; 3</code></td>
+<td>Filter groups</td>
+</tr>
+<tr class="odd">
+<td>Aggregates</td>
+<td><code>COUNT</code>, <code>AVG</code>, <code>SUM</code></td>
+<td>Summarize</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-filter-then-group" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-filter-then-group">Code Snippet: Filter then group</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> department,</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">AS</span> visit_count,</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">AVG</span>(total_cost) <span class="kw">AS</span> avg_cost</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> encounters</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> encounter_date <span class="op">&gt;=</span> <span class="st">'2024-01-01'</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> department</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> avg_cost <span class="kw">DESC</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="round" class="level2">
+<h2 class="anchored" data-anchor-id="round">ROUND</h2>
+<p>Use <code>ROUND</code> to tidy numeric summaries for reporting after you aggregate.</p>
+<section id="reference-card-round" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-round">Reference Card: ROUND</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>Purpose</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>ROUND</code></td>
+<td>Set decimal places</td>
+<td><code>ROUND(AVG(total_cost), 2)</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-rounded-averages" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-rounded-averages">Code Snippet: Rounded averages</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> department, <span class="fu">ROUND</span>(<span class="fu">AVG</span>(total_cost), <span class="dv">2</span>) <span class="kw">AS</span> avg_cost</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> encounters</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> department;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/xkcd_selection_bias.png" class="img-fluid figure-img"></p>
+<figcaption>XKCD: Selection Bias</figcaption>
+</figure>
+</div>
+</section>
+</section>
+</section>
+<section id="joins-combine-tables-safely" class="level1">
+<h1>Joins: combine tables safely</h1>
+<p>Joins connect demographics, encounters, and lab results. Always join on keys and check for row explosion (many-to-many joins can multiply rows).</p>
+<section id="joins" class="level2">
+<h2 class="anchored" data-anchor-id="joins">Joins</h2>
+<p>Plan joins like data links: define the primary key, check duplicates, and test row counts before and after.</p>
+<section id="reference-card-join-checks" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-join-checks">Reference Card: Join checks</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Check</th>
+<th>Why it matters</th>
+<th>Quick test</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Key uniqueness</td>
+<td>Prevent row explosion</td>
+<td><code>COUNT(*) vs COUNT(DISTINCT key)</code></td>
+</tr>
+<tr class="even">
+<td>Row counts</td>
+<td>Detect unexpected growth</td>
+<td>Compare counts pre/post join</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-pre-join-key-check" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-pre-join-key-check">Code Snippet: Pre-join key check</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">AS</span> <span class="kw">rows</span>, <span class="fu">COUNT</span>(<span class="kw">DISTINCT</span> patient_id) <span class="kw">AS</span> patients</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> encounters;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="join-types" class="level2">
+<h2 class="anchored" data-anchor-id="join-types">Join types</h2>
+<p>Join type determines which rows survive when keys are missing or unmatched.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/join_types.png" class="img-fluid figure-img"></p>
+<figcaption>Join types</figcaption>
+</figure>
+</div>
+<section id="reference-card-join-types" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-join-types">Reference Card: Join types</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Join</th>
+<th>Keeps rows from</th>
+<th>When to use</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>INNER JOIN</code></td>
+<td>Both tables</td>
+<td>Only matched records</td>
+</tr>
+<tr class="even">
+<td><code>LEFT JOIN</code></td>
+<td>Left table</td>
+<td>Keep all patients, add matches</td>
+</tr>
+<tr class="odd">
+<td><code>RIGHT JOIN</code></td>
+<td>Right table</td>
+<td>Rare in analytics</td>
+</tr>
+<tr class="even">
+<td><code>FULL JOIN</code></td>
+<td>Both tables</td>
+<td>Audits, reconciliation</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-encounter-demographics" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-encounter-demographics">Code Snippet: Encounter + demographics</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> e.encounter_id, e.department, d.age, d.sex</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> encounters <span class="kw">AS</span> e</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="kw">LEFT</span> <span class="kw">JOIN</span> demographics <span class="kw">AS</span> d</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">ON</span> e.patient_id <span class="op">=</span> d.patient_id;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="on-vs-using" class="level2">
+<h2 class="anchored" data-anchor-id="on-vs-using">ON vs USING</h2>
+<p>Use <code>ON</code> when columns differ in name or you need a more complex condition. Use <code>USING</code> when column names match and you want a cleaner query.</p>
+<section id="reference-card-on-vs-using" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-on-vs-using">Reference Card: ON vs USING</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Syntax</th>
+<th>Best for</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>ON</code></td>
+<td>Different column names or conditions</td>
+<td><code>ON e.patient_id = d.patient_id</code></td>
+</tr>
+<tr class="even">
+<td><code>USING</code></td>
+<td>Same column name in both tables</td>
+<td><code>USING (patient_id)</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-using-clause" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-using-clause">Code Snippet: USING clause</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> encounters</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="kw">INNER</span> <span class="kw">JOIN</span> demographics</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="kw">USING</span> (patient_id);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre class="mermaid"><code>flowchart LR
+    A[encounters.patient_id] --&gt;|ON e.patient_id = d.patient_id| C[Join]
+    B[demographics.patient_id] --&gt;|USING (patient_id)| C</code></pre>
+</section>
+</section>
+<section id="union-all" class="level2">
+<h2 class="anchored" data-anchor-id="union-all">UNION ALL</h2>
+<p>Use <code>UNION ALL</code> to stack compatible result sets without de-duplicating rows.</p>
+<section id="reference-card-union-all" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-union-all">Reference Card: UNION ALL</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Operator</th>
+<th>Purpose</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>UNION ALL</code></td>
+<td>Stack results</td>
+<td><code>SELECT ... UNION ALL SELECT ...</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-stack-row-counts" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-stack-row-counts">Code Snippet: Stack row counts</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="st">'encounters'</span> <span class="kw">AS</span> table_name, <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">AS</span> <span class="kw">rows</span> <span class="kw">FROM</span> encounters</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="kw">UNION</span> <span class="kw">ALL</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="st">'labs'</span>, <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">FROM</span> labs</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> table_name;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+</section>
+<section id="sql-statement-structure-and-execution-order" class="level1">
+<h1>SQL statement structure and execution order</h1>
+<p>SQL reads like English, but it executes in a specific order. When a query is confusing, rewrite it as a pipeline: join tables, filter rows, group, compute, then sort.</p>
+<section id="statement-structure" class="level2">
+<h2 class="anchored" data-anchor-id="statement-structure">Statement structure</h2>
+<p>Write SQL in the order you want it to read: <code>SELECT</code> what you want, <code>FROM</code> where it lives, and <code>WHERE</code> how you filter.</p>
+<section id="reference-card-readable-structure" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-readable-structure">Reference Card: Readable structure</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Step</th>
+<th>Purpose</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>SELECT</code></td>
+<td>Choose columns</td>
+<td><code>SELECT patient_id, age</code></td>
+</tr>
+<tr class="even">
+<td><code>FROM</code></td>
+<td>Pick table</td>
+<td><code>FROM demographics</code></td>
+</tr>
+<tr class="odd">
+<td><code>WHERE</code></td>
+<td>Filter rows</td>
+<td><code>WHERE age &gt;= 18</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-skeleton-query" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-skeleton-query">Code Snippet: Skeleton query</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> patient_id, age</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> demographics</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> age <span class="op">&gt;=</span> <span class="dv">18</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="execution-order" class="level2">
+<h2 class="anchored" data-anchor-id="execution-order">Execution order</h2>
+<p>Execution happens from <code>FROM</code>/<code>JOIN</code> to <code>WHERE</code> to <code>GROUP BY</code>, then <code>SELECT</code> and <code>ORDER BY</code>, which explains why aliases are sometimes unavailable in <code>WHERE</code>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/reading_sql.png" class="img-fluid figure-img"></p>
+<figcaption>SQL execution order</figcaption>
+</figure>
+</div>
+<p>Read a query top to bottom in this order:</p>
+<ol type="1">
+<li>Build tables with <code>FROM</code> + <code>JOIN</code></li>
+<li>Filter rows with <code>WHERE</code></li>
+<li>Aggregate with <code>GROUP BY</code> and filter groups with <code>HAVING</code></li>
+<li>Compute output with <code>SELECT</code></li>
+<li>Sort and trim with <code>ORDER BY</code> + <code>LIMIT</code></li>
+</ol>
+<section id="reference-card-execution-order-simplified" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-execution-order-simplified">Reference Card: Execution order (simplified)</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Order</th>
+<th>Clause</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td><code>FROM</code> + <code>JOIN</code></td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td><code>WHERE</code></td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td><code>GROUP BY</code></td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td><code>HAVING</code></td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td><code>SELECT</code></td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td><code>ORDER BY</code></td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td><code>LIMIT</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-readable-query-template" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-readable-query-template">Code Snippet: Readable query template</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> department, <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">AS</span> visit_count</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> encounters</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> total_cost <span class="op">&gt;</span> <span class="dv">500</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> department</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="kw">HAVING</span> <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="op">&gt;=</span> <span class="dv">3</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> visit_count <span class="kw">DESC</span></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="kw">LIMIT</span> <span class="dv">5</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+</section>
+<section id="live-demo-1" class="level1">
+<h1>LIVE DEMO!!</h1>
+</section>
+<section id="subqueries-and-ctes" class="level1">
+<h1>Subqueries and CTEs</h1>
+<p>Subqueries let you nest logic. CTEs (<code>WITH</code>) make that logic readable and reusable, which matters for multi-step cohort definitions (a cohort is a defined group of patients).</p>
+<section id="subqueries" class="level2">
+<h2 class="anchored" data-anchor-id="subqueries">Subqueries</h2>
+<p>Use a subquery when you need a compact, one-off filter or calculation inside a larger query.</p>
+<section id="reference-card-subqueries" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-subqueries">Reference Card: Subqueries</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Pattern</th>
+<th>Use case</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>IN (SELECT ...)</code></td>
+<td>Filter by a derived set</td>
+<td><code>WHERE id IN (SELECT ...)</code></td>
+</tr>
+<tr class="even">
+<td>Scalar subquery</td>
+<td>Single value in <code>SELECT</code></td>
+<td><code>(SELECT MAX(...))</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-subquery-filter" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-subquery-filter">Code Snippet: Subquery filter</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> patient_id, age</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> demographics</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> patient_id <span class="kw">IN</span> (</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SELECT</span> patient_id</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FROM</span> labs</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">WHERE</span> test_name <span class="op">=</span> <span class="st">'A1C'</span> <span class="kw">AND</span> <span class="fu">value</span> <span class="op">&gt;=</span> <span class="fl">7.0</span></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="ctes" class="level2">
+<h2 class="anchored" data-anchor-id="ctes">CTEs</h2>
+<p>Use a CTE when the logic has multiple steps or needs to stay readable across several joins or filters.</p>
+<section id="reference-card-ctes" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-ctes">Reference Card: CTEs</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Feature</th>
+<th>Benefit</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>WITH name AS (...)</code></td>
+<td>Reuse readable steps</td>
+<td><code>WITH cohort AS (...)</code></td>
+</tr>
+</tbody>
+</table>
+<pre class="mermaid"><code>flowchart LR
+    A[Main query] --&gt; B[Inline subquery]
+    A --&gt; C[CTE: WITH cohort AS (...)]
+    C --&gt; D[Main query uses cohort]</code></pre>
+</section>
+<section id="reference-card-subqueries-vs-ctes" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-subqueries-vs-ctes">Reference Card: Subqueries vs CTEs</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Pattern</th>
+<th>Best for</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Subquery</td>
+<td>Small, single use logic</td>
+<td><code>WHERE id IN (SELECT ...)</code></td>
+</tr>
+<tr class="even">
+<td>CTE</td>
+<td>Multi-step, readable logic</td>
+<td><code>WITH cohort AS (...)</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-cte-for-a-cohort" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-cte-for-a-cohort">Code Snippet: CTE for a cohort</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="kw">WITH</span> high_a1c <span class="kw">AS</span> (</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SELECT</span> patient_id</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FROM</span> labs</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">WHERE</span> test_name <span class="op">=</span> <span class="st">'A1C'</span> <span class="kw">AND</span> <span class="fu">value</span> <span class="op">&gt;=</span> <span class="fl">7.0</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> d.patient_id, d.age, d.sex</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> demographics <span class="kw">AS</span> d</span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a><span class="kw">INNER</span> <span class="kw">JOIN</span> high_a1c <span class="kw">AS</span> h</span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">ON</span> d.patient_id <span class="op">=</span> h.patient_id;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+</section>
+<section id="window-functions" class="level1">
+<h1>Window functions</h1>
+<p>Window functions compute metrics across related rows without collapsing them. They are common in claims and encounter analytics (running totals, most recent visit, rank within a patient).</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>patient_id</th>
+<th>encounter_date</th>
+<th>total_cost</th>
+<th>running_cost</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>101</td>
+<td>2024-01-10</td>
+<td>220.00</td>
+<td>220.00</td>
+</tr>
+<tr class="even">
+<td>101</td>
+<td>2024-02-03</td>
+<td>125.00</td>
+<td>345.00</td>
+</tr>
+<tr class="odd">
+<td>101</td>
+<td>2024-03-02</td>
+<td>410.00</td>
+<td>755.00</td>
+</tr>
+</tbody>
+</table>
+<section id="reference-card-window-function-patterns" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-window-function-patterns">Reference Card: Window function patterns</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>Use case</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>ROW_NUMBER</code></td>
+<td>Order rows</td>
+<td><code>ROW_NUMBER() OVER (...)</code></td>
+</tr>
+<tr class="even">
+<td><code>LAG</code></td>
+<td>Compare to previous</td>
+<td><code>LAG(total_cost)</code></td>
+</tr>
+<tr class="odd">
+<td><code>SUM</code></td>
+<td>Running totals</td>
+<td><code>SUM(total_cost) OVER (...)</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-running-total-per-patient" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-running-total-per-patient">Code Snippet: Running total per patient</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> patient_id,</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>    encounter_date,</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>    total_cost,</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">SUM</span>(total_cost) <span class="kw">OVER</span> (</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>        <span class="kw">PARTITION</span> <span class="kw">BY</span> patient_id</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>        <span class="kw">ORDER</span> <span class="kw">BY</span> encounter_date</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>    ) <span class="kw">AS</span> running_cost</span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> encounters</span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> patient_id, encounter_date;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/xkcd_proxy_variable.png" class="img-fluid figure-img"></p>
+<figcaption>XKCD: Proxy Variable</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="data-modification-insert-update-delete" class="level1">
+<h1>Data modification (INSERT, UPDATE, DELETE)</h1>
+<p>These statements change data in place. Use them sparingly in analytics and favor scratch databases when you need to write.</p>
+<pre class="mermaid"><code>flowchart LR
+    A[SELECT preview] --&gt; B[INSERT/UPDATE/DELETE]
+    B --&gt; C[Validate row counts]
+    C --&gt; D[Commit or rollback]</code></pre>
+<section id="reference-card-data-modification-statements" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-data-modification-statements">Reference Card: Data modification statements</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Statement</th>
+<th>Use case</th>
+<th>Guardrail</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>INSERT</code></td>
+<td>Add rows</td>
+<td>Use explicit column lists</td>
+</tr>
+<tr class="even">
+<td><code>UPDATE</code></td>
+<td>Edit rows</td>
+<td>Always include a <code>WHERE</code></td>
+</tr>
+<tr class="odd">
+<td><code>DELETE</code></td>
+<td>Remove rows</td>
+<td>Preview with <code>SELECT</code> first</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="insert" class="level2">
+<h2 class="anchored" data-anchor-id="insert">INSERT</h2>
+<p>Use explicit column lists and treat inserts as append-only in analytics workflows.</p>
+<section id="code-snippet-safe-insert" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-safe-insert">Code Snippet: Safe insert</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> solution (<span class="kw">id</span>, name)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="kw">VALUES</span> (<span class="dv">1</span>, <span class="st">'Ada Lovelace'</span>);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="update" class="level2">
+<h2 class="anchored" data-anchor-id="update">UPDATE</h2>
+<p>Always include a <code>WHERE</code> and check the affected rows before committing the change.</p>
+<section id="reference-card-update" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-update">Reference Card: UPDATE</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Guardrail</th>
+<th>Why it helps</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>WHERE</code> required</td>
+<td>Prevents full-table edits</td>
+</tr>
+<tr class="even">
+<td>Preview first</td>
+<td>Confirms target rows</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-safe-update" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-safe-update">Code Snippet: Safe update</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> encounters</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SET</span> total_cost <span class="op">=</span> total_cost <span class="op">*</span> <span class="fl">0.9</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> department <span class="op">=</span> <span class="st">'Cardiology'</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="delete" class="level2">
+<h2 class="anchored" data-anchor-id="delete">DELETE</h2>
+<p>Preview the rows with a <code>SELECT</code> first, then delete with the same <code>WHERE</code> filter.</p>
+<section id="reference-card-delete" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-delete">Reference Card: DELETE</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Guardrail</th>
+<th>Why it helps</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Preview with <code>SELECT</code></td>
+<td>Validate target rows</td>
+</tr>
+<tr class="even">
+<td>Limit scope</td>
+<td>Avoid accidental full delete</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-targeted-delete" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-targeted-delete">Code Snippet: Targeted delete</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DELETE</span> <span class="kw">FROM</span> encounters</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> encounter_date <span class="op">&lt;</span> <span class="st">'2010-01-01'</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+</section>
+<section id="cast" class="level1">
+<h1>CAST</h1>
+<p>Use <code>CAST</code> to convert types explicitly before comparisons or aggregations.</p>
+<section id="reference-card-cast" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-cast">Reference Card: CAST</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>Purpose</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>CAST</code></td>
+<td>Convert types</td>
+<td><code>CAST(encounter_date AS DATE)</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-cast-to-date" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-cast-to-date">Code Snippet: Cast to DATE</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="fu">CAST</span>(encounter_date <span class="kw">AS</span> <span class="dt">DATE</span>) <span class="kw">AS</span> visit_date, <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">AS</span> visits</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> encounters</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> <span class="fu">CAST</span>(encounter_date <span class="kw">AS</span> <span class="dt">DATE</span>)</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> visit_date;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="date_part" class="level1">
+<h1>date_part</h1>
+<p>Use <code>date_part</code> to extract date pieces for grouping and filtering.</p>
+<section id="reference-card-date_part" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-date_part">Reference Card: date_part</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>Purpose</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>date_part</code></td>
+<td>Extract date parts</td>
+<td><code>date_part('month', encounter_date)</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-group-by-month" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-group-by-month">Code Snippet: Group by month</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> date_part(<span class="st">'month'</span>, encounter_date) <span class="kw">AS</span> <span class="dt">month</span>, <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">AS</span> visits</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> encounters</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> <span class="dt">month</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> <span class="dt">month</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="date_trunc" class="level1">
+<h1>DATE_TRUNC</h1>
+<p>Use <code>DATE_TRUNC</code> to bucket timestamps into consistent time windows.</p>
+<section id="reference-card-date_trunc" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-date_trunc">Reference Card: DATE_TRUNC</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>Purpose</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>DATE_TRUNC</code></td>
+<td>Time buckets</td>
+<td><code>DATE_TRUNC('month', encounter_date)</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-monthly-buckets" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-monthly-buckets">Code Snippet: Monthly buckets</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> DATE_TRUNC(<span class="st">'month'</span>, encounter_date) <span class="kw">AS</span> <span class="dt">month</span>, <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">AS</span> visits</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> encounters</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> <span class="dt">month</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> <span class="dt">month</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="views-and-materialized-views" class="level1">
+<h1>Views and materialized views</h1>
+<p>Views save a query definition. Materialized views store a cached snapshot of results, which can speed up dashboards at the cost of refresh time.</p>
+<section id="views" class="level2">
+<h2 class="anchored" data-anchor-id="views">Views</h2>
+<p>Use views to keep a canonical definition of common queries without duplicating SQL logic.</p>
+<section id="reference-card-views" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-views">Reference Card: Views</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Property</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Stored data</td>
+<td>No</td>
+</tr>
+<tr class="even">
+<td>Refresh</td>
+<td>Always current</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="materialized-views" class="level2">
+<h2 class="anchored" data-anchor-id="materialized-views">Materialized views</h2>
+<p>Use materialized views when you can afford scheduled refreshes in exchange for faster reads.</p>
+<section id="reference-card-materialized-views" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-materialized-views">Reference Card: Materialized views</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Property</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Stored data</td>
+<td>Yes</td>
+</tr>
+<tr class="even">
+<td>Refresh</td>
+<td>Manual or scheduled</td>
+</tr>
+</tbody>
+</table>
+<pre class="mermaid"><code>flowchart LR
+    A[Query definition] --&gt; B[View (no stored data)]
+    A --&gt; C[Materialized view (stored snapshot)]
+    C --&gt; D[Refresh schedule]</code></pre>
+</section>
+<section id="code-snippet-create-a-view" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-create-a-view">Code Snippet: Create a view</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb46"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">VIEW</span> high_cost_encounters <span class="kw">AS</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> encounter_id, patient_id, total_cost</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> encounters</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> total_cost <span class="op">&gt;=</span> <span class="dv">1000</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="code-snippet-create-a-materialized-view" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-create-a-materialized-view">Code Snippet: Create a materialized view</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">MATERIALIZED</span> <span class="kw">VIEW</span> high_cost_encounters_mv <span class="kw">AS</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> encounter_id, patient_id, total_cost</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> encounters</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> total_cost <span class="op">&gt;=</span> <span class="dv">1000</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+</section>
+<section id="performance-basics" class="level1">
+<h1>Performance basics</h1>
+<p>Performance depends on reading less data and doing work once. A query plan is the database’s step-by-step execution order; start with filters and clear joins before reaching for complex optimizations.</p>
+<pre class="mermaid"><code>flowchart LR
+    A[Query] --&gt; B[EXPLAIN plan]
+    B --&gt; C[Find slow step]
+    C --&gt; D[Optimize: filter, index, join]</code></pre>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/xkcd_complexity_analysis.png" class="img-fluid figure-img"></p>
+<figcaption>XKCD: Complexity Analysis</figcaption>
+</figure>
+</div>
+<section id="reference-card-performance-checklist" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-performance-checklist">Reference Card: Performance checklist</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Tip</th>
+<th>Why it helps</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Filter early</td>
+<td>Less data to join and aggregate</td>
+</tr>
+<tr class="even">
+<td>Select only needed columns</td>
+<td>Reduces memory usage</td>
+</tr>
+<tr class="odd">
+<td>Use indexes (when supported)</td>
+<td>Faster lookups</td>
+</tr>
+<tr class="even">
+<td>Inspect query plans</td>
+<td>Find slow steps</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-explain-a-query" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-explain-a-query">Code Snippet: Explain a query</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb49"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="kw">EXPLAIN</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> department, <span class="fu">COUNT</span>(<span class="op">*</span>)</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> encounters</span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> department;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="sql-python-workflows" class="level1">
+<h1>SQL + Python workflows</h1>
+<p>SQL is great for filtering and aggregation; Python is great for modeling and visualization. Use SQL to reduce the dataset, then load the result into pandas for analysis. DuckDB and SQLite are easy local options; for external databases, connect via SQLAlchemy and reuse the same query strings.</p>
+<section id="sql-for-reduction" class="level2">
+<h2 class="anchored" data-anchor-id="sql-for-reduction">SQL for reduction</h2>
+<p>Use SQL to filter to cohorts, aggregate to reporting levels, and shrink the data before it hits memory.</p>
+<section id="reference-card-reduction-patterns" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-reduction-patterns">Reference Card: Reduction patterns</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Pattern</th>
+<th>Goal</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Filter</td>
+<td>Keep cohort</td>
+<td><code>WHERE age &gt;= 18</code></td>
+</tr>
+<tr class="even">
+<td>Aggregate</td>
+<td>Summarize</td>
+<td><code>GROUP BY department</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-reduce-before-pandas" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-reduce-before-pandas">Code Snippet: Reduce before pandas</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb50"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> department, <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">AS</span> visit_count</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> encounters</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> encounter_date <span class="op">&gt;=</span> <span class="st">'2024-01-01'</span></span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> department;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="python-for-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="python-for-analysis">Python for analysis</h2>
+<p>Load the reduced dataset into pandas for plots, modeling, and downstream feature engineering.</p>
+<section id="reference-card-pandas-entry-points" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-pandas-entry-points">Reference Card: pandas entry points</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Method</th>
+<th>When to use</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>pd.read_sql</code></td>
+<td>SQLAlchemy connections</td>
+</tr>
+<tr class="even">
+<td><code>fetch_df</code></td>
+<td>DuckDB result to DataFrame</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-pandas-from-sqlalchemy" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-pandas-from-sqlalchemy">Code Snippet: pandas from SQLAlchemy</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>report <span class="op">=</span> pd.read_sql(query, engine)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="sqlite-connections" class="level2">
+<h2 class="anchored" data-anchor-id="sqlite-connections">SQLite connections</h2>
+<p>Use SQLite for lightweight, file-based workflows that still support standard SQL.</p>
+<section id="reference-card-sqlite" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-sqlite">Reference Card: SQLite</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Tool</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>sqlite3.connect</code></td>
+<td><code>sqlite3.connect("clinic.db")</code></td>
+</tr>
+<tr class="even">
+<td><code>pd.read_sql_query</code></td>
+<td><code>pd.read_sql_query(query, conn)</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-sqlite-to-pandas" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-sqlite-to-pandas">Code Snippet: SQLite to pandas</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sqlite3</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>conn <span class="op">=</span> sqlite3.<span class="ex">connect</span>(<span class="st">"clinic.db"</span>)</span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>query <span class="op">=</span> <span class="st">"SELECT department, COUNT(*) AS visit_count FROM encounters GROUP BY department"</span></span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>report <span class="op">=</span> pd.read_sql_query(query, conn)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Step</th>
+<th>Tool</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Query</td>
+<td>SQL</td>
+<td>Table of filtered rows</td>
+</tr>
+<tr class="even">
+<td>Analyze</td>
+<td>pandas</td>
+<td>DataFrame, plots</td>
+</tr>
+<tr class="odd">
+<td>Model</td>
+<td>sklearn</td>
+<td>Features, predictions</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="reference-card-pandas-interop" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-pandas-interop">Reference Card: pandas interop</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Method</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>pd.read_sql</code></td>
+<td><code>pd.read_sql(query, connection)</code></td>
+</tr>
+<tr class="even">
+<td>DuckDB to pandas</td>
+<td><code>duckdb.sql(query).df()</code></td>
+</tr>
+<tr class="odd">
+<td>Save results</td>
+<td><code>df.to_parquet("outputs/report.parquet")</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-sqlalchemy-connection" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-sqlalchemy-connection">Code Snippet: SQLAlchemy connection</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sqlalchemy <span class="im">import</span> create_engine</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>engine <span class="op">=</span> create_engine(<span class="st">"postgresql://user:password@localhost:5432/clinic"</span>)</span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>query <span class="op">=</span> <span class="st">"SELECT department, COUNT(*) AS visit_count FROM encounters GROUP BY department"</span></span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>report <span class="op">=</span> pd.read_sql(query, engine)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="code-snippet-sql-to-dataframe" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-sql-to-dataframe">Code Snippet: SQL to DataFrame</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> duckdb</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>con <span class="op">=</span> duckdb.<span class="ex">connect</span>(<span class="st">"clinic.db"</span>)</span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>query <span class="op">=</span> <span class="st">"""</span></span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a><span class="st">SELECT department, COUNT(*) AS visit_count</span></span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a><span class="st">FROM encounters</span></span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a><span class="st">GROUP BY department</span></span>
+<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
+<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a>report <span class="op">=</span> con.execute(query).fetch_df()</span>
+<span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(report.head())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+</section>
+<section id="live-demo-2" class="level1">
+<h1>LIVE DEMO!!!</h1>
+</section>
+<section id="advanced-sql-patterns-optional" class="level1">
+<h1>Advanced SQL patterns (optional)</h1>
+<p>These patterns are useful in production analytics but are not required for the demos.</p>
+<section id="nullif-for-safe-division" class="level2">
+<h2 class="anchored" data-anchor-id="nullif-for-safe-division">NULLIF for safe division</h2>
+<p>Use <code>NULLIF</code> to avoid divide-by-zero errors in ratios.</p>
+<section id="reference-card-nullif" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-nullif">Reference Card: NULLIF</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>Purpose</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>NULLIF</code></td>
+<td>Return NULL on match</td>
+<td><code>NULLIF(denominator, 0)</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-safe-rate" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-safe-rate">Code Snippet: Safe rate</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb55"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> numerator <span class="op">/</span> <span class="fu">NULLIF</span>(denominator, <span class="dv">0</span>) <span class="kw">AS</span> rate</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> metrics;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="order-by-nulls-firstlast" class="level2">
+<h2 class="anchored" data-anchor-id="order-by-nulls-firstlast">ORDER BY NULLS FIRST/LAST</h2>
+<p>Some dialects let you control where NULLs appear in sorted results.</p>
+<section id="reference-card-null-ordering" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-null-ordering">Reference Card: NULL ordering</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Clause</th>
+<th>Purpose</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>NULLS FIRST</code></td>
+<td>NULLs at top</td>
+<td><code>ORDER BY lab_value NULLS FIRST</code></td>
+</tr>
+<tr class="even">
+<td><code>NULLS LAST</code></td>
+<td>NULLs at end</td>
+<td><code>ORDER BY lab_value NULLS LAST</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-explicit-null-ordering" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-explicit-null-ordering">Code Snippet: Explicit NULL ordering</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb56"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> patient_id, lab_value</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> labs</span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> lab_value <span class="kw">NULLS</span> <span class="fu">LAST</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="limit-and-offset" class="level2">
+<h2 class="anchored" data-anchor-id="limit-and-offset">LIMIT and OFFSET</h2>
+<p>Use pagination to fetch results in smaller chunks.</p>
+<section id="reference-card-pagination" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-pagination">Reference Card: Pagination</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Clause</th>
+<th>Purpose</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>LIMIT</code></td>
+<td>Cap rows</td>
+<td><code>LIMIT 50</code></td>
+</tr>
+<tr class="even">
+<td><code>OFFSET</code></td>
+<td>Skip rows</td>
+<td><code>OFFSET 100</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-page-through-results" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-page-through-results">Code Snippet: Page through results</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb57"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> encounter_id, patient_id</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> encounters</span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> encounter_id</span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a><span class="kw">LIMIT</span> <span class="dv">50</span> OFFSET <span class="dv">100</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="insert-select" class="level2">
+<h2 class="anchored" data-anchor-id="insert-select">INSERT … SELECT</h2>
+<p>Use query results to populate another table.</p>
+<section id="reference-card-insert-select" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-insert-select">Reference Card: INSERT SELECT</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Pattern</th>
+<th>Purpose</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>INSERT ... SELECT</code></td>
+<td>Load from query</td>
+<td><code>INSERT INTO t SELECT ...</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-insert-cohort" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-insert-cohort">Code Snippet: Insert cohort</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb58"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> high_cost_encounters</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> encounters</span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> total_cost <span class="op">&gt;=</span> <span class="dv">1000</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="update-from" class="level2">
+<h2 class="anchored" data-anchor-id="update-from">UPDATE … FROM</h2>
+<p>Use joins to update rows based on another table.</p>
+<section id="reference-card-update-from" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-update-from">Reference Card: UPDATE FROM</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Pattern</th>
+<th>Purpose</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>UPDATE ... FROM</code></td>
+<td>Join-based update</td>
+<td><code>UPDATE t SET ... FROM s WHERE ...</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-update-with-join" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-update-with-join">Code Snippet: Update with join</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb59"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> encounters <span class="kw">AS</span> e</span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SET</span> department <span class="op">=</span> d.department</span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> departments <span class="kw">AS</span> d</span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> e.department_id <span class="op">=</span> d.department_id;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/christopherseaman\.github\.io\/datasci_223");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

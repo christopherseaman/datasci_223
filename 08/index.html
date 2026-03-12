@@ -1,0 +1,1878 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>lecture_08 – DataSci-223</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-d94228c28a1234acf2b6c10d2198ec8e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../05/index.html">Machine Learning</a></li><li class="breadcrumb-item"><a href="../08/index.html">08. LLM Workflows</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">DataSci-223</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="https://github.com/christopherseaman/datasci_223" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GitHub</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="https://discord.gg/QdTYgR45er" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Discord</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Foundation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../01/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">01. Debugging</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../02/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">02. Polars</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../03/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">03. SQL</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../04/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">04. NLP</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Machine Learning</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../05/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">05. Classification</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../06/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">06. Neural Networks</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../07/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">07. Transformers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../08/index.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">08. LLM Workflows</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Applications</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../09/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">09. Computer Vision</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../10/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10. A/B Testing</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#links" id="toc-links" class="nav-link active" data-scroll-target="#links">Links</a>
+  <ul class="collapse">
+  <li><a href="#prompt-engineering-guides" id="toc-prompt-engineering-guides" class="nav-link" data-scroll-target="#prompt-engineering-guides">Prompt Engineering Guides</a></li>
+  <li><a href="#frameworks" id="toc-frameworks" class="nav-link" data-scroll-target="#frameworks">Frameworks</a></li>
+  <li><a href="#mcp" id="toc-mcp" class="nav-link" data-scroll-target="#mcp">MCP</a></li>
+  <li><a href="#self-hosting-tools" id="toc-self-hosting-tools" class="nav-link" data-scroll-target="#self-hosting-tools">Self-Hosting &amp; Tools</a></li>
+  <li><a href="#healthcare-ai" id="toc-healthcare-ai" class="nav-link" data-scroll-target="#healthcare-ai">Healthcare AI</a></li>
+  <li><a href="#developer-tools" id="toc-developer-tools" class="nav-link" data-scroll-target="#developer-tools">Developer Tools</a></li>
+  <li><a href="#cookbooks-guides" id="toc-cookbooks-guides" class="nav-link" data-scroll-target="#cookbooks-guides">Cookbooks &amp; Guides</a></li>
+  <li><a href="#workflow-orchestrators" id="toc-workflow-orchestrators" class="nav-link" data-scroll-target="#workflow-orchestrators">Workflow Orchestrators</a></li>
+  <li><a href="#papers" id="toc-papers" class="nav-link" data-scroll-target="#papers">Papers</a></li>
+  </ul></li>
+  <li><a href="#when-to-use-llms" id="toc-when-to-use-llms" class="nav-link" data-scroll-target="#when-to-use-llms">When to Use LLMs</a>
+  <ul class="collapse">
+  <li><a href="#good-fits-for-llms" id="toc-good-fits-for-llms" class="nav-link" data-scroll-target="#good-fits-for-llms">Good Fits for LLMs</a></li>
+  <li><a href="#poor-fits-for-llms" id="toc-poor-fits-for-llms" class="nav-link" data-scroll-target="#poor-fits-for-llms">Poor Fits for LLMs</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-llm-decision-framework" id="toc-reference-card-llm-decision-framework" class="nav-link" data-scroll-target="#reference-card-llm-decision-framework">Reference Card: LLM Decision Framework</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#common-failure-modes" id="toc-common-failure-modes" class="nav-link" data-scroll-target="#common-failure-modes">Common Failure Modes</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-failure-modes-mitigations" id="toc-reference-card-failure-modes-mitigations" class="nav-link" data-scroll-target="#reference-card-failure-modes-mitigations">Reference Card: Failure Modes &amp; Mitigations</a></li>
+  <li><a href="#prompt-injection" id="toc-prompt-injection" class="nav-link" data-scroll-target="#prompt-injection">Prompt Injection</a></li>
+  <li><a href="#math-errors" id="toc-math-errors" class="nav-link" data-scroll-target="#math-errors">Math Errors</a></li>
+  </ul></li>
+  <li><a href="#practical-recommendations" id="toc-practical-recommendations" class="nav-link" data-scroll-target="#practical-recommendations">Practical Recommendations</a>
+  <ul class="collapse">
+  <li><a href="#start-small" id="toc-start-small" class="nav-link" data-scroll-target="#start-small">Start Small</a></li>
+  <li><a href="#testing-validation" id="toc-testing-validation" class="nav-link" data-scroll-target="#testing-validation">Testing &amp; Validation</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-getting-started-checklist" id="toc-reference-card-getting-started-checklist" class="nav-link" data-scroll-target="#reference-card-getting-started-checklist">Reference Card: Getting Started Checklist</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#agentic-llms" id="toc-agentic-llms" class="nav-link" data-scroll-target="#agentic-llms">Agentic LLMs</a>
+  <ul class="collapse">
+  <li><a href="#traditional-vs-agentic-llm-use" id="toc-traditional-vs-agentic-llm-use" class="nav-link" data-scroll-target="#traditional-vs-agentic-llm-use">Traditional vs Agentic LLM Use</a></li>
+  <li><a href="#key-characteristics-of-agents" id="toc-key-characteristics-of-agents" class="nav-link" data-scroll-target="#key-characteristics-of-agents">Key Characteristics of Agents</a></li>
+  <li><a href="#the-agent-loop" id="toc-the-agent-loop" class="nav-link" data-scroll-target="#the-agent-loop">The Agent Loop</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-agent-components" id="toc-reference-card-agent-components" class="nav-link" data-scroll-target="#reference-card-agent-components">Reference Card: Agent Components</a></li>
+  <li><a href="#code-snippet-simple-agent-loop" id="toc-code-snippet-simple-agent-loop" class="nav-link" data-scroll-target="#code-snippet-simple-agent-loop">Code Snippet: Simple Agent Loop</a></li>
+  </ul></li>
+  <li><a href="#building-an-agent" id="toc-building-an-agent" class="nav-link" data-scroll-target="#building-an-agent">Building an Agent</a>
+  <ul class="collapse">
+  <li><a href="#code-snippet-openai-agents-sdk" id="toc-code-snippet-openai-agents-sdk" class="nav-link" data-scroll-target="#code-snippet-openai-agents-sdk">Code Snippet: OpenAI Agents SDK</a></li>
+  </ul></li>
+  <li><a href="#prompting-techniques-for-agents" id="toc-prompting-techniques-for-agents" class="nav-link" data-scroll-target="#prompting-techniques-for-agents">Prompting Techniques for Agents</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-agentic-prompting-patterns" id="toc-reference-card-agentic-prompting-patterns" class="nav-link" data-scroll-target="#reference-card-agentic-prompting-patterns">Reference Card: Agentic Prompting Patterns</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#live-demo" id="toc-live-demo" class="nav-link" data-scroll-target="#live-demo">LIVE DEMO!</a></li>
+  <li><a href="#retrieval-augmented-generation-rag" id="toc-retrieval-augmented-generation-rag" class="nav-link" data-scroll-target="#retrieval-augmented-generation-rag">Retrieval-Augmented Generation (RAG)</a>
+  <ul class="collapse">
+  <li><a href="#why-rag" id="toc-why-rag" class="nav-link" data-scroll-target="#why-rag">Why RAG?</a></li>
+  <li><a href="#the-rag-pipeline" id="toc-the-rag-pipeline" class="nav-link" data-scroll-target="#the-rag-pipeline">The RAG Pipeline</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-rag-pipeline" id="toc-reference-card-rag-pipeline" class="nav-link" data-scroll-target="#reference-card-rag-pipeline">Reference Card: RAG Pipeline</a></li>
+  <li><a href="#code-snippet-simple-rag-pipeline" id="toc-code-snippet-simple-rag-pipeline" class="nav-link" data-scroll-target="#code-snippet-simple-rag-pipeline">Code Snippet: Simple RAG Pipeline</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#model-context-protocol-mcp" id="toc-model-context-protocol-mcp" class="nav-link" data-scroll-target="#model-context-protocol-mcp">Model Context Protocol (MCP)</a>
+  <ul class="collapse">
+  <li><a href="#why-mcp" id="toc-why-mcp" class="nav-link" data-scroll-target="#why-mcp">Why MCP?</a></li>
+  <li><a href="#how-mcp-works" id="toc-how-mcp-works" class="nav-link" data-scroll-target="#how-mcp-works">How MCP Works</a></li>
+  <li><a href="#function-calling" id="toc-function-calling" class="nav-link" data-scroll-target="#function-calling">Function Calling</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-mcp-function-calling" id="toc-reference-card-mcp-function-calling" class="nav-link" data-scroll-target="#reference-card-mcp-function-calling">Reference Card: MCP &amp; Function Calling</a></li>
+  <li><a href="#code-snippet-defining-an-mcp-server" id="toc-code-snippet-defining-an-mcp-server" class="nav-link" data-scroll-target="#code-snippet-defining-an-mcp-server">Code Snippet: Defining an MCP Server</a></li>
+  <li><a href="#code-snippet-configuring-mcp-servers" id="toc-code-snippet-configuring-mcp-servers" class="nav-link" data-scroll-target="#code-snippet-configuring-mcp-servers">Code Snippet: Configuring MCP Servers</a></li>
+  </ul></li>
+  <li><a href="#common-mcp-servers" id="toc-common-mcp-servers" class="nav-link" data-scroll-target="#common-mcp-servers">Common MCP Servers</a></li>
+  </ul></li>
+  <li><a href="#live-demo-1" id="toc-live-demo-1" class="nav-link" data-scroll-target="#live-demo-1">LIVE DEMO!!</a></li>
+  <li><a href="#workflow-orchestration-patterns" id="toc-workflow-orchestration-patterns" class="nav-link" data-scroll-target="#workflow-orchestration-patterns">Workflow Orchestration Patterns</a>
+  <ul class="collapse">
+  <li><a href="#why-workflows" id="toc-why-workflows" class="nav-link" data-scroll-target="#why-workflows">Why Workflows?</a></li>
+  <li><a href="#pattern-prompt-chaining" id="toc-pattern-prompt-chaining" class="nav-link" data-scroll-target="#pattern-prompt-chaining">Pattern: Prompt Chaining</a>
+  <ul class="collapse">
+  <li><a href="#code-snippet-prompt-chain" id="toc-code-snippet-prompt-chain" class="nav-link" data-scroll-target="#code-snippet-prompt-chain">Code Snippet: Prompt Chain</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#workflow-patterns" id="toc-workflow-patterns" class="nav-link" data-scroll-target="#workflow-patterns">Workflow Patterns</a>
+  <ul class="collapse">
+  <li><a href="#pattern-guardrails" id="toc-pattern-guardrails" class="nav-link" data-scroll-target="#pattern-guardrails">Pattern: Guardrails</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-common-guardrails" id="toc-reference-card-common-guardrails" class="nav-link" data-scroll-target="#reference-card-common-guardrails">Reference Card: Common Guardrails</a></li>
+  <li><a href="#code-snippet-guardrails-inputoutput-check" id="toc-code-snippet-guardrails-inputoutput-check" class="nav-link" data-scroll-target="#code-snippet-guardrails-inputoutput-check">Code Snippet: Guardrails (Input/Output Check)</a></li>
+  </ul></li>
+  <li><a href="#pattern-routing-logic" id="toc-pattern-routing-logic" class="nav-link" data-scroll-target="#pattern-routing-logic">Pattern: Routing &amp; Logic</a></li>
+  <li><a href="#pattern-deterministic-steps" id="toc-pattern-deterministic-steps" class="nav-link" data-scroll-target="#pattern-deterministic-steps">Pattern: Deterministic Steps</a>
+  <ul class="collapse">
+  <li><a href="#code-snippet-llm-extracts-python-validates" id="toc-code-snippet-llm-extracts-python-validates" class="nav-link" data-scroll-target="#code-snippet-llm-extracts-python-validates">Code Snippet: LLM Extracts, Python Validates</a></li>
+  </ul></li>
+  <li><a href="#pattern-parallelization" id="toc-pattern-parallelization" class="nav-link" data-scroll-target="#pattern-parallelization">Pattern: Parallelization</a></li>
+  <li><a href="#pattern-orchestrator-workers" id="toc-pattern-orchestrator-workers" class="nav-link" data-scroll-target="#pattern-orchestrator-workers">Pattern: Orchestrator-Workers</a></li>
+  <li><a href="#pattern-evaluator-optimizer" id="toc-pattern-evaluator-optimizer" class="nav-link" data-scroll-target="#pattern-evaluator-optimizer">Pattern: Evaluator-Optimizer</a></li>
+  <li><a href="#pattern-human-in-the-loop" id="toc-pattern-human-in-the-loop" class="nav-link" data-scroll-target="#pattern-human-in-the-loop">Pattern: Human-in-the-loop</a></li>
+  <li><a href="#agent-workflow-frameworks" id="toc-agent-workflow-frameworks" class="nav-link" data-scroll-target="#agent-workflow-frameworks">Agent &amp; Workflow Frameworks</a></li>
+  <li><a href="#reference-card-workflow-patterns" id="toc-reference-card-workflow-patterns" class="nav-link" data-scroll-target="#reference-card-workflow-patterns">Reference Card: Workflow Patterns</a></li>
+  <li><a href="#the-recurring-theme" id="toc-the-recurring-theme" class="nav-link" data-scroll-target="#the-recurring-theme">The Recurring Theme</a></li>
+  </ul></li>
+  <li><a href="#live-demo-2" id="toc-live-demo-2" class="nav-link" data-scroll-target="#live-demo-2">LIVE DEMO!!!</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../05/index.html">Machine Learning</a></li><li class="breadcrumb-item"><a href="../08/index.html">08. LLM Workflows</a></li></ol></nav></header>
+
+
+
+
+<p>LLM Applications &amp; Workflows</p>
+<ul>
+<li>hw08 #FIXME:URL</li>
+</ul>
+<section id="links" class="level1">
+<h1>Links</h1>
+<section id="prompt-engineering-guides" class="level2">
+<h2 class="anchored" data-anchor-id="prompt-engineering-guides">Prompt Engineering Guides</h2>
+<ul>
+<li><strong>Anthropic</strong>: <a href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering">docs.anthropic.com/en/docs/build-with-claude/prompt-engineering</a></li>
+<li><strong>OpenAI</strong>: <a href="https://platform.openai.com/docs/guides/prompt-engineering">platform.openai.com/docs/guides/prompt-engineering</a></li>
+<li><strong>OpenAI examples</strong>: <a href="https://platform.openai.com/docs/examples">platform.openai.com/docs/examples</a></li>
+</ul>
+</section>
+<section id="frameworks" class="level2">
+<h2 class="anchored" data-anchor-id="frameworks">Frameworks</h2>
+<ul>
+<li><a href="https://github.com/openai/openai-agents-python">OpenAI Agents SDK</a> — primary framework</li>
+<li><a href="https://openai.github.io/openai-agents-python">OpenAI Agents SDK docs</a></li>
+<li><a href="https://platform.openai.com/agent-builder">OpenAI Agent Builder</a> — visual workflow builder</li>
+<li><a href="https://platform.openai.com/docs/guides/agents">OpenAI Agents guide</a></li>
+<li><a href="https://python.langchain.com/docs">LangChain</a> — chains and agents</li>
+<li><a href="https://www.langchain.com/langgraph">LangGraph</a> — stateful agent graphs</li>
+<li><a href="https://github.com/christopherseaman/abe_froman"><code>abe_froman</code></a> — human-readable custom workflow example (LangGraph)</li>
+<li><a href="https://microsoft.github.io/autogen/stable//index.html">AutoGen</a> — multi-agent conversations</li>
+<li><a href="https://huggingface.co/docs/smolagents/index">smolagents</a> — lightweight agents</li>
+<li><a href="https://ai-sdk.dev/docs/agents/overview">AI SDK</a> — TypeScript web-integrated agents</li>
+</ul>
+</section>
+<section id="mcp" class="level2">
+<h2 class="anchored" data-anchor-id="mcp">MCP</h2>
+<ul>
+<li><a href="https://modelcontextprotocol.io">MCP Documentation</a></li>
+<li><a href="https://github.com/modelcontextprotocol/servers">MCP servers repo</a></li>
+<li><a href="https://github.com/modelcontextprotocol/python-sdk">MCP Python SDK</a></li>
+</ul>
+</section>
+<section id="self-hosting-tools" class="level2">
+<h2 class="anchored" data-anchor-id="self-hosting-tools">Self-Hosting &amp; Tools</h2>
+<ul>
+<li><a href="https://ollama.com">Ollama</a> — desktop model hosting</li>
+<li><a href="https://github.com/a-ghorbani/pocketpal-ai">PocketPal</a> — mobile model hosting</li>
+<li><a href="https://www.ibm.com/new/announcements/ibm-granite-4-0-hyper-efficient-high-performance-hybrid-models">IBM Granite 4.0</a> — efficient open models</li>
+<li><a href="https://openai.com/index/introducing-gpt-oss/">OpenAI open-source models</a></li>
+</ul>
+</section>
+<section id="healthcare-ai" class="level2">
+<h2 class="anchored" data-anchor-id="healthcare-ai">Healthcare AI</h2>
+<ul>
+<li><a href="https://ai.ucsf.edu/platforms-tools-and-resources/ucsf-versa">UCSF Versa</a> — institutional LLM tool (sunsetting soon)</li>
+<li><a href="https://ai.ucsf.edu/ucsf-chatgpt-enterprise">UCSF ChatGPT Enterprise</a> — Versa replacement (coming online March 2026)</li>
+<li><a href="https://www.suki.ai/">Suki AI</a> — clinical AI assistant</li>
+<li><a href="https://sites.research.google/med-palm/">Google Med-PaLM</a> — medical LLM research</li>
+</ul>
+</section>
+<section id="developer-tools" class="level2">
+<h2 class="anchored" data-anchor-id="developer-tools">Developer Tools</h2>
+<ul>
+<li><a href="https://www.claude.com/product/claude-code">Claude Code</a> — CLI-based agentic coding</li>
+<li><a href="https://cursor.com/">Cursor</a> — AI-powered editor</li>
+<li><a href="https://openai.com/codex/">OpenAI Codex</a> — code generation</li>
+</ul>
+</section>
+<section id="cookbooks-guides" class="level2">
+<h2 class="anchored" data-anchor-id="cookbooks-guides">Cookbooks &amp; Guides</h2>
+<ul>
+<li><a href="https://www.fightingwithai.com/">Fighting With AI</a> — practical guide to failure modes, prompt engineering, and guardrails for AI coding tools</li>
+<li><a href="https://github.com/anthropics/anthropic-cookbook">Anthropic Cookbook</a></li>
+<li><a href="https://cookbook.openai.com/">OpenAI Cookbook</a></li>
+<li><a href="https://github.com/openai/evals">OpenAI Evals</a> — evaluation framework</li>
+</ul>
+</section>
+<section id="workflow-orchestrators" class="level2">
+<h2 class="anchored" data-anchor-id="workflow-orchestrators">Workflow Orchestrators</h2>
+<ul>
+<li><a href="https://kestra.io">Kestra</a> — data orchestration</li>
+<li><a href="https://www.inngest.com">Inngest</a> — event-driven workflows</li>
+<li><a href="https://temporal.io">Temporal</a> — durable execution</li>
+</ul>
+</section>
+<section id="papers" class="level2">
+<h2 class="anchored" data-anchor-id="papers">Papers</h2>
+<ul>
+<li><a href="https://machinelearning.apple.com/research/illusion-of-thinking">Apple “Illusion of Thinking”</a> — LLM reasoning limitations</li>
+<li><a href="https://s3-us-west-2.amazonaws.com/openai-assets/research-covers/language-unsupervised/language_understanding_paper.pdf">GPT (2018)</a></li>
+<li><a href="https://arxiv.org/abs/2203.02155">RLHF</a> — Reinforcement Learning from Human Feedback</li>
+</ul>
+<p><img src="media/xkcd_skynet.png" class="img-fluid"></p>
+</section>
+</section>
+<section id="when-to-use-llms" class="level1">
+<h1>When to Use LLMs</h1>
+<p>Before diving into agents, RAG, and workflows — the most important skill is knowing <strong>when</strong> to use LLMs and when not to.</p>
+<section id="good-fits-for-llms" class="level2">
+<h2 class="anchored" data-anchor-id="good-fits-for-llms">Good Fits for LLMs</h2>
+<ul>
+<li><strong>Text summarization and transformation</strong>: Condense documents while preserving key information</li>
+<li><strong>Structured data extraction</strong>: Convert unstructured text to structured formats (JSON, tables)</li>
+<li><strong>Content classification</strong>: Categorize by type, topic, sentiment</li>
+<li><strong>Question answering over documents</strong>: Answer questions based on provided context</li>
+<li><strong>Draft generation with review</strong>: First drafts that humans refine</li>
+</ul>
+</section>
+<section id="poor-fits-for-llms" class="level2">
+<h2 class="anchored" data-anchor-id="poor-fits-for-llms">Poor Fits for LLMs</h2>
+<p>Conversely, some tasks look like they should work but consistently produce poor results:</p>
+<ul>
+<li><strong>Precise calculations</strong>: Use tools (calculators, code) instead</li>
+<li><strong>Factual retrieval without verification</strong>: LLMs may hallucinate</li>
+<li><strong>Real-time data without external connection</strong>: Models have knowledge cutoffs</li>
+<li><strong>High-stakes autonomous decisions</strong>: Require human oversight</li>
+<li><strong>Deterministic logic</strong>: Use rule engines instead</li>
+</ul>
+<section id="reference-card-llm-decision-framework" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-llm-decision-framework">Reference Card: LLM Decision Framework</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 46%">
+<col style="width: 25%">
+<col style="width: 27%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Question</th>
+<th style="text-align: left;">Yes →</th>
+<th style="text-align: left;">No →</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Can you describe the task clearly?</strong></td>
+<td style="text-align: left;">Good candidate</td>
+<td style="text-align: left;">Clarify requirements first</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Are errors catchable?</strong></td>
+<td style="text-align: left;">Proceed with validation</td>
+<td style="text-align: left;">Add human review or avoid</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Can you validate outputs?</strong></td>
+<td style="text-align: left;">Automate with checks</td>
+<td style="text-align: left;">Use expert oversight</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Do you have domain expertise to evaluate?</strong></td>
+<td style="text-align: left;">LLM amplifies your skill</td>
+<td style="text-align: left;">Risk of undetected errors</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+<section id="common-failure-modes" class="level1">
+<h1>Common Failure Modes</h1>
+<p>!!! warning If you don’t know how to do something yourself, you won’t know if an LLM is doing it well. LLMs amplify expertise — they don’t replace it.</p>
+<p>Understanding how LLMs fail helps you design better systems and set appropriate expectations. <a href="https://www.fightingwithai.com/">Fighting With AI</a> covers these patterns in depth with actionable mitigation strategies.</p>
+<section id="reference-card-failure-modes-mitigations" class="level2">
+<h2 class="anchored" data-anchor-id="reference-card-failure-modes-mitigations">Reference Card: Failure Modes &amp; Mitigations</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 40%">
+<col style="width: 42%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Failure Mode</th>
+<th style="text-align: left;">What Happens</th>
+<th style="text-align: left;">Mitigation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Hallucinations</strong></td>
+<td style="text-align: left;">Fabricated citations, confident incorrect answers</td>
+<td style="text-align: left;">RAG, fact-checking, citations, temperature=0, training data curation</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Prompt injection</strong></td>
+<td style="text-align: left;">User input overrides system instructions</td>
+<td style="text-align: left;">Input sanitization, delimiters, XML tags</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Inconsistency</strong></td>
+<td style="text-align: left;">Same input → different outputs</td>
+<td style="text-align: left;">temperature=0, seeded states, validation</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Math errors</strong></td>
+<td style="text-align: left;">Arithmetic fails silently, especially multi-step unit conversions</td>
+<td style="text-align: left;">Tool use (not guaranteed); or LLM extracts values, Python computes</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Context overflow</strong></td>
+<td style="text-align: left;">Important information at edges gets lost</td>
+<td style="text-align: left;">Strategic positioning, chunking, hierarchical summarization</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Task/expertise mismatch</strong></td>
+<td style="text-align: left;">User can’t identify LLM errors</td>
+<td style="text-align: left;">Expert review, reference materials, limit autonomy</td>
+</tr>
+</tbody>
+</table>
+<p><img src="media/xkcd_hallucinations.png" class="img-fluid"></p>
+</section>
+<section id="prompt-injection" class="level2">
+<h2 class="anchored" data-anchor-id="prompt-injection">Prompt Injection</h2>
+<p>Models may treat user content as instructions. The defense: separate system instructions from user content using roles and delimiters (XML tags like <code>&lt;user_input&gt;...&lt;/user_input&gt;</code>). Guardrails (covered in Workflows below) validate both inputs and outputs.</p>
+</section>
+<section id="math-errors" class="level2">
+<h2 class="anchored" data-anchor-id="math-errors">Math Errors</h2>
+<p>LLMs approximate numbers through pattern matching — they don’t execute arithmetic. Multi-step calculations with unit conversions (e.g., mcg/kg/min → mL/hr) fail more often than simple ones. Never rely on LLM arithmetic for critical values — use the LLM to extract values, then compute with Python. We’ll see code for this in the Deterministic Steps pattern below.</p>
+<p><img src="media/beverages.jpg" class="img-fluid"></p>
+</section>
+</section>
+<section id="practical-recommendations" class="level1">
+<h1>Practical Recommendations</h1>
+<section id="start-small" class="level2">
+<h2 class="anchored" data-anchor-id="start-small">Start Small</h2>
+<p>Every major provider offers a model hierarchy — start with the smallest model that handles your task and only upgrade when needed. Each tier is roughly 5–10x cheaper than the one above it:</p>
+<ul>
+<li><strong>OpenAI</strong>: GPT-X.2 → GPT-X-mini → GPT-X-nano</li>
+<li><strong>Anthropic</strong>: Claude Opus → Claude Sonnet → Claude Haiku</li>
+<li><strong>Google</strong>: Gemini Pro → Gemini Flash → Gemini Flash Lite</li>
+</ul>
+<p><strong>Self-hosted options</strong> (free, private): <a href="https://ollama.com">Ollama</a> (desktop) and <a href="https://github.com/a-ghorbani/pocketpal-ai">PocketPal</a> (mobile) let you run models locally — no API costs, no usage limits, ideal for sensitive data prototyping.</p>
+</section>
+<section id="testing-validation" class="level2">
+<h2 class="anchored" data-anchor-id="testing-validation">Testing &amp; Validation</h2>
+<p><strong>Start simple</strong>:</p>
+<ol type="1">
+<li>Test on 5–10 representative examples first</li>
+<li>Manually review outputs</li>
+<li>Try edge cases (missing data, unusual formats)</li>
+<li>Incorporate failures into few-shot examples</li>
+</ol>
+<p><strong>Red flags to watch for</strong>:</p>
+<ul>
+<li>Inconsistent outputs for similar inputs</li>
+<li>Made-up citations or facts</li>
+<li>Missing required information</li>
+<li>Wrong format or structure</li>
+</ul>
+<p>Choose tasks that you can meaningfully oversee. Think of LLMs as prolific interns — productive but requiring supervision.</p>
+<section id="reference-card-getting-started-checklist" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-getting-started-checklist">Reference Card: Getting Started Checklist</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 77%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Step</th>
+<th style="text-align: left;">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>1. Prototype</strong></td>
+<td style="text-align: left;">Use a mini/nano model (gpt-5-mini, Claude Haiku, Gemini Flash)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>2. Test</strong></td>
+<td style="text-align: left;">Run 5–10 representative examples, manually review outputs</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>3. Edge cases</strong></td>
+<td style="text-align: left;">Try missing data, unusual formats, adversarial inputs</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>4. Iterate</strong></td>
+<td style="text-align: left;">Incorporate failures into few-shot examples or guardrails</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>5. Upgrade</strong></td>
+<td style="text-align: left;">Switch to a larger model only if the smaller one can’t handle it</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>6. Monitor</strong></td>
+<td style="text-align: left;">Track costs, latency, and output quality in production</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+<section id="agentic-llms" class="level1">
+<h1>Agentic LLMs</h1>
+<p>You can send a prompt and get a response. Now: what can you <em>build</em> with it?</p>
+<p>An <strong>agent</strong> is an LLM that can take actions — not just generate text, but use tools, gather information, and iterate toward a goal. When Claude Code reads your files, decides what to edit, runs tests, and loops until the bug is fixed — that’s an agent. When ChatGPT searches the web, reads results, and synthesizes an answer — that’s an agent too.</p>
+<p>The key difference from a chatbot: an agent has a <strong>goal</strong> and takes <strong>actions</strong> to achieve it. It decides what to do next based on what it observes, rather than waiting for you to tell it each step. This autonomy is what makes agents powerful — and what makes them tricky to get right.</p>
+<p><img src="media/agents_landscape.png" class="img-fluid"></p>
+<section id="traditional-vs-agentic-llm-use" class="level2">
+<h2 class="anchored" data-anchor-id="traditional-vs-agentic-llm-use">Traditional vs Agentic LLM Use</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 47%">
+<col style="width: 52%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Traditional</th>
+<th style="text-align: left;">Agentic</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Single request → single response</td>
+<td style="text-align: left;">Multi-turn, self-guided iterations</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">User provides all context</td>
+<td style="text-align: left;">Agent gathers information as needed</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Fixed output</td>
+<td style="text-align: left;">Iterates until task complete</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">No tool access</td>
+<td style="text-align: left;">Can invoke external functions</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="key-characteristics-of-agents" class="level2">
+<h2 class="anchored" data-anchor-id="key-characteristics-of-agents">Key Characteristics of Agents</h2>
+<ul>
+<li><strong>Autonomy</strong>: Agent decides next steps based on observations</li>
+<li><strong>Tool use</strong>: Can invoke external functions (search, database queries, calculators)</li>
+<li><strong>Iteration</strong>: Loops until task complete or max steps reached</li>
+<li><strong>State management</strong>: Maintains context across multiple actions</li>
+</ul>
+</section>
+<section id="the-agent-loop" class="level2">
+<h2 class="anchored" data-anchor-id="the-agent-loop">The Agent Loop</h2>
+<pre class="text"><code>Plan → Act → Observe → Reflect → (repeat)</code></pre>
+<p>This loop naturally extends <strong>chain-of-thought</strong> reasoning — instead of reasoning in a single generation, the agent reasons across multiple steps, each grounded in real observations rather than generated all at once.</p>
+<p>Here’s what that looks like for a real task:</p>
+<pre class="text"><code>Task: "Find recent papers on treatment X and summarize findings"
+    ↓
+1. Agent searches literature database (tool call)
+    ↓
+2. Agent reads top 3 papers (tool call)
+    ↓
+3. Agent synthesizes findings
+    ↓
+4. Agent checks if answer is complete
+    ↓
+   If not → searches for more specific info
+    ↓
+5. Returns final summary</code></pre>
+<section id="reference-card-agent-components" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-agent-components">Reference Card: Agent Components</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 79%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Component</th>
+<th style="text-align: left;">Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Planner</strong></td>
+<td style="text-align: left;">Breaks task into steps</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Memory</strong></td>
+<td style="text-align: left;">Stores conversation history and intermediate results</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Tools</strong></td>
+<td style="text-align: left;">External functions the agent can call</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Executor</strong></td>
+<td style="text-align: left;">Runs tools and collects results</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Reflector</strong></td>
+<td style="text-align: left;">Evaluates progress, decides whether to continue or return</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-simple-agent-loop" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-simple-agent-loop">Code Snippet: Simple Agent Loop</h3>
+<p>This is what’s happening under the hood when tools like Claude Code or ChatGPT work on multi-step tasks:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openai <span class="im">import</span> OpenAI</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> OpenAI()</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> agent_loop(task, tools, max_steps<span class="op">=</span><span class="dv">10</span>):</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    messages <span class="op">=</span> [{<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: task}]</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> step <span class="kw">in</span> <span class="bu">range</span>(max_steps):</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        <span class="co"># PLAN/ACT: send conversation so far, let the model decide what to do</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        response <span class="op">=</span> client.chat.completions.create(</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>            model<span class="op">=</span><span class="st">"gpt-5.2"</span>, messages<span class="op">=</span>messages, tools<span class="op">=</span>tools</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        reply <span class="op">=</span> response.choices[<span class="dv">0</span>].message</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        messages.append(reply)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        <span class="co"># DONE? if the model didn't ask to call any tools, it's finished</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> reply.tool_calls:</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> reply.content</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>        <span class="co"># OBSERVE: execute each tool the model requested, feed results back</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> call <span class="kw">in</span> reply.tool_calls:</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>            result <span class="op">=</span> run_tool(call)</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>            messages.append({<span class="st">"role"</span>: <span class="st">"tool"</span>, <span class="st">"tool_call_id"</span>: call.<span class="bu">id</span>,</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>                             <span class="st">"content"</span>: <span class="bu">str</span>(result)})</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>        <span class="co"># loop back → model sees the tool results and decides next step</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"Max steps reached"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="building-an-agent" class="level2">
+<h2 class="anchored" data-anchor-id="building-an-agent">Building an Agent</h2>
+<p>You’ve seen the concepts — now here’s what defining an agent looks like in code. The <a href="https://openai.github.io/openai-agents-python">OpenAI Agents SDK</a> wraps the agent loop, tool dispatch, and message management into a clean API:</p>
+<section id="code-snippet-openai-agents-sdk" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-openai-agents-sdk">Code Snippet: OpenAI Agents SDK</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pip install openai-agents pydantic</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pydantic <span class="im">import</span> BaseModel</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> agents <span class="im">import</span> Agent, Runner, function_tool, set_default_openai_client</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openai <span class="im">import</span> OpenAI</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Point the SDK at any OpenAI-compatible API (OpenRouter, local Ollama, etc.)</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>set_default_openai_client(OpenAI(base_url<span class="op">=</span><span class="st">"https://openrouter.ai/api/v1"</span>))</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="at">@function_tool</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calculate_bmi(weight_kg: <span class="bu">float</span>, height_m: <span class="bu">float</span>) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Calculate BMI from weight and height."""</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    bmi <span class="op">=</span> weight_kg <span class="op">/</span> (height_m <span class="op">**</span> <span class="dv">2</span>)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="ss">f"BMI: </span><span class="sc">{</span>bmi<span class="sc">:.1f}</span><span class="ss">"</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Structured output — agent must return data matching this schema</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> PatientReport(BaseModel):</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    bmi: <span class="bu">float</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    category: <span class="bu">str</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    recommendation: <span class="bu">str</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>agent <span class="op">=</span> Agent(</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">"Health Assistant"</span>,</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    instructions<span class="op">=</span><span class="st">"You help with health data analysis. Use tools for calculations."</span>,</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    tools<span class="op">=</span>[calculate_bmi],</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    output_type<span class="op">=</span>PatientReport,  <span class="co"># forces structured JSON output</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="co"># max_turns limits how many agent loop iterations (tool calls) before stopping</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> Runner.run_sync(agent, <span class="st">"Calculate BMI for a 75kg patient who is 1.75m tall"</span>,</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>                         max_turns<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(result.final_output)  <span class="co"># PatientReport object</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The SDK handles the agent loop automatically — you define tools, instructions, and the agent figures out the rest. Key parameters:</p>
+<ul>
+<li><strong><code>output_type</code></strong>: Forces the agent to return structured data matching a Pydantic model — the same pattern you saw with schema-based prompting in Lecture 7, but now enforced by the framework.</li>
+<li><strong><code>max_turns</code></strong>: Limits how many iterations the agent loop can run. Without it, an agent could loop indefinitely if it keeps calling tools. Set it based on task complexity — simple tasks need 5–10 turns, complex investigations might need 30–50.</li>
+<li><strong><code>set_default_openai_client</code></strong>: Points the SDK at any OpenAI-compatible API endpoint (OpenRouter, a local Ollama server, etc.) instead of the default OpenAI API.</li>
+</ul>
+<p>More framework options in the Workflow section below.</p>
+<p><img src="media/no-crime.jpg" class="img-fluid"></p>
+</section>
+</section>
+<section id="prompting-techniques-for-agents" class="level2">
+<h2 class="anchored" data-anchor-id="prompting-techniques-for-agents">Prompting Techniques for Agents</h2>
+<p>In Lecture 7 you learned chain-of-thought and prompt chaining. Agents extend these with patterns designed for multi-step, tool-using workflows:</p>
+<p><img src="media/agentic_prompting.png" class="img-fluid"></p>
+<section id="reference-card-agentic-prompting-patterns" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-agentic-prompting-patterns">Reference Card: Agentic Prompting Patterns</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 48%">
+<col style="width: 35%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Pattern</th>
+<th style="text-align: left;">How It Works</th>
+<th style="text-align: left;">When to Use</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>ReAct</strong> (Reason+Act)</td>
+<td style="text-align: left;">Interleave reasoning with tool calls: think → act → observe → think again</td>
+<td style="text-align: left;">Any agent that uses tools — the default agent pattern</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Self-consistency</strong></td>
+<td style="text-align: left;">Generate multiple reasoning paths, vote on the most common answer</td>
+<td style="text-align: left;">High-stakes decisions where confidence matters</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Reflection</strong></td>
+<td style="text-align: left;">Agent critiques its own output, surfaces uncertainty and assumptions</td>
+<td style="text-align: left;">Complex tasks where errors are costly</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Tree of Thought</strong></td>
+<td style="text-align: left;">Explore multiple solution branches, prune unpromising paths</td>
+<td style="text-align: left;">Planning and multi-step reasoning tasks</td>
+</tr>
+</tbody>
+</table>
+<p>!!! warning “Reasoning” in LLMs is not thinking. Models like o1/o3 use chain-of-thought at inference time, which can improve results on some tasks — but it doesn’t always help, it’s always more expensive, and it can create a false sense of confidence. See Apple’s <a href="https://machinelearning.apple.com/research/illusion-of-thinking">“Illusion of Thinking”</a> research.</p>
+<p><img src="media/xkcd_robot_future.png" class="img-fluid"></p>
+</section>
+</section>
+</section>
+<section id="live-demo" class="level1">
+<h1>LIVE DEMO!</h1>
+</section>
+<section id="retrieval-augmented-generation-rag" class="level1">
+<h1>Retrieval-Augmented Generation (RAG)</h1>
+<p>The core problem with LLMs: they only know what was in their training data, and they’ll confidently make things up when they don’t know. <strong>RAG</strong> (Retrieval-Augmented Generation) solves this by giving the model relevant documents <em>at query time</em> — instead of hoping the model knows something, you look it up first and include it in the prompt.</p>
+<section id="why-rag" class="level2">
+<h2 class="anchored" data-anchor-id="why-rag">Why RAG?</h2>
+<ul>
+<li><strong>Reduces hallucinations</strong>: Responses grounded in retrieved documents</li>
+<li><strong>Provides sources</strong>: Can cite specific documents</li>
+<li><strong>Keeps information current</strong>: Update documents without retraining</li>
+<li><strong>Domain adaptation</strong>: Use your own documents without fine-tuning</li>
+</ul>
+</section>
+<section id="the-rag-pipeline" class="level2">
+<h2 class="anchored" data-anchor-id="the-rag-pipeline">The RAG Pipeline</h2>
+<p>The pipeline:</p>
+<p><img src="media/rag_pipeline.png" class="img-fluid"></p>
+<pre class="text"><code>Query → Embed → Retrieve Similar Chunks → Add to Prompt → Generate Response</code></pre>
+<section id="reference-card-rag-pipeline" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-rag-pipeline">Reference Card: RAG Pipeline</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 82%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Component</th>
+<th style="text-align: left;">Details</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Signature</strong></td>
+<td style="text-align: left;"><code>query → embed → retrieve → augment → generate</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Purpose</strong></td>
+<td style="text-align: left;">Ground LLM responses in retrieved documents to reduce hallucination</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Embed</strong></td>
+<td style="text-align: left;">Convert query to vector using same model as document embeddings</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Retrieve</strong></td>
+<td style="text-align: left;">Find top-k similar chunks from vector store (ChromaDB, FAISS, etc.)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Augment</strong></td>
+<td style="text-align: left;">Insert retrieved chunks into system prompt as context</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Generate</strong></td>
+<td style="text-align: left;">LLM produces response grounded in provided context</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-simple-rag-pipeline" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-simple-rag-pipeline">Code Snippet: Simple RAG Pipeline</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sentence_transformers <span class="im">import</span> SentenceTransformer</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> chromadb</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openai <span class="im">import</span> OpenAI</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>embedding_model <span class="op">=</span> SentenceTransformer(<span class="st">'all-MiniLM-L6-v2'</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>llm_client <span class="op">=</span> OpenAI()</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>db <span class="op">=</span> chromadb.Client()</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>collection <span class="op">=</span> db.create_collection(<span class="st">"docs"</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> index_documents(documents):</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Add documents to the vector store. In practice, split long documents</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co">    into chunks first (e.g., by paragraph or fixed token count)."""</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    embeddings <span class="op">=</span> embedding_model.encode(documents).tolist()</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    collection.add(</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>        documents<span class="op">=</span>documents,</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>        embeddings<span class="op">=</span>embeddings,</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>        ids<span class="op">=</span>[<span class="ss">f"doc_</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(documents))]</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rag_query(question, n_results<span class="op">=</span><span class="dv">3</span>):</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Retrieve relevant chunks and generate a grounded response."""</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    query_embedding <span class="op">=</span> embedding_model.encode([question]).tolist()</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    results <span class="op">=</span> collection.query(query_embeddings<span class="op">=</span>query_embedding, n_results<span class="op">=</span>n_results)</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>    context <span class="op">=</span> <span class="st">"</span><span class="ch">\n\n</span><span class="st">"</span>.join(results[<span class="st">'documents'</span>][<span class="dv">0</span>])</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> llm_client.chat.completions.create(</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>        model<span class="op">=</span><span class="st">"gpt-5-mini"</span>,</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>        messages<span class="op">=</span>[</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>            {<span class="st">"role"</span>: <span class="st">"system"</span>, <span class="st">"content"</span>: <span class="ss">f"Answer based on this context:</span><span class="ch">\n</span><span class="sc">{</span>context<span class="sc">}</span><span class="ss">"</span>},</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>            {<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: question}</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>        ]</span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> response.choices[<span class="dv">0</span>].message.content</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+</section>
+<section id="model-context-protocol-mcp" class="level1">
+<h1>Model Context Protocol (MCP)</h1>
+<p>MCP provides a standardized way to connect LLMs to external data sources and tools. Instead of writing custom integrations for each tool, MCP offers pre-built servers that expose capabilities in a consistent format.</p>
+<p>!!! note MCP servers often run as Node.js processes. Install Node.js (<code>brew install node</code> on macOS, or <a href="https://nodejs.org">nodejs.org</a>) to use them.</p>
+<section id="why-mcp" class="level2">
+<h2 class="anchored" data-anchor-id="why-mcp">Why MCP?</h2>
+<ul>
+<li><strong>Standardization</strong>: Same interface for files, databases, APIs, web scraping</li>
+<li><strong>Reusability</strong>: Pre-built servers for common tools (GitHub, Slack, Postgres, etc.)</li>
+<li><strong>Security</strong>: Consistent authentication and permission model</li>
+<li><strong>Discovery</strong>: LLMs can discover available tools dynamically</li>
+</ul>
+</section>
+<section id="how-mcp-works" class="level2">
+<h2 class="anchored" data-anchor-id="how-mcp-works">How MCP Works</h2>
+<pre class="text"><code>┌─────────────┐    MCP Protocol    ┌─────────────┐
+│  LLM/Agent  │ ◄───────────────► │  MCP Server │ ◄──► External Service
+└─────────────┘                    └─────────────┘
+     Your code connects here            Pre-built or custom</code></pre>
+<ol type="1">
+<li><strong>MCP Server</strong> exposes tools and resources via a standard protocol</li>
+<li><strong>Your code</strong> connects to the server and discovers available capabilities</li>
+<li><strong>LLM</strong> receives tool definitions and can invoke them through your code</li>
+</ol>
+<p>MCP fits naturally with agents: MCP servers are the <em>tools</em> that agents can call.</p>
+</section>
+<section id="function-calling" class="level2">
+<h2 class="anchored" data-anchor-id="function-calling">Function Calling</h2>
+<p>Whether you’re writing tools by hand or discovering them via MCP, the underlying mechanism is the same: <strong>function calling</strong>. You define functions using JSON schemas, and the model can invoke them. This serves two purposes:</p>
+<ul>
+<li><strong>Tool use</strong>: The agent <em>chooses</em> to call external functions (search, calculate, query a database). This is what makes agents agentic.</li>
+<li><strong>Structured output</strong>: You <em>force</em> the model to return data matching a specific schema — formatting, not action. You saw this in Lecture 7 with schema-based prompting; function calling guarantees compliance.</li>
+</ul>
+<p>Both use the same API (<code>tools</code> parameter). Tool use is about <strong>action</strong>; structured output is about <strong>format</strong>.</p>
+<p><img src="media/structured_outputs.png" class="img-fluid"></p>
+<section id="reference-card-mcp-function-calling" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-mcp-function-calling">Reference Card: MCP &amp; Function Calling</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 28%">
+<col style="width: 71%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Component</th>
+<th style="text-align: left;">Details</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>MCP Server</strong></td>
+<td style="text-align: left;">Process that exposes tools/resources (e.g., filesystem server, database server)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>MCP Tool</strong></td>
+<td style="text-align: left;">Function the LLM can invoke (e.g., <code>read_file</code>, <code>query_database</code>)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>MCP Resource</strong></td>
+<td style="text-align: left;">Data the LLM can read (e.g., file contents, API responses)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>MCP Transport</strong></td>
+<td style="text-align: left;">How client and server communicate (stdio, HTTP)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Function calling definition</strong></td>
+<td style="text-align: left;">JSON schema with properties and types</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong><code>tool_choice</code></strong></td>
+<td style="text-align: left;"><code>"auto"</code> (model decides) or forced (specific function)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Tool use pattern</strong></td>
+<td style="text-align: left;">Model chooses tool → your code executes → result fed back</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Structured output pattern</strong></td>
+<td style="text-align: left;">Model forced to return data matching schema</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-defining-an-mcp-server" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-defining-an-mcp-server">Code Snippet: Defining an MCP Server</h3>
+<p>An MCP server exposes Python functions as tools. The <code>@mcp.tool()</code> decorator + type hints are all it takes — the protocol handles schema generation, discovery, and transport:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mcp.server.fastmcp <span class="im">import</span> FastMCP</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>mcp <span class="op">=</span> FastMCP(<span class="st">"Health Tools"</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="at">@mcp.tool</span>()</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calculate_bmi(weight_kg: <span class="bu">float</span>, height_m: <span class="bu">float</span>) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Calculate BMI from weight and height."""</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    bmi <span class="op">=</span> weight_kg <span class="op">/</span> (height_m <span class="op">**</span> <span class="dv">2</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="ss">f"BMI: </span><span class="sc">{</span>bmi<span class="sc">:.1f}</span><span class="ss">"</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>mcp.run()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="code-snippet-configuring-mcp-servers" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-configuring-mcp-servers">Code Snippet: Configuring MCP Servers</h3>
+<p>In practice, MCP servers are configured in JSON — tools like Claude Code, Cursor, and ChatGPT read this config to connect to servers automatically:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"mcp"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"servers"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"filesystem"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"command"</span><span class="fu">:</span> <span class="st">"npx"</span><span class="fu">,</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"args"</span><span class="fu">:</span> <span class="ot">[</span><span class="st">"@modelcontextprotocol/server-filesystem"</span><span class="ot">,</span> <span class="st">"/path/to/data"</span><span class="ot">]</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">},</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"postgres"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"command"</span><span class="fu">:</span> <span class="st">"npx"</span><span class="fu">,</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"args"</span><span class="fu">:</span> <span class="ot">[</span><span class="st">"@modelcontextprotocol/server-postgres"</span><span class="ot">,</span> <span class="st">"postgresql://localhost/mydb"</span><span class="ot">]</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>      <span class="fu">}</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Once configured, the LLM can discover and call any tools the server exposes. For example, the filesystem server exposes <code>read_file</code>, <code>write_file</code>, <code>list_directory</code>, and <code>search_files</code> — the same tools Claude Code uses to navigate your codebase.</p>
+</section>
+</section>
+<section id="common-mcp-servers" class="level2">
+<h2 class="anchored" data-anchor-id="common-mcp-servers">Common MCP Servers</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 40%">
+<col style="width: 42%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Category</th>
+<th style="text-align: left;">Server</th>
+<th style="text-align: left;">Tools Exposed</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>File systems</strong></td>
+<td style="text-align: left;"><code>@modelcontextprotocol/server-filesystem</code></td>
+<td style="text-align: left;"><code>read_file</code>, <code>write_file</code>, <code>list_directory</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Databases</strong></td>
+<td style="text-align: left;"><code>@modelcontextprotocol/server-postgres</code></td>
+<td style="text-align: left;"><code>query</code>, <code>list_tables</code>, <code>describe_table</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Web</strong></td>
+<td style="text-align: left;"><code>@modelcontextprotocol/server-puppeteer</code></td>
+<td style="text-align: left;"><code>navigate</code>, <code>screenshot</code>, <code>click</code>, <code>fill</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Code</strong></td>
+<td style="text-align: left;"><code>@modelcontextprotocol/server-github</code></td>
+<td style="text-align: left;">Repository operations</td>
+</tr>
+</tbody>
+</table>
+<p><img src="media/xkcd_exploits_of_a_mom.png" class="img-fluid"></p>
+</section>
+</section>
+<section id="live-demo-1" class="level1">
+<h1>LIVE DEMO!!</h1>
+</section>
+<section id="workflow-orchestration-patterns" class="level1">
+<h1>Workflow Orchestration Patterns</h1>
+<p>An agent without a workflow is a loose cannon — powerful but unpredictable. Real tasks span multiple steps and decision points. Workflows provide structure for complex LLM applications, turning ad-hoc agent behavior into something reliable, auditable, and cost-effective.</p>
+<section id="why-workflows" class="level2">
+<h2 class="anchored" data-anchor-id="why-workflows">Why Workflows?</h2>
+<ul>
+<li><strong>Reliability</strong>: Each step is simple, testable, debuggable</li>
+<li><strong>Cost control</strong>: Use small models for simple steps, large models only when needed</li>
+<li><strong>Auditability</strong>: Track which step failed, inspect intermediate outputs</li>
+<li><strong>Safety</strong>: Add guardrails, validation, and human checkpoints</li>
+<li><strong>State management</strong>: Maintain context across steps, remember decisions, handle partial failures</li>
+<li><strong>Error handling</strong>: Retries, fallbacks, human-in-the-loop checkpoints</li>
+<li><strong>Observability</strong>: Inspect intermediate outputs, debug chains, trace failures to specific steps</li>
+</ul>
+<p>Two implementation approaches:</p>
+<ul>
+<li><strong>Visual builders</strong> (e.g., <a href="https://platform.openai.com/agent-builder">OpenAI Agent Builder</a>): Good for rapid prototyping and demos</li>
+<li><strong>Code-first</strong> (e.g., Agents SDK, LangGraph): Better for complex logic, version control, and production systems</li>
+</ul>
+</section>
+<section id="pattern-prompt-chaining" class="level2">
+<h2 class="anchored" data-anchor-id="pattern-prompt-chaining">Pattern: Prompt Chaining</h2>
+<p>Why not put everything in one big prompt? Because each step in a chain is simpler, more testable, and produces an intermediate artifact you can inspect. If step 2 fails, you know exactly where — and you can fix that step without touching the others. Chaining also lets you use different models or temperatures per step (e.g., a cheap model for extraction, an expensive one for synthesis).</p>
+<p><img src="media/prompt_chaining.png" class="img-fluid"></p>
+<p>We’ll define a simple <code>llm_call()</code> wrapper here and reuse it throughout the rest of this lecture:</p>
+<section id="code-snippet-prompt-chain" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-prompt-chain">Code Snippet: Prompt Chain</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openai <span class="im">import</span> OpenAI</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> OpenAI()</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> llm_call(prompt: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Simple wrapper for OpenAI chat completion."""</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> client.chat.completions.create(</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>        model<span class="op">=</span><span class="st">"gpt-5-mini"</span>,</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>        messages<span class="op">=</span>[{<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: prompt}]</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> response.choices[<span class="dv">0</span>].message.content</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> extract_classify_summarize(document: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">dict</span>:</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Chain of LLM calls: extract → classify → summarize."""</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    entities <span class="op">=</span> llm_call(<span class="ss">f"Extract all medical entities from this text as a list:</span><span class="ch">\n</span><span class="sc">{</span>document<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    classified <span class="op">=</span> llm_call(<span class="ss">f"Classify these entities by type (condition, medication, procedure):</span><span class="ch">\n</span><span class="sc">{</span>entities<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    summary <span class="op">=</span> llm_call(<span class="ss">f"Write a brief clinical summary based on:</span><span class="ch">\n</span><span class="sc">{</span>classified<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {<span class="st">"entities"</span>: entities, <span class="st">"classified"</span>: classified, <span class="st">"summary"</span>: summary}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><img src="media/xkcd_ai_research.png" class="img-fluid"></p>
+</section>
+</section>
+</section>
+<section id="workflow-patterns" class="level1">
+<h1>Workflow Patterns</h1>
+<p>Most agent builders represent workflows as a graph of nodes. The exact names vary by framework, but the building blocks are consistent:</p>
+<p><img src="media/workflow_overview.png" class="img-fluid"></p>
+<ul>
+<li><strong>Model call</strong>: A single LLM prompt/response step</li>
+<li><strong>Tool call</strong>: Deterministic function execution (search, database, calculator)</li>
+<li><strong>Router/logic</strong>: Branching based on classification or criteria</li>
+<li><strong>Guardrail/validator</strong>: Check input/output for safety, schema, or quality</li>
+<li><strong>Human approval</strong>: Pause for review before high-stakes actions</li>
+<li><strong>Parallel fan-out</strong>: Run independent steps concurrently and merge results</li>
+</ul>
+<section id="pattern-guardrails" class="level2">
+<h2 class="anchored" data-anchor-id="pattern-guardrails">Pattern: Guardrails</h2>
+<p><strong>Concept</strong>: Input/output monitors that enforce safety and compliance rules</p>
+<p><img src="media/guardrails.png" class="img-fluid"></p>
+<p><strong>Common guardrails</strong>:</p>
+<ul>
+<li><strong>PII/PHI detection</strong>: Flag or redact protected health information</li>
+<li><strong>Hallucination detection</strong>: Check if claims are grounded in source text</li>
+<li><strong>Jailbreak detection</strong>: Identify prompt injection attempts</li>
+<li><strong>Format validation</strong>: Ensure structured outputs meet schema</li>
+</ul>
+<section id="reference-card-common-guardrails" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-common-guardrails">Reference Card: Common Guardrails</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 74%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Guardrail</th>
+<th style="text-align: left;">Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>PII/PHI detection</strong></td>
+<td style="text-align: left;">Flag or redact Protected Health Information or Personally Identifiable Information</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Hallucination detection</strong></td>
+<td style="text-align: left;">Check if claims are grounded in source text</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Jailbreak detection</strong></td>
+<td style="text-align: left;">Identify prompt injection attempts</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Format validation</strong></td>
+<td style="text-align: left;">Ensure structured outputs meet schema</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Content filtering</strong></td>
+<td style="text-align: left;">Block inappropriate content</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-guardrails-inputoutput-check" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-guardrails-inputoutput-check">Code Snippet: Guardrails (Input/Output Check)</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> check_for_phi(text: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">list</span>[<span class="bu">str</span>]:</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Check for common PHI patterns. Production systems use NLP models</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">    (e.g., Presidio, clinical NER) for more robust detection."""</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    patterns <span class="op">=</span> {</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">'SSN'</span>: <span class="vs">r'</span><span class="dv">\b\d</span><span class="op">{3}</span><span class="vs">-</span><span class="dv">\d</span><span class="op">{2}</span><span class="vs">-</span><span class="dv">\d</span><span class="op">{4}</span><span class="dv">\b</span><span class="vs">'</span>,</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">'phone'</span>: <span class="vs">r'</span><span class="dv">\b\d</span><span class="op">{3}</span><span class="pp">[-.]</span><span class="op">?</span><span class="dv">\d</span><span class="op">{3}</span><span class="pp">[-.]</span><span class="op">?</span><span class="dv">\d</span><span class="op">{4}</span><span class="dv">\b</span><span class="vs">'</span>,</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">'MRN'</span>: <span class="vs">r'</span><span class="dv">\b</span><span class="kw">(</span><span class="vs">MRN</span><span class="cf">|</span><span class="vs">Medical Record</span><span class="kw">)</span><span class="pp">[</span><span class="dv">\s</span><span class="pp">:#]</span><span class="op">*</span><span class="dv">\d</span><span class="op">+</span><span class="dv">\b</span><span class="vs">'</span>,</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [name <span class="cf">for</span> name, pat <span class="kw">in</span> patterns.items() <span class="cf">if</span> re.search(pat, text, re.IGNORECASE)]</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> safe_llm_call(prompt: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Wrap llm_call() with input and output guardrails."""</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> found <span class="op">:=</span> check_for_phi(prompt):</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="ss">f"PHI detected in input: </span><span class="sc">{</span>found<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>    output <span class="op">=</span> llm_call(prompt)</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> found <span class="op">:=</span> check_for_phi(output):</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="ss">f"PHI detected in output: </span><span class="sc">{</span>found<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> output</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="pattern-routing-logic" class="level2">
+<h2 class="anchored" data-anchor-id="pattern-routing-logic">Pattern: Routing &amp; Logic</h2>
+<p><strong>Concept</strong>: Conditional branching based on content or criteria</p>
+<p><img src="media/routing_logic.png" class="img-fluid"></p>
+<p><strong>Logic nodes</strong>:</p>
+<ul>
+<li><strong>If/else</strong>: Route based on classification or criteria</li>
+<li><strong>While loops</strong>: Repeat until condition met (e.g., all sections complete)</li>
+<li><strong>Human approval</strong>: Pause for review before high-stakes action</li>
+</ul>
+</section>
+<section id="pattern-deterministic-steps" class="level2">
+<h2 class="anchored" data-anchor-id="pattern-deterministic-steps">Pattern: Deterministic Steps</h2>
+<p><strong>Concept</strong>: Integrate rule-based logic alongside LLM calls. Use LLMs for what they’re good at (language), use code for what it’s good at (math, lookups, validation).</p>
+<p><strong>Use cases</strong>: Known logic that does not require LLM flexibility — dose calculations, date arithmetic, database lookups, schema validation.</p>
+<section id="code-snippet-llm-extracts-python-validates" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-llm-extracts-python-validates">Code Snippet: LLM Extracts, Python Validates</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>REQUIRED_FIELDS <span class="op">=</span> {<span class="st">"diagnosis"</span>: <span class="bu">str</span>, <span class="st">"medications"</span>: <span class="bu">list</span>, <span class="st">"allergies"</span>: <span class="bu">list</span>}</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> extract_and_validate(clinical_note: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">dict</span>:</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""LLM extracts structured data; Python validates the result."""</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    raw <span class="op">=</span> llm_call(<span class="ss">f"Extract diagnosis, medications, and allergies as JSON:</span><span class="ch">\n</span><span class="sc">{</span>clinical_note<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> json.loads(raw)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># DETERMINISTIC: Validate structure (never trust LLM output blindly)</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> field, expected_type <span class="kw">in</span> REQUIRED_FIELDS.items():</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> field <span class="kw">not</span> <span class="kw">in</span> data:</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>            <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="ss">f"Missing required field: </span><span class="sc">{</span>field<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> <span class="bu">isinstance</span>(data[field], expected_type):</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>            <span class="cf">raise</span> <span class="pp">TypeError</span>(<span class="ss">f"</span><span class="sc">{</span>field<span class="sc">}</span><span class="ss"> must be </span><span class="sc">{</span>expected_type<span class="sc">.</span><span class="va">__name__</span><span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> data</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="pattern-parallelization" class="level2">
+<h2 class="anchored" data-anchor-id="pattern-parallelization">Pattern: Parallelization</h2>
+<p><strong>Concept</strong>: Run independent LLM tasks simultaneously</p>
+<p><img src="media/langchain_parallelization.png" class="img-fluid"></p>
+<p><strong>Speed</strong>:</p>
+<ul>
+<li><strong>Divide-and-conquer</strong>: Split subtasks, execute in parallel, combine results</li>
+<li><strong>First-to-finish</strong>: Start the same task with different strategies, accept the first completed</li>
+</ul>
+<p><strong>Confidence</strong>:</p>
+<ol type="1">
+<li>Run task multiple times with different prompts or models</li>
+<li>Choose winner or synthesize results</li>
+</ol>
+<p><img src="media/xkcd_tax_ai.png" class="img-fluid"></p>
+</section>
+<section id="pattern-orchestrator-workers" class="level2">
+<h2 class="anchored" data-anchor-id="pattern-orchestrator-workers">Pattern: Orchestrator-Workers</h2>
+<p><strong>Concept</strong>: A central agent breaks a task into subtasks and delegates each to a specialist worker. The orchestrator coordinates results.</p>
+<p><img src="media/orchestrator_workers.png" class="img-fluid"></p>
+<p><strong>Use cases</strong>:</p>
+<ul>
+<li>Multi-section reports (each section handled by a worker)</li>
+<li>Medication extraction plus interaction checking plus summary generation</li>
+<li>Research tasks requiring multiple queries</li>
+</ul>
+</section>
+<section id="pattern-evaluator-optimizer" class="level2">
+<h2 class="anchored" data-anchor-id="pattern-evaluator-optimizer">Pattern: Evaluator-Optimizer</h2>
+<p><strong>Concept</strong>: Generate a response, evaluate its quality (with a second LLM call or deterministic checks), then refine until it meets a threshold.</p>
+<p><img src="media/evaluator_optimizer.png" class="img-fluid"></p>
+<p><strong>Use cases</strong>:</p>
+<ul>
+<li>Clinical note generation with completeness validation</li>
+<li>Extraction tasks with accuracy scoring</li>
+<li>Draft letters that must meet strict formatting</li>
+</ul>
+</section>
+<section id="pattern-human-in-the-loop" class="level2">
+<h2 class="anchored" data-anchor-id="pattern-human-in-the-loop">Pattern: Human-in-the-loop</h2>
+<p><strong>Concept</strong>: Pause for human review before high-stakes actions. The workflow continues only after explicit approval.</p>
+<p><strong>Common checkpoints</strong>:</p>
+<ul>
+<li>Diagnosis confirmation</li>
+<li>Prescription recommendations</li>
+<li>Sending patient communications</li>
+</ul>
+</section>
+<section id="agent-workflow-frameworks" class="level2">
+<h2 class="anchored" data-anchor-id="agent-workflow-frameworks">Agent &amp; Workflow Frameworks</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Framework</th>
+<th style="text-align: left;">Focus</th>
+<th style="text-align: left;">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>OpenAI Agents SDK</strong></td>
+<td style="text-align: left;">Agent building with tools, handoffs, guardrails, tracing</td>
+<td style="text-align: left;">Primary framework for this course. Has <a href="https://platform.openai.com/agent-builder">Agent Builder GUI</a>.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>LangChain / LangGraph</strong></td>
+<td style="text-align: left;">Chains, agents, stateful graphs</td>
+<td style="text-align: left;">Widely used, steeper learning curve. Good for custom workflows.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>AutoGen</strong> (Microsoft)</td>
+<td style="text-align: left;">Multi-agent conversations</td>
+<td style="text-align: left;">Research-oriented, good for multi-agent patterns</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>smolagents</strong> (Hugging Face)</td>
+<td style="text-align: left;">Lightweight agents</td>
+<td style="text-align: left;">Minimal, good for quick prototyping</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="reference-card-workflow-patterns" class="level2">
+<h2 class="anchored" data-anchor-id="reference-card-workflow-patterns">Reference Card: Workflow Patterns</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 27%">
+<col style="width: 40%">
+<col style="width: 32%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Pattern</th>
+<th style="text-align: left;">When to Use</th>
+<th style="text-align: left;">Key Benefit</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Prompt Chaining</strong></td>
+<td style="text-align: left;">Sequential multi-step processing</td>
+<td style="text-align: left;">Each step simple and testable</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Guardrails</strong></td>
+<td style="text-align: left;">Safety-critical applications</td>
+<td style="text-align: left;">Enforce compliance rules</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Deterministic Steps</strong></td>
+<td style="text-align: left;">Math, lookups, exact logic</td>
+<td style="text-align: left;">Correctness guarantees</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Orchestrator-Workers</strong></td>
+<td style="text-align: left;">Complex tasks needing specialization</td>
+<td style="text-align: left;">Divide and conquer</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Evaluator-Optimizer</strong></td>
+<td style="text-align: left;">Quality-sensitive outputs</td>
+<td style="text-align: left;">Iterative refinement</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Routing</strong></td>
+<td style="text-align: left;">Variable task types</td>
+<td style="text-align: left;">Match task to best handler</td>
+</tr>
+</tbody>
+</table>
+<p><img src="media/xkcd_ai_methodology.png" class="img-fluid"></p>
+</section>
+<section id="the-recurring-theme" class="level2">
+<h2 class="anchored" data-anchor-id="the-recurring-theme">The Recurring Theme</h2>
+<p>These are bias machines. They learn from whatever data and labels we give them. Neural networks (and LLMs) absorb whatever biases exist in their training data. If we’re lucky, we might guess at the biases we introduce — but not always.</p>
+<p>If you don’t know how to do something yourself, you won’t know if an LLM is doing it well. Domain expertise is the irreplaceable ingredient.</p>
+</section>
+</section>
+<section id="live-demo-2" class="level1">
+<h1>LIVE DEMO!!!</h1>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/christopherseaman\.github\.io\/datasci_223");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

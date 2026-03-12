@@ -1,0 +1,2270 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>lecture_01 – DataSci-223</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-d94228c28a1234acf2b6c10d2198ec8e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../01/index.html">Foundation</a></li><li class="breadcrumb-item"><a href="../01/index.html">01. Debugging</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">DataSci-223</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="https://github.com/christopherseaman/datasci_223" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GitHub</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="https://discord.gg/QdTYgR45er" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Discord</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Foundation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../01/index.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">01. Debugging</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../02/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">02. Polars</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../03/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">03. SQL</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../04/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">04. NLP</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Machine Learning</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../05/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">05. Classification</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../06/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">06. Neural Networks</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../07/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">07. Transformers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../08/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">08. LLM Workflows</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Applications</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../09/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">09. Computer Vision</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../10/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10. A/B Testing</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#links-self-guided-review" id="toc-links-self-guided-review" class="nav-link active" data-scroll-target="#links-self-guided-review">Links &amp; Self-Guided Review</a></li>
+  <li><a href="#but-first-a-blast-from-the-past" id="toc-but-first-a-blast-from-the-past" class="nav-link" data-scroll-target="#but-first-a-blast-from-the-past">But First, A Blast from the Past</a>
+  <ul class="collapse">
+  <li><a href="#carryovers-from-datasci-217" id="toc-carryovers-from-datasci-217" class="nav-link" data-scroll-target="#carryovers-from-datasci-217">Carryovers from DataSci-217</a>
+  <ul class="collapse">
+  <li><a href="#reference-ds-217-carryovers" id="toc-reference-ds-217-carryovers" class="nav-link" data-scroll-target="#reference-ds-217-carryovers">Reference: DS-217 carryovers</a></li>
+  <li><a href="#code-snippet-warmup-commands" id="toc-code-snippet-warmup-commands" class="nav-link" data-scroll-target="#code-snippet-warmup-commands">Code Snippet: Warmup commands</a></li>
+  </ul></li>
+  <li><a href="#command-line-quick-hits" id="toc-command-line-quick-hits" class="nav-link" data-scroll-target="#command-line-quick-hits">Command line quick hits</a>
+  <ul class="collapse">
+  <li><a href="#reference-workflow-commands" id="toc-reference-workflow-commands" class="nav-link" data-scroll-target="#reference-workflow-commands">Reference: Workflow commands</a></li>
+  <li><a href="#code-snippet-shell-basics" id="toc-code-snippet-shell-basics" class="nav-link" data-scroll-target="#code-snippet-shell-basics">Code Snippet: Shell basics</a></li>
+  </ul></li>
+  <li><a href="#workflow-local-venv-or-codespaces" id="toc-workflow-local-venv-or-codespaces" class="nav-link" data-scroll-target="#workflow-local-venv-or-codespaces">Workflow: local venv or Codespaces</a>
+  <ul class="collapse">
+  <li><a href="#reference-workflow-setup" id="toc-reference-workflow-setup" class="nav-link" data-scroll-target="#reference-workflow-setup">Reference: Workflow setup</a></li>
+  <li><a href="#code-snippet-venv-install" id="toc-code-snippet-venv-install" class="nav-link" data-scroll-target="#code-snippet-venv-install">Code Snippet: venv + install</a></li>
+  </ul></li>
+  <li><a href="#notebook-hygiene-and-reproducibility" id="toc-notebook-hygiene-and-reproducibility" class="nav-link" data-scroll-target="#notebook-hygiene-and-reproducibility">Notebook hygiene and reproducibility</a>
+  <ul class="collapse">
+  <li><a href="#reference-notebook-hygiene" id="toc-reference-notebook-hygiene" class="nav-link" data-scroll-target="#reference-notebook-hygiene">Reference: Notebook hygiene</a></li>
+  <li><a href="#code-snippet-clear-outputs" id="toc-code-snippet-clear-outputs" class="nav-link" data-scroll-target="#code-snippet-clear-outputs">Code Snippet: Clear outputs</a></li>
+  </ul></li>
+  <li><a href="#yaml-essentials-for-config-files" id="toc-yaml-essentials-for-config-files" class="nav-link" data-scroll-target="#yaml-essentials-for-config-files">YAML essentials for config files 🧾</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-yaml-building-blocks" id="toc-reference-card-yaml-building-blocks" class="nav-link" data-scroll-target="#reference-card-yaml-building-blocks">Reference Card: YAML building blocks</a></li>
+  <li><a href="#code-snippet-sample-config.yaml" id="toc-code-snippet-sample-config.yaml" class="nav-link" data-scroll-target="#code-snippet-sample-config.yaml">Code Snippet: Sample <code>config.yaml</code></a></li>
+  <li><a href="#code-snippet-load-yaml-safely" id="toc-code-snippet-load-yaml-safely" class="nav-link" data-scroll-target="#code-snippet-load-yaml-safely">Code Snippet: Load YAML safely</a></li>
+  </ul></li>
+  <li><a href="#config-alternative-.env" id="toc-config-alternative-.env" class="nav-link" data-scroll-target="#config-alternative-.env">Config Alternative: <code>.env</code></a>
+  <ul class="collapse">
+  <li><a href="#reference-.env" id="toc-reference-.env" class="nav-link" data-scroll-target="#reference-.env">Reference: <code>.env</code></a></li>
+  <li><a href="#code-snippet-.env" id="toc-code-snippet-.env" class="nav-link" data-scroll-target="#code-snippet-.env">Code Snippet: <code>.env</code></a></li>
+  </ul></li>
+  <li><a href="#jupyter-magics-shell-in-notebooks" id="toc-jupyter-magics-shell-in-notebooks" class="nav-link" data-scroll-target="#jupyter-magics-shell-in-notebooks">Jupyter magics &amp; shell in notebooks</a>
+  <ul class="collapse">
+  <li><a href="#reference-jupyter-magics" id="toc-reference-jupyter-magics" class="nav-link" data-scroll-target="#reference-jupyter-magics">Reference: Jupyter magics</a></li>
+  <li><a href="#code-snippet-magics" id="toc-code-snippet-magics" class="nav-link" data-scroll-target="#code-snippet-magics">Code Snippet: Magics</a></li>
+  </ul></li>
+  <li><a href="#gitgithubmarkdown-in-5-minutes" id="toc-gitgithubmarkdown-in-5-minutes" class="nav-link" data-scroll-target="#gitgithubmarkdown-in-5-minutes">Git/GitHub/Markdown in 5 minutes</a>
+  <ul class="collapse">
+  <li><a href="#reference-gitmarkdown-cheatsheet" id="toc-reference-gitmarkdown-cheatsheet" class="nav-link" data-scroll-target="#reference-gitmarkdown-cheatsheet">Reference: Git/Markdown cheatsheet</a></li>
+  <li><a href="#code-snippet-git-loop" id="toc-code-snippet-git-loop" class="nav-link" data-scroll-target="#code-snippet-git-loop">Code Snippet: Git loop</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#live-demo" id="toc-live-demo" class="nav-link" data-scroll-target="#live-demo">LIVE DEMO</a></li>
+  <li><a href="#defensive-programming-for-data-science" id="toc-defensive-programming-for-data-science" class="nav-link" data-scroll-target="#defensive-programming-for-data-science">Defensive programming for data science</a>
+  <ul class="collapse">
+  <li><a href="#common-failure-modes-in-data-projects" id="toc-common-failure-modes-in-data-projects" class="nav-link" data-scroll-target="#common-failure-modes-in-data-projects">Common failure modes in data projects</a>
+  <ul class="collapse">
+  <li><a href="#reference-failure-modes" id="toc-reference-failure-modes" class="nav-link" data-scroll-target="#reference-failure-modes">Reference: Failure modes</a></li>
+  <li><a href="#code-snippet-assert-schema" id="toc-code-snippet-assert-schema" class="nav-link" data-scroll-target="#code-snippet-assert-schema">Code Snippet: Assert schema</a></li>
+  </ul></li>
+  <li><a href="#dry-kiss-and-pure-functions" id="toc-dry-kiss-and-pure-functions" class="nav-link" data-scroll-target="#dry-kiss-and-pure-functions">DRY + KISS (and pure functions)</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-drykiss-and-pure-functions" id="toc-reference-card-drykiss-and-pure-functions" class="nav-link" data-scroll-target="#reference-card-drykiss-and-pure-functions">Reference Card: DRY/KISS and pure functions</a></li>
+  <li><a href="#code-snippet-a-tiny-pure-helper-function" id="toc-code-snippet-a-tiny-pure-helper-function" class="nav-link" data-scroll-target="#code-snippet-a-tiny-pure-helper-function">Code Snippet: A tiny “pure helper” function</a></li>
+  </ul></li>
+  <li><a href="#linters-catch-issues-early" id="toc-linters-catch-issues-early" class="nav-link" data-scroll-target="#linters-catch-issues-early">Linters (catch issues early)</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-linters-in-practice" id="toc-reference-card-linters-in-practice" class="nav-link" data-scroll-target="#reference-card-linters-in-practice">Reference Card: Linters in practice</a></li>
+  </ul></li>
+  <li><a href="#config-files-stop-hardcoding" id="toc-config-files-stop-hardcoding" class="nav-link" data-scroll-target="#config-files-stop-hardcoding">Config files (stop hardcoding)</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-what-belongs-in-config-vs-code" id="toc-reference-card-what-belongs-in-config-vs-code" class="nav-link" data-scroll-target="#reference-card-what-belongs-in-config-vs-code">Reference Card: What belongs in config vs code</a></li>
+  <li><a href="#code-snippet-config-helper" id="toc-code-snippet-config-helper" class="nav-link" data-scroll-target="#code-snippet-config-helper">Code Snippet: Config helper</a></li>
+  </ul></li>
+  <li><a href="#code-quality-tools" id="toc-code-quality-tools" class="nav-link" data-scroll-target="#code-quality-tools">Code quality tools</a>
+  <ul class="collapse">
+  <li><a href="#reference-quality-tools" id="toc-reference-quality-tools" class="nav-link" data-scroll-target="#reference-quality-tools">Reference: Quality tools</a></li>
+  <li><a href="#code-snippet-lintformattest" id="toc-code-snippet-lintformattest" class="nav-link" data-scroll-target="#code-snippet-lintformattest">Code Snippet: Lint/format/test</a></li>
+  </ul></li>
+  <li><a href="#automated-testing-pytest" id="toc-automated-testing-pytest" class="nav-link" data-scroll-target="#automated-testing-pytest">Automated Testing: <code>pytest</code></a>
+  <ul class="collapse">
+  <li><a href="#reference-pytest-outcomes" id="toc-reference-pytest-outcomes" class="nav-link" data-scroll-target="#reference-pytest-outcomes">Reference: <code>pytest</code> outcomes</a></li>
+  <li><a href="#code-snippet-pytest" id="toc-code-snippet-pytest" class="nav-link" data-scroll-target="#code-snippet-pytest">Code Snippet: <code>pytest</code></a></li>
+  </ul></li>
+  <li><a href="#raising-exceptions" id="toc-raising-exceptions" class="nav-link" data-scroll-target="#raising-exceptions">Raising exceptions</a>
+  <ul class="collapse">
+  <li><a href="#reference-exception-types" id="toc-reference-exception-types" class="nav-link" data-scroll-target="#reference-exception-types">Reference: Exception types</a></li>
+  <li><a href="#code-snippet-specific-exceptions" id="toc-code-snippet-specific-exceptions" class="nav-link" data-scroll-target="#code-snippet-specific-exceptions">Code Snippet: Specific exceptions</a></li>
+  </ul></li>
+  <li><a href="#catching-and-handling-exceptions" id="toc-catching-and-handling-exceptions" class="nav-link" data-scroll-target="#catching-and-handling-exceptions">Catching and handling exceptions</a>
+  <ul class="collapse">
+  <li><a href="#reference-tryexceptfinally-patterns" id="toc-reference-tryexceptfinally-patterns" class="nav-link" data-scroll-target="#reference-tryexceptfinally-patterns">Reference: try/except/finally patterns</a></li>
+  <li><a href="#code-snippet-tryexceptfinally" id="toc-code-snippet-tryexceptfinally" class="nav-link" data-scroll-target="#code-snippet-tryexceptfinally">Code Snippet: try/except/finally</a></li>
+  </ul></li>
+  <li><a href="#logging" id="toc-logging" class="nav-link" data-scroll-target="#logging">Logging</a>
+  <ul class="collapse">
+  <li><a href="#reference-logging-levels" id="toc-reference-logging-levels" class="nav-link" data-scroll-target="#reference-logging-levels">Reference: Logging levels</a></li>
+  <li><a href="#code-snippet-logging-with-checks" id="toc-code-snippet-logging-with-checks" class="nav-link" data-scroll-target="#code-snippet-logging-with-checks">Code Snippet: Logging with checks</a></li>
+  </ul></li>
+  <li><a href="#fail-fast-with-actionable-messages" id="toc-fail-fast-with-actionable-messages" class="nav-link" data-scroll-target="#fail-fast-with-actionable-messages">Fail fast with actionable messages</a>
+  <ul class="collapse">
+  <li><a href="#reference-actionable-messages" id="toc-reference-actionable-messages" class="nav-link" data-scroll-target="#reference-actionable-messages">Reference: Actionable messages</a></li>
+  <li><a href="#code-snippet-guard-clauses" id="toc-code-snippet-guard-clauses" class="nav-link" data-scroll-target="#code-snippet-guard-clauses">Code Snippet: Guard clauses</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#live-demo-1" id="toc-live-demo-1" class="nav-link" data-scroll-target="#live-demo-1">LIVE DEMO</a></li>
+  <li><a href="#debugging-in-vs-code-jupyter" id="toc-debugging-in-vs-code-jupyter" class="nav-link" data-scroll-target="#debugging-in-vs-code-jupyter">Debugging in VS Code + Jupyter</a>
+  <ul class="collapse">
+  <li><a href="#debugging-toolkit-overview" id="toc-debugging-toolkit-overview" class="nav-link" data-scroll-target="#debugging-toolkit-overview">Debugging toolkit overview</a>
+  <ul class="collapse">
+  <li><a href="#reference-debugging-toolkit" id="toc-reference-debugging-toolkit" class="nav-link" data-scroll-target="#reference-debugging-toolkit">Reference: Debugging toolkit</a></li>
+  <li><a href="#code-snippet-print-calc" id="toc-code-snippet-print-calc" class="nav-link" data-scroll-target="#code-snippet-print-calc">Code Snippet: Print + calc</a></li>
+  </ul></li>
+  <li><a href="#print-debugging-start-here" id="toc-print-debugging-start-here" class="nav-link" data-scroll-target="#print-debugging-start-here">Print debugging: start here</a>
+  <ul class="collapse">
+  <li><a href="#reference-print-patterns" id="toc-reference-print-patterns" class="nav-link" data-scroll-target="#reference-print-patterns">Reference: Print patterns</a></li>
+  <li><a href="#code-snippet-print-debugging" id="toc-code-snippet-print-debugging" class="nav-link" data-scroll-target="#code-snippet-print-debugging">Code Snippet: Print debugging</a></li>
+  </ul></li>
+  <li><a href="#vs-code-debugger" id="toc-vs-code-debugger" class="nav-link" data-scroll-target="#vs-code-debugger">VS Code debugger</a>
+  <ul class="collapse">
+  <li><a href="#reference-breakpoints-commands" id="toc-reference-breakpoints-commands" class="nav-link" data-scroll-target="#reference-breakpoints-commands">Reference: Breakpoints &amp; commands</a></li>
+  <li><a href="#code-snippet-conditional-logpoint" id="toc-code-snippet-conditional-logpoint" class="nav-link" data-scroll-target="#code-snippet-conditional-logpoint">Code Snippet: Conditional + logpoint</a></li>
+  </ul></li>
+  <li><a href="#runtime-variable-inspection-in-vs-code" id="toc-runtime-variable-inspection-in-vs-code" class="nav-link" data-scroll-target="#runtime-variable-inspection-in-vs-code">Runtime variable inspection in VS Code</a>
+  <ul class="collapse">
+  <li><a href="#reference-vs-code-panels" id="toc-reference-vs-code-panels" class="nav-link" data-scroll-target="#reference-vs-code-panels">Reference: VS Code panels</a></li>
+  <li><a href="#code-snippet-inspect-while-paused" id="toc-code-snippet-inspect-while-paused" class="nav-link" data-scroll-target="#code-snippet-inspect-while-paused">Code Snippet: Inspect while paused</a></li>
+  </ul></li>
+  <li><a href="#vs-code-debugger-basics-scripts" id="toc-vs-code-debugger-basics-scripts" class="nav-link" data-scroll-target="#vs-code-debugger-basics-scripts">VS Code debugger basics (scripts)</a>
+  <ul class="collapse">
+  <li><a href="#reference-launch.json-fields" id="toc-reference-launch.json-fields" class="nav-link" data-scroll-target="#reference-launch.json-fields">Reference: launch.json fields</a></li>
+  <li><a href="#code-snippet-launch-config" id="toc-code-snippet-launch-config" class="nav-link" data-scroll-target="#code-snippet-launch-config">Code Snippet: launch config</a></li>
+  </ul></li>
+  <li><a href="#debugging-notebooks-in-vs-code" id="toc-debugging-notebooks-in-vs-code" class="nav-link" data-scroll-target="#debugging-notebooks-in-vs-code">Debugging Notebooks in VS Code</a>
+  <ul class="collapse">
+  <li><a href="#reference-notebook-debugging-steps" id="toc-reference-notebook-debugging-steps" class="nav-link" data-scroll-target="#reference-notebook-debugging-steps">Reference: Notebook debugging steps</a></li>
+  </ul></li>
+  <li><a href="#debugging-checklist-for-messy-data" id="toc-debugging-checklist-for-messy-data" class="nav-link" data-scroll-target="#debugging-checklist-for-messy-data">Debugging checklist for messy data</a>
+  <ul class="collapse">
+  <li><a href="#reference-debugging-checklist" id="toc-reference-debugging-checklist" class="nav-link" data-scroll-target="#reference-debugging-checklist">Reference: Debugging checklist</a></li>
+  </ul></li>
+  <li><a href="#tests-to-lock-in-fixes" id="toc-tests-to-lock-in-fixes" class="nav-link" data-scroll-target="#tests-to-lock-in-fixes">Tests to lock in fixes</a>
+  <ul class="collapse">
+  <li><a href="#code-snippet-column-validation-helper" id="toc-code-snippet-column-validation-helper" class="nav-link" data-scroll-target="#code-snippet-column-validation-helper">Code Snippet: Column validation helper</a></li>
+  <li><a href="#code-snippet-test-column-validation" id="toc-code-snippet-test-column-validation" class="nav-link" data-scroll-target="#code-snippet-test-column-validation">Code Snippet: Test column validation</a></li>
+  </ul></li>
+  <li><a href="#rubber-ducking" id="toc-rubber-ducking" class="nav-link" data-scroll-target="#rubber-ducking">Rubber ducking</a></li>
+  </ul></li>
+  <li><a href="#live-demo-2" id="toc-live-demo-2" class="nav-link" data-scroll-target="#live-demo-2">LIVE DEMO</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../01/index.html">Foundation</a></li><li class="breadcrumb-item"><a href="../01/index.html">01. Debugging</a></li></ol></nav></header>
+
+
+
+
+<p>01: Defensive Programming and Debugging 🐛</p>
+<ul>
+<li>hw01 - <a href="https://classroom.github.com/a/UIovekSt" class="uri">https://classroom.github.com/a/UIovekSt</a></li>
+</ul>
+<section id="links-self-guided-review" class="level1">
+<h1>Links &amp; Self-Guided Review</h1>
+<ul>
+<li><a href="https://education.github.com/pack">GitHub Education</a></li>
+<li><a href="https://www.notion.so/01-Python-the-Command-Line-and-VS-Code-271d9fdd1a1a805784e1fe68dc985696?pvs=21">DS-217 Lecture 01</a></li>
+<li><a href="https://www.markdownguide.org/basic-syntax/">Markdown Tutorial</a></li>
+<li><a href="https://swcarpentry.github.io/shell-novice/">Shell Basics</a></li>
+<li><a href="https://exercism.org/tracks/python">Exercism Python Basics</a></li>
+<li><a href="https://docs.github.com/en/get-started/start-your-journey/hello-world">GitHub Hello World</a></li>
+</ul>
+</section>
+<section id="but-first-a-blast-from-the-past" class="level1">
+<h1>But First, A Blast from the Past</h1>
+<section id="carryovers-from-datasci-217" class="level2">
+<h2 class="anchored" data-anchor-id="carryovers-from-datasci-217">Carryovers from DataSci-217</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/xkcd_git.png" class="img-fluid figure-img"></p>
+<figcaption>XKCD: Git</figcaption>
+</figure>
+</div>
+<ul>
+<li>You already know Python, git/Markdown, and VS Code basics—this lecture focuses on reliability and debugging.</li>
+<li>Pick a workflow (local venv or Codespaces) and stick with it to reduce surprises.</li>
+</ul>
+<section id="reference-ds-217-carryovers" class="level3">
+<h3 class="anchored" data-anchor-id="reference-ds-217-carryovers">Reference: DS-217 carryovers</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Topic</th>
+<th>What to reuse</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Python basics</td>
+<td>Functions, imports, venv activation</td>
+</tr>
+<tr class="even">
+<td>Git hygiene</td>
+<td>Small commits, meaningful messages</td>
+</tr>
+<tr class="odd">
+<td>Markdown</td>
+<td>Headings, fenced code blocks, links</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-warmup-commands" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-warmup-commands">Code Snippet: Warmup commands</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> venv .venv <span class="kw">&amp;&amp;</span> <span class="bu">source</span> .venv/bin/activate</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status <span class="kw">&amp;&amp;</span> <span class="fu">git</span> commit <span class="at">-am</span> <span class="st">"chore: warm up"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="command-line-quick-hits" class="level2">
+<h2 class="anchored" data-anchor-id="command-line-quick-hits">Command line quick hits</h2>
+<ul>
+<li>Same commands everywhere: use the CLI for speed and reproducibility.</li>
+<li>Shell in Jupyter works too (<code>!ls</code>, <code>!pwd</code>), but keep paths relative.</li>
+</ul>
+<section id="reference-workflow-commands" class="level3">
+<h3 class="anchored" data-anchor-id="reference-workflow-commands">Reference: Workflow commands</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Command</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>pwd</code></td>
+<td>Show current directory</td>
+</tr>
+<tr class="even">
+<td><code>ls -la</code></td>
+<td>List files (long, hidden)</td>
+</tr>
+<tr class="odd">
+<td><code>cd &lt;path&gt;</code></td>
+<td>Change directory</td>
+</tr>
+<tr class="even">
+<td><code>cp &lt;src&gt; &lt;dst&gt;</code></td>
+<td>Copy files</td>
+</tr>
+<tr class="odd">
+<td><code>mv &lt;src&gt; &lt;dst&gt;</code></td>
+<td>Move/rename</td>
+</tr>
+<tr class="even">
+<td><code>rm &lt;file&gt;</code></td>
+<td>Remove file (careful)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-shell-basics" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-shell-basics">Code Snippet: Shell basics</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-la</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> lectures/01</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="workflow-local-venv-or-codespaces" class="level2">
+<h2 class="anchored" data-anchor-id="workflow-local-venv-or-codespaces">Workflow: local venv or Codespaces</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/python_import.webp" class="img-fluid figure-img"></p>
+<figcaption>Python import tips</figcaption>
+</figure>
+</div>
+<ul>
+<li>Try the different ways of doing things and pick one workflow (local venv or Codespaces) and stick to it for fewer surprises.</li>
+<li>Local venv for performance/PHI; Codespaces for consistency and easy onboarding.</li>
+<li>Windows: WSL2 + <code>.venv/Scripts/activate</code> mirrors Linux/Codespaces.</li>
+<li>VS Code: Python + Jupyter extensions, format-on-save, debugger panel.</li>
+</ul>
+<div class="callout callout-style-default callout-warning callout-empty-content callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span> Beware of Symantec Firewall and WSL, they do NOT like each other.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+<section id="reference-workflow-setup" class="level3">
+<h3 class="anchored" data-anchor-id="reference-workflow-setup">Reference: Workflow setup</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Command</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>python -m venv .venv</code></td>
+<td>Create isolated environment</td>
+</tr>
+<tr class="even">
+<td><code>source .venv/bin/activate</code></td>
+<td>Activate venv (Linux/macOS)</td>
+</tr>
+<tr class="odd">
+<td><code>.venv\\Scripts\\activate</code></td>
+<td>Activate venv (Windows)</td>
+</tr>
+<tr class="even">
+<td><code>pip install -r requirements.txt</code></td>
+<td>Install course dependencies</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-venv-install" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-venv-install">Code Snippet: venv + install</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> venv .venv</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .venv/bin/activate  <span class="co"># Windows: .venv\\Scripts\\activate</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-r</span> requirements.txt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="notebook-hygiene-and-reproducibility" class="level2">
+<h2 class="anchored" data-anchor-id="notebook-hygiene-and-reproducibility">Notebook hygiene and reproducibility</h2>
+<p><img src="media/clinically_tested.png" class="img-fluid"></p>
+<ul>
+<li>Run-all ready, deterministic, and no stray outputs or secrets.</li>
+<li>Clear outputs before commits unless the output is the point.</li>
+<li>Keep configs/paths in YAML or <code>.env</code></li>
+</ul>
+<section id="reference-notebook-hygiene" class="level3">
+<h3 class="anchored" data-anchor-id="reference-notebook-hygiene">Reference: Notebook hygiene</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Practice</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Clear outputs</td>
+<td>Prevent stale screenshots/results</td>
+</tr>
+<tr class="even">
+<td>Defined requirements</td>
+<td>Reproducible environments</td>
+</tr>
+<tr class="odd">
+<td>Relative paths</td>
+<td>Portability across machines</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-clear-outputs" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-clear-outputs">Code Snippet: Clear outputs</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">jupyter</span> nbconvert <span class="at">--ClearOutputPreprocessor.enabled</span><span class="op">=</span>True <span class="at">--inplace</span> lecture.ipynb</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/jupyter_clear.png" class="img-fluid figure-img"></p>
+<figcaption>Notebook cleared outputs</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="yaml-essentials-for-config-files" class="level2">
+<h2 class="anchored" data-anchor-id="yaml-essentials-for-config-files">YAML essentials for config files 🧾</h2>
+<ul>
+<li>YAML = “Yet Another Markup Language,” but think “plain-English JSON” with indentation-based structure.</li>
+<li>Use <strong>spaces, not tabs</strong>, and keep indentation consistent (two spaces is plenty).</li>
+<li>Strings don’t need quotes unless they contain special characters; <code>#</code> starts a comment.</li>
+<li>Great for centralizing run-time knobs like file paths, thresholds, or feature flags.</li>
+</ul>
+<section id="reference-card-yaml-building-blocks" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-yaml-building-blocks">Reference Card: YAML building blocks</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 41%">
+<col style="width: 41%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Concept</th>
+<th>YAML syntax example</th>
+<th>Tip for beginners</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Key/value</td>
+<td><code>project: intake_audit</code></td>
+<td>Keys end with <code>:</code> followed by a value</td>
+</tr>
+<tr class="even">
+<td>Nested structure</td>
+<td><code>data:\n  input_file: data/patients.csv</code></td>
+<td>Indentation defines hierarchy</td>
+</tr>
+<tr class="odd">
+<td>Lists</td>
+<td><code>emails:\n  - alice@example.com</code></td>
+<td>Dashes introduce list items</td>
+</tr>
+<tr class="even">
+<td>Inline objects</td>
+<td><code>height_cm: { min: 120, max: 230 }</code></td>
+<td>Use cautiously; easier to read multiline</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-sample-config.yaml" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-sample-config.yaml">Code Snippet: Sample <code>config.yaml</code></h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span><span class="kw">:</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">input_file</span><span class="kw">:</span><span class="at"> </span><span class="st">"data/patient_intake.csv"</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">bounds</span><span class="kw">:</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">weight_kg</span><span class="kw">:</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">min</span><span class="kw">:</span><span class="at"> </span><span class="dv">30</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">max</span><span class="kw">:</span><span class="at"> </span><span class="dv">250</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">height_cm</span><span class="kw">:</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">min</span><span class="kw">:</span><span class="at"> </span><span class="dv">120</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">max</span><span class="kw">:</span><span class="at"> </span><span class="dv">230</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="fu">bmi_thresholds</span><span class="kw">:</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">underweight</span><span class="kw">:</span><span class="at"> </span><span class="fl">18.5</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">normal</span><span class="kw">:</span><span class="at"> </span><span class="dv">25</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">overweight</span><span class="kw">:</span><span class="at"> </span><span class="dv">30</span><span class="co"> # obese is anything above this</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="code-snippet-load-yaml-safely" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-load-yaml-safely">Code Snippet: Load YAML safely</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> yaml</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>CONFIG_PATH <span class="op">=</span> Path(<span class="st">"config.yaml"</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> CONFIG_PATH.<span class="bu">open</span>() <span class="im">as</span> f:</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    config <span class="op">=</span> yaml.safe_load(f)  <span class="co"># safe_load avoids executing arbitrary code</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"BMI thresholds:"</span>, config[<span class="st">"bmi_thresholds"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="config-alternative-.env" class="level2">
+<h2 class="anchored" data-anchor-id="config-alternative-.env">Config Alternative: <code>.env</code></h2>
+<p><code>dot-env</code> is a simple way to manage environment variables in Python. It allows you to store sensitive information like API keys and database credentials in a <code>.env</code> file, which is not committed to version control.</p>
+<section id="reference-.env" class="level3">
+<h3 class="anchored" data-anchor-id="reference-.env">Reference: <code>.env</code></h3>
+<ul>
+<li><a href="https://github.com/theskumar/python-dotenv">Python-dotenv</a></li>
+<li><a href="https://docs.python.org/3/library/os.html">os</a></li>
+</ul>
+</section>
+<section id="code-snippet-.env" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-.env">Code Snippet: <code>.env</code></h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This would be the .env file</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="va">API_KEY</span><span class="op">=</span>your_api_key_here</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="va">DB_PASSWORD</span><span class="op">=</span>your_db_password_here</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dotenv</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Load environment variables from .env file</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>dotenv.load_dotenv()</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>dotenv.load_dotenv(<span class="st">"filename.env"</span>) <span class="co"># Can also specify a different filename</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>API_KEY <span class="op">=</span> os.getenv(<span class="st">"API_KEY"</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>DB_PASSWORD <span class="op">=</span> os.getenv(<span class="st">"DB_PASSWORD"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="jupyter-magics-shell-in-notebooks" class="level2">
+<h2 class="anchored" data-anchor-id="jupyter-magics-shell-in-notebooks">Jupyter magics &amp; shell in notebooks</h2>
+<ul>
+<li>Magics speed up debugging and profiling; shell commands help inspect files without leaving the notebook.</li>
+</ul>
+<section id="reference-jupyter-magics" class="level3">
+<h3 class="anchored" data-anchor-id="reference-jupyter-magics">Reference: Jupyter magics</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Magic</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>%pwd</code>, <code>%ls</code></td>
+<td>Where am I / list files</td>
+</tr>
+<tr class="even">
+<td><code>%run script.py</code></td>
+<td>Run another script/notebook</td>
+</tr>
+<tr class="odd">
+<td><code>%timeit expr</code></td>
+<td>Quick timing</td>
+</tr>
+<tr class="even">
+<td><code>%%bash</code></td>
+<td>Run a bash cell</td>
+</tr>
+<tr class="odd">
+<td><code>!ls data</code></td>
+<td>Shell command from a cell</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-magics" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-magics">Code Snippet: Magics</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pwd</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>timeit [x<span class="op">**</span><span class="dv">2</span> <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1000</span>)]</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>ls data</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="gitgithubmarkdown-in-5-minutes" class="level2">
+<h2 class="anchored" data-anchor-id="gitgithubmarkdown-in-5-minutes">Git/GitHub/Markdown in 5 minutes</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/git_branches.png" class="img-fluid figure-img"></p>
+<figcaption>Git branches at a glance</figcaption>
+</figure>
+</div>
+<ul>
+<li>Minimal loop: status → add → commit → push.</li>
+<li>Markdown: one <code># Title</code>, structured headings, fenced code blocks.</li>
+<li>GUI (VS Code Source Control) is fine if it keeps you moving.</li>
+</ul>
+<section id="reference-gitmarkdown-cheatsheet" class="level3">
+<h3 class="anchored" data-anchor-id="reference-gitmarkdown-cheatsheet">Reference: Git/Markdown cheatsheet</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Command</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>git status</code></td>
+<td>See staged/unstaged changes</td>
+</tr>
+<tr class="even">
+<td><code>git add &lt;path&gt;</code></td>
+<td>Stage files</td>
+</tr>
+<tr class="odd">
+<td><code>git commit -m "feat: message"</code></td>
+<td>Save a snapshot</td>
+</tr>
+<tr class="even">
+<td><code>git push</code></td>
+<td>Sync to GitHub</td>
+</tr>
+<tr class="odd">
+<td><code>git config user.email</code></td>
+<td>Set author email</td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Markdown</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code># Heading</code></td>
+<td>Section titles</td>
+</tr>
+<tr class="even">
+<td><code>- bullet</code></td>
+<td>Lists</td>
+</tr>
+<tr class="odd">
+<td><code></code> <code>lang</code></td>
+<td>Code fences with language</td>
+</tr>
+<tr class="even">
+<td><code>[text](url)</code></td>
+<td>Links</td>
+</tr>
+<tr class="odd">
+<td><code>![alt](path)</code></td>
+<td>Images</td>
+</tr>
+<tr class="even">
+<td><code>**bold**</code></td>
+<td>Bold text</td>
+</tr>
+<tr class="odd">
+<td><code>_italic_</code></td>
+<td>Italic text</td>
+</tr>
+<tr class="even">
+<td><code>&gt; quote</code></td>
+<td>Blockquotes</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-git-loop" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-git-loop">Code Snippet: Git loop</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add README.md</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"chore: refresh setup notes"</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><img src="media/read-the-docs.jpeg" class="img-fluid"></p>
+</section>
+</section>
+</section>
+<section id="live-demo" class="level1">
+<h1>LIVE DEMO</h1>
+</section>
+<section id="defensive-programming-for-data-science" class="level1">
+<h1>Defensive programming for data science</h1>
+<section id="common-failure-modes-in-data-projects" class="level2">
+<h2 class="anchored" data-anchor-id="common-failure-modes-in-data-projects">Common failure modes in data projects</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/xkcd_error_types.png" class="img-fluid figure-img"></p>
+<figcaption>XKCD: Error Types</figcaption>
+</figure>
+</div>
+<ul>
+<li>Missing columns, unexpected units, unseeded randomness.</li>
+<li>Environment drift: different Python versions or stale venvs.</li>
+<li>PHI leaks via logs or screenshots.</li>
+</ul>
+<section id="reference-failure-modes" class="level3">
+<h3 class="anchored" data-anchor-id="reference-failure-modes">Reference: Failure modes</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Risk</th>
+<th>Quick defense</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Missing columns</td>
+<td>Assert expected columns</td>
+</tr>
+<tr class="even">
+<td>Unit drift</td>
+<td>Normalize units + validate ranges</td>
+</tr>
+<tr class="odd">
+<td>Stale env</td>
+<td>Recreate venv from <code>requirements.txt</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-assert-schema" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-assert-schema">Code Snippet: Assert schema</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> assert_expected_columns(df, expected):</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    missing <span class="op">=</span> [c <span class="cf">for</span> c <span class="kw">in</span> expected <span class="cf">if</span> c <span class="kw">not</span> <span class="kw">in</span> df]</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> missing:</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="ss">f"Missing columns: </span><span class="sc">{</span>missing<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="dry-kiss-and-pure-functions" class="level2">
+<h2 class="anchored" data-anchor-id="dry-kiss-and-pure-functions">DRY + KISS (and pure functions)</h2>
+<p>These are important principles in software development, but they are not hard rules. They are guidelines that help you write better code. They are often stored together in a shared <code>lib/</code> library directory.</p>
+<ul>
+<li>DRY: when you copy/paste the same logic, a bug fix becomes N bug fixes.</li>
+<li>KISS: fewer moving parts means fewer places for bugs to hide.</li>
+<li>Pure functions (same input → same output) are easier to test and debug.</li>
+</ul>
+<section id="reference-card-drykiss-and-pure-functions" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-drykiss-and-pure-functions">Reference Card: DRY/KISS and pure functions</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 49%">
+<col style="width: 38%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Idea</th>
+<th>Meaning</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>DRY</td>
+<td>Don’t repeat yourself</td>
+<td>Fix bugs once; change code safely</td>
+</tr>
+<tr class="even">
+<td>KISS</td>
+<td>Keep it simple (small functions, clear names)</td>
+<td>Easier to read, debug, and refactor</td>
+</tr>
+<tr class="odd">
+<td>Pure function</td>
+<td>No hidden changes; returns a value instead of “doing”</td>
+<td>Simple unit tests; fewer surprise effects</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-a-tiny-pure-helper-function" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-a-tiny-pure-helper-function">Code Snippet: A tiny “pure helper” function</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a function once and use it everywhere!</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> normalize_column_name(name: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> name.strip().lower().replace(<span class="st">" "</span>, <span class="st">"_"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="linters-catch-issues-early" class="level2">
+<h2 class="anchored" data-anchor-id="linters-catch-issues-early">Linters (catch issues early)</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/linter.png" class="img-fluid figure-img"></p>
+<figcaption>Linter reminder</figcaption>
+</figure>
+</div>
+<ul>
+<li>Linters flag common mistakes before you run anything.</li>
+<li>They catch typos, unused imports, and inconsistent style.</li>
+<li>In VS Code, they show up as warnings while you type.</li>
+</ul>
+<section id="reference-card-linters-in-practice" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-linters-in-practice">Reference Card: Linters in practice</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 8%">
+<col style="width: 47%">
+<col style="width: 44%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Tool</th>
+<th>What it catches early</th>
+<th>Where you see it</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Linter</td>
+<td>Unused imports, typos, style issues</td>
+<td>VS Code “Problems”, squiggles, CI</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="config-files-stop-hardcoding" class="level2">
+<h2 class="anchored" data-anchor-id="config-files-stop-hardcoding">Config files (stop hardcoding)</h2>
+<ul>
+<li>Config files keep settings out of your code.</li>
+<li>Typical config values: file paths, URLs, API keys (never commit real secrets).</li>
+<li>Should be human readable and easy to edit.
+<ul>
+<li><code>.env</code> - Compatible with shell scripts and environment variables</li>
+<li><code>.yaml</code> - Very human-friendly</li>
+<li><code>.json</code> - Most common with Javascript and web applications</li>
+</ul></li>
+</ul>
+<section id="reference-card-what-belongs-in-config-vs-code" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-what-belongs-in-config-vs-code">Reference Card: What belongs in config vs code</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Put it in…</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Config</td>
+<td>data paths, environment names, API endpoints</td>
+</tr>
+<tr class="even">
+<td>Code</td>
+<td>data cleaning logic, feature engineering, models</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-config-helper" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-config-helper">Code Snippet: Config helper</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># config.yaml</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ex">data:</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="ex">path:</span> data.csv</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="ex">data_path:</span> another_way.parquet</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> yaml</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> load_settings(config_path: Path) <span class="op">-&gt;</span> <span class="bu">dict</span>:</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> yaml.safe_load(config_path.read_text())</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>settings <span class="op">=</span> load_settings(Path(<span class="st">"config.yaml"</span>))</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(settings[<span class="st">"data"</span>][<span class="st">"path"</span>])</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_parquet(settings[<span class="st">"data"</span>][<span class="st">"path"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="code-quality-tools" class="level2">
+<h2 class="anchored" data-anchor-id="code-quality-tools">Code quality tools</h2>
+<ul>
+<li>Formatters and linters (<code>ruff</code>) keep code clean; tests catch regressions.</li>
+<li>Run before committing or wire into a pre-commit hook.</li>
+</ul>
+<section id="reference-quality-tools" class="level3">
+<h3 class="anchored" data-anchor-id="reference-quality-tools">Reference: Quality tools</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Tool</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>ruff</code></td>
+<td>Lint/format fast</td>
+</tr>
+<tr class="even">
+<td><code>black</code></td>
+<td>Consistent formatting</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-lintformattest" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-lintformattest">Code Snippet: Lint/format/test</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> uv run ruff check <span class="co"># or just `ruff check` if installed globally</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="ex">src/numbers/calculate.py:3:8:</span> F401 <span class="pp">[</span><span class="ss">*</span><span class="pp">]</span> <span class="kw">`</span><span class="ex">os</span><span class="kw">`</span> imported but unused</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Found</span> 1 error.</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="ex">[*]</span> 1 fixable with the <span class="kw">`</span><span class="ex">--fix</span><span class="kw">`</span> option.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Input</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> _make_ssl_transport(</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    rawsock, protocol, sslcontext, waiter<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">*</span>, server_side<span class="op">=</span><span class="va">False</span>, server_hostname<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    extra<span class="op">=</span><span class="va">None</span>, server<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    ssl_handshake_timeout<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    call_connection_made<span class="op">=</span><span class="va">True</span>):</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">'''Make an SSL transport.'''</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> waiter <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>      waiter <span class="op">=</span> Future(loop<span class="op">=</span>loop)</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> extra <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>      extra <span class="op">=</span> {}</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>    ...</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>$ ruff <span class="bu">format</span> example.py</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Ruff</span></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> _make_ssl_transport(</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>    rawsock,</span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>    protocol,</span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>    sslcontext,</span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>    waiter<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>    <span class="op">*</span>,</span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>    server_side<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>    server_hostname<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>    extra<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>    server<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>    ssl_handshake_timeout<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>    call_connection_made<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Make an SSL transport."""</span></span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> waiter <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a>        waiter <span class="op">=</span> Future(loop<span class="op">=</span>loop)</span>
+<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> extra <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a>        extra <span class="op">=</span> {}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="automated-testing-pytest" class="level2">
+<h2 class="anchored" data-anchor-id="automated-testing-pytest">Automated Testing: <code>pytest</code></h2>
+<p>This is what we use to automate grading. The tests are run automatically on every commit, but they are not magical. They are only as good as the person who writes them.</p>
+<ul>
+<li>Tests should be deterministic and cover edge cases.</li>
+<li>Use fixtures (known input/output pairs) for setup/teardown.</li>
+<li>Tests pass or fail deterministically.</li>
+<li><code>pytest</code> will run all files of the form <code>test_*.py</code> or <code>*_test.py</code></li>
+</ul>
+<section id="reference-pytest-outcomes" class="level3">
+<h3 class="anchored" data-anchor-id="reference-pytest-outcomes">Reference: <code>pytest</code> outcomes</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Behavior</th>
+<th>Result</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>assert &lt;condition&gt;</code> (True)</td>
+<td>✓ PASS</td>
+<td><code>assert 1 + 1 == 2</code></td>
+</tr>
+<tr class="even">
+<td><code>assert &lt;condition&gt;</code> (False)</td>
+<td>✗ FAIL</td>
+<td><code>assert 1 + 1 == 3</code></td>
+</tr>
+<tr class="odd">
+<td><code>raise Exception(...)</code></td>
+<td>✗ FAIL</td>
+<td><code>raise ValueError("invalid")</code></td>
+</tr>
+<tr class="even">
+<td><code>raise expected_exception</code> (caught)</td>
+<td>✓ PASS</td>
+<td><code>with pytest.raises(ValueError):</code></td>
+</tr>
+<tr class="odd">
+<td>Return normally (no assert/raise)</td>
+<td>✓ PASS</td>
+<td>Empty test body passes</td>
+</tr>
+<tr class="even">
+<td>Timeout or infinite loop</td>
+<td>✗ FAIL</td>
+<td>Exceeds max duration</td>
+</tr>
+<tr class="odd">
+<td>Import error or syntax error</td>
+<td>✗ ERROR</td>
+<td><code>import bad_module</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-pytest" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-pytest">Code Snippet: <code>pytest</code></h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pytest</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_example():</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># randomly fail (not a good test)</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> random.random() <span class="op">&lt;</span> <span class="fl">0.5</span>:</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">"Random failure"</span>)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">assert</span> <span class="va">True</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/xkcd_compiler_complaint.png" class="img-fluid figure-img"></p>
+<figcaption>XKCD: Compiler Complaint</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="raising-exceptions" class="level2">
+<h2 class="anchored" data-anchor-id="raising-exceptions">Raising exceptions</h2>
+<p><em>Exceptions</em> represent errors or unusual conditions during program execution. When Python encounters a problem (missing file, bad type, invalid value), it raises an exception; if not caught, the program stops with an error message.</p>
+<ul>
+<li>Raise exceptions; avoid bare <code>except</code>.</li>
+<li>Let exceptions bubble up unless you can recover.</li>
+<li>Catch only what you can handle; re-raise if unsure.</li>
+</ul>
+<section id="reference-exception-types" class="level3">
+<h3 class="anchored" data-anchor-id="reference-exception-types">Reference: Exception types</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Exception</th>
+<th>When to raise</th>
+<th>Avoid</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>ValueError</code></td>
+<td>Invalid argument value</td>
+<td><code>except Exception:</code></td>
+</tr>
+<tr class="even">
+<td><code>FileNotFoundError</code></td>
+<td>Missing file</td>
+<td>Bare <code>except:</code></td>
+</tr>
+<tr class="odd">
+<td><code>KeyError</code></td>
+<td>Missing dict key</td>
+<td>Generic <code>Exception()</code></td>
+</tr>
+<tr class="even">
+<td><code>TypeError</code></td>
+<td>Wrong type</td>
+<td>Swallowing errors silently</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-specific-exceptions" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-specific-exceptions">Code Snippet: Specific exceptions</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> load_data(path: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">list</span>[<span class="bu">dict</span>]:</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    csv_path <span class="op">=</span> Path(path)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> csv_path.exists():</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">FileNotFoundError</span>(<span class="ss">f"Missing input: </span><span class="sc">{</span>csv_path<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> csv_path.suffix <span class="op">==</span> <span class="st">".csv"</span>:</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="ss">f"Expected .csv, got </span><span class="sc">{</span>csv_path<span class="sc">.</span>suffix<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> csv_path.read_text().splitlines()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="catching-and-handling-exceptions" class="level2">
+<h2 class="anchored" data-anchor-id="catching-and-handling-exceptions">Catching and handling exceptions</h2>
+<p>Sometimes you can recover from an error (e.g., missing file → use default). In those cases, catch the exception and handle it gracefully.</p>
+<ul>
+<li>Use <code>try</code>/<code>except</code> to catch exceptions you can recover from.</li>
+<li>Be specific: catch the exact exception type, not <code>Exception</code> or bare <code>except</code>.</li>
+<li>Use <code>finally</code> for cleanup (file closes, locks release) regardless of success or failure.</li>
+</ul>
+<section id="reference-tryexceptfinally-patterns" class="level3">
+<h3 class="anchored" data-anchor-id="reference-tryexceptfinally-patterns">Reference: try/except/finally patterns</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Pattern</th>
+<th>Use when</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>try</code>/<code>except</code></td>
+<td>You can handle the error</td>
+<td>File not found → create default</td>
+</tr>
+<tr class="even">
+<td><code>try</code>/<code>finally</code></td>
+<td>You need cleanup</td>
+<td>Always close file handles</td>
+</tr>
+<tr class="odd">
+<td><code>try</code>/<code>except</code>/<code>finally</code></td>
+<td>Both: recover AND clean up</td>
+<td>Read file, handle error, close handle</td>
+</tr>
+<tr class="even">
+<td>Re-raise with <code>raise</code></td>
+<td>You caught it but can’t fix it</td>
+<td>Log error, then re-raise</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-tryexceptfinally" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-tryexceptfinally">Code Snippet: try/except/finally</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> read_patient_data(path: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">list</span>[<span class="bu">dict</span>]:</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    csv_path <span class="op">=</span> Path(path)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    file_handle <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> csv_path.exists():</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>            <span class="cf">raise</span> <span class="pp">FileNotFoundError</span>(<span class="ss">f"Missing </span><span class="sc">{</span>csv_path<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>        file_handle <span class="op">=</span> <span class="bu">open</span>(csv_path)</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> [line.strip() <span class="cf">for</span> line <span class="kw">in</span> file_handle]</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">FileNotFoundError</span> <span class="im">as</span> e:</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>        logging.warning(<span class="st">"File not found; using empty default: </span><span class="sc">%s</span><span class="st">"</span>, e)</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> []  <span class="co"># Recover gracefully</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">ValueError</span> <span class="im">as</span> e:</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>        logging.error(<span class="st">"Bad data: </span><span class="sc">%s</span><span class="st">"</span>, e)</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span>  <span class="co"># Can't recover; let caller handle it</span></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">finally</span>:</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> file_handle:</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>            file_handle.close()  <span class="co"># Always runs</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="logging" class="level2">
+<h2 class="anchored" data-anchor-id="logging">Logging</h2>
+<p>There is more to effective logging than just sprinkling <code>print()</code> statements everywhere. Use the built-in <code>logging</code> module to log at different levels (DEBUG, INFO, WARNING, ERROR).</p>
+<ul>
+<li>Log at the right level; no PHI in logs.</li>
+<li>Use structured messages with context.</li>
+<li>Configure logging format and level at the start of your program.</li>
+<li>Remember: logs are the first place to look when something breaks.</li>
+</ul>
+<section id="reference-logging-levels" class="level3">
+<h3 class="anchored" data-anchor-id="reference-logging-levels">Reference: Logging levels</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Level</th>
+<th>Use for</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>DEBUG</td>
+<td>Detailed diagnostic info</td>
+<td><code>logging.debug("var=%s", var)</code></td>
+</tr>
+<tr class="even">
+<td>INFO</td>
+<td>High-level progress</td>
+<td><code>logging.info("Starting ETL")</code></td>
+</tr>
+<tr class="odd">
+<td>WARNING</td>
+<td>Non-blocking issues</td>
+<td><code>logging.warning("Missing value at row %d", i)</code></td>
+</tr>
+<tr class="even">
+<td>ERROR</td>
+<td>Failures needing attention</td>
+<td><code>logging.error("Failed to parse")</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-logging-with-checks" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-logging-with-checks">Code Snippet: Logging with checks</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> logging</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Configure logging at the start of your program</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>log_level <span class="op">=</span> os.getenv(<span class="st">"LOG_LEVEL"</span>, <span class="st">"INFO"</span>).upper()</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>logging.basicConfig(level<span class="op">=</span><span class="bu">getattr</span>(logging, log_level), <span class="bu">format</span><span class="op">=</span><span class="st">"</span><span class="sc">%(levelname)s</span><span class="st">:</span><span class="sc">%(message)s</span><span class="st">"</span>)</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Can also log to a file. In this case, append to 'app.log' insted of overwriting.</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>logging.basicConfig(filename<span class="op">=</span><span class="st">'app.log'</span>, filemode<span class="op">=</span><span class="st">'a'</span>, level<span class="op">=</span>logging.INFO)</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> load_clean_data(path: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">list</span>[<span class="bu">dict</span>]:</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>    csv_path <span class="op">=</span> Path(path)</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> csv_path.exists():</span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">FileNotFoundError</span>(<span class="ss">f"Missing input: </span><span class="sc">{</span>csv_path<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>    logging.info(<span class="st">"Reading </span><span class="sc">%s</span><span class="st">"</span>, csv_path)</span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> csv_path.read_text().splitlines()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="fail-fast-with-actionable-messages" class="level2">
+<h2 class="anchored" data-anchor-id="fail-fast-with-actionable-messages">Fail fast with actionable messages</h2>
+<ul>
+<li>Detect problems early in the pipeline.</li>
+<li>Include context in error messages (values, paths, hints).</li>
+<li>Stop gracefully instead of silently producing wrong results.</li>
+</ul>
+<section id="reference-actionable-messages" class="level3">
+<h3 class="anchored" data-anchor-id="reference-actionable-messages">Reference: Actionable messages</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Bad</th>
+<th>Better</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>raise ValueError("error")</code></td>
+<td><code>raise ValueError(f"Expected columns {expected}, got {df.columns}")</code></td>
+<td>Includes what was expected vs actual</td>
+</tr>
+<tr class="even">
+<td><code>assert len(df) &gt; 0</code></td>
+<td><code>if len(df) == 0: raise ValueError("Empty input file")</code></td>
+<td>Name the failure, don’t just assert</td>
+</tr>
+<tr class="odd">
+<td>Silent <code>pass</code></td>
+<td>Raise or log the issue</td>
+<td>Prevents hours of debugging downstream</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-guard-clauses" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-guard-clauses">Code Snippet: Guard clauses</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> process_patients(df):</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> df.empty:</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">"Empty DataFrame: no patient records to process"</span>)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="st">"patient_id"</span> <span class="kw">not</span> <span class="kw">in</span> df.columns:</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="ss">f"Missing 'patient_id'; got columns: </span><span class="sc">{</span><span class="bu">list</span>(df.columns)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (df[<span class="st">"age"</span>] <span class="op">&lt;</span> <span class="dv">0</span>).<span class="bu">any</span>():</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="ss">f"Negative ages found: </span><span class="sc">{</span>df[df[<span class="st">'age'</span>] <span class="op">&lt;</span> <span class="dv">0</span>]<span class="sc">.</span>index<span class="sc">.</span>tolist()<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    logging.info(<span class="st">"Processing </span><span class="sc">%d</span><span class="st"> patients"</span>, <span class="bu">len</span>(df))</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df  <span class="co"># Safe to continue</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+</section>
+<section id="live-demo-1" class="level1">
+<h1>LIVE DEMO</h1>
+</section>
+<section id="debugging-in-vs-code-jupyter" class="level1">
+<h1>Debugging in VS Code + Jupyter</h1>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/code-worked-the-first-time-suspicious.jpg" class="img-fluid figure-img"></p>
+<figcaption>When code works first time (suspicious)</figcaption>
+</figure>
+</div>
+<section id="debugging-toolkit-overview" class="level2">
+<h2 class="anchored" data-anchor-id="debugging-toolkit-overview">Debugging toolkit overview</h2>
+<ul>
+<li>Start simple with prints/logging; move to pdb/VS Code for deeper inspection.</li>
+<li>Breakpoints + Variables/Watch/Debug Console = see state without littering prints.</li>
+</ul>
+<section id="reference-debugging-toolkit" class="level3">
+<h3 class="anchored" data-anchor-id="reference-debugging-toolkit">Reference: Debugging toolkit</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Tool</th>
+<th>Use case</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>print(f"{var=}")</code></td>
+<td>Quick value checks</td>
+</tr>
+<tr class="even">
+<td><code>breakpoint()</code></td>
+<td>Drop into pdb</td>
+</tr>
+<tr class="odd">
+<td>VS Code debugger</td>
+<td>Visual stepping/inspection</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-print-calc" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-print-calc">Code Snippet: Print + calc</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calculate_bmi(weight_kg, height_m):</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>weight_kg<span class="op">=</span><span class="sc">}</span><span class="ss">, </span><span class="sc">{</span>height_m<span class="op">=</span><span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    bmi <span class="op">=</span> weight_kg <span class="op">/</span> (height_m <span class="op">**</span> <span class="dv">2</span>)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>bmi<span class="op">=</span><span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> bmi</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="print-debugging-start-here" class="level2">
+<h2 class="anchored" data-anchor-id="print-debugging-start-here">Print debugging: start here</h2>
+<p><img src="media/xkcd_debugging.png" class="img-fluid" alt="XKCD: Debugging"> <img src="media/xkcd_debugging.png" class="img-fluid" alt="#FIXME: screenshot of VS Code gutter breakpoint set on BMI script"></p>
+<ul>
+<li>Use f-strings with <code>{var=}</code> to see names + values.</li>
+<li>Remove prints before commit or migrate to logging.</li>
+</ul>
+<section id="reference-print-patterns" class="level3">
+<h3 class="anchored" data-anchor-id="reference-print-patterns">Reference: Print patterns</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Pattern</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>print(f"{df.shape=}")</code></td>
+<td>Check dimensions</td>
+</tr>
+<tr class="even">
+<td><code>print(f"{row=}")</code></td>
+<td>Inspect loop state</td>
+</tr>
+<tr class="odd">
+<td><code>print(f"{result=}")</code></td>
+<td>Verify outputs</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-print-debugging" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-print-debugging">Code Snippet: Print debugging</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calculate_bmi(weight_kg, height_m):</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>weight_kg<span class="op">=</span><span class="sc">}</span><span class="ss">, </span><span class="sc">{</span>height_m<span class="op">=</span><span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> weight_kg <span class="op">/</span> (height_m <span class="op">**</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="vs-code-debugger" class="level2">
+<h2 class="anchored" data-anchor-id="vs-code-debugger">VS Code debugger</h2>
+<ul>
+<li><code>pdb</code> or <code>ipdb</code> for terminal; VS Code for visuals and conditional breakpoints.</li>
+<li>Break on exception with <code>breakpoint()</code> inside <code>except</code>.</li>
+</ul>
+<section id="reference-breakpoints-commands" class="level3">
+<h3 class="anchored" data-anchor-id="reference-breakpoints-commands">Reference: Breakpoints &amp; commands</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Tool/command</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>n / s / c</code></td>
+<td>Next, step into, continue</td>
+</tr>
+<tr class="even">
+<td><code>p var</code></td>
+<td>Print variable</td>
+</tr>
+<tr class="odd">
+<td>Conditional BP</td>
+<td>Pause when expression true</td>
+</tr>
+<tr class="even">
+<td>Logpoint</td>
+<td>Print a message without stop</td>
+</tr>
+<tr class="odd">
+<td><code>breakpoint()</code></td>
+<td>Drop into pdb on exception</td>
+</tr>
+<tr class="even">
+<td>VS Code gutter</td>
+<td>Opens debugger, may be conditional</td>
+</tr>
+</tbody>
+</table>
+<p><img src="media/gutter_bullet.png" class="img-fluid" alt="Gutter bullets">]</p>
+</section>
+<section id="code-snippet-conditional-logpoint" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-conditional-logpoint">Code Snippet: Conditional + logpoint</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    risky_fn()</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">Exception</span>:</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">breakpoint</span>()  <span class="co"># pdb session</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="co"># VS Code logpoint: right-click breakpoint -&gt; "Add Logpoint"</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Message example: "value={value}"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="runtime-variable-inspection-in-vs-code" class="level2">
+<h2 class="anchored" data-anchor-id="runtime-variable-inspection-in-vs-code">Runtime variable inspection in VS Code</h2>
+<ul>
+<li>Variables panel shows locals/globals; expand DataFrames.</li>
+<li>Watch expressions track custom values.</li>
+<li>Debug Console evaluates code while paused.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/debug_view.png" class="img-fluid figure-img"></p>
+<figcaption>VS Code debug panels</figcaption>
+</figure>
+</div>
+<section id="reference-vs-code-panels" class="level3">
+<h3 class="anchored" data-anchor-id="reference-vs-code-panels">Reference: VS Code panels</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Panel</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Variables</td>
+<td>Inspect state at breakpoint</td>
+</tr>
+<tr class="even">
+<td>Watch</td>
+<td>Track expressions (<code>df.shape</code>)</td>
+</tr>
+<tr class="odd">
+<td>Debug Console</td>
+<td>Run ad-hoc checks (<code>df.head()</code>)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-inspect-while-paused" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-inspect-while-paused">Code Snippet: Inspect while paused</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pause at breakpoint, then:</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co"># - Check Variables panel</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co"># - Add Watch: df.shape</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co"># - Debug Console: df.dtypes</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="vs-code-debugger-basics-scripts" class="level2">
+<h2 class="anchored" data-anchor-id="vs-code-debugger-basics-scripts">VS Code debugger basics (scripts)</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/debug-run.png" class="img-fluid figure-img"></p>
+<figcaption>Debug run button</figcaption>
+</figure>
+</div>
+<ul>
+<li>Click the gutter to set breakpoints (red dot), then use Run and Debug (F5) or the play button to start the Python debugger.</li>
+<li>In Run and Debug, pick the Python config or accept the default; make sure the correct interpreter/venv is selected.</li>
+<li>Inspect call stack, Variables, and Watch panels while stepping; launch.json is optional because the Python extension supplies defaults.</li>
+<li>Debugger will use the default selected Python interpreter in VS Code. Can override in launch.json.</li>
+</ul>
+<section id="reference-launch.json-fields" class="level3">
+<h3 class="anchored" data-anchor-id="reference-launch.json-fields">Reference: launch.json fields</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>program</code></td>
+<td>Entry script</td>
+</tr>
+<tr class="even">
+<td><code>request</code></td>
+<td><code>launch</code> vs <code>attach</code></td>
+</tr>
+<tr class="odd">
+<td><code>type</code></td>
+<td><code>python</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-launch-config" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-launch-config">Code Snippet: launch config</h3>
+<p>Example override to debug a specific script with args, env vars, and specific venv. These would equivalent:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .venv/bin/activate</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> lectures/01/demo/03a_buggy_bmi.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"version"</span><span class="fu">:</span> <span class="st">"0.2.0"</span><span class="fu">,</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"configurations"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">{</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Debug Buggy BMI Script"</span><span class="fu">,</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"python"</span><span class="fu">,</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"request"</span><span class="fu">:</span> <span class="st">"launch"</span><span class="fu">,</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"program"</span><span class="fu">:</span> <span class="st">"${workspaceFolder}/lectures/01/demo/03a_buggy_bmi.py"</span><span class="fu">,</span></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"python"</span><span class="fu">:</span> <span class="st">"${workspaceFolder}/.venv/bin/python"</span><span class="fu">,</span></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"args"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>                <span class="st">"runserver"</span><span class="ot">,</span></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>                <span class="st">"--noreload"</span><span class="ot">,</span></span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>                <span class="st">"0.0.0.0:8001"</span><span class="ot">,</span></span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>            <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"env"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>                <span class="dt">"LOG_LEVEL"</span><span class="fu">:</span> <span class="st">"DEBUG"</span></span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>            <span class="fu">},</span></span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"console"</span><span class="fu">:</span> <span class="st">"integratedTerminal"</span></span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>        <span class="fu">}</span></span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a>    <span class="ot">]</span></span>
+<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="debugging-notebooks-in-vs-code" class="level2">
+<h2 class="anchored" data-anchor-id="debugging-notebooks-in-vs-code">Debugging Notebooks in VS Code</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/xkcd_debugger.png" class="img-fluid figure-img"></p>
+<figcaption>XKCD: Debugger</figcaption>
+</figure>
+</div>
+<ul>
+<li>Click the debug icon on the cell; set breakpoints inside.</li>
+<li><strong>Restart kernel</strong> before Run All after debugging.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/debug_cell.png" class="img-fluid figure-img"></p>
+<figcaption>Debug notebook cell</figcaption>
+</figure>
+</div>
+<section id="reference-notebook-debugging-steps" class="level3">
+<h3 class="anchored" data-anchor-id="reference-notebook-debugging-steps">Reference: Notebook debugging steps</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Step</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Debug cell button</td>
+<td>Start a notebook debug session</td>
+</tr>
+<tr class="even">
+<td>Breakpoints in cell</td>
+<td>Pause where needed</td>
+</tr>
+<tr class="odd">
+<td>Restart kernel</td>
+<td>Clear state after debugging</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="debugging-checklist-for-messy-data" class="level2">
+<h2 class="anchored" data-anchor-id="debugging-checklist-for-messy-data">Debugging checklist for messy data</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/xkcd_existential_bug_reports.png" class="img-fluid figure-img"></p>
+<figcaption>XKCD: Existential Bug Reports</figcaption>
+</figure>
+</div>
+<ul>
+<li>Reproduce with the smallest failing fixture.</li>
+<li>Check assumptions (types, units, nulls) before changing code.</li>
+<li>Add assertions/logging near the failure and rerun.</li>
+<li>Write a test to prevent regression.</li>
+</ul>
+<section id="reference-debugging-checklist" class="level3">
+<h3 class="anchored" data-anchor-id="reference-debugging-checklist">Reference: Debugging checklist</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Step</th>
+<th>Goal</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Reproduce</td>
+<td>Confirm the failure</td>
+</tr>
+<tr class="even">
+<td>Minimize</td>
+<td>Small fixture for fast loops</td>
+</tr>
+<tr class="odd">
+<td>Guard</td>
+<td>Assertions/logging close to bug</td>
+</tr>
+<tr class="even">
+<td>Test</td>
+<td>Lock in the fix with pytest</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="tests-to-lock-in-fixes" class="level2">
+<h2 class="anchored" data-anchor-id="tests-to-lock-in-fixes">Tests to lock in fixes</h2>
+<ul>
+<li>Save failing fixtures and add tiny tests so bugs stay fixed.</li>
+<li>Prefer small, deterministic inputs; avoid brittle expectations.</li>
+</ul>
+<section id="code-snippet-column-validation-helper" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-column-validation-helper">Code Snippet: Column validation helper</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> has_required_columns(df: pd.DataFrame, required: <span class="bu">list</span>[<span class="bu">str</span>]) <span class="op">-&gt;</span> <span class="bu">bool</span>:</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Check if DataFrame contains all required columns."""</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Reminder: all() returns True only if all elements are True</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">all</span>(col <span class="kw">in</span> df.columns <span class="cf">for</span> col <span class="kw">in</span> required)</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the helper to check before processing</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>required <span class="op">=</span> [<span class="st">"patient_id"</span>, <span class="st">"height_cm"</span>, <span class="st">"weight_kg"</span>, <span class="st">"age"</span>, <span class="st">"sex"</span>]</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Raise an error if columns are missing</span></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> has_required_columns(df, required):</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Find which columns are missing for the error message</span></span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>    missing <span class="op">=</span> [col <span class="cf">for</span> col <span class="kw">in</span> required <span class="cf">if</span> col <span class="kw">not</span> <span class="kw">in</span> df.columns]</span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="ss">f"Missing required columns: </span><span class="sc">{</span>missing<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="code-snippet-test-column-validation" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-test-column-validation">Code Snippet: Test column validation</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pytest</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_detects_missing_height_column():</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Ensure column check catches missing height_cm in fixture."""</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    <span class="im">from</span> your_module <span class="im">import</span> has_required_columns</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>    fixture <span class="op">=</span> Path(<span class="st">"lectures/01/demo/data/patient_intake_missing_height.csv"</span>)</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.read_csv(fixture)</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>    required <span class="op">=</span> [<span class="st">"patient_id"</span>, <span class="st">"height_cm"</span>, <span class="st">"weight_kg"</span>, <span class="st">"age"</span>, <span class="st">"sex"</span>]</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Should return False because height_cm is missing</span></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> has_required_columns(df, required) <span class="kw">is</span> <span class="va">False</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="rubber-ducking" class="level2">
+<h2 class="anchored" data-anchor-id="rubber-ducking">Rubber ducking</h2>
+<p>Rubber ducking is still undefeated for finding your own bugs.</p>
+<p><img src="media/ducky.jpg" class="img-fluid"></p>
+</section>
+</section>
+<section id="live-demo-2" class="level1">
+<h1>LIVE DEMO</h1>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/christopherseaman\.github\.io\/datasci_223");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

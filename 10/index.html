@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>lecture_10 – DataSci-223</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-d94228c28a1234acf2b6c10d2198ec8e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../09/index.html">Applications</a></li><li class="breadcrumb-item"><a href="../10/index.html">10. A/B Testing</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">DataSci-223</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="https://github.com/christopherseaman/datasci_223" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GitHub</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="https://discord.gg/QdTYgR45er" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Discord</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Foundation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../01/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">01. Debugging</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../02/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">02. Polars</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../03/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">03. SQL</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../04/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">04. NLP</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Machine Learning</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../05/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">05. Classification</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../06/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">06. Neural Networks</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../07/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">07. Transformers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../08/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">08. LLM Workflows</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Applications</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../09/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">09. Computer Vision</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../10/index.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">10. A/B Testing</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#ab-testing-and-causal-inference" id="toc-ab-testing-and-causal-inference" class="nav-link active" data-scroll-target="#ab-testing-and-causal-inference">A/B Testing and Causal Inference</a>
+  <ul class="collapse">
+  <li><a href="#theory-to-practice-with-dr.-demetri-pananos" id="toc-theory-to-practice-with-dr.-demetri-pananos" class="nav-link" data-scroll-target="#theory-to-practice-with-dr.-demetri-pananos">Theory to Practice with Dr.&nbsp;Demetri Pananos</a></li>
+  <li><a href="#who-am-i" id="toc-who-am-i" class="nav-link" data-scroll-target="#who-am-i">Who Am I?</a></li>
+  <li><a href="#causal-inference-in-this-economy" id="toc-causal-inference-in-this-economy" class="nav-link" data-scroll-target="#causal-inference-in-this-economy">Causal Inference? In This Economy?</a></li>
+  <li><a href="#causal-inference-for-cheap" id="toc-causal-inference-for-cheap" class="nav-link" data-scroll-target="#causal-inference-for-cheap">Causal Inference for Cheap</a></li>
+  <li><a href="#agenda" id="toc-agenda" class="nav-link" data-scroll-target="#agenda">Agenda</a></li>
+  </ul></li>
+  <li><a href="#stats-refresher" id="toc-stats-refresher" class="nav-link" data-scroll-target="#stats-refresher">Stats Refresher</a>
+  <ul class="collapse">
+  <li><a href="#the-central-limit-theorem" id="toc-the-central-limit-theorem" class="nav-link" data-scroll-target="#the-central-limit-theorem">The Central Limit Theorem</a></li>
+  <li><a href="#thought-exercise-calculus-grades" id="toc-thought-exercise-calculus-grades" class="nav-link" data-scroll-target="#thought-exercise-calculus-grades">Thought Exercise: Calculus Grades</a></li>
+  <li><a href="#example-of-clt-in-action" id="toc-example-of-clt-in-action" class="nav-link" data-scroll-target="#example-of-clt-in-action">Example of CLT in Action</a></li>
+  <li><a href="#hypothesis-tests-for-means" id="toc-hypothesis-tests-for-means" class="nav-link" data-scroll-target="#hypothesis-tests-for-means">Hypothesis Tests For Means</a></li>
+  <li><a href="#confidence-intervals-p-values" id="toc-confidence-intervals-p-values" class="nav-link" data-scroll-target="#confidence-intervals-p-values">Confidence Intervals &amp; P Values</a></li>
+  </ul></li>
+  <li><a href="#pokemon-and-causal-inference" id="toc-pokemon-and-causal-inference" class="nav-link" data-scroll-target="#pokemon-and-causal-inference">Pokemon and Causal Inference</a>
+  <ul class="collapse">
+  <li><a href="#fossils-at-mt.-moon" id="toc-fossils-at-mt.-moon" class="nav-link" data-scroll-target="#fossils-at-mt.-moon">Fossils at Mt. Moon</a></li>
+  <li><a href="#rubins-causal-model-potential-outcomes" id="toc-rubins-causal-model-potential-outcomes" class="nav-link" data-scroll-target="#rubins-causal-model-potential-outcomes">Rubin’s Causal Model &amp; Potential Outcomes</a></li>
+  <li><a href="#we-never-see-both-potential-outcomes" id="toc-we-never-see-both-potential-outcomes" class="nav-link" data-scroll-target="#we-never-see-both-potential-outcomes">We Never See Both Potential Outcomes</a></li>
+  <li><a href="#causal-effects" id="toc-causal-effects" class="nav-link" data-scroll-target="#causal-effects">Causal Effects</a></li>
+  <li><a href="#average-causal-effects" id="toc-average-causal-effects" class="nav-link" data-scroll-target="#average-causal-effects">Average Causal Effects</a></li>
+  <li><a href="#how-can-we-estimate-causal-effects" id="toc-how-can-we-estimate-causal-effects" class="nav-link" data-scroll-target="#how-can-we-estimate-causal-effects">How Can We Estimate Causal Effects?</a></li>
+  <li><a href="#confounding" id="toc-confounding" class="nav-link" data-scroll-target="#confounding">Confounding</a></li>
+  <li><a href="#confounding-example" id="toc-confounding-example" class="nav-link" data-scroll-target="#confounding-example">Confounding Example</a></li>
+  <li><a href="#how-can-we-do-causal-inference-at-all" id="toc-how-can-we-do-causal-inference-at-all" class="nav-link" data-scroll-target="#how-can-we-do-causal-inference-at-all">How Can We Do Causal Inference At All?</a></li>
+  <li><a href="#assumptions-for-causal-inference" id="toc-assumptions-for-causal-inference" class="nav-link" data-scroll-target="#assumptions-for-causal-inference">3 Assumptions for Causal Inference</a></li>
+  <li><a href="#randomization-gives-us-all-3" id="toc-randomization-gives-us-all-3" class="nav-link" data-scroll-target="#randomization-gives-us-all-3">Randomization Gives Us All 3!</a></li>
+  <li><a href="#sounds-simple-right" id="toc-sounds-simple-right" class="nav-link" data-scroll-target="#sounds-simple-right">Sounds Simple, Right?</a></li>
+  </ul></li>
+  <li><a href="#break" id="toc-break" class="nav-link" data-scroll-target="#break">Break</a></li>
+  <li><a href="#practical-ab-testing" id="toc-practical-ab-testing" class="nav-link" data-scroll-target="#practical-ab-testing">Practical A/B Testing</a>
+  <ul class="collapse">
+  <li><a href="#steps-to-an-ab-test" id="toc-steps-to-an-ab-test" class="nav-link" data-scroll-target="#steps-to-an-ab-test">Steps To an A/B Test</a></li>
+  <li><a href="#a-real-example" id="toc-a-real-example" class="nav-link" data-scroll-target="#a-real-example">A “Real Example”</a></li>
+  <li><a href="#convince-people-to-run-an-ab-test" id="toc-convince-people-to-run-an-ab-test" class="nav-link" data-scroll-target="#convince-people-to-run-an-ab-test">Convince People To Run an A/B Test</a></li>
+  <li><a href="#get-specific" id="toc-get-specific" class="nav-link" data-scroll-target="#get-specific">Get Specific!</a></li>
+  <li><a href="#determine-how-long-the-test-should-run" id="toc-determine-how-long-the-test-should-run" class="nav-link" data-scroll-target="#determine-how-long-the-test-should-run">Determine How Long the Test Should Run</a></li>
+  <li><a href="#align-with-engineering" id="toc-align-with-engineering" class="nav-link" data-scroll-target="#align-with-engineering">Align With Engineering</a></li>
+  <li><a href="#run-the-test-and-monitor" id="toc-run-the-test-and-monitor" class="nav-link" data-scroll-target="#run-the-test-and-monitor">Run The Test and Monitor</a></li>
+  <li><a href="#run-the-test-and-monitor-1" id="toc-run-the-test-and-monitor-1" class="nav-link" data-scroll-target="#run-the-test-and-monitor-1">Run The Test and Monitor</a></li>
+  <li><a href="#analyze-the-test" id="toc-analyze-the-test" class="nav-link" data-scroll-target="#analyze-the-test">Analyze The Test</a></li>
+  <li><a href="#analyze-the-test-1" id="toc-analyze-the-test-1" class="nav-link" data-scroll-target="#analyze-the-test-1">Analyze The Test</a></li>
+  <li><a href="#communicate-results" id="toc-communicate-results" class="nav-link" data-scroll-target="#communicate-results">Communicate Results</a></li>
+  <li><a href="#communicate-results-1" id="toc-communicate-results-1" class="nav-link" data-scroll-target="#communicate-results-1">Communicate Results</a></li>
+  <li><a href="#the-peeking-problem" id="toc-the-peeking-problem" class="nav-link" data-scroll-target="#the-peeking-problem">The Peeking Problem</a></li>
+  <li><a href="#always-valid-confidence-intervals" id="toc-always-valid-confidence-intervals" class="nav-link" data-scroll-target="#always-valid-confidence-intervals">Always Valid Confidence Intervals</a></li>
+  <li><a href="#pms-want-to-go-fast" id="toc-pms-want-to-go-fast" class="nav-link" data-scroll-target="#pms-want-to-go-fast">PMs Want To Go Fast</a></li>
+  <li><a href="#cuped" id="toc-cuped" class="nav-link" data-scroll-target="#cuped">CUPED</a></li>
+  <li><a href="#cuped-how-it-works" id="toc-cuped-how-it-works" class="nav-link" data-scroll-target="#cuped-how-it-works">CUPED: How It Works</a></li>
+  <li><a href="#cuped-illustration" id="toc-cuped-illustration" class="nav-link" data-scroll-target="#cuped-illustration">CUPED: Illustration</a></li>
+  <li><a href="#cuped-takeaways" id="toc-cuped-takeaways" class="nav-link" data-scroll-target="#cuped-takeaways">CUPED: Takeaways</a></li>
+  <li><a href="#a-lot-to-learn" id="toc-a-lot-to-learn" class="nav-link" data-scroll-target="#a-lot-to-learn">A Lot To Learn</a></li>
+  </ul></li>
+  <li><a href="#fin" id="toc-fin" class="nav-link" data-scroll-target="#fin">Fin</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../09/index.html">Applications</a></li><li class="breadcrumb-item"><a href="../10/index.html">10. A/B Testing</a></li></ol></nav></header>
+
+
+
+
+<section id="ab-testing-and-causal-inference" class="level1">
+<h1>A/B Testing and Causal Inference</h1>
+<section id="theory-to-practice-with-dr.-demetri-pananos" class="level2">
+<h2 class="anchored" data-anchor-id="theory-to-practice-with-dr.-demetri-pananos">Theory to Practice with Dr.&nbsp;Demetri Pananos</h2>
+<p>(<a href="media/ab_testing_lecture.pdf">pdf</a>)</p>
+</section>
+<section id="who-am-i" class="level2">
+<h2 class="anchored" data-anchor-id="who-am-i">Who Am I?</h2>
+<ul>
+<li><p>Dr.&nbsp;Demetri Pananos</p></li>
+<li><p>Late 2016 Data Analyst Working in A/B Testing</p></li>
+<li><p>Late 2017 - Late 2022: PhD in Epidemiology &amp; Biostatistics</p></li>
+<li><p>Mid 2022 - Late 2023: Staff Data Scientist at Zapier, lead A/B Testing</p></li>
+<li><p>Late 2023 - Late 2024: A foray into Media Mixed Modelling</p></li>
+<li><p>Late 2024 - Now: Statistics Engineer at Eppo/Datadog.</p></li>
+</ul>
+</section>
+<section id="causal-inference-in-this-economy" class="level2">
+<h2 class="anchored" data-anchor-id="causal-inference-in-this-economy">Causal Inference? In This Economy?</h2>
+<ul>
+<li><p>Hot take: <em>All business questions are causal.</em></p></li>
+<li><p>We don’t just need data, we need the <em>right data</em></p></li>
+<li><p>The <em>right data</em> can be hard to obtain, and without it we can be led astray:</p>
+<ul>
+<li>Thinking a decision will help when it hurts</li>
+<li>Thinking a decision will impact a lot when it won’t</li>
+<li>Thinking we are pulling a lever when we aren’t</li>
+</ul></li>
+</ul>
+</section>
+<section id="causal-inference-for-cheap" class="level2">
+<h2 class="anchored" data-anchor-id="causal-inference-for-cheap">Causal Inference for Cheap</h2>
+<ul>
+<li>A/B tests are the easiest way to answer causal questions.</li>
+<li>Much to know!
+<ul>
+<li>A little math</li>
+<li>Influencing Teams</li>
+<li>When you need more math and when you don’t</li>
+</ul></li>
+</ul>
+</section>
+<section id="agenda" class="level2">
+<h2 class="anchored" data-anchor-id="agenda">Agenda</h2>
+<ul>
+<li>Stats refresher</li>
+<li>Pokemon and Causal Inference</li>
+<li>Confounding &amp; Assumptions for Causal Inference</li>
+</ul>
+<p><em>Break</em></p>
+<ul>
+<li>Practical Guidance for Running A/B Tests</li>
+</ul>
+</section>
+</section>
+<section id="stats-refresher" class="level1">
+<h1>Stats Refresher</h1>
+<section id="the-central-limit-theorem" class="level2">
+<h2 class="anchored" data-anchor-id="the-central-limit-theorem">The Central Limit Theorem</h2>
+<p>The Central Limit Theorem tells us that the sample mean can be thought of as a normal random variable. Let <span class="math inline">\(Y_1, \cdots, Y_n\)</span> be i.i.d random variables so that <span class="math inline">\(E[Y] = \mu\)</span> and <span class="math inline">\(\operatorname{Var}(Y) = \sigma^2\)</span>.</p>
+<p>Recall that <span class="math display">\[ \bar Y = \dfrac{1}{n} \sum_{i=1}^n Y_i \]</span></p>
+<p>CLT says <span class="math display">\[ \bar Y \sim \operatorname{Normal}(\mu, \tfrac{\sigma^2}{n}) \]</span></p>
+<p>This means that <span class="math inline">\(E[\bar Y] =  \mu\)</span> and <span class="math inline">\(\operatorname{Var}(\bar Y) = \tfrac{\sigma^2}{n}\)</span>.</p>
+</section>
+<section id="thought-exercise-calculus-grades" class="level2">
+<h2 class="anchored" data-anchor-id="thought-exercise-calculus-grades">Thought Exercise: Calculus Grades</h2>
+<p>I want you to imagine:</p>
+<ul>
+<li>You sit out on the quad and ask students what grade they got in Calculus.</li>
+<li>After every <span class="math inline">\(N\)</span> students, you calculate the sample mean and start again.</li>
+<li>You do this <em>for a very very long time</em>.</li>
+</ul>
+<p>Consider:</p>
+<ul>
+<li>What would the histogram of of sample averages look like?</li>
+<li>What happens as <span class="math inline">\(N\)</span> gets bigger and bigger?</li>
+<li>Does the distribution of the actual grades matter for the answer above?</li>
+</ul>
+</section>
+<section id="example-of-clt-in-action" class="level2">
+<h2 class="anchored" data-anchor-id="example-of-clt-in-action">Example of CLT in Action</h2>
+<p><img src="media/clt_example.png" class="img-fluid"></p>
+</section>
+<section id="hypothesis-tests-for-means" class="level2">
+<h2 class="anchored" data-anchor-id="hypothesis-tests-for-means">Hypothesis Tests For Means</h2>
+<p>We can perform a hypothesis test for the mean by computing the following test statistic</p>
+<p><span class="math display">\[ Z = \dfrac{\bar y - \mu_0}{\sqrt{\dfrac{s^2}{n}}} \]</span></p>
+<p>The test statistic for two means being equal is</p>
+<p><span class="math display">\[ Z = \dfrac{\bar x - \bar y}{\sqrt{\tfrac{s^2_x}{n_x}  + \tfrac{s^2_y}{n_y}}} \]</span></p>
+</section>
+<section id="confidence-intervals-p-values" class="level2">
+<h2 class="anchored" data-anchor-id="confidence-intervals-p-values">Confidence Intervals &amp; P Values</h2>
+<p>Two ways to talk about a hypothesis test:</p>
+<ul>
+<li><p>P Value: Probability we see a result more extreme than what we say assuming the null is true and our background assumptions about the data are true.</p></li>
+<li><p>Confidence Intervals: <span class="math inline">\(100\% \times (1-\alpha)\)</span> probability of containing the mean upon repeated construction.</p></li>
+</ul>
+<p><img src="media/ci_diagram.png" class="img-fluid"></p>
+</section>
+</section>
+<section id="pokemon-and-causal-inference" class="level1">
+<h1>Pokemon and Causal Inference</h1>
+<section id="fossils-at-mt.-moon" class="level2">
+<h2 class="anchored" data-anchor-id="fossils-at-mt.-moon">Fossils at Mt. Moon</h2>
+<p><img src="media/mtmoon.png" class="img-fluid"></p>
+<ul>
+<li>Players must choose either the dome fossil or the helix fossil.</li>
+<li>Once the choice is made, the other fossil is never attainable – effectively gone forever.</li>
+<li>Hypothetically two possible games! One in which you take dome fossil and one in which you take helix.</li>
+<li>What can Pokemon teach us about causal inference?</li>
+</ul>
+</section>
+<section id="rubins-causal-model-potential-outcomes" class="level2">
+<h2 class="anchored" data-anchor-id="rubins-causal-model-potential-outcomes">Rubin’s Causal Model &amp; Potential Outcomes</h2>
+<p>Let <span class="math inline">\(A_i=0, 1\)</span> be an indicator for some treatment. Then <span class="math inline">\(Y_i(A_i)\)</span> is the potential outcome under that treatment.</p>
+<p>Example: “<em>My headache went away because I took an aspirin</em>”</p>
+<ul>
+<li><span class="math inline">\(A_i=0\)</span> means not taking the aspirin, and <span class="math inline">\(Y_i(A_i=0)\)</span> is my headache status having not taken the aspirin.</li>
+<li><span class="math inline">\(A_i=1\)</span> means taking the aspirin, and <span class="math inline">\(Y(A_i=1)\)</span> is my headache status having taken the aspirin.</li>
+</ul>
+</section>
+<section id="we-never-see-both-potential-outcomes" class="level2">
+<h2 class="anchored" data-anchor-id="we-never-see-both-potential-outcomes">We Never See Both Potential Outcomes</h2>
+<p>In reality, we never know both <span class="math inline">\(Y_i(A_i=0)\)</span> and <span class="math inline">\(Y_i(A_i=1)\)</span> – we can only ever see one.</p>
+<p>We can relate the observed data to the potential outcomes via the <em>switching equation</em></p>
+<p><span class="math display">\[ Y_i = A_i Y_i(A_i=1) + (1-A_i) Y_i(A_i=0) \]</span></p>
+</section>
+<section id="causal-effects" class="level2">
+<h2 class="anchored" data-anchor-id="causal-effects">Causal Effects</h2>
+<p>If I knew both potential outcomes, I could compute the casual effect of the action</p>
+<p><span class="math display">\[ \tau_i = Y_i(A_i=1) - Y_i(A_i=0) \]</span> Let’s assume <span class="math inline">\(Y_i(A)\)</span> can be 0 (no headache) or 1 (headache). What each of these mean about the treatment effect?</p>
+<ul>
+<li><span class="math inline">\(\tau_i = 0\)</span></li>
+<li><span class="math inline">\(\tau_i = 1\)</span></li>
+<li><span class="math inline">\(\tau_i = -1\)</span></li>
+</ul>
+</section>
+<section id="average-causal-effects" class="level2">
+<h2 class="anchored" data-anchor-id="average-causal-effects">Average Causal Effects</h2>
+<p>We can talk about the average potential outcome <span class="math inline">\(E[Y(A)]\)</span>. This is different than <span class="math inline">\(E[Y\mid A]\)</span>!</p>
+<p>Often, want to know how things change on average, so could compute</p>
+<p><span class="math display">\[ \tau = E[Y_i(A_i=1)] - E[Y_i(A_i=0)] \]</span></p>
+<p>or</p>
+<p><span class="math display">\[ \lambda = \dfrac{E[Y_i(A_i=1)]}{E[Y_i(A_i=0)]} - 1 \]</span></p>
+</section>
+<section id="how-can-we-estimate-causal-effects" class="level2">
+<h2 class="anchored" data-anchor-id="how-can-we-estimate-causal-effects">How Can We Estimate Causal Effects?</h2>
+<p>If we can only ever see one potential outcome, how can we ever estimate causal effects?</p>
+<p>Can’t we just look at people who took aspirin and did not take aspirin and see what the difference was?</p>
+<p>What if:</p>
+<ul>
+<li>Only people with chronic headaches chose to use aspirin?</li>
+<li>People randomly chose aspirin?</li>
+</ul>
+<p>Discuss</p>
+</section>
+<section id="confounding" class="level2">
+<h2 class="anchored" data-anchor-id="confounding">Confounding</h2>
+<p>Confounding: type of bias that occurs when the association you observe between an exposure and an outcome is distorted by a third variable</p>
+<p>Note that <strong>generally</strong> <span class="math inline">\(E[Y(A)] \neq E[Y|A]\)</span>! This is a subtle distinction here and you should make sure you understand this part.</p>
+<p>Let’s look at an example</p>
+</section>
+<section id="confounding-example" class="level2">
+<h2 class="anchored" data-anchor-id="confounding-example">Confounding Example</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># True causal effect:</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Aspirin relieves headache</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">#  = 2/5 - 3/5</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(d<span class="sc">$</span>y1) <span class="sc">-</span> <span class="fu">mean</span>(d<span class="sc">$</span>y0)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># If we just looked at data:</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Aspirin increases headache</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># = 2/3 - 1/2</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(d<span class="sc">$</span>y[d<span class="sc">$</span>a<span class="sc">==</span><span class="dv">1</span>]) <span class="sc">-</span> <span class="fu">mean</span>(d<span class="sc">$</span>y[d<span class="sc">$</span>a<span class="sc">==</span><span class="dv">0</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="how-can-we-do-causal-inference-at-all" class="level2">
+<h2 class="anchored" data-anchor-id="how-can-we-do-causal-inference-at-all">How Can We Do Causal Inference At All?</h2>
+<ul>
+<li>Never observe the two potential outcomes</li>
+<li>Confounding means we can’t just look at data</li>
+</ul>
+<p>How can we ever do causal inference at all? Is this hopeless?</p>
+</section>
+<section id="assumptions-for-causal-inference" class="level2">
+<h2 class="anchored" data-anchor-id="assumptions-for-causal-inference">3 Assumptions for Causal Inference</h2>
+<p>I said <strong>generally</strong> <span class="math inline">\(E[Y(A)] \neq E[Y|A]\)</span>, but under these 3 assumptions <span class="math inline">\(E[Y(A)] = E[Y|A]\)</span>, and we can do causal inference!</p>
+<ul>
+<li><strong>Consistency</strong>: That when we do <span class="math inline">\(A=a\)</span> we observe <span class="math inline">\(Y_i = Y(A_i)\)</span>.</li>
+<li><strong>Positivity</strong>: That <span class="math inline">\(0 &lt; \Pr(A) &lt; 1\)</span></li>
+<li><strong>Exchangeability</strong>: This is perhaps the most important assumption… that <span class="math inline">\(Y(1), Y(0) \perp A\)</span>.</li>
+</ul>
+<p>If we have consistency, positivity, and exchangeability, then it is safe to assume <span class="math inline">\(E[Y_i \mid A=a] = E[Y_i(A=a)]\)</span>.</p>
+</section>
+<section id="randomization-gives-us-all-3" class="level2">
+<h2 class="anchored" data-anchor-id="randomization-gives-us-all-3">Randomization Gives Us All 3!</h2>
+<p>The easiest way to achieve all 3 is via randomization.</p>
+<ul>
+<li>Randomization gives us consistency so long as the implementation works (more on this later)</li>
+<li>Randomization gives us positivity by design (though we should check that this works)</li>
+<li>Randomization gives us exchangeability by design.</li>
+</ul>
+<p>So long as we can randomize, we can compare group means and that is a valid estimate of the causal effect!</p>
+</section>
+<section id="sounds-simple-right" class="level2">
+<h2 class="anchored" data-anchor-id="sounds-simple-right">Sounds Simple, Right?</h2>
+<ul>
+<li>Just randomize and run a z-test and we’re good?</li>
+<li>“<em>Experimentation is not a math problem; it is a people problem</em>” – Demetri Pananos, Ph.D.</li>
+<li>In the next section, we will discuss what it means to run A/B tests in real life. As we will see, it is much different than a statistics class may make it seem.</li>
+</ul>
+</section>
+</section>
+<section id="break" class="level1">
+<h1>Break</h1>
+</section>
+<section id="practical-ab-testing" class="level1">
+<h1>Practical A/B Testing</h1>
+<section id="steps-to-an-ab-test" class="level2">
+<h2 class="anchored" data-anchor-id="steps-to-an-ab-test">Steps To an A/B Test</h2>
+<ol type="1">
+<li>Convince people to run an A/B test</li>
+<li>Get Specific!</li>
+<li>Determine how long the test should run</li>
+<li>Align with engineering</li>
+<li>Run the test and monitor</li>
+<li>Analyze the test</li>
+<li>Communicate results</li>
+</ol>
+</section>
+<section id="a-real-example" class="level2">
+<h2 class="anchored" data-anchor-id="a-real-example">A “Real Example”</h2>
+<ul>
+<li>You’re a DS at a company.</li>
+<li>New idea to increase upgrades &amp; retention.</li>
+<li>You think randomizing newly signed up users is a good way to test this.</li>
+<li>Let’s put these into action.</li>
+</ul>
+</section>
+<section id="convince-people-to-run-an-ab-test" class="level2">
+<h2 class="anchored" data-anchor-id="convince-people-to-run-an-ab-test">Convince People To Run an A/B Test</h2>
+<ul>
+<li>A/B Tests take time, teams want to make decisions now.</li>
+<li>“Can’t we roll out and compare before and after?” – think about exchangeability here.</li>
+<li>Benefits to experimentation: Avoiding bias in decision making (HiPPO principle) and evidenced based decision making.</li>
+<li>Your job is to improve decision making, not force statistics on people. Be compassionate and listen to people’s fears and desires.</li>
+</ul>
+</section>
+<section id="get-specific" class="level2">
+<h2 class="anchored" data-anchor-id="get-specific">Get Specific!</h2>
+<ul>
+<li>“We think this will increase upgrades”
+<ul>
+<li>What counts as an upgrade? (e.g.&nbsp;last through the free trial? What if there is a refund? Does time matter?)</li>
+<li>Is this data readily available?</li>
+</ul></li>
+<li>Guardrails
+<ul>
+<li>What are we hoping <em>doesn’t</em> change? (e.g.&nbsp;latency? bounce rate?)</li>
+</ul></li>
+<li>Ensure your organization aligns with metric definitions.</li>
+<li>When are we going to run the test?</li>
+</ul>
+</section>
+<section id="determine-how-long-the-test-should-run" class="level2">
+<h2 class="anchored" data-anchor-id="determine-how-long-the-test-should-run">Determine How Long the Test Should Run</h2>
+<ul>
+<li>Run a power calculation. To do this, you need to know your metric’s mean and standard error.</li>
+<li>Express the MDE (minimal detectable effect) as a function of run time.</li>
+<li>If you’re doing a 50/50 split and using <span class="math inline">\(\alpha = 0.05\)</span> and <span class="math inline">\(1-\beta = 0.8\)</span>, then <span class="math inline">\(MDE \approx \dfrac{2.8 \sqrt{2 \tfrac{\sigma^2}{N}}}{\mu}\)</span></li>
+</ul>
+</section>
+<section id="align-with-engineering" class="level2">
+<h2 class="anchored" data-anchor-id="align-with-engineering">Align With Engineering</h2>
+<ul>
+<li>Assignments are created using feature flags, data are created from events.
+<ul>
+<li>Does the flag fire at the right entry point?</li>
+<li>Do we need custom events for anything?</li>
+<li>Are we firing <em>counterfactual events</em>?</li>
+</ul></li>
+</ul>
+</section>
+<section id="run-the-test-and-monitor" class="level2">
+<h2 class="anchored" data-anchor-id="run-the-test-and-monitor">Run The Test and Monitor</h2>
+<ul>
+<li>Stuff Breaks! It is best to catch it early if possible. Try to check:
+<ul>
+<li>You don’t have a sample ratio mismatch</li>
+<li>You don’t have too many multiple exposures</li>
+<li>You have metric data for both groups</li>
+</ul></li>
+</ul>
+</section>
+<section id="run-the-test-and-monitor-1" class="level2">
+<h2 class="anchored" data-anchor-id="run-the-test-and-monitor-1">Run The Test and Monitor</h2>
+<ul>
+<li>Sample Ratio Mismatch: When observed fractions allocated to treatment/control do not match intended.</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(<span class="fu">c</span>(<span class="dv">34603</span>, <span class="dv">34583</span>), <span class="at">p =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="analyze-the-test" class="level2">
+<h2 class="anchored" data-anchor-id="analyze-the-test">Analyze The Test</h2>
+<ul>
+<li>If all looks good and you hit your sample size, you can analyze the test.</li>
+<li>A z-test is perfectly fine in most cases*</li>
+</ul>
+</section>
+<section id="analyze-the-test-1" class="level2">
+<h2 class="anchored" data-anchor-id="analyze-the-test-1">Analyze The Test</h2>
+<ul>
+<li>A lot of places report “The Lift”, which is estimated as</li>
+</ul>
+<p><span class="math display">\[ \hat \lambda = \dfrac{\bar y_t}{\bar y_c} - 1\]</span> * This is nice because it is <em>unitless</em> and so is comparable across metrics and time.</p>
+<ul>
+<li>A confidence interval for this quantity is <span class="math inline">\(\hat \lambda \pm z_{1-\alpha/2} \sqrt{\widehat{\mathrm{Var}}(\hat{\lambda})}\)</span> obtained via the Delta Method</li>
+</ul>
+<p><span class="math display">\[
+\widehat{\mathrm{Var}}(\hat{\lambda})
+\;=\;
+\left(\frac{\bar{y}_t}{\bar{y}_c}\right)^2
+\left(
+\frac{s_t^2}{n_t\,\bar{y}_t^{2}}
+\;+\;
+\frac{s_c^2}{n_c\,\bar{y}_c^{2}}
+\right)
+\]</span></p>
+</section>
+<section id="communicate-results" class="level2">
+<h2 class="anchored" data-anchor-id="communicate-results">Communicate Results</h2>
+<ul>
+<li>Point estimates are not enough, always report a confidence interval. In our case</li>
+</ul>
+<p><img src="media/lift_ci.png" class="img-fluid"></p>
+<blockquote class="blockquote">
+<p>“The treatment had an estimated lift of 4.31%. If we had run this test at a different time, or on a different group of users, we would expect the lift would be between -0.58% and 9.2%. Since the confidence interval contains negative lifts, my recommendation would be to ship control”</p>
+</blockquote>
+</section>
+<section id="communicate-results-1" class="level2">
+<h2 class="anchored" data-anchor-id="communicate-results-1">Communicate Results</h2>
+<ul>
+<li><em>Most</em> AB tests are not winners.</li>
+<li>Twyman’s law:
+<ul>
+<li>“Any figure that looks interesting or different is usually wrong”</li>
+</ul></li>
+<li>Winner’s Curse:
+<ul>
+<li>Statistically significant results are often over estimates of the true effect</li>
+</ul></li>
+</ul>
+</section>
+<section id="the-peeking-problem" class="level2">
+<h2 class="anchored" data-anchor-id="the-peeking-problem">The Peeking Problem</h2>
+<ul>
+<li><p>Many of the statistical guarantees only apply if you look once.</p></li>
+<li><p><strong>Peeking</strong>: Taking many looks at the data and actioning whenever there is statistical significance.</p></li>
+<li><p>PMs have a big desire to do this</p></li>
+<li><p>Example: Consider collecting half the planned sample, then testing each half. If any of the 2 are stat sig, ship.</p></li>
+<li><p>Under the null, this results in a false positive rate of ~8.2%. Should be around 5%!</p></li>
+</ul>
+</section>
+<section id="always-valid-confidence-intervals" class="level2">
+<h2 class="anchored" data-anchor-id="always-valid-confidence-intervals">Always Valid Confidence Intervals</h2>
+<ul>
+<li>There exist “always valid” (<a href="https://docs.geteppo.com/statistics/confidence-intervals/analysis-methods/#sequential-analysis">sequential</a>) methods.</li>
+<li>Pros:
+<ul>
+<li>Can peek at results and make decisions at any time without inflating false positive rate.</li>
+<li>No need to predetermine sample size – eliminates power analysis up front.</li>
+<li>Faster decisions when effects are large (ship early or kill early).</li>
+</ul></li>
+<li>Cons:
+<ul>
+<li>Wider confidence intervals <span class="math inline">\(\implies\)</span> less statistical power for the same sample size.</li>
+<li>When effects are small or moderate, takes <em>longer</em> to reach a conclusion than fixed-sample.</li>
+<li>You trade power for flexibility.</li>
+</ul></li>
+</ul>
+<p><a href="https://docs.geteppo.com/statistics/confidence-intervals/statistical-nitty-gritty/#sequential">Link: https://docs.geteppo.com/statistics/confidence-intervals/statistical-nitty-gritty/#sequential</a></p>
+</section>
+<section id="pms-want-to-go-fast" class="level2">
+<h2 class="anchored" data-anchor-id="pms-want-to-go-fast">PMs Want To Go Fast</h2>
+<ul>
+<li>Time is always the biggest constraint/scarcest resource.</li>
+</ul>
+<p><span class="math display">\[ MDE \approx  \dfrac{2.8 \sqrt{2 \dfrac{\sigma^2}{N}}}{\mu}\]</span></p>
+<ul>
+<li>Samples = Time. “We Need this <span class="math inline">\(N\)</span> samples” – not actually! What other lever can we pull?</li>
+</ul>
+</section>
+<section id="cuped" class="level2">
+<h2 class="anchored" data-anchor-id="cuped">CUPED</h2>
+<ul>
+<li>CUPED is a technique for <em>variance reduction</em> (essentially making <span class="math inline">\(\sigma^2\)</span> smaller).</li>
+<li>Idea: Find something that is correlated with <span class="math inline">\(y\)</span>, but is not affected by the treatment.</li>
+</ul>
+<p><span class="math display">\[\operatorname{Var}(\tilde Y) = \operatorname{Var}(Y)(1-\rho^2) \]</span></p>
+<ul>
+<li>Easiest thing to do: Use the outcome (e.g.&nbsp;past revenue) from before the experiment?</li>
+<li>Rationale: People who spent a lot before the period are likely to spend a lot again! Hence, correlation!</li>
+</ul>
+</section>
+<section id="cuped-how-it-works" class="level2">
+<h2 class="anchored" data-anchor-id="cuped-how-it-works">CUPED: How It Works</h2>
+<ol type="1">
+<li>Pick a pre-experiment covariate <span class="math inline">\(X\)</span> (e.g.&nbsp;total revenue in the 28 days <em>before</em> the test).</li>
+<li>Compute the adjusted outcome for each user:</li>
+</ol>
+<p><span class="math display">\[\tilde Y_i = Y_i - \theta (X_i - \bar X)\]</span></p>
+<p>where <span class="math inline">\(\theta = \operatorname{Cov}(Y, X) / \operatorname{Var}(X)\)</span> (i.e.&nbsp;a regression coefficient).</p>
+<ol start="3" type="1">
+<li>Run your usual z-test on <span class="math inline">\(\tilde Y\)</span> instead of <span class="math inline">\(Y\)</span>.</li>
+</ol>
+<p>Because <span class="math inline">\(\operatorname{Var}(\tilde Y) = \operatorname{Var}(Y)(1 - \rho^2)\)</span>, a correlation of <span class="math inline">\(\rho = 0.5\)</span> cuts variance by 25%.</p>
+</section>
+<section id="cuped-illustration" class="level2">
+<h2 class="anchored" data-anchor-id="cuped-illustration">CUPED: Illustration</h2>
+<p><img src="media/cuped_comparison.png" class="img-fluid"></p>
+</section>
+<section id="cuped-takeaways" class="level2">
+<h2 class="anchored" data-anchor-id="cuped-takeaways">CUPED: Takeaways</h2>
+<ul>
+<li>CUPED is like regression adjustment.</li>
+<li>The higher <span class="math inline">\(\rho\)</span> between pre-experiment covariate and outcome, the bigger the variance reduction.</li>
+<li>Practical guidance:
+<ul>
+<li>Use the <em>same metric</em> measured in a pre-period as the covariate (e.g.&nbsp;pre-experiment revenue to predict experiment revenue).</li>
+<li>No pre-experiemnt data? Use things unaffected by exposure (e.g.&nbsp;Weekday assigned, mobile device)</li>
+<li>The covariate <strong>must</strong> be measured <em>before</em> randomization so it is not affected by treatment.</li>
+<li>Most A/B testing platforms (Eppo, Statsig, etc.) support CUPED and can use <em>multiple</em> pre experiment variables to reduce variance even further!</li>
+</ul></li>
+</ul>
+</section>
+<section id="a-lot-to-learn" class="level2">
+<h2 class="anchored" data-anchor-id="a-lot-to-learn">A Lot To Learn</h2>
+<ul>
+<li>Don’t be discouraged, there is a lot to learn!</li>
+<li>Don’t try to be perfect, try to make justifiable decisions.</li>
+</ul>
+</section>
+</section>
+<section id="fin" class="level1">
+<h1>Fin</h1>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/christopherseaman\.github\.io\/datasci_223");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

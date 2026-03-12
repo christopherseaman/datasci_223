@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="360" viewBox="0 0 900 360">
+  <style>
+    .axis { stroke: #2f2f2f; stroke-width: 2; }
+    .label { font: 18px Arial, sans-serif; fill: #2f2f2f; }
+    .line-eager { stroke: #c9514f; stroke-width: 4; fill: none; }
+    .line-stream { stroke: #4f9a57; stroke-width: 4; fill: none; }
+    .ram { stroke: #2f2f2f; stroke-width: 2; stroke-dasharray: 6 6; }
+  </style>
+
+  <line class="axis" x1="80" y1="40" x2="80" y2="300" />
+  <line class="axis" x1="80" y1="300" x2="820" y2="300" />
+
+  <text class="label" x="20" y="60">Memory</text>
+  <text class="label" x="760" y="330">Time</text>
+
+  <line class="ram" x1="80" y1="120" x2="820" y2="120" />
+  <text class="label" x="90" y="110">RAM limit</text>
+
+  <path class="line-eager" d="M80 280 C220 260, 340 200, 460 140 S640 40, 820 30" />
+  <text class="label" x="680" y="55">eager</text>
+
+  <path class="line-stream" d="M80 280 C220 230, 340 210, 460 210 S640 210, 820 210" />
+  <text class="label" x="640" y="230">streaming</text>
+</svg>

@@ -1,0 +1,2012 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>lecture_09 – DataSci-223</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-d94228c28a1234acf2b6c10d2198ec8e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../09/index.html">Applications</a></li><li class="breadcrumb-item"><a href="../09/index.html">09. Computer Vision</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">DataSci-223</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="https://github.com/christopherseaman/datasci_223" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GitHub</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="https://discord.gg/QdTYgR45er" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Discord</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Foundation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../01/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">01. Debugging</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../02/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">02. Polars</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../03/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">03. SQL</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../04/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">04. NLP</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Machine Learning</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../05/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">05. Classification</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../06/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">06. Neural Networks</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../07/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">07. Transformers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../08/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">08. LLM Workflows</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Applications</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../09/index.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">09. Computer Vision</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../10/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10. A/B Testing</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#links" id="toc-links" class="nav-link active" data-scroll-target="#links">Links</a>
+  <ul class="collapse">
+  <li><a href="#recent-news" id="toc-recent-news" class="nav-link" data-scroll-target="#recent-news">Recent News</a></li>
+  <li><a href="#books-courses" id="toc-books-courses" class="nav-link" data-scroll-target="#books-courses">Books &amp; Courses</a></li>
+  <li><a href="#documentation" id="toc-documentation" class="nav-link" data-scroll-target="#documentation">Documentation</a></li>
+  <li><a href="#conferences-journals" id="toc-conferences-journals" class="nav-link" data-scroll-target="#conferences-journals">Conferences &amp; Journals</a></li>
+  <li><a href="#datasets-for-medical-cv" id="toc-datasets-for-medical-cv" class="nav-link" data-scroll-target="#datasets-for-medical-cv">Datasets for Medical CV</a></li>
+  <li><a href="#annotation-tools" id="toc-annotation-tools" class="nav-link" data-scroll-target="#annotation-tools">Annotation Tools</a></li>
+  <li><a href="#health-data-science-computer-vision" id="toc-health-data-science-computer-vision" class="nav-link" data-scroll-target="#health-data-science-computer-vision">Health Data Science &amp; Computer Vision</a></li>
+  </ul></li>
+  <li><a href="#what-is-computer-vision" id="toc-what-is-computer-vision" class="nav-link" data-scroll-target="#what-is-computer-vision">What Is Computer Vision?</a>
+  <ul class="collapse">
+  <li><a href="#digital-image-representation" id="toc-digital-image-representation" class="nav-link" data-scroll-target="#digital-image-representation">Digital Image Representation</a></li>
+  <li><a href="#medical-image-formats" id="toc-medical-image-formats" class="nav-link" data-scroll-target="#medical-image-formats">Medical Image Formats</a></li>
+  <li><a href="#the-python-imaging-stack" id="toc-the-python-imaging-stack" class="nav-link" data-scroll-target="#the-python-imaging-stack">The Python Imaging Stack</a></li>
+  </ul></li>
+  <li><a href="#cnns-in-pytorch" id="toc-cnns-in-pytorch" class="nav-link" data-scroll-target="#cnns-in-pytorch">CNNs in PyTorch</a>
+  <ul class="collapse">
+  <li><a href="#quick-cnn-recap" id="toc-quick-cnn-recap" class="nav-link" data-scroll-target="#quick-cnn-recap">Quick CNN Recap</a></li>
+  <li><a href="#pytorch-cnn-building-blocks" id="toc-pytorch-cnn-building-blocks" class="nav-link" data-scroll-target="#pytorch-cnn-building-blocks">PyTorch CNN Building Blocks</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-torch.nn-cnn-layers" id="toc-reference-card-torch.nn-cnn-layers" class="nav-link" data-scroll-target="#reference-card-torch.nn-cnn-layers">Reference Card: torch.nn CNN Layers</a></li>
+  <li><a href="#code-snippet-a-simple-cnn-in-pytorch" id="toc-code-snippet-a-simple-cnn-in-pytorch" class="nav-link" data-scroll-target="#code-snippet-a-simple-cnn-in-pytorch">Code Snippet: A Simple CNN in PyTorch</a></li>
+  </ul></li>
+  <li><a href="#the-pytorch-training-loop" id="toc-the-pytorch-training-loop" class="nav-link" data-scroll-target="#the-pytorch-training-loop">The PyTorch Training Loop</a>
+  <ul class="collapse">
+  <li><a href="#code-snippet-training-loop" id="toc-code-snippet-training-loop" class="nav-link" data-scroll-target="#code-snippet-training-loop">Code Snippet: Training Loop</a></li>
+  </ul></li>
+  <li><a href="#tensor-shape-conventions" id="toc-tensor-shape-conventions" class="nav-link" data-scroll-target="#tensor-shape-conventions">Tensor Shape Conventions</a></li>
+  </ul></li>
+  <li><a href="#torchvision-the-computer-vision-toolkit" id="toc-torchvision-the-computer-vision-toolkit" class="nav-link" data-scroll-target="#torchvision-the-computer-vision-toolkit">torchvision — The Computer Vision Toolkit</a>
+  <ul class="collapse">
+  <li><a href="#transforms-data-augmentation" id="toc-transforms-data-augmentation" class="nav-link" data-scroll-target="#transforms-data-augmentation">Transforms &amp; Data Augmentation</a>
+  <ul class="collapse">
+  <li><a href="#imagenet-normalization" id="toc-imagenet-normalization" class="nav-link" data-scroll-target="#imagenet-normalization">ImageNet Normalization</a></li>
+  <li><a href="#reference-card-torchvision.transforms" id="toc-reference-card-torchvision.transforms" class="nav-link" data-scroll-target="#reference-card-torchvision.transforms">Reference Card: torchvision.transforms</a></li>
+  <li><a href="#code-snippet-train-vs-eval-transforms" id="toc-code-snippet-train-vs-eval-transforms" class="nav-link" data-scroll-target="#code-snippet-train-vs-eval-transforms">Code Snippet: Train vs Eval Transforms</a></li>
+  </ul></li>
+  <li><a href="#datasets-dataloaders" id="toc-datasets-dataloaders" class="nav-link" data-scroll-target="#datasets-dataloaders">Datasets &amp; DataLoaders</a>
+  <ul class="collapse">
+  <li><a href="#dataloader" id="toc-dataloader" class="nav-link" data-scroll-target="#dataloader">DataLoader</a></li>
+  <li><a href="#reference-card-torch.utils.data.dataloader" id="toc-reference-card-torch.utils.data.dataloader" class="nav-link" data-scroll-target="#reference-card-torch.utils.data.dataloader">Reference Card: <code>torch.utils.data.DataLoader</code></a></li>
+  <li><a href="#code-snippet-imagefolder-dataloader" id="toc-code-snippet-imagefolder-dataloader" class="nav-link" data-scroll-target="#code-snippet-imagefolder-dataloader">Code Snippet: ImageFolder + DataLoader</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#live-demo" id="toc-live-demo" class="nav-link" data-scroll-target="#live-demo">LIVE DEMO!</a></li>
+  <li><a href="#transfer-learning-pretrained-models" id="toc-transfer-learning-pretrained-models" class="nav-link" data-scroll-target="#transfer-learning-pretrained-models">Transfer Learning &amp; Pretrained Models</a>
+  <ul class="collapse">
+  <li><a href="#why-transfer-learning" id="toc-why-transfer-learning" class="nav-link" data-scroll-target="#why-transfer-learning">Why Transfer Learning?</a></li>
+  <li><a href="#two-approaches" id="toc-two-approaches" class="nav-link" data-scroll-target="#two-approaches">Two Approaches</a></li>
+  <li><a href="#pre-trained-models-in-torchvision" id="toc-pre-trained-models-in-torchvision" class="nav-link" data-scroll-target="#pre-trained-models-in-torchvision">Pre-trained Models in torchvision</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-torchvision.models" id="toc-reference-card-torchvision.models" class="nav-link" data-scroll-target="#reference-card-torchvision.models">Reference Card: torchvision.models</a></li>
+  <li><a href="#code-snippet-transfer-learning-with-resnet-18" id="toc-code-snippet-transfer-learning-with-resnet-18" class="nav-link" data-scroll-target="#code-snippet-transfer-learning-with-resnet-18">Code Snippet: Transfer Learning with ResNet-18</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#evaluating-vision-models" id="toc-evaluating-vision-models" class="nav-link" data-scroll-target="#evaluating-vision-models">Evaluating Vision Models</a>
+  <ul class="collapse">
+  <li><a href="#classification-metrics" id="toc-classification-metrics" class="nav-link" data-scroll-target="#classification-metrics">Classification Metrics</a>
+  <ul class="collapse">
+  <li><a href="#code-snippet-evaluation-with-torchmetrics" id="toc-code-snippet-evaluation-with-torchmetrics" class="nav-link" data-scroll-target="#code-snippet-evaluation-with-torchmetrics">Code Snippet: Evaluation with torchmetrics</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#live-demo-1" id="toc-live-demo-1" class="nav-link" data-scroll-target="#live-demo-1">LIVE DEMO!!</a></li>
+  <li><a href="#object-detection" id="toc-object-detection" class="nav-link" data-scroll-target="#object-detection">Object Detection</a>
+  <ul class="collapse">
+  <li><a href="#computer-vision-medical-applications" id="toc-computer-vision-medical-applications" class="nav-link" data-scroll-target="#computer-vision-medical-applications">Computer Vision: Medical Applications</a></li>
+  <li><a href="#object-detection-key-concepts" id="toc-object-detection-key-concepts" class="nav-link" data-scroll-target="#object-detection-key-concepts">Object Detection: Key Concepts</a></li>
+  <li><a href="#detector-families" id="toc-detector-families" class="nav-link" data-scroll-target="#detector-families">Detector Families</a></li>
+  <li><a href="#detection-with-torchvision" id="toc-detection-with-torchvision" class="nav-link" data-scroll-target="#detection-with-torchvision">Detection with torchvision</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-torchvision.models.detection" id="toc-reference-card-torchvision.models.detection" class="nav-link" data-scroll-target="#reference-card-torchvision.models.detection">Reference Card: torchvision.models.detection</a></li>
+  <li><a href="#code-snippet-inference-with-pretrained-faster-r-cnn" id="toc-code-snippet-inference-with-pretrained-faster-r-cnn" class="nav-link" data-scroll-target="#code-snippet-inference-with-pretrained-faster-r-cnn">Code Snippet: Inference with Pretrained Faster R-CNN</a></li>
+  </ul></li>
+  <li><a href="#ultralytics-yolo" id="toc-ultralytics-yolo" class="nav-link" data-scroll-target="#ultralytics-yolo">Ultralytics YOLO</a></li>
+  </ul></li>
+  <li><a href="#image-segmentation" id="toc-image-segmentation" class="nav-link" data-scroll-target="#image-segmentation">Image Segmentation</a>
+  <ul class="collapse">
+  <li><a href="#types-of-segmentation" id="toc-types-of-segmentation" class="nav-link" data-scroll-target="#types-of-segmentation">Types of Segmentation</a></li>
+  <li><a href="#u-net-architecture" id="toc-u-net-architecture" class="nav-link" data-scroll-target="#u-net-architecture">U-Net Architecture</a></li>
+  <li><a href="#loss-functions-for-segmentation" id="toc-loss-functions-for-segmentation" class="nav-link" data-scroll-target="#loss-functions-for-segmentation">Loss Functions for Segmentation</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-segmentation-loss-functions" id="toc-reference-card-segmentation-loss-functions" class="nav-link" data-scroll-target="#reference-card-segmentation-loss-functions">Reference Card: Segmentation Loss Functions</a></li>
+  </ul></li>
+  <li><a href="#segmentation-with-packages" id="toc-segmentation-with-packages" class="nav-link" data-scroll-target="#segmentation-with-packages">Segmentation with Packages</a>
+  <ul class="collapse">
+  <li><a href="#segmentation_models_pytorch-smp" id="toc-segmentation_models_pytorch-smp" class="nav-link" data-scroll-target="#segmentation_models_pytorch-smp"><code>segmentation_models_pytorch</code> (smp)</a></li>
+  <li><a href="#reference-card-smp-architectures" id="toc-reference-card-smp-architectures" class="nav-link" data-scroll-target="#reference-card-smp-architectures">Reference Card: smp Architectures</a></li>
+  <li><a href="#torchvision.models.segmentation" id="toc-torchvision.models.segmentation" class="nav-link" data-scroll-target="#torchvision.models.segmentation"><code>torchvision.models.segmentation</code></a></li>
+  <li><a href="#code-snippet-u-net-with-smp" id="toc-code-snippet-u-net-with-smp" class="nav-link" data-scroll-target="#code-snippet-u-net-with-smp">Code Snippet: U-Net with smp</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#advanced-topics-the-bigger-picture" id="toc-advanced-topics-the-bigger-picture" class="nav-link" data-scroll-target="#advanced-topics-the-bigger-picture">Advanced Topics &amp; The Bigger Picture</a>
+  <ul class="collapse">
+  <li><a href="#vision-transformers-vits" id="toc-vision-transformers-vits" class="nav-link" data-scroll-target="#vision-transformers-vits">Vision Transformers (ViTs)</a></li>
+  <li><a href="#foundation-models-for-vision" id="toc-foundation-models-for-vision" class="nav-link" data-scroll-target="#foundation-models-for-vision">Foundation Models for Vision</a></li>
+  <li><a href="#explainability-in-medical-cv" id="toc-explainability-in-medical-cv" class="nav-link" data-scroll-target="#explainability-in-medical-cv">Explainability in Medical CV</a></li>
+  <li><a href="#self-supervised-learning" id="toc-self-supervised-learning" class="nav-link" data-scroll-target="#self-supervised-learning">Self-Supervised Learning</a></li>
+  <li><a href="#d-volumetric-imaging" id="toc-d-volumetric-imaging" class="nav-link" data-scroll-target="#d-volumetric-imaging">3D &amp; Volumetric Imaging</a></li>
+  </ul></li>
+  <li><a href="#live-demo-2" id="toc-live-demo-2" class="nav-link" data-scroll-target="#live-demo-2">LIVE DEMO!!!</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../09/index.html">Applications</a></li><li class="breadcrumb-item"><a href="../09/index.html">09. Computer Vision</a></li></ol></nav></header>
+
+
+
+
+<p>Computer Vision: Mirrorshades</p>
+<section id="links" class="level1">
+<h1>Links</h1>
+<section id="recent-news" class="level2">
+<h2 class="anchored" data-anchor-id="recent-news">Recent News</h2>
+<ul>
+<li><a href="https://www.theregister.com/2026/02/26/ai_models_get_better_at/">AI models suck slightly less at math than they did last year</a></li>
+<li><a href="https://testflows.com/blog/testing-super-mario-using-a-behavior-model-autonomously-part1/">Testing Super Mario Using a Behavior Model Autonomously</a></li>
+<li><a href="https://shiftmag.dev/code-isnt-slowing-your-project-down-communication-is-7889/">Code Isn’t Slowing Your Project Down, Communication Is</a></li>
+</ul>
+</section>
+<section id="books-courses" class="level2">
+<h2 class="anchored" data-anchor-id="books-courses">Books &amp; Courses</h2>
+<ul>
+<li><a href="https://pytorch.org/tutorials/">Deep Learning with PyTorch</a> — official PyTorch tutorials, excellent starting point</li>
+<li><em>Dive into Deep Learning</em> — <a href="https://d2l.ai">d2l.ai</a> — hands-on with code examples in multiple frameworks</li>
+<li><a href="https://szeliski.org/Book/">“Computer Vision: Algorithms and Applications” (2nd Edition)</a> by Szeliski — free online, comprehensive reference</li>
+<li><a href="https://visionbook.mit.edu">“Foundations of Computer Vision”</a> by Torralba, Isola, and Freeman — modern MIT textbook</li>
+</ul>
+</section>
+<section id="documentation" class="level2">
+<h2 class="anchored" data-anchor-id="documentation">Documentation</h2>
+<ul>
+<li><a href="https://pytorch.org/vision/stable/index.html">torchvision docs</a> — transforms, models, datasets</li>
+<li><a href="https://huggingface.co/docs/timm/index">timm docs</a> — PyTorch Image Models, 1000+ pre-trained architectures</li>
+<li><a href="https://github.com/qubvel-org/segmentation_models.pytorch">segmentation_models_pytorch</a> — U-Net, FPN, DeepLabV3+ with any encoder</li>
+<li><a href="https://monai.io/">MONAI</a> — PyTorch framework for healthcare imaging</li>
+</ul>
+</section>
+<section id="conferences-journals" class="level2">
+<h2 class="anchored" data-anchor-id="conferences-journals">Conferences &amp; Journals</h2>
+<ul>
+<li><a href="https://www.miccai.org/">MICCAI</a> — Medical Image Computing and Computer Assisted Intervention (top venue)</li>
+<li><a href="https://cvpr.thecvf.com/">CVPR</a> — Computer Vision and Pattern Recognition</li>
+<li>IEEE Transactions on Medical Imaging, Nature Medicine, The Lancet Digital Health</li>
+</ul>
+</section>
+<section id="datasets-for-medical-cv" class="level2">
+<h2 class="anchored" data-anchor-id="datasets-for-medical-cv">Datasets for Medical CV</h2>
+<ul>
+<li><a href="https://physionet.org/">PhysioNet</a> — Physiological and clinical data, including imaging</li>
+<li><a href="https://medmnist.com/">MedMNIST</a> — Standardized biomedical datasets (28×28 and 64×64)</li>
+<li><a href="https://www.cancerimagingarchive.net/">TCIA</a> — Cancer imaging archive</li>
+<li><a href="https://grand-challenge.org/">Grand Challenge</a> — Biomedical image analysis challenges</li>
+<li>NIH ChestX-ray14, LIDC-IDRI, BraTS, VinDr-CXR</li>
+</ul>
+</section>
+<section id="annotation-tools" class="level2">
+<h2 class="anchored" data-anchor-id="annotation-tools">Annotation Tools</h2>
+<ul>
+<li><a href="https://www.itksnap.org/">ITK-SNAP</a> — 3D medical image segmentation</li>
+<li><a href="https://www.slicer.org/">3D Slicer</a> — Medical image analysis platform</li>
+<li><a href="https://github.com/opencv/cvat">CVAT</a> — Open-source annotation tool (bounding boxes, masks)</li>
+<li><a href="https://labelstud.io/">Label Studio</a> — Multi-modal annotation platform</li>
+</ul>
+</section>
+<section id="health-data-science-computer-vision" class="level2">
+<h2 class="anchored" data-anchor-id="health-data-science-computer-vision">Health Data Science &amp; Computer Vision</h2>
+<ul>
+<li>Esteva et al.&nbsp;(2017). Dermatologist-level classification of skin cancer with deep neural networks. <em>Nature</em></li>
+<li>Rajpurkar et al.&nbsp;(2017). CheXNet: Radiologist-level pneumonia detection on chest X-rays with deep learning</li>
+<li>Ronneberger et al.&nbsp;(2015). U-Net: Convolutional Networks for Biomedical Image Segmentation</li>
+<li>Kirillov et al.&nbsp;(2023). Segment Anything (SAM) — foundation model for segmentation</li>
+</ul>
+<p><img src="media/xkcd_pixels.png" class="img-fluid"></p>
+</section>
+</section>
+<section id="what-is-computer-vision" class="level1">
+<h1>What Is Computer Vision?</h1>
+<p><strong>Computer vision (CV)</strong> is a field of AI that enables computers to interpret and understand visual information — turning pixels into decisions. CV systems can classify objects, detect their locations, track movement across video, segment regions at the pixel level, and measure quantitative features from images.</p>
+<p><img src="media/xray_nodule_example.png" class="img-fluid"></p>
+<p>In healthcare, CV is transforming radiology, pathology, dermatology, ophthalmology, and surgery. A single hospital can produce millions of imaging studies per year — far more than radiologists can review with full attention. Modern CV systems now match or exceed human-level performance on specific tasks like detecting diabetic retinopathy from retinal scans or classifying skin lesions from dermoscopy images.</p>
+<p><img src="media/pathology_slide_example.png" class="img-fluid"></p>
+<section id="digital-image-representation" class="level2">
+<h2 class="anchored" data-anchor-id="digital-image-representation">Digital Image Representation</h2>
+<p>Before a computer can “see” an image, the image must be represented as numbers. An image is a grid of <strong>pixels</strong> — each pixel stores a color or intensity value at coordinates (x, y). <strong>Resolution</strong> is the number of pixels (width × height), and medical images range widely: dermoscopy (3000×4000) to ultrasound (640×480).</p>
+<p><img src="media/pixel_grid_example.png" class="img-fluid"></p>
+<ul>
+<li><p><strong>Grayscale</strong>: Single intensity value per pixel (0–255 for 8-bit). 0 = black, 255 = white. Used in many medical images (X-rays, CT scans).</p>
+<p><img src="media/grayscale_example.png" class="img-fluid"></p></li>
+<li><p><strong>RGB</strong>: Three values per pixel (Red, Green, Blue), each 0–255. Shape in memory: (height, width, 3) for NumPy, (3, height, width) for PyTorch.</p>
+<p><img src="media/rgb_channels_example.png" class="img-fluid"></p></li>
+</ul>
+</section>
+<section id="medical-image-formats" class="level2">
+<h2 class="anchored" data-anchor-id="medical-image-formats">Medical Image Formats</h2>
+<p>Medical imaging uses specialized formats beyond standard JPEGs and PNGs.</p>
+<ul>
+<li><p><strong>DICOM (Digital Imaging and Communications in Medicine)</strong></p>
+<ul>
+<li>The standard format for medical imaging worldwide</li>
+<li>Contains both pixel data AND rich metadata</li>
+<li>Metadata includes: patient info (ID, demographics), acquisition parameters (modality, equipment), organizational hierarchy (study, series, instance)</li>
+<li>Used by CT, MRI, X-ray, ultrasound, PET, and more</li>
+</ul>
+<p><img src="media/pydicom_logo.png" class="img-fluid"></p>
+<p><img src="media/dicom_viewer_metadata.png" class="img-fluid"></p></li>
+<li><p><strong>Other Common Formats</strong>: PNG (lossless, good for sharing), JPEG (lossy, not ideal for diagnostics), TIFF (multi-layer, common in pathology), NIfTI (3D/4D neuroimaging volumes)</p></li>
+</ul>
+<p><a href="https://xkcd.com/1301/"><img src="media/file_extensions_2x.png" class="img-fluid"></a></p>
+</section>
+<section id="the-python-imaging-stack" class="level2">
+<h2 class="anchored" data-anchor-id="the-python-imaging-stack">The Python Imaging Stack</h2>
+<p>Key Python libraries for working with images:</p>
+<ul>
+<li><p><strong>Pillow (PIL Fork)</strong>: The standard library for basic image manipulation — loading, saving, resizing, cropping, color conversion. Simple API for common tasks. <code>from PIL import Image</code></p>
+<p><img src="media/pillow_logo.png" class="img-fluid"></p></li>
+<li><p><strong>OpenCV</strong>: Comprehensive computer vision library with advanced image processing algorithms, feature detection, object tracking, and video analysis. High-performance C++ backend with Python bindings. <code>import cv2</code></p>
+<p><img src="media/opencv_logo.png" class="img-fluid"></p></li>
+<li><p><strong>pydicom</strong>: Specialized for DICOM files — read/write medical images and access rich metadata (patient info, acquisition parameters, modality). <code>import pydicom</code></p></li>
+<li><p><strong>SimpleITK</strong>: Medical image analysis toolkit for registration, segmentation, and filtering. Python interface to ITK. <code>import SimpleITK as sitk</code></p>
+<p><img src="media/simpleitk_logo.png" class="img-fluid"></p></li>
+<li><p><strong>Matplotlib</strong>: Visualization — display images in notebooks with <code>plt.imshow()</code>. <code>import matplotlib.pyplot as plt</code></p>
+<p><img src="media/matplotlib_logo.png" class="img-fluid"></p></li>
+</ul>
+</section>
+</section>
+<section id="cnns-in-pytorch" class="level1">
+<h1>CNNs in PyTorch</h1>
+<section id="quick-cnn-recap" class="level2">
+<h2 class="anchored" data-anchor-id="quick-cnn-recap">Quick CNN Recap</h2>
+<p>CNNs use small learned <strong>filters</strong> (e.g., 3×3) that slide across the image, sharing parameters at every position. This avoids the parameter explosion of fully connected layers and preserves spatial structure. Stacking convolutional layers builds a hierarchy of features — edges → textures → parts → objects:</p>
+<p><img src="media/convolution_filter_static.png" class="img-fluid"></p>
+<p><img src="media/cnn_early_features.png" class="img-fluid"></p>
+</section>
+<section id="pytorch-cnn-building-blocks" class="level2">
+<h2 class="anchored" data-anchor-id="pytorch-cnn-building-blocks">PyTorch CNN Building Blocks</h2>
+<p>PyTorch provides all CNN components through <code>torch.nn</code>:</p>
+<ul>
+<li><p><strong><code>nn.Conv2d</code></strong>: Applies learnable filters. Key args: <code>in_channels</code>, <code>out_channels</code>, <code>kernel_size</code>, <code>stride</code>, <code>padding</code></p></li>
+<li><p><strong><code>nn.MaxPool2d</code></strong>: Downsamples by taking the max value in each window.</p>
+<p><img src="media/max_pooling_example.png" class="img-fluid"></p></li>
+<li><p><strong><code>nn.BatchNorm2d</code></strong>: Normalizes layer outputs within a batch. Stabilizes and speeds up training.</p></li>
+<li><p><strong><code>nn.ReLU</code></strong>, <strong><code>nn.Dropout2d</code></strong>, <strong><code>nn.Flatten</code></strong>, <strong><code>nn.Linear</code></strong>: Activation, regularization, reshaping, and fully connected layers (see reference card below).</p></li>
+</ul>
+<p>A typical CNN architecture follows this pattern:</p>
+<pre class="shell"><code>INPUT → [CONV → BN → ReLU → POOL] × N → FLATTEN → LINEAR → OUTPUT</code></pre>
+<p><img src="media/cnn_architecture_diagram.png" class="img-fluid"></p>
+<section id="reference-card-torch.nn-cnn-layers" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-torch.nn-cnn-layers">Reference Card: torch.nn CNN Layers</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Layer</th>
+<th style="text-align: left;">Signature</th>
+<th style="text-align: left;">Purpose</th>
+<th style="text-align: left;">Key Parameters</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Conv2d</strong></td>
+<td style="text-align: left;"><code>nn.Conv2d(in_ch, out_ch, kernel_size)</code></td>
+<td style="text-align: left;">Applies convolution filters</td>
+<td style="text-align: left;"><code>stride=1</code>, <code>padding=0</code> (use <code>padding=1</code> for 3×3 to preserve size)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>MaxPool2d</strong></td>
+<td style="text-align: left;"><code>nn.MaxPool2d(kernel_size)</code></td>
+<td style="text-align: left;">Downsamples spatial dimensions</td>
+<td style="text-align: left;"><code>kernel_size=2, stride=2</code> halves H and W</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>BatchNorm2d</strong></td>
+<td style="text-align: left;"><code>nn.BatchNorm2d(num_features)</code></td>
+<td style="text-align: left;">Normalizes per-channel activations</td>
+<td style="text-align: left;"><code>num_features</code> = number of channels</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>ReLU</strong></td>
+<td style="text-align: left;"><code>nn.ReLU(inplace=True)</code></td>
+<td style="text-align: left;">Activation: max(0, x) — introduces nonlinearity</td>
+<td style="text-align: left;"><code>inplace=True</code> saves memory</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Dropout2d</strong></td>
+<td style="text-align: left;"><code>nn.Dropout2d(p=0.25)</code></td>
+<td style="text-align: left;">Drops entire feature maps</td>
+<td style="text-align: left;"><code>p</code> = probability of zeroing a channel</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Flatten</strong></td>
+<td style="text-align: left;"><code>nn.Flatten()</code></td>
+<td style="text-align: left;">Reshapes (N, C, H, W) → (N, C×H×W)</td>
+<td style="text-align: left;">Used before Linear layers</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Linear</strong></td>
+<td style="text-align: left;"><code>nn.Linear(in_features, out_features)</code></td>
+<td style="text-align: left;">Fully connected layer</td>
+<td style="text-align: left;">For classification head</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-a-simple-cnn-in-pytorch" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-a-simple-cnn-in-pytorch">Code Snippet: A Simple CNN in PyTorch</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn <span class="im">as</span> nn</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> SimpleCNN(nn.Module):</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, num_classes<span class="op">=</span><span class="dv">10</span>):</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.features <span class="op">=</span> nn.Sequential(</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>            nn.Conv2d(<span class="dv">3</span>, <span class="dv">32</span>, kernel_size<span class="op">=</span><span class="dv">3</span>, padding<span class="op">=</span><span class="dv">1</span>),</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>            nn.BatchNorm2d(<span class="dv">32</span>),</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>            nn.ReLU(inplace<span class="op">=</span><span class="va">True</span>),</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>            nn.MaxPool2d(<span class="dv">2</span>),</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>            nn.Conv2d(<span class="dv">32</span>, <span class="dv">64</span>, kernel_size<span class="op">=</span><span class="dv">3</span>, padding<span class="op">=</span><span class="dv">1</span>),</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>            nn.BatchNorm2d(<span class="dv">64</span>),</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>            nn.ReLU(inplace<span class="op">=</span><span class="va">True</span>),</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>            nn.MaxPool2d(<span class="dv">2</span>),</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.classifier <span class="op">=</span> nn.Sequential(</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>            nn.Flatten(),</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>            nn.Linear(<span class="dv">64</span> <span class="op">*</span> <span class="dv">56</span> <span class="op">*</span> <span class="dv">56</span>, <span class="dv">128</span>),  <span class="co"># 224 / 2 / 2 = 56 after two MaxPool2d(2)</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>            nn.ReLU(inplace<span class="op">=</span><span class="va">True</span>),</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>            nn.Dropout(<span class="fl">0.5</span>),</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>            nn.Linear(<span class="dv">128</span>, num_classes),</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x):</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> <span class="va">self</span>.features(x)</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> <span class="va">self</span>.classifier(x)</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> x</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> SimpleCNN(num_classes<span class="op">=</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="the-pytorch-training-loop" class="level2">
+<h2 class="anchored" data-anchor-id="the-pytorch-training-loop">The PyTorch Training Loop</h2>
+<p>Unlike Keras’ <code>model.fit()</code>, PyTorch gives you explicit control over every step of training. Each iteration through a batch follows five steps:</p>
+<ol type="1">
+<li><strong>Zero gradients</strong> (<code>optimizer.zero_grad()</code>) — clear accumulated gradients from the previous batch</li>
+<li><strong>Forward pass</strong> (<code>outputs = model(inputs)</code>) — feed inputs through the model to get predictions</li>
+<li><strong>Compute loss</strong> (<code>loss = criterion(outputs, labels)</code>) — measure how wrong the predictions are</li>
+<li><strong>Backward pass</strong> (<code>loss.backward()</code>) — use <strong>backpropagation</strong> to compute the <strong>gradient</strong> for each weight — how much it contributed to the error</li>
+<li><strong>Update weights</strong> (<code>optimizer.step()</code>) — the <strong>optimizer</strong> adjusts weights in the direction that reduces the loss</li>
+</ol>
+<p>An <strong>epoch</strong> is one complete pass through the entire training dataset. The <strong>learning rate</strong> (<code>lr</code>) controls how large each weight update step is — too high and training is unstable, too low and it’s slow. For inference, call <code>model.eval()</code> (disables dropout/batchnorm training behavior) and wrap in <code>with torch.no_grad():</code>.</p>
+<section id="code-snippet-training-loop" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-training-loop">Code Snippet: Training Loop</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>device <span class="op">=</span> torch.device(<span class="st">"cuda"</span> <span class="cf">if</span> torch.cuda.is_available() <span class="cf">else</span> <span class="st">"cpu"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> SimpleCNN(num_classes<span class="op">=</span><span class="dv">2</span>).to(device)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>criterion <span class="op">=</span> nn.CrossEntropyLoss()</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>optimizer <span class="op">=</span> torch.optim.Adam(model.parameters(), lr<span class="op">=</span><span class="fl">1e-3</span>)  <span class="co"># Adam is a widely-used default</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epoch <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>):                        <span class="co"># 10 passes through the training data</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    model.train()                              <span class="co"># enable dropout/batchnorm training behavior</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    running_loss <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> inputs, labels <span class="kw">in</span> train_loader:</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        inputs, labels <span class="op">=</span> inputs.to(device), labels.to(device)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        optimizer.zero_grad()                  <span class="co"># 1. clear old gradients</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        outputs <span class="op">=</span> model(inputs)                <span class="co"># 2. forward pass</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>        loss <span class="op">=</span> criterion(outputs, labels)      <span class="co"># 3. compute loss</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        loss.backward()                        <span class="co"># 4. compute gradients (backpropagation)</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>        optimizer.step()                       <span class="co"># 5. update weights</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>        running_loss <span class="op">+=</span> loss.item()</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Epoch </span><span class="sc">{</span>epoch<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">, Loss: </span><span class="sc">{</span>running_loss<span class="op">/</span><span class="bu">len</span>(train_loader)<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="tensor-shape-conventions" class="level2">
+<h2 class="anchored" data-anchor-id="tensor-shape-conventions">Tensor Shape Conventions</h2>
+<p>PyTorch and Keras/TensorFlow arrange image tensors differently. In practice this means:</p>
+<ul>
+<li><strong>Shape mismatch errors</strong> are the most common gotcha when mixing frameworks or loading data — always check <code>.shape</code></li>
+<li><strong>PyTorch (NCHW)</strong>: channels first — <code>torch.Size([16, 3, 224, 224])</code> for a batch of 16 RGB 224×224 images</li>
+<li><strong>Keras/TF (NHWC)</strong>: channels last — <code>(16, 224, 224, 3)</code> for the same batch</li>
+<li><strong><code>torchvision.transforms.ToTensor()</code></strong> handles the conversion from PIL (HWC) → PyTorch (CHW) automatically and scales pixel values from [0, 255] to [0.0, 1.0]</li>
+<li>When porting code or reading tutorials from the other framework, <strong>transpose</strong> the channel dimension (<code>permute</code> in PyTorch, <code>transpose</code> in NumPy)</li>
+</ul>
+<p><a href="https://xkcd.com/1882/"><img src="media/xkcd_color_models.png" class="img-fluid"></a></p>
+</section>
+</section>
+<section id="torchvision-the-computer-vision-toolkit" class="level1">
+<h1>torchvision — The Computer Vision Toolkit</h1>
+<p><code>torchvision</code> is PyTorch’s companion library for computer vision — well-tested, GPU-optimized transforms, datasets, and pre-trained models for classification, detection, and segmentation.</p>
+<section id="transforms-data-augmentation" class="level2">
+<h2 class="anchored" data-anchor-id="transforms-data-augmentation">Transforms &amp; Data Augmentation</h2>
+<p><code>torchvision.transforms</code> provides composable image transformations. You build a pipeline by chaining operations with <code>Compose</code>:</p>
+<p><strong>Essential transforms</strong> (always used): <code>Resize</code>, <code>ToTensor</code> (scales [0, 255] → [0.0, 1.0]), <code>Normalize</code>, <code>CenterCrop</code></p>
+<p><strong>Key augmentation transforms</strong> (training only — see full list in reference card below):</p>
+<ul>
+<li><code>RandomHorizontalFlip(p=0.5)</code> — flip left-right with probability p.&nbsp;Also <code>RandomVerticalFlip</code> for medical images with no “up.”</li>
+<li><code>RandomRotation(degrees)</code> — rotate by a random angle within the specified range.</li>
+<li><code>RandomResizedCrop(size)</code> — random crop and resize with scale + aspect ratio jitter. The most powerful single augmentation for training.</li>
+<li><code>ColorJitter(brightness, contrast, saturation, hue)</code> — random color perturbations to make the model robust to lighting variation.</li>
+</ul>
+<p><strong>Why augmentation matters</strong>: Medical datasets are often small. Augmentation creates modified versions of each training image, helping the model generalize instead of memorizing.</p>
+<p>For advanced augmentations (elastic deformations, grid distortion, CLAHE), see the <strong><code>albumentations</code></strong> library.</p>
+<p><img src="media/data_augmentation_examples.png" class="img-fluid"></p>
+<section id="imagenet-normalization" class="level3">
+<h3 class="anchored" data-anchor-id="imagenet-normalization">ImageNet Normalization</h3>
+<p><strong>ImageNet</strong> is a large dataset of 1.2 million natural photos used to pre-train most vision models. When using these pre-trained models, normalize your images to match the statistics ImageNet was trained with:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>normalize <span class="op">=</span> transforms.Normalize(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    mean<span class="op">=</span>[<span class="fl">0.485</span>, <span class="fl">0.456</span>, <span class="fl">0.406</span>],</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    std<span class="op">=</span>[<span class="fl">0.229</span>, <span class="fl">0.224</span>, <span class="fl">0.225</span>]</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>For grayscale medical images used with pre-trained RGB models, either:</p>
+<ul>
+<li>Convert to 3-channel by repeating the grayscale channel: <code>img.convert("RGB")</code> (most common approach)</li>
+<li>Or adjust normalization to single-channel statistics</li>
+</ul>
+</section>
+<section id="reference-card-torchvision.transforms" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-torchvision.transforms">Reference Card: torchvision.transforms</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Category</th>
+<th style="text-align: left;">Transform</th>
+<th style="text-align: left;">Purpose</th>
+<th style="text-align: left;">Common Args</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Pipeline</strong></td>
+<td style="text-align: left;"><code>Compose([t1, t2, ...])</code></td>
+<td style="text-align: left;">Chain transforms in sequence</td>
+<td style="text-align: left;">List of transforms</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Size</strong></td>
+<td style="text-align: left;"><code>Resize(size)</code></td>
+<td style="text-align: left;">Resize to target size</td>
+<td style="text-align: left;"><code>(224, 224)</code> or <code>256</code> (short edge)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Conversion</strong></td>
+<td style="text-align: left;"><code>ToTensor()</code></td>
+<td style="text-align: left;">PIL → tensor, scale to [0, 1]</td>
+<td style="text-align: left;">—</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Normalize</strong></td>
+<td style="text-align: left;"><code>Normalize(mean, std)</code></td>
+<td style="text-align: left;">Per-channel normalization</td>
+<td style="text-align: left;">ImageNet: <code>[0.485, 0.456, 0.406]</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Crop</strong></td>
+<td style="text-align: left;"><code>CenterCrop(size)</code></td>
+<td style="text-align: left;">Crop from center</td>
+<td style="text-align: left;"><code>224</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Flip</strong></td>
+<td style="text-align: left;"><code>RandomHorizontalFlip(p)</code></td>
+<td style="text-align: left;">Horizontal flip</td>
+<td style="text-align: left;"><code>p=0.5</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Rotate</strong></td>
+<td style="text-align: left;"><code>RandomRotation(degrees)</code></td>
+<td style="text-align: left;">Random rotation</td>
+<td style="text-align: left;"><code>(-15, 15)</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Scale+Crop</strong></td>
+<td style="text-align: left;"><code>RandomResizedCrop(size)</code></td>
+<td style="text-align: left;">Random crop + resize</td>
+<td style="text-align: left;"><code>scale=(0.8, 1.0)</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Color</strong></td>
+<td style="text-align: left;"><code>ColorJitter(b, c, s, h)</code></td>
+<td style="text-align: left;">Random color changes</td>
+<td style="text-align: left;"><code>brightness=0.2, contrast=0.2</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Blur</strong></td>
+<td style="text-align: left;"><code>GaussianBlur(kernel_size)</code></td>
+<td style="text-align: left;">Gaussian blur</td>
+<td style="text-align: left;"><code>kernel_size=3</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Erase</strong></td>
+<td style="text-align: left;"><code>RandomErasing(p)</code></td>
+<td style="text-align: left;">Erase random rectangle</td>
+<td style="text-align: left;"><code>p=0.1</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-train-vs-eval-transforms" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-train-vs-eval-transforms">Code Snippet: Train vs Eval Transforms</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torchvision <span class="im">import</span> transforms</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Training: augmentation + normalization</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>train_transform <span class="op">=</span> transforms.Compose([</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    transforms.Resize((<span class="dv">256</span>, <span class="dv">256</span>)),</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    transforms.RandomResizedCrop(<span class="dv">224</span>),</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    transforms.RandomHorizontalFlip(),</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    transforms.RandomRotation(<span class="dv">10</span>),</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    transforms.ColorJitter(brightness<span class="op">=</span><span class="fl">0.2</span>, contrast<span class="op">=</span><span class="fl">0.2</span>),</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    transforms.ToTensor(),</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    transforms.Normalize([<span class="fl">0.485</span>, <span class="fl">0.456</span>, <span class="fl">0.406</span>], [<span class="fl">0.229</span>, <span class="fl">0.224</span>, <span class="fl">0.225</span>]),</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Evaluation: deterministic resize + normalize only</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>eval_transform <span class="op">=</span> transforms.Compose([</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    transforms.Resize((<span class="dv">224</span>, <span class="dv">224</span>)),</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    transforms.ToTensor(),</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    transforms.Normalize([<span class="fl">0.485</span>, <span class="fl">0.456</span>, <span class="fl">0.406</span>], [<span class="fl">0.229</span>, <span class="fl">0.224</span>, <span class="fl">0.225</span>]),</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="datasets-dataloaders" class="level2">
+<h2 class="anchored" data-anchor-id="datasets-dataloaders">Datasets &amp; DataLoaders</h2>
+<p><code>torchvision</code> provides two ways to load image data:</p>
+<p><strong><code>ImageFolder</code></strong> — the simplest approach for custom datasets. Expects a directory structure where each subdirectory is a class:</p>
+<pre class="shell"><code>data/
+├── normal/
+│   ├── xray_001.png
+│   ├── xray_002.png
+│   └── ...
+└── tuberculosis/
+    ├── xray_101.png
+    ├── xray_102.png
+    └── ...</code></pre>
+<p><strong>Custom <code>Dataset</code></strong> — for more complex scenarios (DICOM files, multi-label, CSV-driven):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch.utils.data <span class="im">import</span> Dataset</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ChestXrayDataset(Dataset):</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, image_paths, labels, transform<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.image_paths <span class="op">=</span> image_paths</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.labels <span class="op">=</span> labels</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.transform <span class="op">=</span> transform</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__len__</span>(<span class="va">self</span>):</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="bu">len</span>(<span class="va">self</span>.image_paths)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__getitem__</span>(<span class="va">self</span>, idx):</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>        img <span class="op">=</span> Image.<span class="bu">open</span>(<span class="va">self</span>.image_paths[idx]).convert(<span class="st">"RGB"</span>)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>        label <span class="op">=</span> <span class="va">self</span>.labels[idx]</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="va">self</span>.transform:</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>            img <span class="op">=</span> <span class="va">self</span>.transform(img)</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> img, label</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="dataloader" class="level3">
+<h3 class="anchored" data-anchor-id="dataloader">DataLoader</h3>
+<p><code>DataLoader</code> wraps a dataset and provides batching, shuffling, and parallel loading. It returns an iterable that yields <code>(batch_inputs, batch_labels)</code> tuples.</p>
+<p>Key parameters:</p>
+<ul>
+<li><strong><code>batch_size</code></strong> (int): Number of samples per batch (e.g., 32)</li>
+<li><strong><code>shuffle</code></strong> (bool): Randomize order each epoch — <code>True</code> for training, <code>False</code> for eval</li>
+<li><strong><code>num_workers</code></strong> (int): Parallel data loading processes (e.g., 4). Set to 0 for debugging.</li>
+<li><strong><code>pin_memory</code></strong> (bool): Speed up CPU→GPU transfer. Set <code>True</code> when using CUDA.</li>
+<li><strong><code>drop_last</code></strong> (bool): Drop last incomplete batch if dataset isn’t evenly divisible</li>
+</ul>
+</section>
+<section id="reference-card-torch.utils.data.dataloader" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-torch.utils.data.dataloader">Reference Card: <code>torch.utils.data.DataLoader</code></h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Parameter</th>
+<th style="text-align: left;">Default</th>
+<th style="text-align: left;">Training</th>
+<th style="text-align: left;">Evaluation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>batch_size</strong></td>
+<td style="text-align: left;"><code>1</code></td>
+<td style="text-align: left;"><code>32</code> (or largest that fits GPU)</td>
+<td style="text-align: left;">Same or larger</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>shuffle</strong></td>
+<td style="text-align: left;"><code>False</code></td>
+<td style="text-align: left;"><code>True</code></td>
+<td style="text-align: left;"><code>False</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>num_workers</strong></td>
+<td style="text-align: left;"><code>0</code></td>
+<td style="text-align: left;"><code>4</code> (tune to system)</td>
+<td style="text-align: left;">Same</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>pin_memory</strong></td>
+<td style="text-align: left;"><code>False</code></td>
+<td style="text-align: left;"><code>True</code> (with CUDA)</td>
+<td style="text-align: left;"><code>True</code> (with CUDA)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>drop_last</strong></td>
+<td style="text-align: left;"><code>False</code></td>
+<td style="text-align: left;"><code>True</code> (for BatchNorm stability)</td>
+<td style="text-align: left;"><code>False</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-imagefolder-dataloader" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-imagefolder-dataloader">Code Snippet: ImageFolder + DataLoader</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torchvision <span class="im">import</span> transforms</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torchvision.datasets <span class="im">import</span> ImageFolder</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch.utils.data <span class="im">import</span> DataLoader, random_split</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Create dataset with transforms</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>dataset <span class="op">=</span> ImageFolder(<span class="st">"data/chest_xrays"</span>, transform<span class="op">=</span>train_transform)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Classes: </span><span class="sc">{</span>dataset<span class="sc">.</span>classes<span class="sc">}</span><span class="ss">"</span>)  <span class="co"># ['normal', 'tuberculosis']</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Total images: </span><span class="sc">{</span><span class="bu">len</span>(dataset)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Split into train/val/test</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>train_size <span class="op">=</span> <span class="bu">int</span>(<span class="fl">0.7</span> <span class="op">*</span> <span class="bu">len</span>(dataset))</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>val_size <span class="op">=</span> <span class="bu">int</span>(<span class="fl">0.15</span> <span class="op">*</span> <span class="bu">len</span>(dataset))</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>test_size <span class="op">=</span> <span class="bu">len</span>(dataset) <span class="op">-</span> train_size <span class="op">-</span> val_size</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>train_set, val_set, test_set <span class="op">=</span> random_split(dataset, [train_size, val_size, test_size])</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Create DataLoaders</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>train_loader <span class="op">=</span> DataLoader(train_set, batch_size<span class="op">=</span><span class="dv">32</span>, shuffle<span class="op">=</span><span class="va">True</span>, num_workers<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>val_loader <span class="op">=</span> DataLoader(val_set, batch_size<span class="op">=</span><span class="dv">32</span>, shuffle<span class="op">=</span><span class="va">False</span>, num_workers<span class="op">=</span><span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+</section>
+<section id="live-demo" class="level1">
+<h1>LIVE DEMO!</h1>
+</section>
+<section id="transfer-learning-pretrained-models" class="level1">
+<h1>Transfer Learning &amp; Pretrained Models</h1>
+<p>Transfer learning is the single most important practical technique in computer vision. Rather than training a CNN from scratch (which requires millions of images and days of GPU time), you start with a model that already understands visual features and adapt it to your specific task.</p>
+<section id="why-transfer-learning" class="level2">
+<h2 class="anchored" data-anchor-id="why-transfer-learning">Why Transfer Learning?</h2>
+<p><strong>ImageNet</strong> is a massive benchmark dataset of 1.2 million labeled natural photos across 1,000 everyday categories (dogs, cars, chairs, food, etc.). A model pre-trained on ImageNet has already learned a rich hierarchy of visual features:</p>
+<ul>
+<li><strong>Early layers</strong>: edges, corners, gradients, textures</li>
+<li><strong>Middle layers</strong>: patterns, shapes, parts of objects</li>
+<li><strong>Deep layers</strong>: complex structures, object parts, spatial relationships</li>
+</ul>
+<p>These features transfer remarkably well to new domains — including medical imaging. A model that learned “edge” and “texture” features from natural photos can apply those same features to detect abnormalities in chest X-rays.</p>
+<p><img src="media/transfer_learning_diagram.png" class="img-fluid"></p>
+</section>
+<section id="two-approaches" class="level2">
+<h2 class="anchored" data-anchor-id="two-approaches">Two Approaches</h2>
+<p>A pre-trained model has two logical parts:</p>
+<ul>
+<li><strong>Backbone</strong>: The main body of the network that extracts features — all the convolutional layers that turn pixels into feature maps. This is the expensive part that learned from millions of images.</li>
+<li><strong>Head</strong>: The final classification layer(s) that map features to class predictions. This is the part you replace for your task.</li>
+</ul>
+<p><strong>1. Feature Extraction</strong> — Freeze the pre-trained backbone, only train a new head:</p>
+<ul>
+<li>The pre-trained layers act as a fixed feature extractor</li>
+<li>Only the new head layers are trained</li>
+<li>Fast to train, works well with very small datasets</li>
+<li>Best when: few images (&lt;1,000) and the pre-trained features are general enough for your domain</li>
+</ul>
+<p><strong>2. Fine-Tuning</strong> — Start frozen, then unfreeze some or all backbone layers:</p>
+<ul>
+<li>First train the head (feature extraction phase)</li>
+<li>Then unfreeze later backbone layers and continue training with a smaller learning rate</li>
+<li>Allows the model to adapt its learned features to your domain</li>
+<li>Best when: moderate dataset size (1,000–100,000), or target domain differs significantly from ImageNet (e.g., medical images vs natural photos)</li>
+</ul>
+<p><img src="media/feature_extraction_vs_fine_tuning2.png" class="img-fluid"></p>
+</section>
+<section id="pre-trained-models-in-torchvision" class="level2">
+<h2 class="anchored" data-anchor-id="pre-trained-models-in-torchvision">Pre-trained Models in torchvision</h2>
+<p>Pre-trained vision models are <strong>foundation models</strong> — the same concept from the LLM lectures. A large model is trained on massive data (ImageNet’s 1.2M images), learning general-purpose features, then adapted for specific downstream tasks via transfer learning. The pattern is identical whether the domain is language or vision: pre-train once at scale, fine-tune cheaply for your task.</p>
+<p><code>torchvision.models</code> provides pre-trained architectures with a consistent API. The modern way to load them uses the <code>weights</code> parameter:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Architecture</th>
+<th style="text-align: left;">Year</th>
+<th style="text-align: left;">Key Innovation</th>
+<th style="text-align: left;">Params</th>
+<th style="text-align: left;">torchvision name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Inception v3</td>
+<td style="text-align: left;">2015</td>
+<td style="text-align: left;">Parallel filters at multiple scales</td>
+<td style="text-align: left;">24M</td>
+<td style="text-align: left;"><code>inception_v3</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ResNet-18/50</td>
+<td style="text-align: left;">2015</td>
+<td style="text-align: left;">Skip connections (shortcut paths that let information bypass layers, preventing vanishing gradients) → very deep networks</td>
+<td style="text-align: left;">11M/25M</td>
+<td style="text-align: left;"><code>resnet18</code>, <code>resnet50</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">MobileNetV2</td>
+<td style="text-align: left;">2018</td>
+<td style="text-align: left;">Depthwise separable convolutions — splits expensive operations into cheaper steps → mobile-friendly</td>
+<td style="text-align: left;">3.4M</td>
+<td style="text-align: left;"><code>mobilenet_v2</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">EfficientNet-B0</td>
+<td style="text-align: left;">2019</td>
+<td style="text-align: left;">Compound scaling — simultaneously scales network depth, width, and input resolution using a fixed ratio</td>
+<td style="text-align: left;">5.3M</td>
+<td style="text-align: left;"><code>efficientnet_b0</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ConvNeXt-Tiny</td>
+<td style="text-align: left;">2022</td>
+<td style="text-align: left;">Modernized ConvNet matching ViT performance</td>
+<td style="text-align: left;">28M</td>
+<td style="text-align: left;"><code>convnext_tiny</code></td>
+</tr>
+</tbody>
+</table>
+<section id="reference-card-torchvision.models" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-torchvision.models">Reference Card: torchvision.models</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Category</th>
+<th style="text-align: left;">Method / Pattern</th>
+<th style="text-align: left;">Purpose</th>
+<th style="text-align: left;">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Load model</strong></td>
+<td style="text-align: left;"><code>models.resnet18(weights="DEFAULT")</code></td>
+<td style="text-align: left;">Load pre-trained ResNet-18</td>
+<td style="text-align: left;">Returns nn.Module</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Weights enum</strong></td>
+<td style="text-align: left;"><code>models.ResNet18_Weights.IMAGENET1K_V1</code></td>
+<td style="text-align: left;">Specific weight version</td>
+<td style="text-align: left;">Explicit versioning</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>No pretrain</strong></td>
+<td style="text-align: left;"><code>models.resnet18(weights=None)</code></td>
+<td style="text-align: left;">Random initialization</td>
+<td style="text-align: left;">For training from scratch</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Freeze</strong></td>
+<td style="text-align: left;"><code>model.requires_grad_(False)</code></td>
+<td style="text-align: left;">Freeze all parameters</td>
+<td style="text-align: left;">Or loop: <code>param.requires_grad = False</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Replace head</strong></td>
+<td style="text-align: left;"><code>model.fc = nn.Linear(512, num_classes)</code></td>
+<td style="text-align: left;">New classifier for ResNet</td>
+<td style="text-align: left;"><code>.classifier</code> for MobileNet/EfficientNet</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>List models</strong></td>
+<td style="text-align: left;"><code>models.list_models()</code></td>
+<td style="text-align: left;">See all available models</td>
+<td style="text-align: left;">Filter by keyword</td>
+</tr>
+</tbody>
+</table>
+<p>For access to 1,000+ architectures beyond <code>torchvision</code>, the <strong><code>timm</code></strong> library (<code>timm.create_model(name, pretrained=True, num_classes=N)</code>) provides a uniform API with automatic head replacement.</p>
+</section>
+<section id="code-snippet-transfer-learning-with-resnet-18" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-transfer-learning-with-resnet-18">Code Snippet: Transfer Learning with ResNet-18</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torchvision.models <span class="im">as</span> models</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn <span class="im">as</span> nn</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Load pretrained ResNet-18</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> models.resnet18(weights<span class="op">=</span><span class="st">"DEFAULT"</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Freeze the backbone</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> param <span class="kw">in</span> model.parameters():</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    param.requires_grad <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace the classification head (512 → num_classes)</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>model.fc <span class="op">=</span> nn.Sequential(</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    nn.Linear(<span class="dv">512</span>, <span class="dv">128</span>),</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    nn.ReLU(),</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    nn.Dropout(<span class="fl">0.3</span>),</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    nn.Linear(<span class="dv">128</span>, <span class="dv">2</span>),  <span class="co"># binary: normal vs tuberculosis</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Only the new head parameters will be trained</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>optimizer <span class="op">=</span> torch.optim.Adam(model.fc.parameters(), lr<span class="op">=</span><span class="fl">1e-3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>With <strong>timm</strong>, the same thing is even simpler:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> timm</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> timm.create_model(<span class="st">"resnet18"</span>, pretrained<span class="op">=</span><span class="va">True</span>, num_classes<span class="op">=</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><img src="media/tim.jpg" class="img-fluid"></p>
+</section>
+</section>
+</section>
+<section id="evaluating-vision-models" class="level1">
+<h1>Evaluating Vision Models</h1>
+<section id="classification-metrics" class="level2">
+<h2 class="anchored" data-anchor-id="classification-metrics">Classification Metrics</h2>
+<p>The classification metrics from lecture 05 — accuracy, precision, recall, F1, confusion matrix — apply directly to image classification. The key difference in medical imaging is <strong>class imbalance</strong>: a chest X-ray dataset might be 90% normal, 10% abnormal, so a model that always predicts “normal” gets 90% accuracy but catches zero diseases.</p>
+<p><strong>Which metric matters depends on the clinical context:</strong></p>
+<ul>
+<li><strong>Screening</strong> (mammography, TB detection): Maximize <strong>recall</strong> — missing a cancer is worse than a false alarm.</li>
+<li><strong>Confirmatory diagnosis</strong> (biopsy prediction): Maximize <strong>precision</strong> — unnecessary procedures have real cost.</li>
+</ul>
+<p><strong>Handling class imbalance:</strong> Use weighted loss (<code>nn.CrossEntropyLoss(weight=...)</code>), weighted sampling (<code>WeightedRandomSampler</code>), or threshold tuning (don’t always use 0.5).</p>
+<p><strong>Critical: patient-level splits.</strong> If the same patient’s images appear in both training and test sets, the model learns patient-specific features and test metrics will be misleadingly high. Always split by <strong>patient ID</strong>, not by image.</p>
+<section id="code-snippet-evaluation-with-torchmetrics" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-evaluation-with-torchmetrics">Code Snippet: Evaluation with torchmetrics</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torchmetrics</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize metrics</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>accuracy <span class="op">=</span> torchmetrics.Accuracy(task<span class="op">=</span><span class="st">"binary"</span>).to(device)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>f1 <span class="op">=</span> torchmetrics.F1Score(task<span class="op">=</span><span class="st">"binary"</span>).to(device)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>confusion <span class="op">=</span> torchmetrics.ConfusionMatrix(task<span class="op">=</span><span class="st">"binary"</span>).to(device)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Evaluation loop</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">eval</span>()</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> torch.no_grad():</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> inputs, labels <span class="kw">in</span> test_loader:</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>        inputs, labels <span class="op">=</span> inputs.to(device), labels.to(device)</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>        outputs <span class="op">=</span> model(inputs)</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>        preds <span class="op">=</span> outputs.argmax(dim<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>        accuracy.update(preds, labels)</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>        f1.update(preds, labels)</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>        confusion.update(preds, labels)</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Accuracy: </span><span class="sc">{</span>accuracy<span class="sc">.</span>compute()<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"F1: </span><span class="sc">{</span>f1<span class="sc">.</span>compute()<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Confusion Matrix:</span><span class="ch">\n</span><span class="sc">{</span>confusion<span class="sc">.</span>compute()<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+</section>
+<section id="live-demo-1" class="level1">
+<h1>LIVE DEMO!!</h1>
+<p><a href="https://xkcd.com/2696/"><img src="media/xkcd_precision_vs_accuracy.png" class="img-fluid"></a></p>
+</section>
+<section id="object-detection" class="level1">
+<h1>Object Detection</h1>
+<section id="computer-vision-medical-applications" class="level2">
+<h2 class="anchored" data-anchor-id="computer-vision-medical-applications">Computer Vision: Medical Applications</h2>
+<p>Detection and segmentation are the most impactful CV tasks in medicine:</p>
+<ul>
+<li><strong>Nodule detection</strong> in chest CT / lung scans</li>
+<li><strong>Cell counting</strong> in microscopy images</li>
+<li><strong>Polyp detection</strong> in colonoscopy</li>
+<li><strong>Surgical instrument tracking</strong> in robotic surgery</li>
+<li><strong>Fracture detection</strong> in skeletal X-rays</li>
+<li><strong>Organ segmentation</strong> for surgical planning and volume measurement</li>
+<li><strong>Tumor delineation</strong> for radiation treatment planning and growth monitoring</li>
+<li><strong>Cell segmentation</strong> in microscopy for counting and morphology analysis</li>
+<li><strong>Tissue type differentiation</strong> (gray/white matter, cerebrospinal fluid in brain MRI)</li>
+<li><strong>Vessel segmentation</strong> for angiography analysis</li>
+<li><strong>Wound measurement</strong> from photographs</li>
+</ul>
+<p>Image classification tells you <em>what’s</em> in an image. Object detection tells you <em>what</em> and <em>where</em>. It’s the difference between “this chest X-ray contains a nodule” and “there is a 12mm nodule in the right upper lobe.” In clinical settings, location matters — a radiologist needs to know not just that something is abnormal, but exactly where to look.</p>
+<p>The output of a detection model is a set of <strong>bounding boxes</strong>, each with a class label and a confidence score.</p>
+<p><img src="media/object_detection_example.png" class="img-fluid"></p>
+</section>
+<section id="object-detection-key-concepts" class="level2">
+<h2 class="anchored" data-anchor-id="object-detection-key-concepts">Object Detection: Key Concepts</h2>
+<ul>
+<li><strong>Bounding Boxes</strong>: Rectangles that localize objects, represented as <code>(x_min, y_min, x_max, y_max)</code> or <code>(x_center, y_center, width, height)</code>.</li>
+<li><strong>IoU (Intersection over Union)</strong>: Measures overlap between predicted and ground-truth regions. <code>IoU = |X∩Y| / |X∪Y|</code>. A detection is “correct” when IoU exceeds a threshold (typically 0.5). Also used as a segmentation metric (see below).</li>
+<li><strong>Dice Coefficient</strong>: <code>2|X∩Y| / (|X|+|Y|)</code> — closely related to IoU, the standard metric for medical segmentation. Values range from 0 (no overlap) to 1 (perfect overlap).</li>
+<li><strong>Non-Maximum Suppression (NMS)</strong>: Detectors generate multiple overlapping predictions for the same object. NMS keeps the highest-confidence box and discards others with IoU above a threshold.</li>
+<li><strong>mAP (mean Average Precision)</strong>: The standard detection metric, averaging precision across recall levels and classes. <code>mAP@0.5</code> uses IoU threshold 0.5.</li>
+</ul>
+<p><img src="media/iou_diagram.png" class="img-fluid"></p>
+</section>
+<section id="detector-families" class="level2">
+<h2 class="anchored" data-anchor-id="detector-families">Detector Families</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Approach</th>
+<th style="text-align: left;">Examples</th>
+<th style="text-align: left;">How It Works</th>
+<th style="text-align: left;">Tradeoff</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Two-stage</strong></td>
+<td style="text-align: left;">Faster R-CNN, Mask R-CNN</td>
+<td style="text-align: left;">1. Generate region proposals 2. Classify each region</td>
+<td style="text-align: left;">More accurate, slower</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>One-stage</strong></td>
+<td style="text-align: left;">YOLO, SSD, RetinaNet, FCOS</td>
+<td style="text-align: left;">Predict boxes + classes in one pass</td>
+<td style="text-align: left;">Faster, sometimes less accurate</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Anchor-free</strong></td>
+<td style="text-align: left;">FCOS, CenterNet</td>
+<td style="text-align: left;">Predict object centers + sizes directly (no predefined box templates)</td>
+<td style="text-align: left;">Simpler, competitive accuracy</td>
+</tr>
+</tbody>
+</table>
+<p><img src="media/one_vs_two_stage_detectors.png" class="img-fluid"></p>
+</section>
+<section id="detection-with-torchvision" class="level2">
+<h2 class="anchored" data-anchor-id="detection-with-torchvision">Detection with torchvision</h2>
+<p><code>torchvision.models.detection</code> provides pre-trained detection models. Most use a <strong>Feature Pyramid Network (FPN)</strong> on top of the backbone — FPN builds feature maps at multiple resolutions so the model can detect both small and large objects (a 3-pixel nodule and a full-lung opacity need different scales).</p>
+<section id="reference-card-torchvision.models.detection" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-torchvision.models.detection">Reference Card: torchvision.models.detection</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Model</th>
+<th style="text-align: left;">Function</th>
+<th style="text-align: left;">Backbone</th>
+<th style="text-align: left;">Speed</th>
+<th style="text-align: left;">Accuracy</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Faster R-CNN</strong></td>
+<td style="text-align: left;"><code>fasterrcnn_resnet50_fpn(weights="DEFAULT")</code></td>
+<td style="text-align: left;">ResNet-50 + FPN</td>
+<td style="text-align: left;">Medium</td>
+<td style="text-align: left;">High</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>FCOS</strong></td>
+<td style="text-align: left;"><code>fcos_resnet50_fpn(weights="DEFAULT")</code></td>
+<td style="text-align: left;">ResNet-50 + FPN</td>
+<td style="text-align: left;">Medium</td>
+<td style="text-align: left;">High</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>RetinaNet</strong></td>
+<td style="text-align: left;"><code>retinanet_resnet50_fpn_v2(weights="DEFAULT")</code></td>
+<td style="text-align: left;">ResNet-50 + FPN</td>
+<td style="text-align: left;">Medium</td>
+<td style="text-align: left;">High</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>SSD</strong></td>
+<td style="text-align: left;"><code>ssd300_vgg16(weights="DEFAULT")</code></td>
+<td style="text-align: left;">VGG-16</td>
+<td style="text-align: left;">Fast</td>
+<td style="text-align: left;">Moderate</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>SSDLite</strong></td>
+<td style="text-align: left;"><code>ssdlite320_mobilenet_v3_large(weights="DEFAULT")</code></td>
+<td style="text-align: left;">MobileNetV3</td>
+<td style="text-align: left;">Very fast</td>
+<td style="text-align: left;">Moderate</td>
+</tr>
+</tbody>
+</table>
+<p>Most pre-trained detection models are trained on <strong>COCO</strong> (Common Objects in Context) — a large-scale detection dataset with 80 everyday object classes like person, car, cat, and chair. For medical applications, you’d fine-tune on your own annotated dataset.</p>
+</section>
+<section id="code-snippet-inference-with-pretrained-faster-r-cnn" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-inference-with-pretrained-faster-r-cnn">Code Snippet: Inference with Pretrained Faster R-CNN</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torchvision</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torchvision.models.detection <span class="im">import</span> fasterrcnn_resnet50_fpn, FasterRCNN_ResNet50_FPN_Weights</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torchvision.utils <span class="im">import</span> draw_bounding_boxes</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torchvision.transforms.functional <span class="im">import</span> to_pil_image</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Load pretrained model</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>weights <span class="op">=</span> FasterRCNN_ResNet50_FPN_Weights.DEFAULT</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> fasterrcnn_resnet50_fpn(weights<span class="op">=</span>weights)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">eval</span>()</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Prepare image</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>preprocess <span class="op">=</span> weights.transforms()</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>img_tensor <span class="op">=</span> preprocess(img)</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Run inference</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> torch.no_grad():</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    predictions <span class="op">=</span> model([img_tensor])[<span class="dv">0</span>]</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter by confidence</span></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>keep <span class="op">=</span> predictions[<span class="st">"scores"</span>] <span class="op">&gt;</span> <span class="fl">0.7</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>boxes <span class="op">=</span> predictions[<span class="st">"boxes"</span>][keep]</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> predictions[<span class="st">"labels"</span>][keep]</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>scores <span class="op">=</span> predictions[<span class="st">"scores"</span>][keep]</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize</span></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>label_names <span class="op">=</span> [weights.meta[<span class="st">"categories"</span>][l] <span class="cf">for</span> l <span class="kw">in</span> labels]</span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> draw_bounding_boxes(</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>    (img_tensor <span class="op">*</span> <span class="dv">255</span>).byte(), boxes, label_names, width<span class="op">=</span><span class="dv">3</span></span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>to_pil_image(result).show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="ultralytics-yolo" class="level2">
+<h2 class="anchored" data-anchor-id="ultralytics-yolo">Ultralytics YOLO</h2>
+<p>For the fastest path to object detection in practice, <strong>Ultralytics YOLO</strong> provides a batteries-included API:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ultralytics <span class="im">import</span> YOLO</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> YOLO(<span class="st">"yolo11n.pt"</span>)  <span class="co"># load pretrained YOLO11-nano</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> model(<span class="st">"chest_xray.png"</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>results[<span class="dv">0</span>].show()  <span class="co"># display with bounding boxes</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Fine-tune on custom dataset</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>model.train(data<span class="op">=</span><span class="st">"my_dataset.yaml"</span>, epochs<span class="op">=</span><span class="dv">50</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><a href="https://xkcd.com/1213/"><img src="media/xkcd_combination_vision_test.png" class="img-fluid"></a></p>
+<p><a href="https://xkcd.com/1213/"><img src="media/xkcd_combination_vision_test_colored.png" class="img-fluid"></a></p>
+</section>
+</section>
+<section id="image-segmentation" class="level1">
+<h1>Image Segmentation</h1>
+<p>Segmentation is the most detailed form of visual understanding — it classifies every pixel in an image. Instead of one label per image (classification) or boxes around objects (detection), segmentation produces a <strong>mask</strong> that precisely outlines each region of interest. This matters clinically: a bounding box around a tumor tells you roughly where it is, but a segmentation mask tells you its exact shape, volume, and boundaries — critical for surgical planning and radiation therapy.</p>
+<p><img src="media/segmentation_example.png" class="img-fluid"></p>
+<section id="types-of-segmentation" class="level2">
+<h2 class="anchored" data-anchor-id="types-of-segmentation">Types of Segmentation</h2>
+<ul>
+<li><strong>Semantic segmentation</strong>: Labels every pixel with a class. All pixels of the same class get the same label (e.g., all “lung” pixels are one color). Does not distinguish between instances.</li>
+<li><strong>Instance segmentation</strong>: Like semantic segmentation, but also distinguishes between individual objects (e.g., “cell #1” vs “cell #2”).</li>
+<li><strong>Panoptic segmentation</strong>: Combines both — every pixel gets a class AND an instance ID.</li>
+</ul>
+<p><img src="media/semantic_segmentation_illustration.png" class="img-fluid"></p>
+<p><img src="media/organ_segmentation.png" class="img-fluid"></p>
+<p><img src="media/tumor_segmentation.png" class="img-fluid"></p>
+</section>
+<section id="u-net-architecture" class="level2">
+<h2 class="anchored" data-anchor-id="u-net-architecture">U-Net Architecture</h2>
+<p><strong>U-Net</strong> (Ronneberger et al., 2015) was designed specifically for biomedical image segmentation and remains the dominant architecture for medical imaging. It works remarkably well even with very limited training data.</p>
+<blockquote class="blockquote">
+<p><strong>tl;dr</strong> — U-Net uses a U-shaped encoder-decoder CNN. The encoder extracts features at increasing granularity using convolutions and pooling. The decoder upsamples these features back to the original image size. Skip connections link encoder features to the decoder, combining “what” (semantic context) with “where” (spatial detail) for precise segmentation.</p>
+</blockquote>
+<p><img src="media/unet_architecture_diagram.png" class="img-fluid"></p>
+<p><strong>Key components</strong>:</p>
+<ol type="1">
+<li><strong>Encoder</strong>: Like a classification CNN — <code>Conv → ReLU → MaxPool</code> blocks with doubling filters (64 → 128 → 256 → 512). Reduces spatial resolution while extracting increasingly abstract features.</li>
+<li><strong>Bottleneck</strong>: Deepest point with the most abstract features.</li>
+<li><strong>Decoder</strong>: Mirrors the encoder — <code>Upsample → Conv → ReLU</code> blocks that recover spatial resolution.</li>
+<li><strong>Skip Connections</strong>: The critical innovation — encoder feature maps are concatenated with decoder maps at matching resolutions, combining spatial detail with semantic context.</li>
+<li><strong>Output Layer</strong>: 1×1 convolution → <code>Sigmoid</code> (binary) or <code>Softmax</code> (multi-class).</li>
+</ol>
+</section>
+<section id="loss-functions-for-segmentation" class="level2">
+<h2 class="anchored" data-anchor-id="loss-functions-for-segmentation">Loss Functions for Segmentation</h2>
+<p>Standard cross-entropy works but struggles with the extreme class imbalance common in medical segmentation (e.g., a small tumor in a large image). Specialized losses like <strong>Dice Loss</strong> optimize overlap directly, making them less sensitive to imbalance.</p>
+<section id="reference-card-segmentation-loss-functions" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-segmentation-loss-functions">Reference Card: Segmentation Loss Functions</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Loss</th>
+<th style="text-align: left;">Signature</th>
+<th style="text-align: left;">Best For</th>
+<th style="text-align: left;">Key Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>BCEWithLogitsLoss</strong></td>
+<td style="text-align: left;"><code>nn.BCEWithLogitsLoss()</code></td>
+<td style="text-align: left;">Binary segmentation, balanced classes</td>
+<td style="text-align: left;">Pixel-level cross-entropy with sigmoid built-in</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>CrossEntropyLoss</strong></td>
+<td style="text-align: left;"><code>nn.CrossEntropyLoss(weight=class_weights)</code></td>
+<td style="text-align: left;">Multi-class segmentation</td>
+<td style="text-align: left;">Pass <code>weight</code> tensor for class balancing</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Dice Loss</strong></td>
+<td style="text-align: left;"><code>smp.losses.DiceLoss()</code></td>
+<td style="text-align: left;">Imbalanced classes (most medical tasks)</td>
+<td style="text-align: left;">Optimizes <span class="math display">\[ 1 - (2|X∩Y|) / (|X|+|Y|) \]</span> directly</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Jaccard Loss</strong></td>
+<td style="text-align: left;"><code>smp.losses.JaccardLoss()</code></td>
+<td style="text-align: left;">Similar to Dice</td>
+<td style="text-align: left;">Optimizes <span class="math display">\[ 1 - |X∩Y| / |X∪Y|\]</span> , slightly different gradients</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Focal Loss</strong></td>
+<td style="text-align: left;"><code>smp.losses.FocalLoss()</code></td>
+<td style="text-align: left;">Severe class imbalance</td>
+<td style="text-align: left;">Downweights easy pixels, γ parameter controls focus</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>BCE + Dice</strong></td>
+<td style="text-align: left;">Sum both losses</td>
+<td style="text-align: left;">General-purpose</td>
+<td style="text-align: left;">Combines pixel-level and region-level optimization</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="segmentation-with-packages" class="level2">
+<h2 class="anchored" data-anchor-id="segmentation-with-packages">Segmentation with Packages</h2>
+<p>Rather than implementing U-Net from scratch, established libraries provide pre-built architectures with pre-trained encoders.</p>
+<section id="segmentation_models_pytorch-smp" class="level3">
+<h3 class="anchored" data-anchor-id="segmentation_models_pytorch-smp"><code>segmentation_models_pytorch</code> (smp)</h3>
+<p>The most popular segmentation library — provides U-Net, U-Net++, FPN, DeepLabV3+, and more, with any pre-trained encoder as the backbone.</p>
+<p>Key parameters for <code>smp.Unet()</code>:</p>
+<ul>
+<li><strong><code>encoder_name</code></strong> (str): Backbone architecture (e.g., <code>"resnet18"</code>, <code>"efficientnet-b0"</code>, <code>"mobilenet_v2"</code>)</li>
+<li><strong><code>encoder_weights</code></strong> (str): Pre-trained weights (e.g., <code>"imagenet"</code>) or <code>None</code></li>
+<li><strong><code>in_channels</code></strong> (int): Input channels (3 for RGB, 1 for grayscale)</li>
+<li><strong><code>classes</code></strong> (int): Number of output segmentation classes</li>
+<li><strong><code>activation</code></strong> (str/None): Output activation (<code>"sigmoid"</code> for binary, <code>None</code> for logits)</li>
+</ul>
+<p>Returns an <code>nn.Module</code> with <code>.encoder</code>, <code>.decoder</code>, <code>.segmentation_head</code> attributes.</p>
+</section>
+<section id="reference-card-smp-architectures" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-smp-architectures">Reference Card: smp Architectures</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Architecture</th>
+<th style="text-align: left;">Function</th>
+<th style="text-align: left;">Best For</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>U-Net</strong></td>
+<td style="text-align: left;"><code>smp.Unet(...)</code></td>
+<td style="text-align: left;">General-purpose, medical imaging standard</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>U-Net++</strong></td>
+<td style="text-align: left;"><code>smp.UnetPlusPlus(...)</code></td>
+<td style="text-align: left;">Nested skip connections, improved boundary accuracy</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>FPN</strong></td>
+<td style="text-align: left;"><code>smp.FPN(...)</code></td>
+<td style="text-align: left;">Multi-scale features, good for varied object sizes</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>DeepLabV3+</strong></td>
+<td style="text-align: left;"><code>smp.DeepLabV3Plus(...)</code></td>
+<td style="text-align: left;">Strong at multi-scale context with dilated convolutions</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="torchvision.models.segmentation" class="level3">
+<h3 class="anchored" data-anchor-id="torchvision.models.segmentation"><code>torchvision.models.segmentation</code></h3>
+<p><code>torchvision</code> also provides pre-trained segmentation models:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Model</th>
+<th style="text-align: left;">Function</th>
+<th style="text-align: left;">Architecture</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>DeepLabV3</strong></td>
+<td style="text-align: left;"><code>deeplabv3_resnet50(weights="DEFAULT")</code></td>
+<td style="text-align: left;">Dilated convolutions (filters with spacing between elements to see a wider area without more parameters) + ResNet-50</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>FCN</strong></td>
+<td style="text-align: left;"><code>fcn_resnet50(weights="DEFAULT")</code></td>
+<td style="text-align: left;">Fully Convolutional Network (replaces all dense layers with convolutions so it works on any input size) + ResNet-50</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>LRASPP</strong></td>
+<td style="text-align: left;"><code>lraspp_mobilenet_v3_large(weights="DEFAULT")</code></td>
+<td style="text-align: left;">Lightweight mobile segmentation head + MobileNetV3 — fast, lower accuracy</td>
+</tr>
+</tbody>
+</table>
+<p>For specialized medical imaging workflows (3D volumes, DICOM series, medical-specific transforms and architectures), see <strong><a href="https://monai.io/">MONAI</a></strong> — a PyTorch framework built specifically for healthcare imaging that extends <code>torchvision</code>-style segmentation with 3D support, medical-specific losses, and clinical data loaders.</p>
+</section>
+<section id="code-snippet-u-net-with-smp" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-u-net-with-smp">Code Snippet: U-Net with smp</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> segmentation_models_pytorch <span class="im">as</span> smp</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create U-Net with pretrained ResNet-18 encoder</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> smp.Unet(</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    encoder_name<span class="op">=</span><span class="st">"resnet18"</span>,</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    encoder_weights<span class="op">=</span><span class="st">"imagenet"</span>,</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    in_channels<span class="op">=</span><span class="dv">1</span>,         <span class="co"># grayscale chest X-ray</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    classes<span class="op">=</span><span class="dv">1</span>,             <span class="co"># binary: lung vs background</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    activation<span class="op">=</span><span class="st">"sigmoid"</span>,</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Dice loss for training</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>loss_fn <span class="op">=</span> smp.losses.DiceLoss(mode<span class="op">=</span><span class="st">"binary"</span>)</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Training is the same PyTorch loop as classification</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="co"># but inputs are images and targets are masks</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> images, masks <span class="kw">in</span> train_loader:</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>    optimizer.zero_grad()</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>    outputs <span class="op">=</span> model(images)</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>    loss <span class="op">=</span> loss_fn(outputs, masks)</span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>    loss.backward()</span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>    optimizer.step()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><a href="https://xkcd.com/1138/"><img src="media/xkcd_heatmap.png" class="img-fluid"></a></p>
+</section>
+</section>
+</section>
+<section id="advanced-topics-the-bigger-picture" class="level1">
+<h1>Advanced Topics &amp; The Bigger Picture</h1>
+<p>Computer vision is evolving rapidly. Here’s what’s on the frontier — concepts to be aware of, not necessarily to implement today.</p>
+<section id="vision-transformers-vits" class="level2">
+<h2 class="anchored" data-anchor-id="vision-transformers-vits">Vision Transformers (ViTs)</h2>
+<p>Transformers — the architecture behind GPT and BERT — have been adapted for images. A <strong>Vision Transformer</strong> splits an image into patches (e.g., 16×16 pixels) and processes them as a sequence of tokens with self-attention, excelling at capturing <strong>global relationships</strong> across the entire image.</p>
+<p><img src="media/vit_diagram.png" class="img-fluid"></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> timm</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> timm.create_model(<span class="st">"vit_base_patch16_224"</span>, pretrained<span class="op">=</span><span class="va">True</span>, num_classes<span class="op">=</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="foundation-models-for-vision" class="level2">
+<h2 class="anchored" data-anchor-id="foundation-models-for-vision">Foundation Models for Vision</h2>
+<ul>
+<li><strong>SAM (Segment Anything)</strong> — given any image and a prompt (point, box, or text), produces a segmentation mask for objects it has never seen.</li>
+<li><strong>CLIP</strong> — learns visual concepts from natural language, enabling zero-shot image classification via text prompts.</li>
+<li><strong>BiomedCLIP</strong> — CLIP variant trained on biomedical image-text pairs from PubMed.</li>
+</ul>
+</section>
+<section id="explainability-in-medical-cv" class="level2">
+<h2 class="anchored" data-anchor-id="explainability-in-medical-cv">Explainability in Medical CV</h2>
+<p>For clinical adoption, models must be interpretable. <strong>Grad-CAM</strong> uses gradients to produce heatmap overlays showing which image regions most influenced the prediction. Regulatory bodies (FDA, CE marking) increasingly require explainability, and clinicians won’t trust a model they can’t understand.</p>
+<p><img src="media/grad_cam_example.png" class="img-fluid"></p>
+</section>
+<section id="self-supervised-learning" class="level2">
+<h2 class="anchored" data-anchor-id="self-supervised-learning">Self-Supervised Learning</h2>
+<p>Most medical images are unlabeled. Self-supervised methods learn visual features from unlabeled data by solving pretext tasks (predicting rotations, reconstructing masked patches), then fine-tune for clinical tasks with very few labels. Key approaches: contrastive learning (SimCLR, MoCo), masked image modeling (MAE), and DINOv2.</p>
+</section>
+<section id="d-volumetric-imaging" class="level2">
+<h2 class="anchored" data-anchor-id="d-volumetric-imaging">3D &amp; Volumetric Imaging</h2>
+<p>Many medical modalities produce 3D volumes (CT, MRI). <strong>3D U-Net</strong> and <code>nn.Conv3d</code> extend segmentation to volumes; <strong>TorchIO</strong> and <strong>MONAI</strong> provide specialized transforms and data loading for volumetric workflows.</p>
+</section>
+</section>
+<section id="live-demo-2" class="level1">
+<h1>LIVE DEMO!!!</h1>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/christopherseaman\.github\.io\/datasci_223");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

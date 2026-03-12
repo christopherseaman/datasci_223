@@ -1,0 +1,1894 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>lecture_02 – DataSci-223</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-d94228c28a1234acf2b6c10d2198ec8e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../01/index.html">Foundation</a></li><li class="breadcrumb-item"><a href="../02/index.html">02. Polars</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">DataSci-223</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="https://github.com/christopherseaman/datasci_223" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GitHub</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="https://discord.gg/QdTYgR45er" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Discord</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Foundation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../01/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">01. Debugging</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../02/index.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">02. Polars</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../03/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">03. SQL</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../04/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">04. NLP</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Machine Learning</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../05/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">05. Classification</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../06/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">06. Neural Networks</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../07/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">07. Transformers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../08/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">08. LLM Workflows</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Applications</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../09/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">09. Computer Vision</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../10/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10. A/B Testing</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#links-self-guided-review" id="toc-links-self-guided-review" class="nav-link active" data-scroll-target="#links-self-guided-review">Links &amp; Self-Guided Review</a></li>
+  <li><a href="#why-memory-limits-sneak-up-on-us" id="toc-why-memory-limits-sneak-up-on-us" class="nav-link" data-scroll-target="#why-memory-limits-sneak-up-on-us">Why Memory Limits Sneak Up On Us</a>
+  <ul class="collapse">
+  <li><a href="#laptop-specs-vs-dataset-footprints" id="toc-laptop-specs-vs-dataset-footprints" class="nav-link" data-scroll-target="#laptop-specs-vs-dataset-footprints">Laptop specs vs dataset footprints</a></li>
+  <li><a href="#warning-signs-you-are-hitting-ram-limits" id="toc-warning-signs-you-are-hitting-ram-limits" class="nav-link" data-scroll-target="#warning-signs-you-are-hitting-ram-limits">Warning signs you are hitting RAM limits</a></li>
+  <li><a href="#quick-pivot-when-pandas-crashes" id="toc-quick-pivot-when-pandas-crashes" class="nav-link" data-scroll-target="#quick-pivot-when-pandas-crashes">Quick pivot when pandas crashes</a></li>
+  <li><a href="#code-snippet-pushing-pandas-too-far" id="toc-code-snippet-pushing-pandas-too-far" class="nav-link" data-scroll-target="#code-snippet-pushing-pandas-too-far">Code Snippet: Pushing pandas too far</a></li>
+  </ul></li>
+  <li><a href="#polars-essentials" id="toc-polars-essentials" class="nav-link" data-scroll-target="#polars-essentials">Polars Essentials</a>
+  <ul class="collapse">
+  <li><a href="#columnar-storage-row-vs-column" id="toc-columnar-storage-row-vs-column" class="nav-link" data-scroll-target="#columnar-storage-row-vs-column">Columnar storage (row vs column)</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-pandas-polars-translation" id="toc-reference-card-pandas-polars-translation" class="nav-link" data-scroll-target="#reference-card-pandas-polars-translation">Reference Card: pandas → Polars translation</a></li>
+  </ul></li>
+  <li><a href="#scan_csv-and-scan_parquet" id="toc-scan_csv-and-scan_parquet" class="nav-link" data-scroll-target="#scan_csv-and-scan_parquet"><code>scan_csv</code> and <code>scan_parquet</code></a>
+  <ul class="collapse">
+  <li><a href="#reference-card-scan_csv-scan_parquet" id="toc-reference-card-scan_csv-scan_parquet" class="nav-link" data-scroll-target="#reference-card-scan_csv-scan_parquet">Reference Card: <code>scan_csv</code> / <code>scan_parquet</code></a></li>
+  <li><a href="#code-snippet-lazy-scan-schema-preview" id="toc-code-snippet-lazy-scan-schema-preview" class="nav-link" data-scroll-target="#code-snippet-lazy-scan-schema-preview">Code Snippet: Lazy scan + schema preview</a></li>
+  <li><a href="#reference-card-collect_schema" id="toc-reference-card-collect_schema" class="nav-link" data-scroll-target="#reference-card-collect_schema">Reference Card: <code>collect_schema()</code></a></li>
+  </ul></li>
+  <li><a href="#pl.dataframe" id="toc-pl.dataframe" class="nav-link" data-scroll-target="#pl.dataframe"><code>pl.DataFrame()</code></a>
+  <ul class="collapse">
+  <li><a href="#reference-card-pl.dataframe" id="toc-reference-card-pl.dataframe" class="nav-link" data-scroll-target="#reference-card-pl.dataframe">Reference Card: <code>pl.DataFrame</code></a></li>
+  <li><a href="#code-snippet-small-benchmark-table" id="toc-code-snippet-small-benchmark-table" class="nav-link" data-scroll-target="#code-snippet-small-benchmark-table">Code Snippet: Small benchmark table</a></li>
+  </ul></li>
+  <li><a href="#select-and-filter" id="toc-select-and-filter" class="nav-link" data-scroll-target="#select-and-filter"><code>select()</code> and <code>filter()</code></a>
+  <ul class="collapse">
+  <li><a href="#reference-card-select-filter" id="toc-reference-card-select-filter" class="nav-link" data-scroll-target="#reference-card-select-filter">Reference Card: <code>select</code> / <code>filter</code></a></li>
+  <li><a href="#code-snippet-projection-predicate-pushdown" id="toc-code-snippet-projection-predicate-pushdown" class="nav-link" data-scroll-target="#code-snippet-projection-predicate-pushdown">Code Snippet: Projection + predicate pushdown</a></li>
+  </ul></li>
+  <li><a href="#with_columns-and-expression-helpers" id="toc-with_columns-and-expression-helpers" class="nav-link" data-scroll-target="#with_columns-and-expression-helpers"><code>with_columns()</code> and expression helpers</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-expression-toolbox" id="toc-reference-card-expression-toolbox" class="nav-link" data-scroll-target="#reference-card-expression-toolbox">Reference Card: Expression toolbox</a></li>
+  <li><a href="#code-snippet-derive-keys-time-parts" id="toc-code-snippet-derive-keys-time-parts" class="nav-link" data-scroll-target="#code-snippet-derive-keys-time-parts">Code Snippet: Derive keys + time parts</a></li>
+  </ul></li>
+  <li><a href="#distinct-counts-and-prefix-filters" id="toc-distinct-counts-and-prefix-filters" class="nav-link" data-scroll-target="#distinct-counts-and-prefix-filters">Distinct counts and prefix filters</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-distinct-prefix-helpers" id="toc-reference-card-distinct-prefix-helpers" class="nav-link" data-scroll-target="#reference-card-distinct-prefix-helpers">Reference Card: Distinct + prefix helpers</a></li>
+  <li><a href="#code-snippet-distinct-patients-prefix-filter" id="toc-code-snippet-distinct-patients-prefix-filter" class="nav-link" data-scroll-target="#code-snippet-distinct-patients-prefix-filter">Code Snippet: Distinct patients + prefix filter</a></li>
+  <li><a href="#aside-data-model-for-health-data-workflows" id="toc-aside-data-model-for-health-data-workflows" class="nav-link" data-scroll-target="#aside-data-model-for-health-data-workflows">Aside: Data model for health-data workflows</a></li>
+  </ul></li>
+  <li><a href="#group_by-agg-join" id="toc-group_by-agg-join" class="nav-link" data-scroll-target="#group_by-agg-join"><code>group_by</code> + <code>agg</code> + <code>join</code></a>
+  <ul class="collapse">
+  <li><a href="#reference-card-group_by-agg-join-sort" id="toc-reference-card-group_by-agg-join-sort" class="nav-link" data-scroll-target="#reference-card-group_by-agg-join-sort">Reference Card: <code>group_by</code>, <code>agg</code>, <code>join</code>, <code>sort</code></a></li>
+  <li><a href="#code-snippet-monthly-facility-summary" id="toc-code-snippet-monthly-facility-summary" class="nav-link" data-scroll-target="#code-snippet-monthly-facility-summary">Code Snippet: Monthly facility summary</a></li>
+  <li><a href="#code-snippet-pandas-vs-polars" id="toc-code-snippet-pandas-vs-polars" class="nav-link" data-scroll-target="#code-snippet-pandas-vs-polars">Code Snippet: pandas vs Polars</a></li>
+  <li><a href="#does-pandas-support-larger-than-memory-data-now" id="toc-does-pandas-support-larger-than-memory-data-now" class="nav-link" data-scroll-target="#does-pandas-support-larger-than-memory-data-now">Does pandas support larger-than-memory data now?</a></li>
+  <li><a href="#columnar-hand-off" id="toc-columnar-hand-off" class="nav-link" data-scroll-target="#columnar-hand-off">Columnar hand-off</a></li>
+  <li><a href="#advanced-aside-parquet-layout-why-it-affects-speed" id="toc-advanced-aside-parquet-layout-why-it-affects-speed" class="nav-link" data-scroll-target="#advanced-aside-parquet-layout-why-it-affects-speed">Advanced aside: Parquet layout (why it affects speed)</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#live-demo" id="toc-live-demo" class="nav-link" data-scroll-target="#live-demo">LIVE DEMO</a></li>
+  <li><a href="#lazy-execution-streaming-patterns" id="toc-lazy-execution-streaming-patterns" class="nav-link" data-scroll-target="#lazy-execution-streaming-patterns">Lazy Execution &amp; Streaming Patterns</a>
+  <ul class="collapse">
+  <li><a href="#lazyframe-methods" id="toc-lazyframe-methods" class="nav-link" data-scroll-target="#lazyframe-methods"><code>LazyFrame</code> methods</a></li>
+  <li><a href="#lazyframe.explain-and-.collectenginestreaming" id="toc-lazyframe.explain-and-.collectenginestreaming" class="nav-link" data-scroll-target="#lazyframe.explain-and-.collectenginestreaming"><code>LazyFrame.explain()</code> and <code>.collect(engine="streaming")</code></a>
+  <ul class="collapse">
+  <li><a href="#diagnose-and-trust-the-plan" id="toc-diagnose-and-trust-the-plan" class="nav-link" data-scroll-target="#diagnose-and-trust-the-plan">Diagnose and trust the plan</a></li>
+  </ul></li>
+  <li><a href="#collect-and-sink_parquet" id="toc-collect-and-sink_parquet" class="nav-link" data-scroll-target="#collect-and-sink_parquet"><code>collect()</code> and <code>sink_parquet()</code></a>
+  <ul class="collapse">
+  <li><a href="#reference-card-collecting-and-sinking" id="toc-reference-card-collecting-and-sinking" class="nav-link" data-scroll-target="#reference-card-collecting-and-sinking">Reference Card: Collecting and sinking</a></li>
+  <li><a href="#code-snippet-stream-then-write" id="toc-code-snippet-stream-then-write" class="nav-link" data-scroll-target="#code-snippet-stream-then-write">Code Snippet: Stream, then write</a></li>
+  </ul></li>
+  <li><a href="#to_pandas" id="toc-to_pandas" class="nav-link" data-scroll-target="#to_pandas"><code>to_pandas()</code></a>
+  <ul class="collapse">
+  <li><a href="#reference-card-to_pandas" id="toc-reference-card-to_pandas" class="nav-link" data-scroll-target="#reference-card-to_pandas">Reference Card: <code>to_pandas</code></a></li>
+  <li><a href="#code-snippet-convert-for-plotting" id="toc-code-snippet-convert-for-plotting" class="nav-link" data-scroll-target="#code-snippet-convert-for-plotting">Code Snippet: Convert for plotting</a></li>
+  </ul></li>
+  <li><a href="#sql-with-sqlcontext" id="toc-sql-with-sqlcontext" class="nav-link" data-scroll-target="#sql-with-sqlcontext">SQL with <code>SQLContext</code></a>
+  <ul class="collapse">
+  <li><a href="#reference-card-sqlcontext" id="toc-reference-card-sqlcontext" class="nav-link" data-scroll-target="#reference-card-sqlcontext">Reference Card: <code>SQLContext</code></a></li>
+  <li><a href="#code-snippet-sql-style-query-lazy-execution" id="toc-code-snippet-sql-style-query-lazy-execution" class="nav-link" data-scroll-target="#code-snippet-sql-style-query-lazy-execution">Code Snippet: SQL-style query, lazy execution</a></li>
+  </ul></li>
+  <li><a href="#sort-and-sample" id="toc-sort-and-sample" class="nav-link" data-scroll-target="#sort-and-sample"><code>sort()</code> and <code>sample()</code></a>
+  <ul class="collapse">
+  <li><a href="#reference-card-ordering-quick-checks" id="toc-reference-card-ordering-quick-checks" class="nav-link" data-scroll-target="#reference-card-ordering-quick-checks">Reference Card: Ordering + quick checks</a></li>
+  <li><a href="#code-snippet-small-sanity-sample" id="toc-code-snippet-small-sanity-sample" class="nav-link" data-scroll-target="#code-snippet-small-sanity-sample">Code Snippet: Small sanity sample</a></li>
+  </ul></li>
+  <li><a href="#streaming-limits-when-streaming-wont-help" id="toc-streaming-limits-when-streaming-wont-help" class="nav-link" data-scroll-target="#streaming-limits-when-streaming-wont-help">Streaming limits (when streaming won’t help)</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-lazy-vs-eager" id="toc-reference-card-lazy-vs-eager" class="nav-link" data-scroll-target="#reference-card-lazy-vs-eager">Reference Card: Lazy vs eager</a></li>
+  <li><a href="#code-snippet-multi-source-lazy-join" id="toc-code-snippet-multi-source-lazy-join" class="nav-link" data-scroll-target="#code-snippet-multi-source-lazy-join">Code Snippet: Multi-source lazy join</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#live-demo-1" id="toc-live-demo-1" class="nav-link" data-scroll-target="#live-demo-1">LIVE DEMO</a></li>
+  <li><a href="#building-a-polars-pipeline" id="toc-building-a-polars-pipeline" class="nav-link" data-scroll-target="#building-a-polars-pipeline">Building a Polars Pipeline</a>
+  <ul class="collapse">
+  <li><a href="#pipeline-anatomy-inputs---transforms---outputs" id="toc-pipeline-anatomy-inputs---transforms---outputs" class="nav-link" data-scroll-target="#pipeline-anatomy-inputs---transforms---outputs">Pipeline anatomy: inputs -&gt; transforms -&gt; outputs</a></li>
+  <li><a href="#memory-profile-streaming-vs-eager" id="toc-memory-profile-streaming-vs-eager" class="nav-link" data-scroll-target="#memory-profile-streaming-vs-eager">Memory profile: streaming vs eager</a></li>
+  <li><a href="#monitor-early-runs" id="toc-monitor-early-runs" class="nav-link" data-scroll-target="#monitor-early-runs">Monitor early runs</a></li>
+  <li><a href="#checklist-from-pandas-crash-to-polars-pipeline" id="toc-checklist-from-pandas-crash-to-polars-pipeline" class="nav-link" data-scroll-target="#checklist-from-pandas-crash-to-polars-pipeline">Checklist: from pandas crash to Polars pipeline</a></li>
+  <li><a href="#methodology-config-driven-pipeline" id="toc-methodology-config-driven-pipeline" class="nav-link" data-scroll-target="#methodology-config-driven-pipeline">Methodology: config-driven pipeline</a>
+  <ul class="collapse">
+  <li><a href="#code-snippet-yaml-driven-pipeline" id="toc-code-snippet-yaml-driven-pipeline" class="nav-link" data-scroll-target="#code-snippet-yaml-driven-pipeline">Code Snippet: yaml-driven pipeline</a></li>
+  <li><a href="#reference-card-pipeline-ergonomics" id="toc-reference-card-pipeline-ergonomics" class="nav-link" data-scroll-target="#reference-card-pipeline-ergonomics">Reference Card: Pipeline ergonomics</a></li>
+  <li><a href="#code-snippet-cli-batch-skeleton" id="toc-code-snippet-cli-batch-skeleton" class="nav-link" data-scroll-target="#code-snippet-cli-batch-skeleton">Code Snippet: CLI batch skeleton</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#live-demo-2" id="toc-live-demo-2" class="nav-link" data-scroll-target="#live-demo-2">LIVE DEMO</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../01/index.html">Foundation</a></li><li class="breadcrumb-item"><a href="../02/index.html">02. Polars</a></li></ol></nav></header>
+
+
+
+
+<p>02: Scaling Tabular Workflows with Polars ⚡</p>
+<ul>
+<li>hw02 - #FIXME add GitHub Classroom link once ready</li>
+</ul>
+<section id="links-self-guided-review" class="level1">
+<h1>Links &amp; Self-Guided Review</h1>
+<ul>
+<li><a href="https://docs.pola.rs/user-guide/">Polars User Guide</a> – official docs with eager + lazy API examples</li>
+<li><a href="https://arrow.apache.org/overview/">Apache Arrow Columnar Format</a> – why columnar memory layouts matter</li>
+<li><a href="https://parquet.apache.org/docs/file-format/">Parquet Fundamentals</a> – format internals and predicate pushdown</li>
+<li><a href="https://realpython.com/csv-python/#working-with-large-csv-files-using-pandas">Real Python: Working With Large CSVs</a> – diagnosing <code>MemoryError</code></li>
+<li><a href="https://code.visualstudio.com/docs/python/python-tutorial">VS Code: Python performance tips</a> – environment setup + profiling</li>
+<li><code>scripts/fetch_xkcd_2x.py</code> – grab XKCD comics (see <code>all_xkcd.csv</code> index) for lecture visuals</li>
+</ul>
+</section>
+<section id="why-memory-limits-sneak-up-on-us" class="level1">
+<h1>Why Memory Limits Sneak Up On Us</h1>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/memory_vs_dataset.png" class="img-fluid figure-img"></p>
+<figcaption>Dataset vs laptop memory</figcaption>
+</figure>
+</div>
+<p><em>Chart shows estimated in-memory size; raw on-disk sizes are in the table below.</em></p>
+<p>Health datasets outgrow laptop RAM quickly: a handful of CSVs with vitals, labs, and encounters can exceed 16 GB once loaded. Attempting to “just read the file” leads to system thrash, swap usage, and eventually Python <code>MemoryError</code>s that interrupt the workflow.</p>
+<section id="laptop-specs-vs-dataset-footprints" class="level3">
+<h3 class="anchored" data-anchor-id="laptop-specs-vs-dataset-footprints">Laptop specs vs dataset footprints</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 14%">
+<col style="width: 29%">
+<col style="width: 21%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Dataset</th>
+<th>Typical raw size</th>
+<th>In-memory pandas size</th>
+<th>Fits on 16 GB laptop?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Intake forms (CSV)</td>
+<td>250 MB</td>
+<td>~1.2 GB (due to dtype inflation)</td>
+<td>✅</td>
+</tr>
+<tr class="even">
+<td>Longitudinal vitals (CSV)</td>
+<td>6 GB</td>
+<td>~14 GB</td>
+<td>⚠️ borderline</td>
+</tr>
+<tr class="odd">
+<td>EHR encounter log (CSV)</td>
+<td>18 GB</td>
+<td>~42 GB</td>
+<td>❌</td>
+</tr>
+<tr class="even">
+<td>Imaging metadata (Parquet)</td>
+<td>9 GB</td>
+<td>~9 GB</td>
+<td>⚠️ if other apps closed</td>
+</tr>
+<tr class="odd">
+<td>Claims archive (partitioned Parquet)</td>
+<td>120 GB</td>
+<td>streamed</td>
+<td>✅ (with streaming)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="warning-signs-you-are-hitting-ram-limits" class="level3">
+<h3 class="anchored" data-anchor-id="warning-signs-you-are-hitting-ram-limits">Warning signs you are hitting RAM limits</h3>
+<ul>
+<li><code>top</code> or <code>Activity Monitor</code> shows Python ballooning toward total RAM</li>
+<li>Fans spin, everything slows, disk swap spikes</li>
+<li>OS kills kernel/terminal; <code>MemoryError</code> or <code>Killed: 9</code> messages</li>
+<li>Notebook kernel restarts when running seemingly “simple” cells</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/xkcd_data_quality.png" class="img-fluid figure-img"></p>
+<figcaption>Data quality fire drill</figcaption>
+</figure>
+</div>
+<p><em>If the rows are literally on fire, start fixing quality before scaling anything else.</em></p>
+<p>Grab a quick sense of scale (<code>du -sh data/</code>, <code>wc -l big_file.csv</code>) before committing to a full load—if numbers dwarf your RAM, pivot immediately.</p>
+</section>
+<section id="quick-pivot-when-pandas-crashes" class="level3">
+<h3 class="anchored" data-anchor-id="quick-pivot-when-pandas-crashes">Quick pivot when pandas crashes</h3>
+<ol type="1">
+<li><strong>Stop the read</strong> once memory spikes—killing the kernel only hides the problem.</li>
+<li><strong>Profile the file size</strong> (<code>du -sh</code>, <code>wc -l</code>) so you know what you are up against.</li>
+<li><strong>Convert the source</strong> to Parquet or Arrow once using a machine with headroom.</li>
+<li><strong>Rebuild the transform</strong> with Polars lazy scans (<code>pl.scan_*</code>) and streaming collects.</li>
+<li><strong>Cache intermediate outputs</strong> so future runs never touch the raw CSV again.</li>
+</ol>
+</section>
+<section id="code-snippet-pushing-pandas-too-far" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-pushing-pandas-too-far">Code Snippet: Pushing pandas too far</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>PATH <span class="op">=</span> Path(<span class="st">"data/hospital_records_2020_2023.csv"</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.read_csv(PATH)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">MemoryError</span>:</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">raise</span> <span class="pp">SystemExit</span>(</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Dataset too large: consider chunked loading or Polars streaming"</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This is the moment to stop fighting pandas and switch strategies (column pruning, chunked readers, or a Polars lazy pipeline) <em>before</em> debugging phantom crashes.</p>
+</section>
+</section>
+<section id="polars-essentials" class="level1">
+<h1>Polars Essentials</h1>
+<section id="columnar-storage-row-vs-column" class="level2">
+<h2 class="anchored" data-anchor-id="columnar-storage-row-vs-column">Columnar storage (row vs column)</h2>
+<p>Columnar formats keep same-typed values together, which makes scans faster and cheaper than row-wise text formats.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/columnar.png" class="img-fluid figure-img"></p>
+<figcaption>Row vs column layout</figcaption>
+</figure>
+</div>
+<p>Why this matters for Polars + Parquet:</p>
+<ul>
+<li><strong>Projection pushdown:</strong> read only the columns you select.</li>
+<li><strong>Predicate pushdown:</strong> skip row groups whose stats fail the filter.</li>
+<li><strong>Compression:</strong> contiguous same-typed values compress more effectively.</li>
+</ul>
+<p><em>Prompt:</em> If you only need <code>patient_id</code> + <code>heart_rate</code>, what does a columnar engine read vs a CSV reader?</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/simd.png" class="img-fluid figure-img"></p>
+<figcaption>SIMD on columnar data</figcaption>
+</figure>
+</div>
+<p>SIMD works best when values are contiguous in memory, which columnar layouts enable.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/polars_vs_pandas.png" class="img-fluid figure-img"></p>
+<figcaption>Polars vs pandas runtime</figcaption>
+</figure>
+</div>
+<p><em>Example benchmark on a 12M-row vitals dataset on a single laptop; exact timings vary by hardware and data layout.</em></p>
+<p>pandas is ubiquitous and a great default; Polars is often adopted case-by-case when you hit real constraints (runtime, memory, I/O).</p>
+<p>Polars is pandas without the hidden index and with a Rust engine under the hood. Two mindshifts:</p>
+<ul>
+<li><strong>Everything is explicit columns</strong>—no surprise index alignment.</li>
+<li><strong>Expressions replace per-row Python</strong>—filters, casts, joins compile to vectorized Rust kernels.</li>
+</ul>
+<section id="reference-card-pandas-polars-translation" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-pandas-polars-translation">Reference Card: pandas → Polars translation</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 27%">
+<col style="width: 51%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>To do this</th>
+<th>You know this in pandas</th>
+<th>Do this in Polars</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Load a CSV</td>
+<td><code>pd.read_csv("file.csv")</code></td>
+<td><code>pl.read_csv("file.csv")</code> <em>(eager preview)</em></td>
+</tr>
+<tr class="even">
+<td>Lazy scan (build plan)</td>
+<td><em>(no equivalent)</em></td>
+<td><code>pl.scan_csv("file.csv")</code> <em>(build plan, nothing runs yet)</em></td>
+</tr>
+<tr class="odd">
+<td>Filter rows</td>
+<td><code>df[df.age &gt; 65]</code></td>
+<td><code>.filter(pl.col("age") &gt; 65)</code></td>
+</tr>
+<tr class="even">
+<td>Add/transform columns</td>
+<td><code>df.assign(bmi=...)</code></td>
+<td><code>.with_columns(pl.col("weight") / pl.col("height")**2)</code></td>
+</tr>
+<tr class="odd">
+<td>Aggregate by group</td>
+<td><code>df.groupby("cohort").agg(...)</code></td>
+<td><code>.group_by("cohort").agg([...])</code></td>
+</tr>
+<tr class="even">
+<td>Join tables</td>
+<td><code>df.merge(dim, on="id")</code></td>
+<td><code>.join(dim, on="id")</code></td>
+</tr>
+<tr class="odd">
+<td>Stream-collect results</td>
+<td><em>(n/a)</em></td>
+<td><code>.collect(engine="streaming")</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="scan_csv-and-scan_parquet" class="level2">
+<h2 class="anchored" data-anchor-id="scan_csv-and-scan_parquet"><code>scan_csv</code> and <code>scan_parquet</code></h2>
+<p>Lazy scans build a query plan without loading the full dataset. Use them for large files, globs, and any pipeline you want to keep in streaming mode.</p>
+<section id="reference-card-scan_csv-scan_parquet" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-scan_csv-scan_parquet">Reference Card: <code>scan_csv</code> / <code>scan_parquet</code></h3>
+<ul>
+<li><strong>Function:</strong> <code>pl.scan_csv(...)</code>, <code>pl.scan_parquet(...)</code></li>
+<li><strong>Purpose:</strong> Create a <code>LazyFrame</code> for pushdown + optimization</li>
+<li><strong>Key Parameters:</strong>
+<ul>
+<li><code>try_parse_dates</code> (CSV): parse date-like strings during scan</li>
+<li><code>columns</code> (both): read only specific columns</li>
+<li><code>dtypes</code> / <code>schema</code> (CSV): set column types and avoid inference</li>
+</ul></li>
+<li><strong>Returns:</strong> <code>LazyFrame</code></li>
+</ul>
+</section>
+<section id="code-snippet-lazy-scan-schema-preview" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-lazy-scan-schema-preview">Code Snippet: Lazy scan + schema preview</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>sensor <span class="op">=</span> pl.scan_parquet(<span class="st">"data/sensor_hrv/*.parquet"</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>vitals <span class="op">=</span> pl.scan_csv(<span class="st">"data/vitals/*.csv"</span>, try_parse_dates<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sensor.collect_schema())</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(vitals.collect_schema())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="reference-card-collect_schema" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-collect_schema">Reference Card: <code>collect_schema()</code></h3>
+<ul>
+<li><strong>Method:</strong> <code>LazyFrame.collect_schema()</code></li>
+<li><strong>Purpose:</strong> Retrieve column names and data types without executing the full query</li>
+<li><strong>Returns:</strong> <code>Schema</code> (dict-like mapping of column names → dtypes)</li>
+<li><strong>Why use it:</strong>
+<ul>
+<li>Avoids the “resolving schema is expensive” warning you get from <code>.schema</code> on a <code>LazyFrame</code></li>
+<li>Fast introspection—validates your pipeline before collecting</li>
+<li>Confirms dtypes after casts or transforms</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="pl.dataframe" class="level2">
+<h2 class="anchored" data-anchor-id="pl.dataframe"><code>pl.DataFrame()</code></h2>
+<p>Use <code>pl.DataFrame()</code> to build small in-memory tables for benchmarks, checks, or plotting.</p>
+<section id="reference-card-pl.dataframe" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-pl.dataframe">Reference Card: <code>pl.DataFrame</code></h3>
+<ul>
+<li><strong>Function:</strong> <code>pl.DataFrame(...)</code></li>
+<li><strong>Purpose:</strong> Create a Polars <code>DataFrame</code> from Python data</li>
+<li><strong>Key Parameters:</strong>
+<ul>
+<li><code>data</code>: dict of columns or list of rows</li>
+<li><code>schema</code>: optional column names/types</li>
+</ul></li>
+<li><strong>Returns:</strong> <code>DataFrame</code></li>
+</ul>
+</section>
+<section id="code-snippet-small-benchmark-table" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-small-benchmark-table">Code Snippet: Small benchmark table</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>bench <span class="op">=</span> pl.DataFrame(</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">"engine"</span>: [<span class="st">"polars (streaming)"</span>, <span class="st">"pandas (pyarrow + in-mem groupby)"</span>],</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">"seconds"</span>: [<span class="fl">19.7</span>, <span class="fl">318.0</span>],</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">"memory_mb"</span>: [<span class="fl">0.82</span>, <span class="fl">52051.3</span>],</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="select-and-filter" class="level2">
+<h2 class="anchored" data-anchor-id="select-and-filter"><code>select()</code> and <code>filter()</code></h2>
+<p><code>select()</code> chooses columns (or expressions); <code>filter()</code> keeps rows that match a boolean expression. Use both early for pushdown.</p>
+<section id="reference-card-select-filter" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-select-filter">Reference Card: <code>select</code> / <code>filter</code></h3>
+<ul>
+<li><strong>Select:</strong> <code>.select([col1, col2, expr.alias("new")])</code></li>
+<li><strong>Filter:</strong> <code>.filter(pl.col("...") &gt;= 0)</code></li>
+<li><strong>Notes:</strong> chained filters are fine; projections + filters often push down to the scan</li>
+</ul>
+</section>
+<section id="code-snippet-projection-predicate-pushdown" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-projection-predicate-pushdown">Code Snippet: Projection + predicate pushdown</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>vitals <span class="op">=</span> (</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    pl.scan_parquet(<span class="st">"data/vitals/*.parquet"</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(pl.col(<span class="st">"facility"</span>).is_in([<span class="st">"UCSF"</span>, <span class="st">"ZSFG"</span>]))</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(pl.col(<span class="st">"timestamp"</span>) <span class="op">&gt;=</span> pl.datetime(<span class="dv">2024</span>, <span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    .select([</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">"patient_id"</span>,</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">"timestamp"</span>,</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>        <span class="st">"heart_rate"</span>,</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>        pl.col(<span class="st">"bmi"</span>).cast(pl.Float32).alias(<span class="st">"bmi"</span>),</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    ])</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="with_columns-and-expression-helpers" class="level2">
+<h2 class="anchored" data-anchor-id="with_columns-and-expression-helpers"><code>with_columns()</code> and expression helpers</h2>
+<p>Expressions let you define column logic once and push it down into the engine.</p>
+<section id="reference-card-expression-toolbox" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-expression-toolbox">Reference Card: Expression toolbox</h3>
+<ul>
+<li><strong>Core:</strong> <code>pl.col(...)</code>, <code>pl.lit(...)</code>, <code>.with_columns([...])</code></li>
+<li><strong>String + list:</strong> <code>.str.split(...)</code>, <code>.list.get(...)</code>, <code>pl.concat_str([...])</code></li>
+<li><strong>Datetime:</strong> <code>.str.strptime(...)</code>, <code>.dt.date()</code>, <code>.dt.hour()</code>, <code>.dt.year()</code>, <code>.dt.month()</code></li>
+<li><strong>Filtering:</strong> <code>.is_in(...)</code>, <code>.is_between(...)</code></li>
+<li><strong>Types + bounds:</strong> <code>.cast(...)</code>, <code>.clip(lower_bound=..., upper_bound=...)</code></li>
+</ul>
+</section>
+<section id="code-snippet-derive-keys-time-parts" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-derive-keys-time-parts">Code Snippet: Derive keys + time parts</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>sensor <span class="op">=</span> (</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    pl.scan_parquet(<span class="st">"data/sensor_hrv/*.parquet"</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    .with_columns([</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        pl.concat_str([pl.lit(<span class="st">"USER-"</span>), pl.col(<span class="st">"device_id"</span>).<span class="bu">str</span>.split(<span class="st">"-"</span>).<span class="bu">list</span>.get(<span class="dv">1</span>)]).alias(<span class="st">"user_id"</span>),</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        pl.col(<span class="st">"ts_start"</span>).dt.date().alias(<span class="st">"date"</span>),</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        pl.col(<span class="st">"ts_start"</span>).dt.hour().alias(<span class="st">"hour"</span>),</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    ])</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(pl.col(<span class="st">"hour"</span>).is_between(<span class="dv">22</span>, <span class="dv">23</span>) <span class="op">|</span> pl.col(<span class="st">"hour"</span>).is_between(<span class="dv">0</span>, <span class="dv">6</span>))</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>vitals <span class="op">=</span> (</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    pl.scan_csv(<span class="st">"data/vitals/*.csv"</span>, try_parse_dates<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    .with_columns([</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>        pl.col(<span class="st">"timestamp"</span>).<span class="bu">str</span>.strptime(pl.Datetime, strict<span class="op">=</span><span class="va">False</span>).alias(<span class="st">"timestamp"</span>),</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>        pl.col(<span class="st">"bmi"</span>).cast(pl.Float32).clip(lower_bound<span class="op">=</span><span class="dv">12</span>, upper_bound<span class="op">=</span><span class="dv">70</span>).alias(<span class="st">"bmi"</span>),</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    ])</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="distinct-counts-and-prefix-filters" class="level2">
+<h2 class="anchored" data-anchor-id="distinct-counts-and-prefix-filters">Distinct counts and prefix filters</h2>
+<p>When you summarize events by site, you often want distinct patients and a quick way to filter code prefixes. Polars gives you both with <code>unique()</code> and string expressions.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>code</th>
+<th>starts_with(“E11”)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>E11.9</td>
+<td>True</td>
+</tr>
+<tr class="even">
+<td>E11.65</td>
+<td>True</td>
+</tr>
+<tr class="odd">
+<td>I10</td>
+<td>False</td>
+</tr>
+</tbody>
+</table>
+<section id="reference-card-distinct-prefix-helpers" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-distinct-prefix-helpers">Reference Card: Distinct + prefix helpers</h3>
+<ul>
+<li><strong>Distinct rows:</strong> <code>.select([...]).unique()</code> (keeps one row per key combo)</li>
+<li><strong>Distinct counts:</strong> <code>.group_by("site_id").agg(pl.n_unique("patient_id"))</code></li>
+<li><strong>Prefix filter:</strong> <code>pl.col("code").str.starts_with("E11")</code></li>
+<li><strong>Null fill:</strong> <code>.with_columns(pl.col("diabetes_patients").fill_null(0))</code></li>
+<li><strong>Rounding:</strong> <code>.with_columns(pl.col("diabetes_prevalence").round(3))</code></li>
+</ul>
+</section>
+<section id="code-snippet-distinct-patients-prefix-filter" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-distinct-patients-prefix-filter">Code Snippet: Distinct patients + prefix filter</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>dx_diabetes <span class="op">=</span> dx_events.<span class="bu">filter</span>(pl.col(<span class="st">"code"</span>).<span class="bu">str</span>.starts_with(prefix))</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>patients_by_site <span class="op">=</span> (</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    events_filtered.select([<span class="st">"site_id"</span>, <span class="st">"patient_id"</span>])</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    .unique()</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    .group_by(<span class="st">"site_id"</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    .agg(pl.<span class="bu">len</span>().alias(<span class="st">"patients_seen"</span>))</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="aside-data-model-for-health-data-workflows" class="level3">
+<h3 class="anchored" data-anchor-id="aside-data-model-for-health-data-workflows">Aside: Data model for health-data workflows</h3>
+<p>Many health-data pipelines involve multiple sources, repeated measurements, and joins that can accidentally multiply rows. <em>Grain</em> = the unit of observation in a table.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 9%">
+<col style="width: 25%">
+<col style="width: 43%">
+<col style="width: 21%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Table</th>
+<th>Grain</th>
+<th>Join key(s)</th>
+<th>Typical use</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>user_profile</code></td>
+<td>1 row per <code>user_id</code></td>
+<td><code>user_id</code></td>
+<td>Demographics / grouping</td>
+</tr>
+<tr class="even">
+<td><code>sleep_diary</code></td>
+<td>1 row per <code>user_id</code> per day</td>
+<td><code>user_id</code>, <code>date</code></td>
+<td>Nightly outcomes</td>
+</tr>
+<tr class="odd">
+<td><code>sensor_hrv</code></td>
+<td>many rows per device in 5-min windows</td>
+<td>derive <code>user_id</code> from <code>device_id</code>; also <code>date</code> from <code>ts_start</code></td>
+<td>High-volume physiology</td>
+</tr>
+<tr class="even">
+<td><code>encounters</code></td>
+<td>many rows per <code>patient_id</code></td>
+<td><code>patient_id</code></td>
+<td>Events/visits to count/stratify</td>
+</tr>
+<tr class="odd">
+<td><code>vitals</code></td>
+<td>many rows per <code>patient_id</code></td>
+<td><code>patient_id</code> (+ time filter)</td>
+<td>Measurements to summarize</td>
+</tr>
+</tbody>
+</table>
+<p>Two practical rules:</p>
+<ul>
+<li>Know the <em>grain</em> before you join (one-to-many joins are normal; many-to-many joins often explode row counts).</li>
+<li>Decide early whether you want “per-patient”, “per-encounter”, or “per-month” outputs, and aggregate to that grain before expensive joins.</li>
+</ul>
+</section>
+</section>
+<section id="group_by-agg-join" class="level2">
+<h2 class="anchored" data-anchor-id="group_by-agg-join"><code>group_by</code> + <code>agg</code> + <code>join</code></h2>
+<p>Aggregations and joins are the core of most tabular pipelines. Keep joins at the right grain, then summarize.</p>
+<section id="reference-card-group_by-agg-join-sort" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-group_by-agg-join-sort">Reference Card: <code>group_by</code>, <code>agg</code>, <code>join</code>, <code>sort</code></h3>
+<ul>
+<li><strong>Group + aggregate:</strong> <code>.group_by([...]).agg([...])</code></li>
+<li><strong>Common aggregations:</strong> <code>pl.len()</code>, <code>pl.mean(...)</code>, <code>pl.median(...)</code>, <code>pl.sum(...)</code>, <code>pl.corr(...)</code></li>
+<li><strong>Join:</strong> <code>.join(other, on=..., how=...)</code> (know the join grain)</li>
+<li><strong>Order:</strong> <code>.sort([...])</code> (global sort can break streaming)</li>
+</ul>
+</section>
+<section id="code-snippet-monthly-facility-summary" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-monthly-facility-summary">Code Snippet: Monthly facility summary</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>encounters <span class="op">=</span> pl.scan_csv(<span class="st">"data/encounters/*.csv"</span>, try_parse_dates<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>vitals <span class="op">=</span> pl.scan_csv(<span class="st">"data/vitals/*.csv"</span>, try_parse_dates<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>summary <span class="op">=</span> (</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    vitals.join(</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        encounters.<span class="bu">filter</span>(pl.col(<span class="st">"facility"</span>).is_in([<span class="st">"UCSF"</span>, <span class="st">"ZSFG"</span>])),</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        on<span class="op">=</span><span class="st">"patient_id"</span>,</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        how<span class="op">=</span><span class="st">"inner"</span>,</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    .group_by([</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>        <span class="st">"facility"</span>,</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>        pl.col(<span class="st">"timestamp"</span>).dt.year().alias(<span class="st">"year"</span>),</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>        pl.col(<span class="st">"timestamp"</span>).dt.month().alias(<span class="st">"month"</span>),</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    ])</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    .agg([</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>        pl.<span class="bu">len</span>().alias(<span class="st">"num_vitals"</span>),</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>        pl.mean(<span class="st">"heart_rate"</span>).alias(<span class="st">"avg_hr"</span>),</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>        pl.mean(<span class="st">"bmi"</span>).alias(<span class="st">"avg_bmi"</span>),</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    ])</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    .sort([<span class="st">"facility"</span>, <span class="st">"year"</span>, <span class="st">"month"</span>])</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="code-snippet-pandas-vs-polars" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-pandas-vs-polars">Code Snippet: pandas vs Polars</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># pandas: full load, then work</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>pandas_result <span class="op">=</span> (</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    pd.read_csv(<span class="st">"data/vitals.csv"</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>      .query(<span class="st">"timestamp &gt;= '2024-01-01'"</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>      .groupby(<span class="st">"patient_id"</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>      .heart_rate.mean()</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co"># polars: lazy scan, stream collect</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>polars_result <span class="op">=</span> (</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    pl.scan_csv(<span class="st">"data/vitals.csv"</span>)</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>      .<span class="bu">filter</span>(pl.col(<span class="st">"timestamp"</span>) <span class="op">&gt;=</span> pl.datetime(<span class="dv">2024</span>, <span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>      .group_by(<span class="st">"patient_id"</span>)</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>      .agg(pl.mean(<span class="st">"heart_rate"</span>).alias(<span class="st">"avg_hr"</span>))</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>      .collect(engine<span class="op">=</span><span class="st">"streaming"</span>)</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="does-pandas-support-larger-than-memory-data-now" class="level3">
+<h3 class="anchored" data-anchor-id="does-pandas-support-larger-than-memory-data-now">Does pandas support larger-than-memory data now?</h3>
+<p>Core pandas is still fundamentally in-memory for operations like groupby, joins, sorts, etc.</p>
+<ul>
+<li>What has improved a lot is I/O and dtypes via <code>pyarrow</code> (projection/predicate pushdown at read time; Arrow-backed strings/types).</li>
+<li>For larger-than-RAM pipelines, common tools include DuckDB, Polars, Dask/Modin, Vaex, or PyArrow dataset/compute (depending on the task).</li>
+<li>pandas is catching up on Parquet I/O via <code>pyarrow</code> (projection/predicate pushdown), but most pandas transforms (groupby/join/sort) still run in-memory.</li>
+</ul>
+</section>
+<section id="columnar-hand-off" class="level3">
+<h3 class="anchored" data-anchor-id="columnar-hand-off">Columnar hand-off</h3>
+<p>Convert each raw CSV to Parquet once, then keep everything columnar:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>source <span class="op">=</span> <span class="st">"data/patient_vitals.csv"</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>pl.read_csv(source).write_parquet(<span class="st">"data/patient_vitals.parquet"</span>, compression<span class="op">=</span><span class="st">"zstd"</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>csv_mb <span class="op">=</span> os.path.getsize(source) <span class="op">/</span> <span class="dv">1024</span><span class="op">**</span><span class="dv">2</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>parquet_mb <span class="op">=</span> os.path.getsize(<span class="st">"data/patient_vitals.parquet"</span>) <span class="op">/</span> <span class="dv">1024</span><span class="op">**</span><span class="dv">2</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>csv_mb<span class="sc">:.1f}</span><span class="ss"> MB → </span><span class="sc">{</span>parquet_mb<span class="sc">:.1f}</span><span class="ss"> MB (</span><span class="sc">{</span>csv_mb <span class="op">/</span> parquet_mb<span class="sc">:.2f}</span><span class="ss">x smaller)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Use <code>LazyFrame.collect_schema()</code> (not <code>lazyframe.schema</code>) to confirm dtypes, and partition long histories by <code>year</code> or <code>facility</code> so streaming scans stay sub-gigabyte.</p>
+</section>
+<section id="advanced-aside-parquet-layout-why-it-affects-speed" class="level3">
+<h3 class="anchored" data-anchor-id="advanced-aside-parquet-layout-why-it-affects-speed">Advanced aside: Parquet layout (why it affects speed)</h3>
+<ul>
+<li>Parquet stores data in <strong>row groups</strong>; each row group contains per-column chunks plus min/max stats that enable predicate pushdown.</li>
+<li>If you frequently filter on <code>facility</code> or <code>year</code>, consider <strong>partitioning</strong> your dataset by those columns (fewer bytes scanned).</li>
+<li>Avoid thousands of tiny Parquet files (metadata overhead); prefer fewer, reasonably sized files with consistent schema.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/xkcd_health_data.png" class="img-fluid figure-img"></p>
+<figcaption>Health data reality check</figcaption>
+</figure>
+</div>
+</section>
+</section>
+</section>
+<section id="live-demo" class="level1">
+<h1>LIVE DEMO</h1>
+<p>See <a href="./demo/01a_streaming_filter.md"><code>demo/01a_streaming_filter.md</code></a> for the Polars basics walkthrough.</p>
+</section>
+<section id="lazy-execution-streaming-patterns" class="level1">
+<h1>Lazy Execution &amp; Streaming Patterns</h1>
+<section id="lazyframe-methods" class="level2">
+<h2 class="anchored" data-anchor-id="lazyframe-methods"><code>LazyFrame</code> methods</h2>
+<p>Most of this lecture uses a <code>LazyFrame</code> pipeline (<code>pl.scan_* → ... → collect/sink</code>). If you learn these methods, you can read almost every Polars example we write this quarter.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 21%">
+<col style="width: 54%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Goal</th>
+<th>Method</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Inspect columns + dtypes</td>
+<td><code>.collect_schema()</code></td>
+<td>Preferred for <code>LazyFrame</code>; avoids the “resolving schema is expensive” warning</td>
+</tr>
+<tr class="even">
+<td>See the query plan</td>
+<td><code>.explain()</code></td>
+<td>Helps you spot joins/sorts and confirm pushdown</td>
+</tr>
+<tr class="odd">
+<td>Keep only columns you need</td>
+<td><code>.select([...])</code></td>
+<td>Enables projection pushdown</td>
+</tr>
+<tr class="even">
+<td>Filter rows early</td>
+<td><code>.filter(...)</code></td>
+<td>Enables predicate pushdown</td>
+</tr>
+<tr class="odd">
+<td>Create/transform columns</td>
+<td><code>.with_columns(...)</code></td>
+<td>Use expressions (<code>pl.col(...)</code>, <code>pl.when(...)</code>) instead of Python loops</td>
+</tr>
+<tr class="even">
+<td>Aggregate to a target grain</td>
+<td><code>.group_by(...).agg([...])</code></td>
+<td>Often do this <em>before</em> joining large tables</td>
+</tr>
+<tr class="odd">
+<td>Combine tables</td>
+<td><code>.join(other, on=..., how=...)</code></td>
+<td>Know the grain to avoid many-to-many explosions</td>
+</tr>
+<tr class="even">
+<td>Collect results</td>
+<td><code>.collect(engine="streaming")</code></td>
+<td>Streaming helps when the plan supports it</td>
+</tr>
+<tr class="odd">
+<td>Write without loading into Python</td>
+<td><code>.sink_parquet("...")</code></td>
+<td>Writes directly to disk from the lazy pipeline</td>
+</tr>
+</tbody>
+</table>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/lazy_plan.png" class="img-fluid figure-img"></p>
+<figcaption>Lazy query plan sketch</figcaption>
+</figure>
+</div>
+</section>
+<section id="lazyframe.explain-and-.collectenginestreaming" class="level2">
+<h2 class="anchored" data-anchor-id="lazyframe.explain-and-.collectenginestreaming"><code>LazyFrame.explain()</code> and <code>.collect(engine="streaming")</code></h2>
+<p><code>explain()</code> prints the optimized plan so you can spot scans, filters, joins, and aggregations.</p>
+<pre class="text"><code>== Optimized Plan ==
+SCAN PARQUET [data/labs/*.parquet]
+  SELECTION: [(col("test_name") == "HbA1c")]
+  PROJECT: [patient_id, test_name, result_value]
+JOIN INNER [patient_id]
+  LEFT: SCAN PARQUET [data/patients/*.parquet]
+  RIGHT: (selection/project above)
+AGGREGATE [age_group, gender]
+  [mean(result_value)]</code></pre>
+<p><em>Format varies by Polars version; look for scan -&gt; filter -&gt; join -&gt; aggregate.</em></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/flawed_data.png" class="img-fluid figure-img"></p>
+<figcaption>Flawed data</figcaption>
+</figure>
+</div>
+<p>Lazy plans shine once you chain multiple operations: the engine reorders filters, drops unused columns, and chooses whether to stream.</p>
+<section id="diagnose-and-trust-the-plan" class="level3">
+<h3 class="anchored" data-anchor-id="diagnose-and-trust-the-plan">Diagnose and trust the plan</h3>
+<ul>
+<li><code>query.explain()</code> outlines scan → filter → join → aggregate so you can spot expensive steps.</li>
+<li><code>query.collect(engine="streaming")</code> opts into streaming; Polars swaps to an in-memory engine only when necessary (e.g., global sorts).</li>
+<li><code>.sink_parquet("outputs/summary.parquet")</code> writes directly to disk without loading the DataFrame into Python.</li>
+</ul>
+</section>
+</section>
+<section id="collect-and-sink_parquet" class="level2">
+<h2 class="anchored" data-anchor-id="collect-and-sink_parquet"><code>collect()</code> and <code>sink_parquet()</code></h2>
+<p><code>collect()</code> loads a LazyFrame into a DataFrame in memory. <code>sink_parquet()</code> writes straight to disk without loading into Python.</p>
+<section id="reference-card-collecting-and-sinking" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-collecting-and-sinking">Reference Card: Collecting and sinking</h3>
+<ul>
+<li><strong><code>collect()</code></strong>: execute and return a DataFrame (in memory)</li>
+<li><strong><code>collect(engine="streaming")</code> / <code>collect(streaming=True)</code></strong>: stream when possible</li>
+<li><strong><code>sink_parquet(path)</code></strong>: write without loading into Python</li>
+<li><strong><code>pl.read_parquet(path)</code></strong>: eager read for spot checks</li>
+<li><strong><code>write_csv(path)</code></strong>: DataFrame -&gt; CSV after collect</li>
+</ul>
+</section>
+<section id="code-snippet-stream-then-write" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-stream-then-write">Code Snippet: Stream, then write</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> query.collect(engine<span class="op">=</span><span class="st">"streaming"</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>result.write_parquet(<span class="st">"outputs/summary.parquet"</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>result.write_csv(<span class="st">"outputs/summary.csv"</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>query.sink_parquet(<span class="st">"outputs/summary_sink.parquet"</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>check <span class="op">=</span> pl.read_parquet(<span class="st">"outputs/summary.parquet"</span>)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>check.describe()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="to_pandas" class="level2">
+<h2 class="anchored" data-anchor-id="to_pandas"><code>to_pandas()</code></h2>
+<p>Sometimes the fastest path to compatibility is converting to pandas for plotting or library support.</p>
+<blockquote class="blockquote">
+<p>“<del>AK-47</del> pandas. <del>The very best there is.</del> When you absolutely, positively got to <del>kill every motherfucker in the room</del> be compatible with everything, accept no substitutes.” - <em>Jackie Brown</em></p>
+</blockquote>
+<section id="reference-card-to_pandas" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-to_pandas">Reference Card: <code>to_pandas</code></h3>
+<ul>
+<li><strong>Method:</strong> <code>.to_pandas()</code></li>
+<li><strong>Purpose:</strong> Convert a Polars <code>DataFrame</code> to pandas for compatibility</li>
+<li><strong>Note:</strong> Use after filtering/aggregating to keep the pandas DataFrame small</li>
+</ul>
+</section>
+<section id="code-snippet-convert-for-plotting" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-convert-for-plotting">Code Snippet: Convert for plotting</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> altair <span class="im">as</span> alt</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> query.collect(engine<span class="op">=</span><span class="st">"streaming"</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>plot_df <span class="op">=</span> df.to_pandas()</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>alt.Chart(plot_df).mark_line().encode(</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span><span class="st">"timestamp:T"</span>,</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span><span class="st">"avg_hr:Q"</span>,</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>).properties(width<span class="op">=</span><span class="dv">600</span>, height<span class="op">=</span><span class="dv">250</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="sql-with-sqlcontext" class="level2">
+<h2 class="anchored" data-anchor-id="sql-with-sqlcontext">SQL with <code>SQLContext</code></h2>
+<p>Polars can run SQL over lazy frames. This is a thin layer over the same optimizer, so you still get pushdown and streaming when the plan supports it.</p>
+<p><strong>NOTE:</strong> Polars SQL is not a full-featured SQL engine; it covers common patterns (SELECT, WHERE, GROUP BY, JOIN) but lacks advanced features (CTEs, window functions, etc.). We will cover SQL in more detail next week.</p>
+<section id="reference-card-sqlcontext" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-sqlcontext">Reference Card: <code>SQLContext</code></h3>
+<ul>
+<li><strong>Create:</strong> <code>ctx = pl.SQLContext()</code></li>
+<li><strong>Register:</strong> <code>ctx.register("table_name", lazy_frame)</code></li>
+<li><strong>Execute:</strong> <code>query = ctx.execute("SELECT ...")</code> (returns a <code>LazyFrame</code>)</li>
+</ul>
+</section>
+<section id="code-snippet-sql-style-query-lazy-execution" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-sql-style-query-lazy-execution">Code Snippet: SQL-style query, lazy execution</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>ctx <span class="op">=</span> pl.SQLContext()</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>ctx.register(<span class="st">"vitals"</span>, pl.scan_parquet(<span class="st">"data/vitals/*.parquet"</span>))</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>query <span class="op">=</span> ctx.execute(</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    \<span class="st">"</span><span class="ch">\"\"</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="er">    SELECT patient_id, AVG</span>(heart_rate) AS avg_hr</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    FROM vitals</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    WHERE timestamp <span class="op">&gt;=</span> <span class="st">'2024-01-01'</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    GROUP BY patient_id</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    \<span class="st">"</span><span class="ch">\"\"</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="er">)</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="er">print</span>(query.explain())</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> query.collect(engine<span class="op">=</span><span class="st">"streaming"</span>)</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>result.describe()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="sort-and-sample" class="level2">
+<h2 class="anchored" data-anchor-id="sort-and-sample"><code>sort()</code> and <code>sample()</code></h2>
+<div class="callout callout-style-default callout-warning callout-empty-content callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span> Sorting can force a full in-memory load. Sampling is cheap after collection and helps with quick visuals.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+<section id="reference-card-ordering-quick-checks" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-ordering-quick-checks">Reference Card: Ordering + quick checks</h3>
+<ul>
+<li><strong><code>sort([...])</code></strong>: global order, can break streaming</li>
+<li><strong><code>sample(n=..., shuffle=True)</code></strong>: take a subset after collect</li>
+<li><strong><code>estimated_size("mb")</code></strong>: quick size check on a DataFrame</li>
+</ul>
+</section>
+<section id="code-snippet-small-sanity-sample" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-small-sanity-sample">Code Snippet: Small sanity sample</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> query.collect(engine<span class="op">=</span><span class="st">"streaming"</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>sample <span class="op">=</span> df.sample(n<span class="op">=</span><span class="dv">2000</span>, shuffle<span class="op">=</span><span class="va">True</span>).sort(<span class="st">"timestamp"</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sample.estimated_size(<span class="st">"mb"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="streaming-limits-when-streaming-wont-help" class="level2">
+<h2 class="anchored" data-anchor-id="streaming-limits-when-streaming-wont-help">Streaming limits (when streaming won’t help)</h2>
+<p>Streaming is powerful, but not magic. Some operations force large shuffles or require global state.</p>
+<p>Common “streaming-hostile” patterns:</p>
+<ul>
+<li>Global sorts and “top-k” style operations that need to see all rows.</li>
+<li>Many-to-many joins (or joins after a key exploded) that produce huge intermediate tables.</li>
+<li>Some window functions / rolling calculations that need overlapping history.</li>
+<li>Wide reshapes like pivots that increase the number of columns dramatically.</li>
+</ul>
+<p>When this happens:</p>
+<ul>
+<li>Reduce columns early (projection), filter early (predicate), and aggregate to the target grain before joins.</li>
+<li>Write intermediate outputs (Parquet) at stable checkpoints so you don’t recompute expensive steps.</li>
+</ul>
+<section id="reference-card-lazy-vs-eager" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-lazy-vs-eager">Reference Card: Lazy vs eager</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 36%">
+<col style="width: 25%">
+<col style="width: 37%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Situation</th>
+<th>Use eager when…</th>
+<th>Use lazy when…</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Notebook poke</td>
+<td>You just need <code>.head()</code></td>
+<td>You’re scripting a repeatable job</td>
+</tr>
+<tr class="even">
+<td>File size</td>
+<td>File &lt; 1 GB fits in RAM</td>
+<td>Files are globbed or already too large</td>
+</tr>
+<tr class="odd">
+<td>Complex UDF (Python per-row function)</td>
+<td>Logic needs Python per row</td>
+<td>You can rewrite as expressions</td>
+</tr>
+<tr class="even">
+<td>Joins/aggregations</td>
+<td>Dimension table is tiny</td>
+<td>Fact table exceeds RAM</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-multi-source-lazy-join" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-multi-source-lazy-join">Code Snippet: Multi-source lazy join</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>patients <span class="op">=</span> pl.scan_parquet(<span class="st">"data/patients/*.parquet"</span>).select(</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"patient_id"</span>, <span class="st">"age_group"</span>, <span class="st">"gender"</span>]</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>labs <span class="op">=</span> pl.scan_parquet(<span class="st">"data/labs/*.parquet"</span>).<span class="bu">filter</span>(</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    pl.col(<span class="st">"test_name"</span>) <span class="op">==</span> <span class="st">"HbA1c"</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>query <span class="op">=</span> (</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    labs.join(patients, on<span class="op">=</span><span class="st">"patient_id"</span>, how<span class="op">=</span><span class="st">"inner"</span>)</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>        .group_by([<span class="st">"age_group"</span>, <span class="st">"gender"</span>])</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>        .agg(pl.mean(<span class="st">"result_value"</span>).alias(<span class="st">"avg_hba1c"</span>))</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> query.collect(engine<span class="op">=</span><span class="st">"streaming"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+</section>
+<section id="live-demo-1" class="level1">
+<h1>LIVE DEMO</h1>
+<p>See <a href="./demo/02a_lazy_join.md"><code>demo/02a_lazy_join.md</code></a> for the lazy-plan deep dive.</p>
+</section>
+<section id="building-a-polars-pipeline" class="level1">
+<h1>Building a Polars Pipeline</h1>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/xkcd_data_pipeline.png" class="img-fluid figure-img"></p>
+<figcaption>Data pipeline</figcaption>
+</figure>
+</div>
+<p>Good pipelines make the flow obvious: inputs -&gt; transforms -&gt; outputs. The visuals below map to that flow.</p>
+<section id="pipeline-anatomy-inputs---transforms---outputs" class="level2">
+<h2 class="anchored" data-anchor-id="pipeline-anatomy-inputs---transforms---outputs">Pipeline anatomy: inputs -&gt; transforms -&gt; outputs</h2>
+<pre class="mermaid"><code>flowchart LR
+    subgraph inputs["Inputs"]
+        config["config.yaml&lt;br/&gt;paths, filters, params"]
+        sources["Raw Files&lt;br/&gt;CSV / Parquet / glob"]
+    end
+
+    subgraph transforms["Transforms (Lazy)"]
+        scan["scan_*()&lt;br/&gt;build LazyFrame"]
+        filter["filter()&lt;br/&gt;predicate pushdown"]
+        select["select()&lt;br/&gt;projection pushdown"]
+        join["join()&lt;br/&gt;combine tables"]
+        agg["group_by().agg()&lt;br/&gt;aggregate"]
+    end
+
+    subgraph outputs["Outputs"]
+        parquet["Parquet&lt;br/&gt;downstream pipelines"]
+        csv["CSV&lt;br/&gt;quick inspection"]
+        logs["Logs&lt;br/&gt;row counts, timing"]
+    end
+
+    config --&gt; scan
+    sources --&gt; scan
+    scan --&gt; filter --&gt; select --&gt; join --&gt; agg
+    agg --&gt; parquet
+    agg --&gt; csv
+    agg --&gt; logs</code></pre>
+<ul>
+<li><strong>Inputs + config</strong>: define what to scan, which columns to keep, and filter criteria.</li>
+<li><strong>Transforms</strong>: lazy expressions that stay pushdown-friendly—nothing executes until collect.</li>
+<li><strong>Outputs + logs</strong>: always emit both Parquet (for downstream) and CSV (for quick checks), plus row counts and timing for reproducibility.</li>
+</ul>
+</section>
+<section id="memory-profile-streaming-vs-eager" class="level2">
+<h2 class="anchored" data-anchor-id="memory-profile-streaming-vs-eager">Memory profile: streaming vs eager</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/memory_plateau.svg" class="img-fluid figure-img"></p>
+<figcaption>Streaming keeps memory bounded</figcaption>
+</figure>
+</div>
+<p><em>Streaming stays bounded; eager loads can spike past RAM.</em></p>
+</section>
+<section id="monitor-early-runs" class="level2">
+<h2 class="anchored" data-anchor-id="monitor-early-runs">Monitor early runs</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/resource_monitor.png" class="img-fluid figure-img"></p>
+<figcaption>Resource monitoring dashboard</figcaption>
+</figure>
+</div>
+<p><em>Optional: a real monitor helps confirm the memory curve above and catch runaway steps.</em></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/xkcd_workflow.png" class="img-fluid figure-img"></p>
+<figcaption>Workflow empathy</figcaption>
+</figure>
+</div>
+<p>Pipelines are as much about reproducibility and debugging as raw speed.</p>
+<p>Put the pieces together: start lazy, keep everything parameterized, and stream the final collect.</p>
+</section>
+<section id="checklist-from-pandas-crash-to-polars-pipeline" class="level2">
+<h2 class="anchored" data-anchor-id="checklist-from-pandas-crash-to-polars-pipeline">Checklist: from pandas crash to Polars pipeline</h2>
+<ul class="task-list">
+<li><label><input type="checkbox"><strong>Define inputs &amp; outputs</strong> in a config (<code>config/pipeline.yaml</code>) instead of hardcoding paths.</label></li>
+<li><label><input type="checkbox"><strong>Scan sources lazily</strong> (<code>pl.scan_parquet</code>) and push filters (<code>pl.col("timestamp") &gt;= ...</code>).</label></li>
+<li><label><input type="checkbox"><strong>Join dimensions</strong> only after pruning columns so keys stay small.</label></li>
+<li><label><input type="checkbox"><strong>Collect with streaming</strong> or <code>.sink_parquet()</code> to avoid loading giant tables into memory.</label></li>
+<li><label><input type="checkbox"><strong>Emit artifacts + logs</strong> (row counts, durations) for reproducibility.</label></li>
+</ul>
+</section>
+<section id="methodology-config-driven-pipeline" class="level2">
+<h2 class="anchored" data-anchor-id="methodology-config-driven-pipeline">Methodology: config-driven pipeline</h2>
+<ul>
+<li><strong>Config-driven</strong>: all file globs, filters, and output paths live in YAML.</li>
+<li><strong>Three phases</strong>: load (scan + cast) → transform (joins + groupby) → write artifacts.</li>
+<li><strong>Artifacts</strong>: always write both Parquet (for downstream pipelines) and CSV (for quick inspection).</li>
+<li><strong>Sanity checks</strong>: row counts, schema, and “does the output look plausible?” before you ship results.</li>
+</ul>
+<section id="code-snippet-yaml-driven-pipeline" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-yaml-driven-pipeline">Code Snippet: yaml-driven pipeline</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># config/vitals_pipeline.yaml</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> Vitals Summary Pipeline</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">description</span><span class="kw">:</span><span class="at"> Aggregate patient vitals by facility and month</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">inputs</span><span class="kw">:</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">vitals</span><span class="kw">:</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">path</span><span class="kw">:</span><span class="at"> </span><span class="st">"data/vitals/*.parquet"</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">columns</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"patient_id"</span><span class="kw">,</span><span class="at"> </span><span class="st">"facility"</span><span class="kw">,</span><span class="at"> </span><span class="st">"timestamp"</span><span class="kw">,</span><span class="at"> </span><span class="st">"heart_rate"</span><span class="kw">,</span><span class="at"> </span><span class="st">"bmi"</span><span class="kw">]</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">encounters</span><span class="kw">:</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">path</span><span class="kw">:</span><span class="at"> </span><span class="st">"data/encounters/*.parquet"</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">columns</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"patient_id"</span><span class="kw">,</span><span class="at"> </span><span class="st">"facility"</span><span class="kw">,</span><span class="at"> </span><span class="st">"encounter_date"</span><span class="kw">]</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="fu">filters</span><span class="kw">:</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">facilities</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"UCSF"</span><span class="kw">,</span><span class="at"> </span><span class="st">"ZSFG"</span><span class="kw">]</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">date_range</span><span class="kw">:</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">start</span><span class="kw">:</span><span class="at"> </span><span class="st">"2024-01-01"</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">end</span><span class="kw">:</span><span class="at"> </span><span class="ch">null</span><span class="co">  # no upper bound</span></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a><span class="fu">transforms</span><span class="kw">:</span></span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> join_encounters</span></span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">type</span><span class="kw">:</span><span class="at"> join</span></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">left</span><span class="kw">:</span><span class="at"> vitals</span></span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">right</span><span class="kw">:</span><span class="at"> encounters</span></span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">on</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"patient_id"</span><span class="kw">]</span></span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">how</span><span class="kw">:</span><span class="at"> inner</span></span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> aggregate</span></span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">type</span><span class="kw">:</span><span class="at"> group_by</span></span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">keys</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"facility"</span><span class="kw">,</span><span class="at"> </span><span class="st">"year"</span><span class="kw">,</span><span class="at"> </span><span class="st">"month"</span><span class="kw">]</span></span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">aggregations</span><span class="kw">:</span></span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">column</span><span class="kw">:</span><span class="at"> heart_rate</span></span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">function</span><span class="kw">:</span><span class="at"> mean</span></span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">alias</span><span class="kw">:</span><span class="at"> avg_hr</span></span>
+<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">column</span><span class="kw">:</span><span class="at"> bmi</span></span>
+<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">function</span><span class="kw">:</span><span class="at"> mean</span></span>
+<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">alias</span><span class="kw">:</span><span class="at"> avg_bmi</span></span>
+<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">column</span><span class="kw">:</span><span class="at"> patient_id</span></span>
+<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">function</span><span class="kw">:</span><span class="at"> count</span></span>
+<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">alias</span><span class="kw">:</span><span class="at"> num_patients</span></span>
+<span id="cb17-39"><a href="#cb17-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-40"><a href="#cb17-40" aria-hidden="true" tabindex="-1"></a><span class="fu">outputs</span><span class="kw">:</span></span>
+<span id="cb17-41"><a href="#cb17-41" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">parquet</span><span class="kw">:</span><span class="at"> </span><span class="st">"outputs/vitals_summary.parquet"</span></span>
+<span id="cb17-42"><a href="#cb17-42" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">csv</span><span class="kw">:</span><span class="at"> </span><span class="st">"outputs/vitals_summary.csv"</span></span>
+<span id="cb17-43"><a href="#cb17-43" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">log</span><span class="kw">:</span><span class="at"> </span><span class="st">"outputs/vitals_summary.log"</span></span>
+<span id="cb17-44"><a href="#cb17-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-45"><a href="#cb17-45" aria-hidden="true" tabindex="-1"></a><span class="fu">settings</span><span class="kw">:</span></span>
+<span id="cb17-46"><a href="#cb17-46" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">engine</span><span class="kw">:</span><span class="at"> streaming</span></span>
+<span id="cb17-47"><a href="#cb17-47" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">compression</span><span class="kw">:</span><span class="at"> zstd</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pipeline.py - loads config and executes</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> yaml</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> run_pipeline(config_path: <span class="bu">str</span>):</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    config <span class="op">=</span> yaml.safe_load(Path(config_path).read_text())</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Load inputs as lazy frames</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    vitals <span class="op">=</span> pl.scan_parquet(config[<span class="st">"inputs"</span>][<span class="st">"vitals"</span>][<span class="st">"path"</span>])</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>    encounters <span class="op">=</span> pl.scan_parquet(config[<span class="st">"inputs"</span>][<span class="st">"encounters"</span>][<span class="st">"path"</span>])</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Apply filters from config</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>    facilities <span class="op">=</span> config[<span class="st">"filters"</span>][<span class="st">"facilities"</span>]</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>    start_date <span class="op">=</span> config[<span class="st">"filters"</span>][<span class="st">"date_range"</span>][<span class="st">"start"</span>]</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>    query <span class="op">=</span> (</span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>        vitals</span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>        .<span class="bu">filter</span>(pl.col(<span class="st">"facility"</span>).is_in(facilities))</span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>        .<span class="bu">filter</span>(pl.col(<span class="st">"timestamp"</span>) <span class="op">&gt;=</span> pl.datetime.fromisoformat(start_date))</span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>        .join(encounters, on<span class="op">=</span><span class="st">"patient_id"</span>, how<span class="op">=</span><span class="st">"inner"</span>)</span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>        .group_by([<span class="st">"facility"</span>, pl.col(<span class="st">"timestamp"</span>).dt.year().alias(<span class="st">"year"</span>),</span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>                   pl.col(<span class="st">"timestamp"</span>).dt.month().alias(<span class="st">"month"</span>)])</span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>        .agg([</span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>            pl.mean(<span class="st">"heart_rate"</span>).alias(<span class="st">"avg_hr"</span>),</span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>            pl.mean(<span class="st">"bmi"</span>).alias(<span class="st">"avg_bmi"</span>),</span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a>            pl.<span class="bu">len</span>().alias(<span class="st">"num_patients"</span>),</span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a>        ])</span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> query.collect(engine<span class="op">=</span>config[<span class="st">"settings"</span>][<span class="st">"engine"</span>])</span>
+<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a>    result.write_parquet(config[<span class="st">"outputs"</span>][<span class="st">"parquet"</span>])</span>
+<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a>    result.write_csv(config[<span class="st">"outputs"</span>][<span class="st">"csv"</span>])</span>
+<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/xkcd_datacenter.png" class="img-fluid figure-img"></p>
+<figcaption>Datacenter scale</figcaption>
+</figure>
+</div>
+<p>The same flow scales up; the orchestration just gets bigger.</p>
+</section>
+<section id="reference-card-pipeline-ergonomics" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-pipeline-ergonomics">Reference Card: Pipeline ergonomics</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 53%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Task</th>
+<th>Command</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Run script with config</td>
+<td><code>uv run python pipeline.py --config config/pipeline.yaml</code></td>
+<td>Keeps datasets swappable</td>
+</tr>
+<tr class="even">
+<td>Monitor usage</td>
+<td><code>htop</code>, <code>psrecord pipeline.py</code></td>
+<td>Catch runaway memory early</td>
+</tr>
+<tr class="odd">
+<td>Benchmark modes</td>
+<td><code>hyperfine 'uv run pipeline.py --engine streaming' ...</code></td>
+<td>Compare eager vs streaming</td>
+</tr>
+<tr class="even">
+<td>Validate outputs</td>
+<td><code>pl.read_parquet(...).describe()</code></td>
+<td>Confirm schema + row counts</td>
+</tr>
+<tr class="odd">
+<td>Archive artifacts</td>
+<td><code>checksums.txt</code>, <code>manifest.json</code></td>
+<td>Detect drift later</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-cli-batch-skeleton" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-cli-batch-skeleton">Code Snippet: CLI batch skeleton</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> argparse</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> logging</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>logging.basicConfig(level<span class="op">=</span>logging.INFO, <span class="bu">format</span><span class="op">=</span><span class="st">"</span><span class="sc">%(levelname)s</span><span class="st"> </span><span class="sc">%(message)s</span><span class="st">"</span>)</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>parser <span class="op">=</span> argparse.ArgumentParser(description<span class="op">=</span><span class="st">"Generate vitals summary"</span>)</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>parser.add_argument(<span class="st">"--input"</span>, default<span class="op">=</span><span class="st">"data/vitals_*.parquet"</span>)</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>parser.add_argument(<span class="st">"--output"</span>, default<span class="op">=</span><span class="st">"outputs/vitals_summary.parquet"</span>)</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>parser.add_argument(<span class="st">"--engine"</span>, choices<span class="op">=</span>[<span class="st">"streaming"</span>, <span class="st">"auto"</span>], default<span class="op">=</span><span class="st">"streaming"</span>)</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>args <span class="op">=</span> parser.parse_args()</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>query <span class="op">=</span> (</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>    pl.scan_parquet(args.<span class="bu">input</span>)</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(pl.col(<span class="st">"timestamp"</span>) <span class="op">&gt;=</span> pl.datetime(<span class="dv">2023</span>, <span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>    .group_by(<span class="st">"patient_id"</span>)</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>    .agg([</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>        pl.<span class="bu">len</span>().alias(<span class="st">"num_measurements"</span>),</span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>        pl.median(<span class="st">"heart_rate"</span>).alias(<span class="st">"median_hr"</span>),</span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>    ])</span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> query.collect(engine<span class="op">=</span>args.engine)</span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>Path(args.output).parent.mkdir(parents<span class="op">=</span><span class="va">True</span>, exist_ok<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a>result.write_parquet(args.output)</span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a>logging.info(<span class="st">"Wrote </span><span class="sc">%s</span><span class="st"> rows to </span><span class="sc">%s</span><span class="st">"</span>, result.height, args.output)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+</section>
+<section id="live-demo-2" class="level1">
+<h1>LIVE DEMO</h1>
+<p>See <a href="./demo/03a_batch_report.md"><code>demo/03a_batch_report.md</code></a> for a config-driven batch run with validation checkpoints.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/christopherseaman\.github\.io\/datasci_223");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

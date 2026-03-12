@@ -1,0 +1,2276 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>lecture_05 – DataSci-223</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-d94228c28a1234acf2b6c10d2198ec8e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../05/index.html">Machine Learning</a></li><li class="breadcrumb-item"><a href="../05/index.html">05. Classification</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">DataSci-223</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="https://github.com/christopherseaman/datasci_223" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GitHub</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="https://discord.gg/QdTYgR45er" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Discord</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Foundation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../01/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">01. Debugging</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../02/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">02. Polars</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../03/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">03. SQL</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../04/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">04. NLP</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Machine Learning</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../05/index.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">05. Classification</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../06/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">06. Neural Networks</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../07/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">07. Transformers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../08/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">08. LLM Workflows</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Applications</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../09/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">09. Computer Vision</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../10/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10. A/B Testing</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#references" id="toc-references" class="nav-link active" data-scroll-target="#references">References</a>
+  <ul class="collapse">
+  <li><a href="#documentation" id="toc-documentation" class="nav-link" data-scroll-target="#documentation">Documentation</a></li>
+  <li><a href="#deep-learning-frameworks" id="toc-deep-learning-frameworks" class="nav-link" data-scroll-target="#deep-learning-frameworks">Deep Learning Frameworks</a></li>
+  <li><a href="#books" id="toc-books" class="nav-link" data-scroll-target="#books">Books</a></li>
+  <li><a href="#tutorials-articles" id="toc-tutorials-articles" class="nav-link" data-scroll-target="#tutorials-articles">Tutorials &amp; Articles</a></li>
+  <li><a href="#health-data-examples" id="toc-health-data-examples" class="nav-link" data-scroll-target="#health-data-examples">Health Data Examples</a></li>
+  </ul></li>
+  <li><a href="#crash-course-in-classification" id="toc-crash-course-in-classification" class="nav-link" data-scroll-target="#crash-course-in-classification">Crash Course in Classification</a>
+  <ul class="collapse">
+  <li><a href="#classification-methods" id="toc-classification-methods" class="nav-link" data-scroll-target="#classification-methods">Classification Methods</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-common-classification-methods" id="toc-reference-card-common-classification-methods" class="nav-link" data-scroll-target="#reference-card-common-classification-methods">Reference Card: Common Classification Methods</a></li>
+  </ul></li>
+  <li><a href="#model-evaluation" id="toc-model-evaluation" class="nav-link" data-scroll-target="#model-evaluation">Model Evaluation</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-confusion_matrix" id="toc-reference-card-confusion_matrix" class="nav-link" data-scroll-target="#reference-card-confusion_matrix">Reference Card: <code>confusion_matrix</code></a></li>
+  <li><a href="#code-snippet-confusion-matrix" id="toc-code-snippet-confusion-matrix" class="nav-link" data-scroll-target="#code-snippet-confusion-matrix">Code Snippet: Confusion Matrix</a></li>
+  </ul></li>
+  <li><a href="#classification-report" id="toc-classification-report" class="nav-link" data-scroll-target="#classification-report">Classification Report</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-classification_report" id="toc-reference-card-classification_report" class="nav-link" data-scroll-target="#reference-card-classification_report">Reference Card: <code>classification_report</code></a></li>
+  <li><a href="#code-snippet-classification-report" id="toc-code-snippet-classification-report" class="nav-link" data-scroll-target="#code-snippet-classification-report">Code Snippet: Classification Report</a></li>
+  </ul></li>
+  <li><a href="#roc-curve-and-auc" id="toc-roc-curve-and-auc" class="nav-link" data-scroll-target="#roc-curve-and-auc">ROC Curve and AUC</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-roc_curve-and-roc_auc_score" id="toc-reference-card-roc_curve-and-roc_auc_score" class="nav-link" data-scroll-target="#reference-card-roc_curve-and-roc_auc_score">Reference Card: <code>roc_curve</code> and <code>roc_auc_score</code></a></li>
+  <li><a href="#code-snippet-roc-and-auc" id="toc-code-snippet-roc-and-auc" class="nav-link" data-scroll-target="#code-snippet-roc-and-auc">Code Snippet: ROC and AUC</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#supervised-vs.-unsupervised" id="toc-supervised-vs.-unsupervised" class="nav-link" data-scroll-target="#supervised-vs.-unsupervised">Supervised vs.&nbsp;Unsupervised</a>
+  <ul class="collapse">
+  <li><a href="#supervised-models" id="toc-supervised-models" class="nav-link" data-scroll-target="#supervised-models">Supervised Models</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-train_test_split" id="toc-reference-card-train_test_split" class="nav-link" data-scroll-target="#reference-card-train_test_split">Reference Card: <code>train_test_split</code></a></li>
+  <li><a href="#code-snippet-traintest-split" id="toc-code-snippet-traintest-split" class="nav-link" data-scroll-target="#code-snippet-traintest-split">Code Snippet: Train/Test Split</a></li>
+  </ul></li>
+  <li><a href="#cross-validation-for-model-comparison" id="toc-cross-validation-for-model-comparison" class="nav-link" data-scroll-target="#cross-validation-for-model-comparison">Cross-Validation for Model Comparison</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-cross_val_score" id="toc-reference-card-cross_val_score" class="nav-link" data-scroll-target="#reference-card-cross_val_score">Reference Card: <code>cross_val_score</code></a></li>
+  <li><a href="#code-snippet-cross-validation" id="toc-code-snippet-cross-validation" class="nav-link" data-scroll-target="#code-snippet-cross-validation">Code Snippet: Cross-Validation</a></li>
+  <li><a href="#reference-card-stratifiedkfold" id="toc-reference-card-stratifiedkfold" class="nav-link" data-scroll-target="#reference-card-stratifiedkfold">Reference Card: <code>StratifiedKFold</code></a></li>
+  <li><a href="#code-snippet-stratifiedkfold" id="toc-code-snippet-stratifiedkfold" class="nav-link" data-scroll-target="#code-snippet-stratifiedkfold">Code Snippet: StratifiedKFold</a></li>
+  </ul></li>
+  <li><a href="#model-comparison-workflow" id="toc-model-comparison-workflow" class="nav-link" data-scroll-target="#model-comparison-workflow">Model Comparison Workflow</a>
+  <ul class="collapse">
+  <li><a href="#code-snippet-comparing-multiple-models" id="toc-code-snippet-comparing-multiple-models" class="nav-link" data-scroll-target="#code-snippet-comparing-multiple-models">Code Snippet: Comparing Multiple Models</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#live-demo" id="toc-live-demo" class="nav-link" data-scroll-target="#live-demo">LIVE DEMO</a></li>
+  <li><a href="#quick-supervised-model-overview" id="toc-quick-supervised-model-overview" class="nav-link" data-scroll-target="#quick-supervised-model-overview">Quick Supervised Model Overview</a>
+  <ul class="collapse">
+  <li><a href="#logistic-regression" id="toc-logistic-regression" class="nav-link" data-scroll-target="#logistic-regression">Logistic Regression</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-logisticregression" id="toc-reference-card-logisticregression" class="nav-link" data-scroll-target="#reference-card-logisticregression">Reference Card: <code>LogisticRegression</code></a></li>
+  <li><a href="#code-snippet-logistic-regression" id="toc-code-snippet-logistic-regression" class="nav-link" data-scroll-target="#code-snippet-logistic-regression">Code Snippet: Logistic Regression</a></li>
+  </ul></li>
+  <li><a href="#random-forest" id="toc-random-forest" class="nav-link" data-scroll-target="#random-forest">Random Forest</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-randomforestclassifier" id="toc-reference-card-randomforestclassifier" class="nav-link" data-scroll-target="#reference-card-randomforestclassifier">Reference Card: <code>RandomForestClassifier</code></a></li>
+  <li><a href="#code-snippet-random-forest" id="toc-code-snippet-random-forest" class="nav-link" data-scroll-target="#code-snippet-random-forest">Code Snippet: Random Forest</a></li>
+  </ul></li>
+  <li><a href="#xgboost" id="toc-xgboost" class="nav-link" data-scroll-target="#xgboost">XGBoost</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-xgbclassifier" id="toc-reference-card-xgbclassifier" class="nav-link" data-scroll-target="#reference-card-xgbclassifier">Reference Card: <code>XGBClassifier</code></a></li>
+  <li><a href="#code-snippet-xgboost" id="toc-code-snippet-xgboost" class="nav-link" data-scroll-target="#code-snippet-xgboost">Code Snippet: XGBoost</a></li>
+  </ul></li>
+  <li><a href="#lightgbm-a-faster-alternative" id="toc-lightgbm-a-faster-alternative" class="nav-link" data-scroll-target="#lightgbm-a-faster-alternative">LightGBM: A Faster Alternative</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-lgbmclassifier" id="toc-reference-card-lgbmclassifier" class="nav-link" data-scroll-target="#reference-card-lgbmclassifier">Reference Card: <code>LGBMClassifier</code></a></li>
+  <li><a href="#code-snippet-lightgbm" id="toc-code-snippet-lightgbm" class="nav-link" data-scroll-target="#code-snippet-lightgbm">Code Snippet: LightGBM</a></li>
+  </ul></li>
+  <li><a href="#deep-learning" id="toc-deep-learning" class="nav-link" data-scroll-target="#deep-learning">Deep Learning</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-keras-sequential-model" id="toc-reference-card-keras-sequential-model" class="nav-link" data-scroll-target="#reference-card-keras-sequential-model">Reference Card: Keras Sequential Model</a></li>
+  <li><a href="#code-snippet-simple-neural-network" id="toc-code-snippet-simple-neural-network" class="nav-link" data-scroll-target="#code-snippet-simple-neural-network">Code Snippet: Simple Neural Network</a></li>
+  </ul></li>
+  <li><a href="#unsupervised-models-further-reading" id="toc-unsupervised-models-further-reading" class="nav-link" data-scroll-target="#unsupervised-models-further-reading">Unsupervised Models (Further Reading)</a></li>
+  </ul></li>
+  <li><a href="#live-demo-1" id="toc-live-demo-1" class="nav-link" data-scroll-target="#live-demo-1">LIVE DEMO</a></li>
+  <li><a href="#how-models-fail" id="toc-how-models-fail" class="nav-link" data-scroll-target="#how-models-fail">How Models Fail</a>
+  <ul class="collapse">
+  <li><a href="#labeling" id="toc-labeling" class="nav-link" data-scroll-target="#labeling">Labeling</a></li>
+  <li><a href="#fit" id="toc-fit" class="nav-link" data-scroll-target="#fit">Fit</a></li>
+  <li><a href="#dataset-shift" id="toc-dataset-shift" class="nav-link" data-scroll-target="#dataset-shift">Dataset Shift</a></li>
+  <li><a href="#simpsons-paradox" id="toc-simpsons-paradox" class="nav-link" data-scroll-target="#simpsons-paradox">Simpson’s Paradox</a></li>
+  <li><a href="#troublesome-classes" id="toc-troublesome-classes" class="nav-link" data-scroll-target="#troublesome-classes">Troublesome Classes</a></li>
+  </ul></li>
+  <li><a href="#model-interpretation" id="toc-model-interpretation" class="nav-link" data-scroll-target="#model-interpretation">Model Interpretation</a>
+  <ul class="collapse">
+  <li><a href="#shap-values-for-feature-importance" id="toc-shap-values-for-feature-importance" class="nav-link" data-scroll-target="#shap-values-for-feature-importance">SHAP Values for Feature Importance</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-shap" id="toc-reference-card-shap" class="nav-link" data-scroll-target="#reference-card-shap">Reference Card: SHAP</a></li>
+  <li><a href="#code-snippet-shap" id="toc-code-snippet-shap" class="nav-link" data-scroll-target="#code-snippet-shap">Code Snippet: SHAP</a></li>
+  </ul></li>
+  <li><a href="#eli5-for-model-inspection" id="toc-eli5-for-model-inspection" class="nav-link" data-scroll-target="#eli5-for-model-inspection">eli5 for Model Inspection</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-eli5" id="toc-reference-card-eli5" class="nav-link" data-scroll-target="#reference-card-eli5">Reference Card: eli5</a></li>
+  <li><a href="#code-snippet-eli5" id="toc-code-snippet-eli5" class="nav-link" data-scroll-target="#code-snippet-eli5">Code Snippet: eli5</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#practical-data-preparation" id="toc-practical-data-preparation" class="nav-link" data-scroll-target="#practical-data-preparation">Practical Data Preparation</a>
+  <ul class="collapse">
+  <li><a href="#feature-scaling-with-standardscaler" id="toc-feature-scaling-with-standardscaler" class="nav-link" data-scroll-target="#feature-scaling-with-standardscaler">Feature Scaling with StandardScaler</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-standardscaler" id="toc-reference-card-standardscaler" class="nav-link" data-scroll-target="#reference-card-standardscaler">Reference Card: <code>StandardScaler</code></a></li>
+  <li><a href="#code-snippet-standardscaler" id="toc-code-snippet-standardscaler" class="nav-link" data-scroll-target="#code-snippet-standardscaler">Code Snippet: StandardScaler</a></li>
+  </ul></li>
+  <li><a href="#labelencoder-for-target-variables" id="toc-labelencoder-for-target-variables" class="nav-link" data-scroll-target="#labelencoder-for-target-variables">LabelEncoder for Target Variables</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-labelencoder" id="toc-reference-card-labelencoder" class="nav-link" data-scroll-target="#reference-card-labelencoder">Reference Card: <code>LabelEncoder</code></a></li>
+  <li><a href="#code-snippet-labelencoder" id="toc-code-snippet-labelencoder" class="nav-link" data-scroll-target="#code-snippet-labelencoder">Code Snippet: LabelEncoder</a></li>
+  </ul></li>
+  <li><a href="#onehotencoder-for-categorical-variables" id="toc-onehotencoder-for-categorical-variables" class="nav-link" data-scroll-target="#onehotencoder-for-categorical-variables">OneHotEncoder for Categorical Variables</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-onehotencoder" id="toc-reference-card-onehotencoder" class="nav-link" data-scroll-target="#reference-card-onehotencoder">Reference Card: <code>OneHotEncoder</code></a></li>
+  <li><a href="#code-snippet-onehotencoder" id="toc-code-snippet-onehotencoder" class="nav-link" data-scroll-target="#code-snippet-onehotencoder">Code Snippet: OneHotEncoder</a></li>
+  </ul></li>
+  <li><a href="#handling-imbalanced-classes-with-evaluation-metrics" id="toc-handling-imbalanced-classes-with-evaluation-metrics" class="nav-link" data-scroll-target="#handling-imbalanced-classes-with-evaluation-metrics">Handling Imbalanced Classes with Evaluation Metrics</a></li>
+  <li><a href="#handling-imbalanced-data-with-smote" id="toc-handling-imbalanced-data-with-smote" class="nav-link" data-scroll-target="#handling-imbalanced-data-with-smote">Handling Imbalanced Data with SMOTE</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-smote" id="toc-reference-card-smote" class="nav-link" data-scroll-target="#reference-card-smote">Reference Card: <code>SMOTE</code></a></li>
+  <li><a href="#code-snippet-smote" id="toc-code-snippet-smote" class="nav-link" data-scroll-target="#code-snippet-smote">Code Snippet: SMOTE</a></li>
+  </ul></li>
+  <li><a href="#feature-engineering" id="toc-feature-engineering" class="nav-link" data-scroll-target="#feature-engineering">Feature Engineering</a></li>
+  <li><a href="#domain-specific-feature-derivations" id="toc-domain-specific-feature-derivations" class="nav-link" data-scroll-target="#domain-specific-feature-derivations">Domain-Specific Feature Derivations</a></li>
+  <li><a href="#automated-feature-engineering-further-reading" id="toc-automated-feature-engineering-further-reading" class="nav-link" data-scroll-target="#automated-feature-engineering-further-reading">Automated Feature Engineering (Further Reading)</a></li>
+  <li><a href="#when-and-how-to-combine-techniques" id="toc-when-and-how-to-combine-techniques" class="nav-link" data-scroll-target="#when-and-how-to-combine-techniques">When and How to Combine Techniques</a></li>
+  </ul></li>
+  <li><a href="#live-demo-2" id="toc-live-demo-2" class="nav-link" data-scroll-target="#live-demo-2">LIVE DEMO</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../05/index.html">Machine Learning</a></li><li class="breadcrumb-item"><a href="../05/index.html">05. Classification</a></li></ol></nav></header>
+
+
+
+
+<p>Classification: Putting a Label on Things</p>
+<ul>
+<li>hw05 #FIXME</li>
+</ul>
+<section id="references" class="level1">
+<h1>References</h1>
+<section id="documentation" class="level2">
+<h2 class="anchored" data-anchor-id="documentation">Documentation</h2>
+<ul>
+<li><a href="https://scikit-learn.org/stable/supervised_learning.html#supervised-learning">Scikit-learn Classification</a></li>
+<li><a href="https://xgboost.readthedocs.io/">XGBoost Documentation</a></li>
+<li><a href="https://lightgbm.readthedocs.io/">LightGBM Documentation</a></li>
+<li><a href="https://featuretools.alteryx.com/en/stable/">Featuretools Documentation</a></li>
+</ul>
+</section>
+<section id="deep-learning-frameworks" class="level2">
+<h2 class="anchored" data-anchor-id="deep-learning-frameworks">Deep Learning Frameworks</h2>
+<ul>
+<li><a href="https://keras.io/getting_started/">Keras Getting Started</a></li>
+<li><a href="https://pytorch.org/tutorials/">PyTorch Tutorials</a></li>
+<li><a href="https://www.tensorflow.org/tutorials/quickstart/beginner">TensorFlow Beginner Quickstart</a></li>
+<li><a href="https://jax.readthedocs.io/en/latest/notebooks/quickstart.html">JAX Quickstart</a></li>
+</ul>
+</section>
+<section id="books" class="level2">
+<h2 class="anchored" data-anchor-id="books">Books</h2>
+<ul>
+<li><a href="https://jakevdp.github.io/PythonDataScienceHandbook/">Python Data Science Handbook</a> - Jake VanderPlas (free online)</li>
+<li><a href="https://www.oreilly.com/library/view/hands-on-machine-learning/9781098125967/">Hands-On Machine Learning</a> - Aurélien Géron</li>
+<li><a href="https://www.statlearning.com/">Introduction to Statistical Learning</a> - James, Witten, Hastie, Tibshirani (free PDF)</li>
+<li><a href="https://christophm.github.io/interpretable-ml-book/">Interpretable Machine Learning</a> - Christoph Molnar (free online)</li>
+</ul>
+</section>
+<section id="tutorials-articles" class="level2">
+<h2 class="anchored" data-anchor-id="tutorials-articles">Tutorials &amp; Articles</h2>
+<ul>
+<li><a href="http://www.r2d3.us/visual-intro-to-machine-learning-part-1/">A Visual Introduction to Machine Learning</a></li>
+<li><a href="https://developers.google.com/machine-learning/crash-course/classification/roc-and-auc">ROC Curves Explained</a> - Google ML Crash Course</li>
+<li><a href="https://www.edlitera.com/en/blog/posts/evaluating-classification-models">How to Evaluate Classification Models</a> - edlitera</li>
+<li><a href="https://github.com/bagheri365/ML-Models-for-Classification">ML Models for Classification</a> - tour of methods</li>
+<li><a href="https://www.kaggle.com/general/192255">Logistic Regression using Gradient Descent</a> - Kaggle</li>
+<li><a href="https://medium.com/geekculture/xgboost-versus-random-forest-898e42870f30">XGBoost vs Random Forest</a> - Geek Culture</li>
+<li><a href="https://towardsdatascience.com/interpretable-machine-learning-with-xgboost-9ec80d148d27">Interpretable ML with XGBoost</a> - Towards Data Science</li>
+<li><a href="https://www.altexsoft.com/blog/unsupervised-machine-learning/">Unsupervised Learning: Algorithms and Examples</a> - AltexSoft</li>
+<li><a href="https://d2l.ai/chapter_linear-classification/environment-and-distribution-shift.html">Environment and Distribution Shift</a> - Dive into Deep Learning</li>
+</ul>
+</section>
+<section id="health-data-examples" class="level2">
+<h2 class="anchored" data-anchor-id="health-data-examples">Health Data Examples</h2>
+<ul>
+<li><a href="https://www.kaggle.com/code/nandita711/cancer-classification-eda-pca-random-forest">Cancer Classification (EDA, PCA, Random Forest)</a> - Kaggle</li>
+<li><a href="https://www.frontiersin.org/articles/10.3389/fcimb.2022.819267/full">XGBoost, Random Forest, and Nomograph for Disease Severity Prediction</a> - Frontiers</li>
+<li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6963807/">Prediction Method for Hypertension</a> - Diagnostics Journal</li>
+</ul>
+</section>
+</section>
+<section id="crash-course-in-classification" class="level1">
+<h1>Crash Course in Classification</h1>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/xkcd_classification.png" class="img-fluid figure-img"></p>
+<figcaption>XKCD classification</figcaption>
+</figure>
+</div>
+<p>The building blocks of ML are algorithms for <strong>regression</strong> and <strong>classification:</strong></p>
+<ul>
+<li><strong>Regression</strong>: predicting continuous quantities</li>
+<li><strong>Classification</strong>: predicting <em>discrete class labels</em> (categories)</li>
+</ul>
+<section id="classification-methods" class="level2">
+<h2 class="anchored" data-anchor-id="classification-methods">Classification Methods</h2>
+<p>Classification algorithms learn to assign labels to data points based on their features. In health data, this might mean predicting whether a patient has a disease based on lab results.</p>
+<section id="reference-card-common-classification-methods" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-common-classification-methods">Reference Card: Common Classification Methods</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Method</th>
+<th style="text-align: left;">Description</th>
+<th style="text-align: left;">Strengths</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Logistic Regression</strong></td>
+<td style="text-align: left;">Linear model for binary outcomes</td>
+<td style="text-align: left;">Easy to interpret, fast</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Decision Trees</strong></td>
+<td style="text-align: left;">Tree structure, splits data by feature values</td>
+<td style="text-align: left;">Intuitive but can overfit</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Random Forest</strong></td>
+<td style="text-align: left;">Many decision trees combined</td>
+<td style="text-align: left;">More robust, less overfitting</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Support Vector Machines (SVM)</strong></td>
+<td style="text-align: left;">Finds the best boundary between classes</td>
+<td style="text-align: left;">Good for complex data</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Naive Bayes</strong></td>
+<td style="text-align: left;">Probabilistic, assumes features are independent</td>
+<td style="text-align: left;">Fast and simple</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Neural Networks</strong></td>
+<td style="text-align: left;">Layers of nodes, can model complex patterns</td>
+<td style="text-align: left;">Powerful but less interpretable</td>
+</tr>
+</tbody>
+</table>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/its_all_statistics.jpg" class="img-fluid figure-img"></p>
+<figcaption>it’s all statistics</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="model-evaluation" class="level2">
+<h2 class="anchored" data-anchor-id="model-evaluation">Model Evaluation</h2>
+<p>There are many more classification approaches than data scientists, so choosing the best one for your application can be daunting. Thankfully, all of them output predicted classes for each data point. We can use this similarity to define objective performance criteria based on how often the predicted class matches the underlying truth.</p>
+<p>I get in trouble with the data science police if I don’t include something about confusion matrices:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/evaluation.png" class="img-fluid figure-img"></p>
+<figcaption>Evaluation metrics</figcaption>
+</figure>
+</div>
+<ul>
+<li><p><strong>Precision</strong> (Positive Predictive Value) = <span class="math inline">\(\frac{TP}{TP + FP}\)</span></p>
+<blockquote class="blockquote">
+<p><em>How well it performs when it predicts positive</em></p>
+</blockquote></li>
+<li><p><strong>Recall</strong> (Sensitivity, True Positive Rate) = <span class="math inline">\(\frac{TP}{TP+FN}\)</span></p>
+<blockquote class="blockquote">
+<p><em>How well it performs among actual positives</em></p>
+</blockquote></li>
+<li><p><strong>Accuracy</strong> = <span class="math inline">\(\frac{(TP+TN)}{(TP+FP+FN+TN)}\)</span></p>
+<blockquote class="blockquote">
+<p><em>How well it performs among all known classes</em></p>
+</blockquote></li>
+<li><p><strong>F1 score</strong> = <span class="math inline">\(2 \times \frac{Recall \times Precision}{Recall + Precision}\)</span></p>
+<blockquote class="blockquote">
+<p><em>Balanced score for overall model performance</em></p>
+</blockquote></li>
+<li><p><strong>Specificity</strong> (Selectivity, True Negative Rate) = <span class="math inline">\(\frac{TN}{TN + FP}\)</span></p>
+<blockquote class="blockquote">
+<p><em>Similar to</em> <strong>Recall</strong>, <em>how well it performs among actual negatives</em></p>
+</blockquote></li>
+<li><p><strong>Miss Rate</strong> (False Negative Rate) = <span class="math inline">\(\frac{FN}{TP + FN}\)</span></p>
+<blockquote class="blockquote">
+<p><em>Proportion of positives that were incorrectly classified, good measure when missing a positive has a high cost</em></p>
+</blockquote></li>
+</ul>
+<p><img src="media/accuracy.webp" class="img-fluid"></p>
+<section id="reference-card-confusion_matrix" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-confusion_matrix">Reference Card: <code>confusion_matrix</code></h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Component</th>
+<th style="text-align: left;">Details</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Function</strong></td>
+<td style="text-align: left;"><code>sklearn.metrics.confusion_matrix()</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Purpose</strong></td>
+<td style="text-align: left;">Compute confusion matrix to evaluate classification accuracy</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Key Parameters</strong></td>
+<td style="text-align: left;">• <code>y_true</code>: Ground truth target values<br>• <code>y_pred</code>: Estimated targets from classifier<br>• <code>labels</code>: List of labels to index the matrix<br>• <code>normalize</code>: Normalize over ‘true’, ‘pred’, ‘all’, or None</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Returns</strong></td>
+<td style="text-align: left;">Array where rows are actual, columns are predicted</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-confusion-matrix" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-confusion-matrix">Code Snippet: Confusion Matrix</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>y_true <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>]  <span class="co"># Actual labels</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>]  <span class="co"># Predicted labels</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>cm <span class="op">=</span> confusion_matrix(y_true, y_pred)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cm)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Output interpretation (for binary case):</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># [[TN, FP],</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">#  [FN, TP]]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="classification-report" class="level2">
+<h2 class="anchored" data-anchor-id="classification-report">Classification Report</h2>
+<p>The <code>classification_report</code> function provides a comprehensive summary of precision, recall, and F1-score for each class in a single call—essential for evaluating multi-class models.</p>
+<section id="reference-card-classification_report" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-classification_report">Reference Card: <code>classification_report</code></h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Component</th>
+<th style="text-align: left;">Details</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Function</strong></td>
+<td style="text-align: left;"><code>sklearn.metrics.classification_report()</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Purpose</strong></td>
+<td style="text-align: left;">Build a text report showing main classification metrics per class</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Key Parameters</strong></td>
+<td style="text-align: left;">• <code>y_true</code>: Ground truth target values<br>• <code>y_pred</code>: Estimated targets from classifier<br>• <code>target_names</code>: Display names for classes<br>• <code>output_dict</code>: Return dict instead of string</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Returns</strong></td>
+<td style="text-align: left;">String (or dict) with precision, recall, F1-score, support per class</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-classification-report" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-classification-report">Code Snippet: Classification Report</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> classification_report</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>y_true <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>]</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">2</span>]</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(classification_report(y_true, y_pred, target_names<span class="op">=</span>[<span class="st">'No Disease'</span>, <span class="st">'Mild'</span>, <span class="st">'Severe'</span>]))</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">#               precision    recall  f1-score   support</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">#   No Disease       0.50      0.50      0.50         2</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">#         Mild       0.67      0.67      0.67         3</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">#       Severe       1.00      1.00      1.00         2</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co">#     accuracy                           0.71         7</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co">#    macro avg       0.72      0.72      0.72         7</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co"># weighted avg       0.71      0.71      0.71         7</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="roc-curve-and-auc" class="level2">
+<h2 class="anchored" data-anchor-id="roc-curve-and-auc">ROC Curve and AUC</h2>
+<p>An <strong>ROC curve</strong> (Receiver Operating Characteristic curve) shows how a classifier’s performance changes as you vary the threshold for predicting “positive.” It plots:</p>
+<ul>
+<li><strong>True Positive Rate (TPR)</strong> (a.k.a. recall): How many actual positives did we catch?
+<ul>
+<li><strong>TPR (Recall):</strong> <span class="math inline">\(TPR = \frac{TP}{TP + FN}\)</span></li>
+</ul></li>
+<li><strong>False Positive Rate (FPR):</strong> How many actual negatives did we incorrectly call positive?
+<ul>
+<li><strong>FPR:</strong> <span class="math inline">\(FPR = \frac{FP}{FP + TN}\)</span></li>
+</ul></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/auroc.png" class="img-fluid figure-img"></p>
+<figcaption>AUROC example</figcaption>
+</figure>
+</div>
+<p><img src="media/auc.png" class="img-fluid"></p>
+<section id="reference-card-roc_curve-and-roc_auc_score" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-roc_curve-and-roc_auc_score">Reference Card: <code>roc_curve</code> and <code>roc_auc_score</code></h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Component</th>
+<th style="text-align: left;">Details</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong><code>roc_curve()</code></strong></td>
+<td style="text-align: left;">Returns FPR, TPR, and thresholds for plotting</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong><code>roc_auc_score()</code></strong></td>
+<td style="text-align: left;">Returns the Area Under the ROC Curve</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Key Parameters</strong></td>
+<td style="text-align: left;">• <code>y_true</code>: True binary labels<br>• <code>y_score</code>: Probability estimates (use <code>predict_proba()[:, 1]</code>)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Interpretation</strong></td>
+<td style="text-align: left;">AUC = 0.5 is random guessing; AUC = 1.0 is perfect</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-roc-and-auc" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-roc-and-auc">Code Snippet: ROC and AUC</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> roc_curve, roc_auc_score</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>y_true <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>]</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>y_scores <span class="op">=</span> [<span class="fl">0.1</span>, <span class="fl">0.4</span>, <span class="fl">0.35</span>, <span class="fl">0.8</span>]  <span class="co"># Model probabilities</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>fpr, tpr, thresholds <span class="op">=</span> roc_curve(y_true, y_scores)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>auc_score <span class="op">=</span> roc_auc_score(y_true, y_scores)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"AUC Score: </span><span class="sc">{</span>auc_score<span class="sc">}</span><span class="ss">"</span>)  <span class="co"># Output: AUC Score: 0.75</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>AUC is desirable for two reasons:</p>
+<ul>
+<li>AUC is <strong>scale-invariant</strong>. It measures how well predictions are ranked, rather than their absolute values.</li>
+<li>AUC is <strong>classification-threshold-invariant</strong>. It measures the quality of the model’s predictions irrespective of what classification threshold is chosen.</li>
+</ul>
+<p>However, both these reasons come with caveats:</p>
+<ul>
+<li><strong>Scale invariance is not always desirable.</strong> Sometimes we need well calibrated probability outputs, and AUC won’t tell us about that.</li>
+<li><strong>Classification-threshold invariance is not always desirable.</strong> In cases where there are wide disparities in the cost of false negatives vs.&nbsp;false positives, AUC isn’t the right metric.</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="supervised-vs.-unsupervised" class="level1">
+<h1>Supervised vs.&nbsp;Unsupervised</h1>
+<p>There are two(-ish) overarching categories of classification algorithms: <strong>supervised</strong> and <strong>unsupervised</strong>. There are many possible approaches in each category, and some that work well in both (deep learning, for example).</p>
+<ul>
+<li><strong>Supervised</strong> - uses labeled datasets with known classes for the data points</li>
+<li><strong>Unsupervised</strong> - uses unlabeled data to uncover organizational patterns</li>
+<li><strong>Semi-supervised</strong> - some data with labels is used to extract relevant features, while others without can amplify that signal; e.g., medical images (x-ray, CT)</li>
+</ul>
+<p><img src="media/supervisor.gif" class="img-fluid"></p>
+<section id="supervised-models" class="level2">
+<h2 class="anchored" data-anchor-id="supervised-models">Supervised Models</h2>
+<p>To fairly evaluate each model, we must <strong>test</strong> its performance on different data than it was <strong>train</strong>ed on. So we split our dataset into two partitions: <strong>test</strong> and <strong>train</strong>:</p>
+<ul>
+<li><strong>Train</strong> - data used to fit the model(s)</li>
+<li><strong>Validation</strong> - data used to tune hyperparameters, compare models, and select the best one</li>
+<li><strong>Test</strong> - final holdout data, touched only once to evaluate the selected model</li>
+</ul>
+<p><img src="media/train_test.webp" class="img-fluid"></p>
+<p><img src="media/train-test-validation.png" class="img-fluid"></p>
+<blockquote class="blockquote">
+<p><strong>A note on terminology:</strong> The standard convention is <strong>train/validation/test</strong>, where validation is used for model development and test is the final holdout. However, sklearn’s function is called <code>train_test_split()</code> and cross-validation literature often refers to “test folds”—so you’ll see some inconsistency in practice. We’ll follow the standard: validation for tuning/selection, test for final evaluation.</p>
+</blockquote>
+<section id="reference-card-train_test_split" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-train_test_split">Reference Card: <code>train_test_split</code></h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Component</th>
+<th style="text-align: left;">Details</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Function</strong></td>
+<td style="text-align: left;"><code>sklearn.model_selection.train_test_split()</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Purpose</strong></td>
+<td style="text-align: left;">Split arrays into random train and test subsets</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Key Parameters</strong></td>
+<td style="text-align: left;">• <code>test_size</code>: Proportion for test (default 0.25)<br>• <code>random_state</code>: Seed for reproducibility<br>• <code>stratify</code>: Preserve class ratios in splits (pass <code>y</code> for classification)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Returns</strong></td>
+<td style="text-align: left;"><code>X_train, X_test, y_train, y_test</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote class="blockquote">
+<p><strong>Tip:</strong> Always use <code>stratify=y</code> for classification tasks—especially with imbalanced classes—to ensure both train and test sets have similar class distributions.</p>
+</blockquote>
+</section>
+<section id="code-snippet-traintest-split" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-traintest-split">Code Snippet: Train/Test Split</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.array([[<span class="dv">1</span>, <span class="dv">2</span>], [<span class="dv">2</span>, <span class="dv">3</span>], [<span class="dv">3</span>, <span class="dv">4</span>], [<span class="dv">4</span>, <span class="dv">5</span>], [<span class="dv">5</span>, <span class="dv">6</span>], [<span class="dv">6</span>, <span class="dv">7</span>]])</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.array([<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>])</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    X, y, test_size<span class="op">=</span><span class="fl">0.3</span>, random_state<span class="op">=</span><span class="dv">42</span>, stratify<span class="op">=</span>y</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"X_train shape:"</span>, X_train.shape)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"X_test shape:"</span>, X_test.shape)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="cross-validation-for-model-comparison" class="level2">
+<h2 class="anchored" data-anchor-id="cross-validation-for-model-comparison">Cross-Validation for Model Comparison</h2>
+<p>A single train/test split can be misleading if the split happens to be particularly easy or hard. <strong>Cross-validation</strong> provides more robust performance estimates by training and testing on multiple different splits of the data.</p>
+<p><strong>K-Fold Cross-Validation:</strong></p>
+<ol type="1">
+<li>Split data into <em>k</em> equal parts (folds)</li>
+<li>Train on k-1 folds, test on the remaining fold</li>
+<li>Repeat k times, each fold serving as test once</li>
+<li>Average the results for final performance estimate</li>
+</ol>
+<section id="reference-card-cross_val_score" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-cross_val_score">Reference Card: <code>cross_val_score</code></h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Component</th>
+<th style="text-align: left;">Details</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Function</strong></td>
+<td style="text-align: left;"><code>sklearn.model_selection.cross_val_score()</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Purpose</strong></td>
+<td style="text-align: left;">Evaluate model with cross-validation, returning scores for each fold</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Key Parameters</strong></td>
+<td style="text-align: left;">• <code>estimator</code>: Model to evaluate<br>• <code>X, y</code>: Features and labels<br>• <code>cv</code>: Number of folds or CV splitter<br>• <code>scoring</code>: Metric to use (‘accuracy’, ‘f1’, ‘roc_auc’)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Returns</strong></td>
+<td style="text-align: left;">Array of scores, one per fold</td>
+</tr>
+</tbody>
+</table>
+<p><img src="media/cross-validation-k-fold.jpg" class="img-fluid"></p>
+</section>
+<section id="code-snippet-cross-validation" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-cross-validation">Code Snippet: Cross-Validation</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> cross_val_score, StratifiedKFold</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> RandomForestClassifier</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.random.randn(<span class="dv">100</span>, <span class="dv">5</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.random.randint(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">100</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> RandomForestClassifier(n_estimators<span class="op">=</span><span class="dv">50</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Simple 5-fold cross-validation</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>scores <span class="op">=</span> cross_val_score(model, X, y, cv<span class="op">=</span><span class="dv">5</span>, scoring<span class="op">=</span><span class="st">'f1'</span>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"F1 scores per fold: </span><span class="sc">{</span>scores<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Mean F1: </span><span class="sc">{</span>scores<span class="sc">.</span>mean()<span class="sc">:.3f}</span><span class="ss"> (+/- </span><span class="sc">{</span>scores<span class="sc">.</span>std() <span class="op">*</span> <span class="dv">2</span><span class="sc">:.3f}</span><span class="ss">)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="reference-card-stratifiedkfold" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-stratifiedkfold">Reference Card: <code>StratifiedKFold</code></h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Component</th>
+<th style="text-align: left;">Details</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Function</strong></td>
+<td style="text-align: left;"><code>sklearn.model_selection.StratifiedKFold()</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Purpose</strong></td>
+<td style="text-align: left;">K-fold iterator that preserves class distribution in each fold</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Key Parameters</strong></td>
+<td style="text-align: left;">• <code>n_splits</code>: Number of folds (default 5)<br>• <code>shuffle</code>: Shuffle data before splitting<br>• <code>random_state</code>: Seed for reproducibility</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Use With</strong></td>
+<td style="text-align: left;">Pass to <code>cross_val_score(cv=...)</code> or iterate manually</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-stratifiedkfold" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-stratifiedkfold">Code Snippet: StratifiedKFold</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> StratifiedKFold</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a stratified k-fold splitter</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>skf <span class="op">=</span> StratifiedKFold(n_splits<span class="op">=</span><span class="dv">5</span>, shuffle<span class="op">=</span><span class="va">True</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Iterate over folds manually (useful for custom training loops)</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> fold, (train_idx, val_idx) <span class="kw">in</span> <span class="bu">enumerate</span>(skf.split(X, y)):</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    X_train_fold, X_val_fold <span class="op">=</span> X[train_idx], X[val_idx]</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    y_train_fold, y_val_fold <span class="op">=</span> y[train_idx], y[val_idx]</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Fold </span><span class="sc">{</span>fold<span class="sc">}</span><span class="ss">: train=</span><span class="sc">{</span><span class="bu">len</span>(train_idx)<span class="sc">}</span><span class="ss">, val=</span><span class="sc">{</span><span class="bu">len</span>(val_idx)<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><img src="media/cross-validation-stratified.webp" class="img-fluid"></p>
+</section>
+</section>
+<section id="model-comparison-workflow" class="level2">
+<h2 class="anchored" data-anchor-id="model-comparison-workflow">Model Comparison Workflow</h2>
+<p>Once you have evaluation metrics and cross-validation set up, the typical workflow for comparing models is:</p>
+<ol type="1">
+<li><strong>Define candidate models</strong> - pick <span class="math inline">\(N\)</span> (2-4?) algorithms appropriate for your data</li>
+<li><strong>Compare on the same metric</strong> - F1, AUC, or whatever matters for your problem; Choose a clear criteria for establishing a winner ahead of time, ideally a single “champion” metric but could also be a more complex ruleset (e.g., best on metric A with metric B &gt; minimum)</li>
+<li><strong>Use the same data splits</strong> - ensures fair comparison across the same data splits</li>
+<li><strong>For each fold (split n of k):</strong>
+<ol type="1">
+<li><strong>(optional) Hyperparameter tuning</strong> - vary model settings (e.g., tree depth)</li>
+<li><strong>Train</strong> each model on identical training sets</li>
+<li><strong>Evaluate</strong> each model on identical validation sets</li>
+<li><strong>Record</strong> performance metrics for this fold</li>
+</ol></li>
+<li><strong>Compare models and select best</strong> - usually best mean score for champion metric, but watch out for models with high variance across folds</li>
+<li><strong>Retrain selected model on full train+validation data</strong></li>
+<li><strong>Final evaluation</strong> - evaluate the chosen model on the held-out test set (touched only once)</li>
+</ol>
+<pre class="mermaid"><code>flowchart TB
+    A[Setup: Define models, metric, hold out test, split into k folds]
+
+    A --&gt; F1 &amp; F2 &amp; Fdots &amp; Fk
+
+    subgraph FoldRow[" "]
+        direction LR
+        F1[Fold 1]
+        F2[Fold 2]
+        Fdots[...]
+        Fk[Fold k]
+    end
+
+    F1 --&gt; LR &amp; RF &amp; XGB
+
+    subgraph Fold1Box[" "]
+        LR[Logistic Regression] --&gt; LR1[Train] --&gt; LR2[Eval] --&gt; LR3[Record]
+        RF[Random Forest] --&gt; RF1[Train] --&gt; RF2[Eval] --&gt; RF3[Record]
+        XGB[XGBoost] --&gt; XGB1[Train] --&gt; XGB2[Eval] --&gt; XGB3[Record]
+    end
+
+    F2 -.-&gt; R2[...]
+    Fdots -.-&gt; Rdots[...]
+    Fk -.-&gt; Rk[...]
+
+    LR3 &amp; RF3 &amp; XGB3 --&gt; Avg[Average scores per model]
+    R2 &amp; Rdots &amp; Rk -.-&gt; Avg
+    Avg --&gt; Select[Select best model]
+    Select --&gt; Retrain[Retrain best on ALL train+val]
+    Retrain --&gt; Final[Evaluate on test set]
+
+    style FoldRow fill:none,stroke:none</code></pre>
+<section id="code-snippet-comparing-multiple-models" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-comparing-multiple-models">Code Snippet: Comparing Multiple Models</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> cross_val_score, StratifiedKFold</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> RandomForestClassifier</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> xgboost <span class="im">import</span> XGBClassifier</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Define models to compare</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>models <span class="op">=</span> {</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Logistic Regression'</span>: LogisticRegression(max_iter<span class="op">=</span><span class="dv">1000</span>),</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Random Forest'</span>: RandomForestClassifier(n_estimators<span class="op">=</span><span class="dv">100</span>),</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">'XGBoost'</span>: XGBClassifier(n_estimators<span class="op">=</span><span class="dv">100</span>, verbosity<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Use same CV splitter for fair comparison</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>cv <span class="op">=</span> StratifiedKFold(n_splits<span class="op">=</span><span class="dv">5</span>, shuffle<span class="op">=</span><span class="va">True</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare models</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, model <span class="kw">in</span> models.items():</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    scores <span class="op">=</span> cross_val_score(model, X, y, cv<span class="op">=</span>cv, scoring<span class="op">=</span><span class="st">'f1'</span>)</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">: F1 = </span><span class="sc">{</span>scores<span class="sc">.</span>mean()<span class="sc">:.3f}</span><span class="ss"> (+/- </span><span class="sc">{</span>scores<span class="sc">.</span>std() <span class="op">*</span> <span class="dv">2</span><span class="sc">:.3f}</span><span class="ss">)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+</section>
+<section id="live-demo" class="level1">
+<h1>LIVE DEMO</h1>
+</section>
+<section id="quick-supervised-model-overview" class="level1">
+<h1>Quick Supervised Model Overview</h1>
+<p>Let’s look at a few tools that you should get a lot of use out of:</p>
+<ul>
+<li><p><strong>Logistic Regression</strong> shouldn’t be overlooked! It’s not as new as some other models, but it’s simple and works.</p></li>
+<li><p><strong>Random Forest</strong> is an ensemble model that makes many decision trees using bagging, then takes a simple vote across them to assign a class</p></li>
+<li><p><strong>XGBoost</strong> is another ensemble and arguably the most widely used (and useful) algorithm in tabular ML (it can do regression, classification, and julienne fries!)</p></li>
+<li><p><strong>Deep Learning</strong> uses artificial neural networks with multiple layers to learn complex patterns from data. These models have performed well in a variety of tasks: image recognition, speech recognition, and natural language processing.</p>
+<p><em>Deep Learning models may also be used in unsupervised settings</em></p></li>
+</ul>
+<section id="logistic-regression" class="level2">
+<h2 class="anchored" data-anchor-id="logistic-regression">Logistic Regression</h2>
+<p>Logistic regression works similarly to linear regression but uses a sigmoid curve that squeezes our straight line into an S-curve. Note that logistic regression actually “fits” by training linear-like terms inside a more complex function.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/lin_vs_log.png" class="img-fluid figure-img"></p>
+<figcaption>Linear vs logistic regression</figcaption>
+</figure>
+</div>
+<p><img src="media/logistic-vs-linear.png" class="img-fluid"></p>
+<p>Additionally, it uses <strong>log loss</strong> (also called <strong>cross-entropy loss</strong>: a cost that measures how far predicted probabilities are from the true labels and penalizes confident wrong predictions more than uncertain ones) in place of our usual mean-squared error cost function. This provides a convex curve for approximating variable weights using gradient descent.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/approx_optimization.png" class="img-fluid figure-img"></p>
+<figcaption>Approximation optimization</figcaption>
+</figure>
+</div>
+<section id="reference-card-logisticregression" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-logisticregression">Reference Card: <code>LogisticRegression</code></h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Component</th>
+<th style="text-align: left;">Details</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Function</strong></td>
+<td style="text-align: left;"><code>sklearn.linear_model.LogisticRegression()</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Purpose</strong></td>
+<td style="text-align: left;">Linear model for classification (binary or multinomial)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Key Parameters</strong></td>
+<td style="text-align: left;">• <code>penalty</code>: Regularization (‘l2’, ‘l1’, ‘elasticnet’)<br>• <code>C</code>: Inverse regularization strength (smaller = stronger)<br>• <code>solver</code>: Optimization algorithm<br>• <code>max_iter</code>: Max iterations for convergence</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Key Methods</strong></td>
+<td style="text-align: left;"><code>.fit()</code>, <code>.predict()</code>, <code>.predict_proba()</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-logistic-regression" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-logistic-regression">Code Snippet: Logistic Regression</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> [[<span class="dv">1</span>, <span class="dv">2</span>], [<span class="dv">2</span>, <span class="dv">3</span>], [<span class="dv">3</span>, <span class="dv">4</span>]]</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>]</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> LogisticRegression().fit(X, y)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(model.predict([[<span class="dv">2</span>, <span class="dv">2</span>]]))  <span class="co"># Predicts class label</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="random-forest" class="level2">
+<h2 class="anchored" data-anchor-id="random-forest">Random Forest</h2>
+<p>Each of the steps can be tweaked, but the general flow goes:</p>
+<ol type="1">
+<li><strong>Bagging</strong> (Bootstrap AGGregating) - create <em>k</em> random samples (with replacement) from the dataset</li>
+<li><strong>Grow trees</strong> - individual decision trees are constructed by choosing the best features and cutpoints to separate the classes</li>
+<li><strong>Classify</strong> - instances are run through all trees and assigned a class by majority vote</li>
+</ol>
+<p><img src="media/random_forest.jpg" class="img-fluid"></p>
+<section id="reference-card-randomforestclassifier" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-randomforestclassifier">Reference Card: <code>RandomForestClassifier</code></h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Component</th>
+<th style="text-align: left;">Details</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Function</strong></td>
+<td style="text-align: left;"><code>sklearn.ensemble.RandomForestClassifier()</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Purpose</strong></td>
+<td style="text-align: left;">Ensemble of decision trees for classification</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Key Parameters</strong></td>
+<td style="text-align: left;">• <code>n_estimators</code>: Number of trees (default 100)<br>• <code>max_depth</code>: Maximum tree depth<br>• <code>min_samples_split</code>: Min samples to split a node<br>• <code>max_features</code>: Features to consider per split</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Attributes</strong></td>
+<td style="text-align: left;"><code>.feature_importances_</code> - importance of each feature</td>
+</tr>
+</tbody>
+</table>
+<p><img src="media/feature_importance.webp" class="img-fluid"></p>
+</section>
+<section id="code-snippet-random-forest" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-random-forest">Code Snippet: Random Forest</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> RandomForestClassifier</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> [[<span class="dv">1</span>, <span class="dv">2</span>], [<span class="dv">2</span>, <span class="dv">3</span>], [<span class="dv">3</span>, <span class="dv">4</span>], [<span class="dv">4</span>, <span class="dv">5</span>]]</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>]</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> RandomForestClassifier(n_estimators<span class="op">=</span><span class="dv">10</span>).fit(X, y)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(model.predict([[<span class="dv">2</span>, <span class="dv">2</span>]]))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/xkcd_ensemble_model.png" class="img-fluid figure-img"></p>
+<figcaption>XKCD Ensemble Model</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="xgboost" class="level2">
+<h2 class="anchored" data-anchor-id="xgboost">XGBoost</h2>
+<p>XGBoost stands for <strong>Extreme Gradient Boosting</strong>. Like other tree algorithms, XGBoost considers each instance with a series of <code>if</code> statements, resulting in a leaf with associated class assignment scores. Where XGBoost differs is that it uses gradient boosting to focus on weak-performing areas of the previous tree.</p>
+<ul>
+<li><strong>Boosting</strong> - sequentially choosing models by minimizing errors from previous models while increasing the influence of high-performing models; i.e., each model tries to improve where the last was wrong</li>
+<li><strong>Gradient boosting</strong> - a stagewise additive algorithm sequentially adding trees to improve performance measured by a <strong>loss function</strong> until some threshold is met. It’s a greedy algorithm prone to overfitting but often proves useful when focused on poor-performing areas</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/xgboost.png" class="img-fluid figure-img"></p>
+<figcaption>XGBoost diagram</figcaption>
+</figure>
+</div>
+<section id="reference-card-xgbclassifier" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-xgbclassifier">Reference Card: <code>XGBClassifier</code></h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Component</th>
+<th style="text-align: left;">Details</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Function</strong></td>
+<td style="text-align: left;"><code>xgboost.XGBClassifier()</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Purpose</strong></td>
+<td style="text-align: left;">Gradient boosting implementation for classification</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Key Parameters</strong></td>
+<td style="text-align: left;">• <code>n_estimators</code>: Number of boosting rounds<br>• <code>learning_rate</code>: Step size shrinkage (eta)<br>• <code>max_depth</code>: Maximum tree depth<br>• <code>subsample</code>: Training instance subsample ratio</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Install</strong></td>
+<td style="text-align: left;"><code>pip install xgboost</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-xgboost" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-xgboost">Code Snippet: XGBoost</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> xgboost <span class="im">as</span> xgb</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> [[<span class="dv">1</span>, <span class="dv">2</span>], [<span class="dv">2</span>, <span class="dv">3</span>], [<span class="dv">3</span>, <span class="dv">4</span>], [<span class="dv">4</span>, <span class="dv">5</span>]]</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>]</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> xgb.XGBClassifier(n_estimators<span class="op">=</span><span class="dv">10</span>).fit(X, y)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(model.predict([[<span class="dv">2</span>, <span class="dv">2</span>]]))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="lightgbm-a-faster-alternative" class="level2">
+<h2 class="anchored" data-anchor-id="lightgbm-a-faster-alternative">LightGBM: A Faster Alternative</h2>
+<p><strong>LightGBM</strong> (Light Gradient Boosting Machine) is Microsoft’s gradient boosting framework, optimized for speed and memory efficiency. It’s often faster than XGBoost, especially on large datasets.</p>
+<p>Key differences from XGBoost:</p>
+<ul>
+<li><strong>Leaf-wise tree growth</strong> - grows trees by choosing the leaf with max delta loss, rather than level-wise. Faster but can overfit on small datasets</li>
+<li><strong>Histogram-based splitting</strong> - bins continuous features into discrete bins for faster training</li>
+<li><strong>Native categorical support</strong> - handles categorical features directly without one-hot encoding</li>
+</ul>
+<section id="reference-card-lgbmclassifier" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-lgbmclassifier">Reference Card: <code>LGBMClassifier</code></h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Component</th>
+<th style="text-align: left;">Details</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Function</strong></td>
+<td style="text-align: left;"><code>lightgbm.LGBMClassifier()</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Purpose</strong></td>
+<td style="text-align: left;">Fast gradient boosting for classification</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Key Parameters</strong></td>
+<td style="text-align: left;">• <code>n_estimators</code>: Number of boosting rounds<br>• <code>learning_rate</code>: Step size shrinkage<br>• <code>num_leaves</code>: Max number of leaves per tree<br>• <code>max_depth</code>: Limit tree depth (-1 for no limit)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Install</strong></td>
+<td style="text-align: left;"><code>pip install lightgbm</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-lightgbm" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-lightgbm">Code Snippet: LightGBM</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> lightgbm <span class="im">import</span> LGBMClassifier</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> [[<span class="dv">1</span>, <span class="dv">2</span>], [<span class="dv">2</span>, <span class="dv">3</span>], [<span class="dv">3</span>, <span class="dv">4</span>], [<span class="dv">4</span>, <span class="dv">5</span>]]</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>]</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> LGBMClassifier(n_estimators<span class="op">=</span><span class="dv">10</span>, verbosity<span class="op">=-</span><span class="dv">1</span>).fit(X, y)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(model.predict([[<span class="dv">2</span>, <span class="dv">2</span>]]))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>When to use which?</strong></p>
+<ul>
+<li><strong>XGBoost</strong> - well-established, extensive documentation, Kaggle competitions</li>
+<li><strong>LightGBM</strong> - faster training, lower memory, good for large datasets</li>
+<li>Both are excellent choices for tabular data classification</li>
+</ul>
+</section>
+</section>
+<section id="deep-learning" class="level2">
+<h2 class="anchored" data-anchor-id="deep-learning">Deep Learning</h2>
+<p><strong>Deep learning</strong> is a subfield of machine learning that uses artificial neural networks with multiple layers to learn complex patterns from data. These models use back-propagation to adjust the weights in each layer during training, allowing them to model very large and complex datasets.</p>
+<p>Deep learning models are especially useful for handling large datasets with high dimensionality, and they can be used for both supervised and unsupervised learning tasks. However, they often require a large amount of data and computation power to train effectively.</p>
+<ul>
+<li><strong>Artificial neural networks</strong> - a computational model inspired by biological neural networks</li>
+<li><strong>Deep neural networks</strong> - an ANN with more than one hidden layer</li>
+<li><strong>Convolutional neural networks</strong> - designed for image and video recognition</li>
+<li><strong>Recurrent neural networks</strong> - designed for sequence data</li>
+</ul>
+<p>More on neural networks later in the course…</p>
+<p><img src="media/better_than_me.png" class="img-fluid"></p>
+<section id="reference-card-keras-sequential-model" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-keras-sequential-model">Reference Card: Keras Sequential Model</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Component</th>
+<th style="text-align: left;">Details</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong><code>Sequential()</code></strong></td>
+<td style="text-align: left;">Linear stack of neural network layers</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong><code>Dense(units, activation)</code></strong></td>
+<td style="text-align: left;">Fully connected layer</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong><code>model.compile()</code></strong></td>
+<td style="text-align: left;">Configure for training (optimizer, loss, metrics)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Common Activations</strong></td>
+<td style="text-align: left;">‘relu’, ‘sigmoid’, ‘softmax’, ‘tanh’</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-simple-neural-network" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-simple-neural-network">Code Snippet: Simple Neural Network</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow <span class="im">import</span> keras</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras <span class="im">import</span> layers</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> keras.Sequential([</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    layers.Dense(<span class="dv">8</span>, activation<span class="op">=</span><span class="st">'relu'</span>, input_shape<span class="op">=</span>(<span class="dv">2</span>,)),</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    layers.Dense(<span class="dv">1</span>, activation<span class="op">=</span><span class="st">'sigmoid'</span>)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">compile</span>(optimizer<span class="op">=</span><span class="st">'adam'</span>, loss<span class="op">=</span><span class="st">'binary_crossentropy'</span>)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>model.fit(X_train, y_train, epochs<span class="op">=</span><span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="unsupervised-models-further-reading" class="level2">
+<h2 class="anchored" data-anchor-id="unsupervised-models-further-reading">Unsupervised Models (Further Reading)</h2>
+<p>Unsupervised models are used when you don’t have labeled data. While this course focuses on supervised classification, it’s worth knowing what’s available:</p>
+<ul>
+<li><strong>Clustering</strong>: grouping points based on similarities/differences; e.g., K-means, hierarchical clustering</li>
+<li><strong>Association</strong>: reveals relationships between variables; e.g., Apriori, F-P Growth</li>
+<li><strong>Dimensionality reduction</strong>: reduces the inputs to a smaller size; e.g., PCA, t-SNE, autoencoders</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/unsupervised.png" class="img-fluid figure-img"></p>
+<figcaption>unsupervised</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="live-demo-1" class="level1">
+<h1>LIVE DEMO</h1>
+</section>
+<section id="how-models-fail" class="level1">
+<h1>How Models Fail</h1>
+<p>Even the best models can fail if the data is messy, the problem is hard, or the world changes. Common failure modes include:</p>
+<ul>
+<li>Bad or inconsistent labels (garbage in, garbage out!)</li>
+<li>Underfitting (model too simple) or overfitting (model too complex)</li>
+<li>Dataset shift (data changes between training and real-world use)</li>
+<li>Hidden confounders (Simpson’s paradox)</li>
+<li>Imbalanced or “troublesome” classes</li>
+</ul>
+<section id="labeling" class="level2">
+<h2 class="anchored" data-anchor-id="labeling">Labeling</h2>
+<p>Oh, labeling…</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/labeling_error.jpg" class="img-fluid figure-img"></p>
+<figcaption>Labeling error</figcaption>
+</figure>
+</div>
+<p>Labeling issues can arise when the data is not labeled correctly or consistently, which can lead to biased or inaccurate models. Examples of labeling issues include:</p>
+<ul>
+<li><strong>Mislabeling</strong>: Labels that are assigned to data points are incorrect.</li>
+<li><strong>Ambiguous labeling</strong>: Labels that are assigned to data points are not clear or specific.</li>
+<li><strong>Inconsistent labeling</strong>: Labels that are assigned to similar data points are not the same</li>
+</ul>
+</section>
+<section id="fit" class="level2">
+<h2 class="anchored" data-anchor-id="fit">Fit</h2>
+<p>A model may fail to fit the data in one of two ways: under-fitting or over-fitting:</p>
+<ul>
+<li><p><strong>Under-fitting</strong>: The model fails to capture the differences between the classes. The model may be too simple, lack the necessary features, or the classes may not easily divide based on existing data.</p></li>
+<li><p><strong>Over-fitting</strong>: The model fits the training data too closely, leading to poor generalization. This can be the case when the model is overly complex or the data may have “too many features”.</p>
+<blockquote class="blockquote">
+<p><strong>Note</strong>: <em>With enough variables you can build a perfect predictor for anything (at least in the training set). That doesn’t mean the model will perform well in the wild</em></p>
+</blockquote></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/overfitting.jpg" class="img-fluid figure-img"></p>
+<figcaption>Overfitting</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/xkcd_curve_fitting.png" class="img-fluid figure-img"></p>
+<figcaption>XKCD Curve Fitting</figcaption>
+</figure>
+</div>
+</section>
+<section id="dataset-shift" class="level2">
+<h2 class="anchored" data-anchor-id="dataset-shift">Dataset Shift</h2>
+<p>Dataset shift occurs when the distribution of the data changes between the training and test sets. Dataset shift can be divided into three types:</p>
+<ol type="1">
+<li><strong>Covariate Shift</strong>: A change in the distribution of the independent variables between the training and test sets.</li>
+<li><strong>Prior Probability Shift</strong>: A change in the distribution of the target variable between the training and test sets.</li>
+<li><strong>Concept Shift</strong>: A change in the relationship between the independent and target variables between the training and test sets.</li>
+</ol>
+<p>Training data (Q2 2017): “Fidget spinners are the future!”</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/fidget_spinner_hype.png" class="img-fluid figure-img"></p>
+<figcaption>Fidget spinner hype</figcaption>
+</figure>
+</div>
+<p>Production data (2018+): “…nevermind”</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/fidget_spinner_crash.png" class="img-fluid figure-img"></p>
+<figcaption>Fidget spinner crash</figcaption>
+</figure>
+</div>
+</section>
+<section id="simpsons-paradox" class="level2">
+<h2 class="anchored" data-anchor-id="simpsons-paradox">Simpson’s Paradox</h2>
+<p><strong>Simpson’s paradox</strong> occurs when a trend appears in several different groups of data, but disappears or reverses when these groups are combined. It is a common problem in statistics and machine learning that can occur when there are confounding variables that affect the relationship between the independent and dependent variables.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/simpsons_paradox.png" class="img-fluid figure-img"></p>
+<figcaption>Simpson’s paradox</figcaption>
+</figure>
+</div>
+</section>
+<section id="troublesome-classes" class="level2">
+<h2 class="anchored" data-anchor-id="troublesome-classes">Troublesome Classes</h2>
+<p>Certain classes or categories in a dataset may be more difficult to classify accurately than others. This can be due to imbalanced class distribution, noisy data, or other factors. Identifying and addressing troublesome classes is an important step in building effective classification models.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/confused_classes.png" class="img-fluid figure-img"></p>
+<figcaption>Confused classes</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/xkcd_extrapolating.png" class="img-fluid figure-img"></p>
+<figcaption>XKCD Extrapolating</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="model-interpretation" class="level1">
+<h1>Model Interpretation</h1>
+<p>Understanding <strong>why</strong> a model makes its predictions is crucial in health data science—especially when decisions impact patient care.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/what_the_hell_is_this.jpg" class="img-fluid figure-img"></p>
+<figcaption>what the hell is this</figcaption>
+</figure>
+</div>
+<section id="shap-values-for-feature-importance" class="level2">
+<h2 class="anchored" data-anchor-id="shap-values-for-feature-importance">SHAP Values for Feature Importance</h2>
+<p><strong>SHAP</strong> (SHapley Additive exPlanations) assigns each feature an importance value for a particular prediction, based on cooperative game theory. SHAP provides more rigorous explanations than simpler methods but takes longer to compute.</p>
+<section id="reference-card-shap" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-shap">Reference Card: SHAP</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Component</th>
+<th style="text-align: left;">Details</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong><code>TreeExplainer(model)</code></strong></td>
+<td style="text-align: left;">Explainer optimized for tree-based models</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong><code>explainer.shap_values(X)</code></strong></td>
+<td style="text-align: left;">Compute SHAP values for data</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong><code>summary_plot()</code></strong></td>
+<td style="text-align: left;">Visualize global feature importance</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong><code>dependence_plot()</code></strong></td>
+<td style="text-align: left;">Show feature interactions</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Install</strong></td>
+<td style="text-align: left;"><code>pip install shap</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-shap" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-shap">Code Snippet: SHAP</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> shap</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> xgboost <span class="im">as</span> xgb</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> pd.DataFrame({<span class="st">'age'</span>: [<span class="dv">50</span>, <span class="dv">60</span>], <span class="st">'bp'</span>: [<span class="dv">120</span>, <span class="dv">140</span>]})</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>]</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> xgb.XGBClassifier().fit(X, y)</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>explainer <span class="op">=</span> shap.TreeExplainer(model)</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>shap_values <span class="op">=</span> explainer.shap_values(X)</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>shap.summary_plot(shap_values, X, plot_type<span class="op">=</span><span class="st">"bar"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/oyster_shap.png" class="img-fluid figure-img"></p>
+<figcaption>SHAP summary plot example</figcaption>
+</figure>
+</div>
+<p><em>Example SHAP summary plot: Each dot shows a feature’s impact on a prediction. Color indicates feature value (red=high, blue=low).</em></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/shap_dependence_plot.png" class="img-fluid figure-img"></p>
+<figcaption>SHAP dependence plot</figcaption>
+</figure>
+</div>
+<p><em>Example SHAP dependence plot: Shows how the effect of one feature depends on the value of another feature.</em></p>
+</section>
+</section>
+<section id="eli5-for-model-inspection" class="level2">
+<h2 class="anchored" data-anchor-id="eli5-for-model-inspection">eli5 for Model Inspection</h2>
+<p><strong>eli5</strong> is a Python library that helps demystify machine learning models by showing feature weights and decision paths.</p>
+<section id="reference-card-eli5" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-eli5">Reference Card: eli5</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Component</th>
+<th style="text-align: left;">Details</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong><code>show_weights()</code></strong></td>
+<td style="text-align: left;">Display feature importances (for notebooks/HTML)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong><code>explain_weights()</code></strong></td>
+<td style="text-align: left;">Return explanation object for programmatic use (e.g.&nbsp;<code>format_as_html()</code>)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong><code>show_prediction()</code></strong></td>
+<td style="text-align: left;">Explain a single prediction</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Key Parameters</strong></td>
+<td style="text-align: left;">• <code>estimator</code>: Trained model<br>• <code>feature_names</code>: List of feature names<br>• <code>top</code>: Number of top features to show</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Install</strong></td>
+<td style="text-align: left;"><code>pip install eli5</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-eli5" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-eli5">Code Snippet: eli5</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> eli5</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> RandomForestClassifier</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> [[<span class="dv">1</span>, <span class="dv">2</span>], [<span class="dv">3</span>, <span class="dv">4</span>], [<span class="dv">5</span>, <span class="dv">6</span>]]</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>]</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> RandomForestClassifier().fit(X, y)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>eli5.show_weights(model, feature_names<span class="op">=</span>[<span class="st">'feature1'</span>, <span class="st">'feature2'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/eli5_explain_weights.png" class="img-fluid figure-img"></p>
+<figcaption>eli5 feature weights</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/eli5_explain_prediction.png" class="img-fluid figure-img"></p>
+<figcaption>eli5 prediction explanation</figcaption>
+</figure>
+</div>
+</section>
+</section>
+</section>
+<section id="practical-data-preparation" class="level1">
+<h1>Practical Data Preparation</h1>
+<p>Preparing your data is just as important as choosing the right model. Good data prep can make or break your results—especially with real-world health data, which is often messy, imbalanced, and full of categorical variables.</p>
+<section id="feature-scaling-with-standardscaler" class="level2">
+<h2 class="anchored" data-anchor-id="feature-scaling-with-standardscaler">Feature Scaling with StandardScaler</h2>
+<p>Many algorithms (especially logistic regression, SVMs, and neural networks) perform better when features are on similar scales. <strong>StandardScaler</strong> transforms features to have mean=0 and standard deviation=1.</p>
+<section id="reference-card-standardscaler" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-standardscaler">Reference Card: <code>StandardScaler</code></h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Component</th>
+<th style="text-align: left;">Details</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Function</strong></td>
+<td style="text-align: left;"><code>sklearn.preprocessing.StandardScaler()</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Purpose</strong></td>
+<td style="text-align: left;">Standardize features by removing the mean and scaling to unit variance</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Key Methods</strong></td>
+<td style="text-align: left;">• <code>fit(X)</code>: Compute mean and std from training data<br>• <code>transform(X)</code>: Apply standardization<br>• <code>fit_transform(X)</code>: Fit and transform in one step<br>• <code>inverse_transform(X)</code>: Reverse the transformation</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>When to Use</strong></td>
+<td style="text-align: left;">Logistic regression, SVM, neural networks, K-means, PCA</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-standardscaler" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-standardscaler">Code Snippet: StandardScaler</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Sample data with different scales</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.array([[<span class="dv">50</span>, <span class="dv">180000</span>], [<span class="dv">65</span>, <span class="dv">220000</span>], [<span class="dv">35</span>, <span class="dv">150000</span>]])  <span class="co"># Age, Income</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>scaler <span class="op">=</span> StandardScaler()</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>X_scaled <span class="op">=</span> scaler.fit_transform(X)</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Original:</span><span class="ch">\n</span><span class="st">"</span>, X)</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Scaled:</span><span class="ch">\n</span><span class="st">"</span>, X_scaled)</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Each column now has mean≈0, std≈1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="labelencoder-for-target-variables" class="level2">
+<h2 class="anchored" data-anchor-id="labelencoder-for-target-variables">LabelEncoder for Target Variables</h2>
+<p>Some classifiers (like XGBoost) require target labels to be consecutive integers starting from 0. <strong>LabelEncoder</strong> transforms arbitrary labels like [5, 7, 9] into [0, 1, 2].</p>
+<section id="reference-card-labelencoder" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-labelencoder">Reference Card: <code>LabelEncoder</code></h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Component</th>
+<th style="text-align: left;">Details</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Function</strong></td>
+<td style="text-align: left;"><code>sklearn.preprocessing.LabelEncoder()</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Purpose</strong></td>
+<td style="text-align: left;">Encode target labels as integers 0, 1, 2, …</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Key Methods</strong></td>
+<td style="text-align: left;">• <code>fit(y)</code>: Learn label mapping<br>• <code>transform(y)</code>: Apply encoding<br>• <code>fit_transform(y)</code>: Fit and transform in one step<br>• <code>inverse_transform(y)</code>: Convert back to original labels</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>When to Use</strong></td>
+<td style="text-align: left;">XGBoost with multi-class labels, or when algorithms require 0-indexed labels</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-labelencoder" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-labelencoder">Code Snippet: LabelEncoder</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> LabelEncoder</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Original labels aren't 0-indexed</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> [<span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">9</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">9</span>]</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>encoder <span class="op">=</span> LabelEncoder()</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>y_encoded <span class="op">=</span> encoder.fit_transform(y)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y_encoded)  <span class="co"># [0, 1, 2, 0, 1, 2]</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="co"># To decode back:</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>y_original <span class="op">=</span> encoder.inverse_transform(y_encoded)</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y_original)  <span class="co"># [5, 7, 9, 5, 7, 9]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="onehotencoder-for-categorical-variables" class="level2">
+<h2 class="anchored" data-anchor-id="onehotencoder-for-categorical-variables">OneHotEncoder for Categorical Variables</h2>
+<p>Many machine learning models require all input features to be numeric. <strong>One-hot encoding</strong> transforms categorical variables (like “smoker” or “blood type”) into a set of binary columns.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/onehotencoder.png" class="img-fluid figure-img"></p>
+<figcaption>onehotencoder</figcaption>
+</figure>
+</div>
+<section id="reference-card-onehotencoder" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-onehotencoder">Reference Card: <code>OneHotEncoder</code></h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Component</th>
+<th style="text-align: left;">Details</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Function</strong></td>
+<td style="text-align: left;"><code>sklearn.preprocessing.OneHotEncoder()</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Purpose</strong></td>
+<td style="text-align: left;">Encode categorical features as binary columns</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Key Parameters</strong></td>
+<td style="text-align: left;">• <code>categories</code>: Categories per feature (‘auto’)<br>• <code>drop</code>: Drop category to avoid multicollinearity<br>• <code>sparse_output</code>: Return sparse matrix or array<br>• <code>handle_unknown</code>: How to handle unknown categories</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-onehotencoder" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-onehotencoder">Code Snippet: OneHotEncoder</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> OneHotEncoder</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({<span class="st">'smoker'</span>: [<span class="st">'yes'</span>, <span class="st">'no'</span>, <span class="st">'no'</span>, <span class="st">'yes'</span>]})</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>encoder <span class="op">=</span> OneHotEncoder(sparse_output<span class="op">=</span><span class="va">False</span>, handle_unknown<span class="op">=</span><span class="st">'ignore'</span>)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>encoded <span class="op">=</span> encoder.fit_transform(df[[<span class="st">'smoker'</span>]])</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(encoded)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="handling-imbalanced-classes-with-evaluation-metrics" class="level2">
+<h2 class="anchored" data-anchor-id="handling-imbalanced-classes-with-evaluation-metrics">Handling Imbalanced Classes with Evaluation Metrics</h2>
+<p>Consider metrics that penalize misclassifications unequally, like:</p>
+<ul>
+<li><strong>F1-score</strong>: Harmonic mean of precision and recall (good out of the box, but can be weighted for class imbalance)</li>
+<li><strong>Precision</strong>: Proportion of positive identifications that were actually correct</li>
+<li><strong>Recall</strong>: Proportion of actual positives that were identified correctly</li>
+</ul>
+</section>
+<section id="handling-imbalanced-data-with-smote" class="level2">
+<h2 class="anchored" data-anchor-id="handling-imbalanced-data-with-smote">Handling Imbalanced Data with SMOTE</h2>
+<p>In health data, one class (like “disease present”) is often much rarer than the other. <strong>SMOTE</strong> (Synthetic Minority Over-sampling Technique) creates synthetic examples of the minority class to balance the dataset.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/smote.png" class="img-fluid figure-img"></p>
+<figcaption>smote</figcaption>
+</figure>
+</div>
+<section id="reference-card-smote" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-smote">Reference Card: <code>SMOTE</code></h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Component</th>
+<th style="text-align: left;">Details</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Function</strong></td>
+<td style="text-align: left;"><code>imblearn.over_sampling.SMOTE()</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Purpose</strong></td>
+<td style="text-align: left;">Oversample minority class with synthetic samples</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Key Parameters</strong></td>
+<td style="text-align: left;">• <code>sampling_strategy</code>: Target class distribution<br>• <code>k_neighbors</code>: Neighbors used for interpolation<br>• <code>random_state</code>: For reproducibility</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Install</strong></td>
+<td style="text-align: left;"><code>pip install imbalanced-learn</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-smote" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-smote">Code Snippet: SMOTE</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> imblearn.over_sampling <span class="im">import</span> SMOTE</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> make_classification</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> collections</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>X, y <span class="op">=</span> make_classification(n_samples<span class="op">=</span><span class="dv">100</span>, weights<span class="op">=</span>[<span class="fl">0.9</span>, <span class="fl">0.1</span>], random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Original:"</span>, collections.Counter(y))</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>smote <span class="op">=</span> SMOTE(random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>X_resampled, y_resampled <span class="op">=</span> smote.fit_resample(X, y)</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Resampled:"</span>, collections.Counter(y_resampled))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/imbalanced_classes.jpg" class="img-fluid figure-img"></p>
+<figcaption>imbalance</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="feature-engineering" class="level2">
+<h2 class="anchored" data-anchor-id="feature-engineering">Feature Engineering</h2>
+<p>Good features often matter more than the choice of algorithm. Feature engineering combines domain knowledge with data transformation to create inputs that help models learn.</p>
+</section>
+<section id="domain-specific-feature-derivations" class="level2">
+<h2 class="anchored" data-anchor-id="domain-specific-feature-derivations">Domain-Specific Feature Derivations</h2>
+<p>The best features often come from domain knowledge—knowing what matters in health data:</p>
+<ul>
+<li>Calculating BMI from height and weight</li>
+<li>Deriving heart rate variability from RR intervals</li>
+<li>Creating a “polypharmacy” flag for patients on multiple medications</li>
+<li>Age buckets for risk stratification</li>
+</ul>
+</section>
+<section id="automated-feature-engineering-further-reading" class="level2">
+<h2 class="anchored" data-anchor-id="automated-feature-engineering-further-reading">Automated Feature Engineering (Further Reading)</h2>
+<p>For complex relational datasets, libraries like <strong>featuretools</strong> can automatically generate features using Deep Feature Synthesis. This is especially useful for time series and multi-table data.</p>
+</section>
+<section id="when-and-how-to-combine-techniques" class="level2">
+<h2 class="anchored" data-anchor-id="when-and-how-to-combine-techniques">When and How to Combine Techniques</h2>
+<p>Often, you’ll need to use several data prep techniques together. The order is crucial to prevent <strong>data leakage</strong>—when information from the test set accidentally influences training, leading to overly optimistic performance estimates.</p>
+<p><strong>Recommended Order</strong> (opinionated):</p>
+<ol type="1">
+<li><strong>Split data FIRST:</strong> Hold out the test set before any preprocessing. Use <code>stratify=y</code> to preserve class ratios.</li>
+<li><strong>Encode categorical variables:</strong> Fit encoder <em>only</em> on training data, then transform both train and validation/test</li>
+<li><strong>Engineer additional features:</strong>
+<ul>
+<li>Always use subject matter expertise to transform or combine conceptually consistent columns that may be more predictive or better fit (e.g., linear) for your model</li>
+<li>Use dimension reduction techniques like Principal Component Analysis to combine columns for better predictive value and to reduce multicollinearity</li>
+<li>Consider automated feature engineering as an exploratory step but beware that it is a kind of modeling and, just like any model, it is susceptible to overfitting. Also, you’re going to have to explain whatever you did and the relationships in your analysis.</li>
+</ul></li>
+<li><strong>Scale/normalize features (if needed):</strong> Fit scaler <em>only</em> on training data, then transform both</li>
+<li><strong>Balance classes (optional, e.g., SMOTE):</strong> Apply <em>only</em> to training set—never validation or test!</li>
+</ol>
+<blockquote class="blockquote">
+<p><strong>Why split first?</strong> If you fit your scaler or encoder on the full dataset before splitting, your model “sees” test data statistics during training. This leaks information and makes your model appear better than it really is.</p>
+</blockquote>
+<p><strong>If Not Balancing:</strong> Use evaluation metrics that account for imbalance:</p>
+<ul>
+<li><strong>Confusion Matrix:</strong> Performance per class</li>
+<li><strong>Precision, Recall, F1-score:</strong> Especially for minority class</li>
+<li><strong>ROC AUC:</strong> Or Precision-Recall AUC for imbalanced data</li>
+</ul>
+</section>
+</section>
+<section id="live-demo-2" class="level1">
+<h1>LIVE DEMO</h1>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/christopherseaman\.github\.io\/datasci_223");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -1,0 +1,2198 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>lecture_06 – DataSci-223</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-d94228c28a1234acf2b6c10d2198ec8e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../05/index.html">Machine Learning</a></li><li class="breadcrumb-item"><a href="../06/index.html">06. Neural Networks</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">DataSci-223</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="https://github.com/christopherseaman/datasci_223" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GitHub</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="https://discord.gg/QdTYgR45er" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Discord</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Foundation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../01/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">01. Debugging</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../02/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">02. Polars</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../03/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">03. SQL</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../04/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">04. NLP</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Machine Learning</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../05/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">05. Classification</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../06/index.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">06. Neural Networks</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../07/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">07. Transformers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../08/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">08. LLM Workflows</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Applications</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../09/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">09. Computer Vision</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../10/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10. A/B Testing</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#links" id="toc-links" class="nav-link active" data-scroll-target="#links">Links</a>
+  <ul class="collapse">
+  <li><a href="#books" id="toc-books" class="nav-link" data-scroll-target="#books">Books</a></li>
+  <li><a href="#tutorials-articles" id="toc-tutorials-articles" class="nav-link" data-scroll-target="#tutorials-articles">Tutorials &amp; Articles</a></li>
+  <li><a href="#documentation" id="toc-documentation" class="nav-link" data-scroll-target="#documentation">Documentation</a></li>
+  <li><a href="#health-data-science-deep-learning" id="toc-health-data-science-deep-learning" class="nav-link" data-scroll-target="#health-data-science-deep-learning">Health Data Science &amp; Deep Learning</a></li>
+  </ul></li>
+  <li><a href="#neural-networks-overview" id="toc-neural-networks-overview" class="nav-link" data-scroll-target="#neural-networks-overview">Neural Networks Overview</a>
+  <ul class="collapse">
+  <li><a href="#biological-inspiration" id="toc-biological-inspiration" class="nav-link" data-scroll-target="#biological-inspiration">Biological Inspiration</a>
+  <ul class="collapse">
+  <li><a href="#the-tank-detector-parable" id="toc-the-tank-detector-parable" class="nav-link" data-scroll-target="#the-tank-detector-parable">The Tank Detector Parable</a></li>
+  </ul></li>
+  <li><a href="#artificial-neural-networks" id="toc-artificial-neural-networks" class="nav-link" data-scroll-target="#artificial-neural-networks">Artificial Neural Networks</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-artificial-neuron" id="toc-reference-card-artificial-neuron" class="nav-link" data-scroll-target="#reference-card-artificial-neuron">Reference Card: Artificial Neuron</a></li>
+  <li><a href="#network-structure" id="toc-network-structure" class="nav-link" data-scroll-target="#network-structure">Network Structure</a></li>
+  </ul></li>
+  <li><a href="#universal-approximation-theorem" id="toc-universal-approximation-theorem" class="nav-link" data-scroll-target="#universal-approximation-theorem">Universal Approximation Theorem</a></li>
+  </ul></li>
+  <li><a href="#live-demo" id="toc-live-demo" class="nav-link" data-scroll-target="#live-demo">LIVE DEMO!</a></li>
+  <li><a href="#activation-functions" id="toc-activation-functions" class="nav-link" data-scroll-target="#activation-functions">Activation Functions</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-activation-functions" id="toc-reference-card-activation-functions" class="nav-link" data-scroll-target="#reference-card-activation-functions">Reference Card: Activation Functions</a></li>
+  </ul></li>
+  <li><a href="#how-neural-networks-learn" id="toc-how-neural-networks-learn" class="nav-link" data-scroll-target="#how-neural-networks-learn">How Neural Networks Learn</a>
+  <ul class="collapse">
+  <li><a href="#cost-functions" id="toc-cost-functions" class="nav-link" data-scroll-target="#cost-functions">Cost Functions</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-cost-functions" id="toc-reference-card-cost-functions" class="nav-link" data-scroll-target="#reference-card-cost-functions">Reference Card: Cost Functions</a></li>
+  </ul></li>
+  <li><a href="#backpropagation" id="toc-backpropagation" class="nav-link" data-scroll-target="#backpropagation">Backpropagation</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-backpropagation" id="toc-reference-card-backpropagation" class="nav-link" data-scroll-target="#reference-card-backpropagation">Reference Card: Backpropagation</a></li>
+  </ul></li>
+  <li><a href="#gradient-descent" id="toc-gradient-descent" class="nav-link" data-scroll-target="#gradient-descent">Gradient Descent</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-gradient-descent-variants" id="toc-reference-card-gradient-descent-variants" class="nav-link" data-scroll-target="#reference-card-gradient-descent-variants">Reference Card: Gradient Descent Variants</a></li>
+  <li><a href="#code-snippet-optimizers" id="toc-code-snippet-optimizers" class="nav-link" data-scroll-target="#code-snippet-optimizers">Code Snippet: Optimizers</a></li>
+  </ul></li>
+  <li><a href="#regularization" id="toc-regularization" class="nav-link" data-scroll-target="#regularization">Regularization</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-regularization-techniques" id="toc-reference-card-regularization-techniques" class="nav-link" data-scroll-target="#reference-card-regularization-techniques">Reference Card: Regularization Techniques</a></li>
+  </ul></li>
+  <li><a href="#preparing-data-for-neural-networks" id="toc-preparing-data-for-neural-networks" class="nav-link" data-scroll-target="#preparing-data-for-neural-networks">Preparing Data for Neural Networks</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-data-preparation" id="toc-reference-card-data-preparation" class="nav-link" data-scroll-target="#reference-card-data-preparation">Reference Card: Data Preparation</a></li>
+  <li><a href="#code-snippet-preparing-inputs" id="toc-code-snippet-preparing-inputs" class="nav-link" data-scroll-target="#code-snippet-preparing-inputs">Code Snippet: Preparing Inputs</a></li>
+  </ul></li>
+  <li><a href="#keras-the-framework-well-use" id="toc-keras-the-framework-well-use" class="nav-link" data-scroll-target="#keras-the-framework-well-use">Keras: The Framework We’ll Use</a>
+  <ul class="collapse">
+  <li><a href="#code-snippet-keras-workflow" id="toc-code-snippet-keras-workflow" class="nav-link" data-scroll-target="#code-snippet-keras-workflow">Code Snippet: Keras Workflow</a></li>
+  <li><a href="#reference-card-model.compile" id="toc-reference-card-model.compile" class="nav-link" data-scroll-target="#reference-card-model.compile">Reference Card: <code>model.compile()</code></a></li>
+  <li><a href="#reference-card-model.fit" id="toc-reference-card-model.fit" class="nav-link" data-scroll-target="#reference-card-model.fit">Reference Card: <code>model.fit()</code></a></li>
+  <li><a href="#code-snippet-choosing-a-loss-function" id="toc-code-snippet-choosing-a-loss-function" class="nav-link" data-scroll-target="#code-snippet-choosing-a-loss-function">Code Snippet: Choosing a Loss Function</a></li>
+  <li><a href="#code-snippet-regularization-in-practice" id="toc-code-snippet-regularization-in-practice" class="nav-link" data-scroll-target="#code-snippet-regularization-in-practice">Code Snippet: Regularization in Practice</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#live-demo-1" id="toc-live-demo-1" class="nav-link" data-scroll-target="#live-demo-1">LIVE DEMO!!</a></li>
+  <li><a href="#model-architecture" id="toc-model-architecture" class="nav-link" data-scroll-target="#model-architecture">Model Architecture</a>
+  <ul class="collapse">
+  <li><a href="#starting-simple-dense-networks" id="toc-starting-simple-dense-networks" class="nav-link" data-scroll-target="#starting-simple-dense-networks">Starting Simple: Dense Networks</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-dense" id="toc-reference-card-dense" class="nav-link" data-scroll-target="#reference-card-dense">Reference Card: <code>Dense</code></a></li>
+  <li><a href="#code-snippet-dense-network-for-image-classification" id="toc-code-snippet-dense-network-for-image-classification" class="nav-link" data-scroll-target="#code-snippet-dense-network-for-image-classification">Code Snippet: Dense Network for Image Classification</a></li>
+  </ul></li>
+  <li><a href="#common-layer-types" id="toc-common-layer-types" class="nav-link" data-scroll-target="#common-layer-types">Common Layer Types</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-dropout" id="toc-reference-card-dropout" class="nav-link" data-scroll-target="#reference-card-dropout">Reference Card: <code>Dropout</code></a></li>
+  <li><a href="#reference-card-batchnormalization" id="toc-reference-card-batchnormalization" class="nav-link" data-scroll-target="#reference-card-batchnormalization">Reference Card: <code>BatchNormalization</code></a></li>
+  </ul></li>
+  <li><a href="#convolutional-neural-networks-cnns" id="toc-convolutional-neural-networks-cnns" class="nav-link" data-scroll-target="#convolutional-neural-networks-cnns">Convolutional Neural Networks (CNNs)</a>
+  <ul class="collapse">
+  <li><a href="#building-a-cnn-step-by-step" id="toc-building-a-cnn-step-by-step" class="nav-link" data-scroll-target="#building-a-cnn-step-by-step">Building a CNN Step by Step</a></li>
+  <li><a href="#reference-card-conv2d" id="toc-reference-card-conv2d" class="nav-link" data-scroll-target="#reference-card-conv2d">Reference Card: <code>Conv2D</code></a></li>
+  <li><a href="#reference-card-maxpooling2d" id="toc-reference-card-maxpooling2d" class="nav-link" data-scroll-target="#reference-card-maxpooling2d">Reference Card: <code>MaxPooling2D</code></a></li>
+  <li><a href="#reference-card-flatten" id="toc-reference-card-flatten" class="nav-link" data-scroll-target="#reference-card-flatten">Reference Card: <code>Flatten</code></a></li>
+  <li><a href="#code-snippet-building-a-cnn" id="toc-code-snippet-building-a-cnn" class="nav-link" data-scroll-target="#code-snippet-building-a-cnn">Code Snippet: Building a CNN</a></li>
+  </ul></li>
+  <li><a href="#recurrent-neural-networks-rnns" id="toc-recurrent-neural-networks-rnns" class="nav-link" data-scroll-target="#recurrent-neural-networks-rnns">Recurrent Neural Networks (RNNs)</a>
+  <ul class="collapse">
+  <li><a href="#long-short-term-memory-lstm" id="toc-long-short-term-memory-lstm" class="nav-link" data-scroll-target="#long-short-term-memory-lstm">Long Short-Term Memory (LSTM)</a></li>
+  <li><a href="#reference-card-lstm" id="toc-reference-card-lstm" class="nav-link" data-scroll-target="#reference-card-lstm">Reference Card: <code>LSTM</code></a></li>
+  <li><a href="#code-snippet-lstm-for-time-series" id="toc-code-snippet-lstm-for-time-series" class="nav-link" data-scroll-target="#code-snippet-lstm-for-time-series">Code Snippet: LSTM for Time Series</a></li>
+  </ul></li>
+  <li><a href="#embeddings" id="toc-embeddings" class="nav-link" data-scroll-target="#embeddings">Embeddings</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-embedding" id="toc-reference-card-embedding" class="nav-link" data-scroll-target="#reference-card-embedding">Reference Card: <code>Embedding</code></a></li>
+  <li><a href="#code-snippet-embedding-lstm-for-text-classification" id="toc-code-snippet-embedding-lstm-for-text-classification" class="nav-link" data-scroll-target="#code-snippet-embedding-lstm-for-text-classification">Code Snippet: Embedding + LSTM for Text Classification</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#training-in-practice" id="toc-training-in-practice" class="nav-link" data-scroll-target="#training-in-practice">Training in Practice</a>
+  <ul class="collapse">
+  <li><a href="#training-callbacks" id="toc-training-callbacks" class="nav-link" data-scroll-target="#training-callbacks">Training Callbacks</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-modelcheckpoint" id="toc-reference-card-modelcheckpoint" class="nav-link" data-scroll-target="#reference-card-modelcheckpoint">Reference Card: <code>ModelCheckpoint</code></a></li>
+  <li><a href="#reference-card-earlystopping" id="toc-reference-card-earlystopping" class="nav-link" data-scroll-target="#reference-card-earlystopping">Reference Card: <code>EarlyStopping</code></a></li>
+  <li><a href="#code-snippet-training-callbacks" id="toc-code-snippet-training-callbacks" class="nav-link" data-scroll-target="#code-snippet-training-callbacks">Code Snippet: Training Callbacks</a></li>
+  </ul></li>
+  <li><a href="#saving-and-loading-models" id="toc-saving-and-loading-models" class="nav-link" data-scroll-target="#saving-and-loading-models">Saving and Loading Models</a>
+  <ul class="collapse">
+  <li><a href="#code-snippet-save-and-resume" id="toc-code-snippet-save-and-resume" class="nav-link" data-scroll-target="#code-snippet-save-and-resume">Code Snippet: Save and Resume</a></li>
+  </ul></li>
+  <li><a href="#keras-vs.-pytorch" id="toc-keras-vs.-pytorch" class="nav-link" data-scroll-target="#keras-vs.-pytorch">Keras vs.&nbsp;PyTorch</a>
+  <ul class="collapse">
+  <li><a href="#code-snippet-pytorch-model" id="toc-code-snippet-pytorch-model" class="nav-link" data-scroll-target="#code-snippet-pytorch-model">Code Snippet: PyTorch Model</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#neural-networks-in-practice" id="toc-neural-networks-in-practice" class="nav-link" data-scroll-target="#neural-networks-in-practice">Neural Networks in Practice</a>
+  <ul class="collapse">
+  <li><a href="#reference-card-when-to-use-neural-networks" id="toc-reference-card-when-to-use-neural-networks" class="nav-link" data-scroll-target="#reference-card-when-to-use-neural-networks">Reference Card: When to Use Neural Networks</a></li>
+  </ul></li>
+  <li><a href="#live-demo-2" id="toc-live-demo-2" class="nav-link" data-scroll-target="#live-demo-2">LIVE DEMO!!!</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../05/index.html">Machine Learning</a></li><li class="breadcrumb-item"><a href="../06/index.html">06. Neural Networks</a></li></ol></nav></header>
+
+
+
+
+<p>Neural Networks: If I Only Had a Brain</p>
+<ul>
+<li>hw06 #FIXME:URL</li>
+</ul>
+<section id="links" class="level1">
+<h1>Links</h1>
+<section id="books" class="level2">
+<h2 class="anchored" data-anchor-id="books">Books</h2>
+<ul>
+<li><a href="https://learning.oreilly.com/library/view/hands-on-machine-learning/9781098125967/">Hands-on Machine Learning, Géron</a> and companion <a href="https://github.com/ageron/handson-ml3">repository</a> — practical Keras-focused, code-first introduction to ML and deep learning</li>
+<li><em>Deep Learning with Python</em>, Chollet - <a href="https://www.manning.com/books/deep-learning-with-python-second-edition">Manning</a> — <strong>the</strong> Keras book, practical and accessible</li>
+<li><em>Dive into Deep Learning</em> - <a href="https://d2l.ai">d2l.ai</a> — hands-on with code examples</li>
+<li><em>Deep Learning</em>, Goodfellow, Bengio &amp; Courville - <a href="https://www.deeplearningbook.org/">free online</a> — comprehensive theory reference</li>
+</ul>
+</section>
+<section id="tutorials-articles" class="level2">
+<h2 class="anchored" data-anchor-id="tutorials-articles">Tutorials &amp; Articles</h2>
+<ul>
+<li><a href="http://www.r2d3.us/visual-intro-to-machine-learning-part-1/">A Visual Introduction to Neural Networks</a></li>
+<li><a href="https://www.3blue1brown.com/topics/neural-networks">3Blue1Brown: Neural Networks</a> - excellent visual series</li>
+<li><a href="https://playground.tensorflow.org/">TensorFlow Playground</a> - interactive neural network visualization</li>
+<li><a href="https://www.asimovinstitute.org/neural-network-zoo/">Neural Network Zoo</a> - visual guide to network architectures</li>
+</ul>
+</section>
+<section id="documentation" class="level2">
+<h2 class="anchored" data-anchor-id="documentation">Documentation</h2>
+<ul>
+<li><a href="https://keras.io/">Keras Documentation</a></li>
+<li><a href="https://keras.io/getting_started/">Keras Getting Started</a></li>
+<li><a href="https://www.tensorflow.org/tutorials">TensorFlow Tutorials</a></li>
+<li><a href="https://pytorch.org/tutorials/">PyTorch Tutorials</a></li>
+</ul>
+</section>
+<section id="health-data-science-deep-learning" class="level2">
+<h2 class="anchored" data-anchor-id="health-data-science-deep-learning">Health Data Science &amp; Deep Learning</h2>
+<ul>
+<li>Miotto et al.&nbsp;(2018). Deep learning for healthcare: review, opportunities and challenges. <em>Briefings in Bioinformatics</em></li>
+<li>Esteva et al.&nbsp;(2017). Dermatologist-level classification of skin cancer with deep neural networks. <em>Nature</em></li>
+<li>Rajpurkar et al.&nbsp;(2017). CheXNet: Radiologist-level pneumonia detection on chest X-rays with deep learning</li>
+</ul>
+<p><img src="media/junior_dev_vs_nn.jpeg" class="img-fluid"></p>
+</section>
+</section>
+<section id="neural-networks-overview" class="level1">
+<h1>Neural Networks Overview</h1>
+<p>Neural networks are computing systems loosely inspired by biological brains. They learn patterns from data by adjusting internal parameters — no explicit programming required. This section covers the biological analogy, how artificial neurons work, and why neural networks are so powerful.</p>
+<section id="biological-inspiration" class="level2">
+<h2 class="anchored" data-anchor-id="biological-inspiration">Biological Inspiration</h2>
+<p><img src="media/biological_neuron.png" class="img-fluid"></p>
+<p>A <strong>neuron</strong> has:</p>
+<ul>
+<li>Branching input (dendrites)</li>
+<li>Branching output (the axon)</li>
+</ul>
+<p>Information flows from dendrites to axon via the cell body. Axon connects to dendrites via synapses:</p>
+<ul>
+<li>Synapses vary in strength</li>
+<li>Synapses may be excitatory or inhibitory</li>
+</ul>
+<section id="the-tank-detector-parable" class="level3">
+<h3 class="anchored" data-anchor-id="the-tank-detector-parable">The Tank Detector Parable</h3>
+<p>In the 1980s, the Pentagon allegedly trained a neural network to detect tanks in photos. They split their photos into training and test sets, and the network learned to identify every test photo correctly.</p>
+<p><img src="media/tank_photo.png" class="img-fluid"></p>
+<p><img src="media/trees_no_tank.png" class="img-fluid"></p>
+<p>Then they tested on <em>new</em> photos. <strong>The results were completely random.</strong></p>
+<p>After investigation, they discovered: all tank photos were taken on sunny days, while tree-only photos were taken on cloudy days. The military was the proud owner of a computer that could tell you if it was sunny.</p>
+<blockquote class="blockquote">
+<p><strong>Note:</strong> This story is <a href="https://www.gwern.net/Tanks">likely apocryphal</a>, but it’s a perfect illustration of <strong>data bias</strong> — and why representative, diverse training data matters more than a clever model.</p>
+</blockquote>
+</section>
+</section>
+<section id="artificial-neural-networks" class="level2">
+<h2 class="anchored" data-anchor-id="artificial-neural-networks">Artificial Neural Networks</h2>
+<p>Neural networks draw inspiration from biological neural networks. The mapping is loose but useful:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Biological</th>
+<th style="text-align: left;">Artificial</th>
+<th style="text-align: left;">Role</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Dendrites</strong></td>
+<td style="text-align: left;">Inputs (<span class="math inline">\(x_i\)</span>)</td>
+<td style="text-align: left;">Receive incoming signals</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Synaptic strength</strong></td>
+<td style="text-align: left;">Weights (<span class="math inline">\(w_i\)</span>)</td>
+<td style="text-align: left;">Control how much each input matters</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Cell body</strong></td>
+<td style="text-align: left;">Summation + activation</td>
+<td style="text-align: left;">Combine inputs and decide whether to “fire”</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Axon</strong></td>
+<td style="text-align: left;">Output (<span class="math inline">\(y\)</span>)</td>
+<td style="text-align: left;">Pass the result to the next layer</td>
+</tr>
+</tbody>
+</table>
+<p>A single artificial neuron takes multiple inputs, multiplies each by a weight, sums them up, and passes the result through an activation function:</p>
+<p><img src="media/simplified_neuron.png" class="img-fluid"></p>
+<p>Mathematically, this is a weighted sum plus bias, passed through a non-linear function <span class="math inline">\(f\)</span>:</p>
+<p><img src="media/ann.png" class="img-fluid"></p>
+<p>Stack these neurons into layers — input, hidden, output — and you get a neural network:</p>
+<p><img src="media/nn_overview.png" class="img-fluid"></p>
+<p>Each neuron:</p>
+<ol type="1">
+<li>Receives inputs (<span class="math inline">\(x_1, x_2, ..., x_n\)</span>), each multiplied by a <strong>weight</strong> (<span class="math inline">\(w_1, w_2, ..., w_n\)</span>)</li>
+<li>Sums the weighted inputs plus a <strong>bias</strong> (<span class="math inline">\(b\)</span>)</li>
+<li>Passes the result through an <strong>activation function</strong> (<span class="math inline">\(f\)</span>)</li>
+<li>Produces output: <span class="math inline">\(y = f(\sum w_i x_i + b)\)</span></li>
+</ol>
+<section id="reference-card-artificial-neuron" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-artificial-neuron">Reference Card: Artificial Neuron</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Component</th>
+<th style="text-align: left;">Details</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Inputs</strong></td>
+<td style="text-align: left;">Feature values (<span class="math inline">\(x_1, x_2, ..., x_n\)</span>) from data or previous layer</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Weights</strong></td>
+<td style="text-align: left;">Learned parameters (<span class="math inline">\(w_i\)</span>) controlling each input’s influence</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Bias</strong></td>
+<td style="text-align: left;">Offset term (<span class="math inline">\(b\)</span>) allowing the neuron to shift its activation</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Activation</strong></td>
+<td style="text-align: left;">Non-linear function applied to the weighted sum (e.g., ReLU, sigmoid)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Output</strong></td>
+<td style="text-align: left;"><span class="math inline">\(y = f(\sum w_i x_i + b)\)</span> — fed to the next layer or used as prediction</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="network-structure" class="level3">
+<h3 class="anchored" data-anchor-id="network-structure">Network Structure</h3>
+<p>Neurons are organized into <strong>layers</strong>:</p>
+<ul>
+<li><strong>Input layer</strong> — receives the raw features (one neuron per feature)</li>
+<li><strong>Hidden layers</strong> — intermediate layers where the network learns patterns (not directly visible to us — hence “hidden”)</li>
+<li><strong>Output layer</strong> — produces the final prediction (one neuron per class, or one for regression)</li>
+</ul>
+<p>A <strong>feedforward network</strong> passes data in one direction: input → hidden layers → output. No loops.</p>
+<p>An <strong>epoch</strong> is one complete pass through the entire training dataset. Training typically runs for many epochs, with the model improving each time.</p>
+</section>
+</section>
+<section id="universal-approximation-theorem" class="level2">
+<h2 class="anchored" data-anchor-id="universal-approximation-theorem">Universal Approximation Theorem</h2>
+<p>One of the most profound aspects of neural networks: a feedforward network with a single hidden layer can approximate any continuous function, given sufficient neurons and appropriate activation functions.</p>
+<p><video src="media/universal_approximation.mp4" class="img-fluid" controls=""><a href="media/universal_approximation.mp4">Video</a></video></p>
+<p>In practice, this means a sufficiently large network can learn to map any input to any output — classifying images, predicting patient outcomes, or translating languages. Here’s the intuition: given enough neurons, the network can approximate the decision boundary between “cat” and “dog” (or any other categories) to arbitrary precision.</p>
+<p><img src="media/approximation.png" class="img-fluid"></p>
+<p>Deeper networks with fewer neurons per layer tend to generalize better than very wide, shallow networks.</p>
+</section>
+</section>
+<section id="live-demo" class="level1">
+<h1>LIVE DEMO!</h1>
+</section>
+<section id="activation-functions" class="level1">
+<h1>Activation Functions</h1>
+<p>Remember the biological neuron’s cell body — it receives inputs from dendrites and “decides” whether to fire. The activation function is the artificial version of that decision. It takes the weighted sum of inputs and transforms it into the neuron’s output.</p>
+<p>Activation functions introduce <strong>non-linearity</strong> into neural networks. Without them, stacking layers of linear operations just produces another linear operation — no matter how deep the network, it would behave like a single linear model, unable to capture the complex patterns that make neural networks powerful. You’ve already seen one activation function in disguise: the sigmoid function that powers logistic regression from last lecture. Neural networks generalize this idea — every neuron gets its own activation function.</p>
+<p>Each activation function has trade-offs. The right choice depends on where in the network the function is used (hidden layer vs.&nbsp;output layer) and what kind of prediction you’re making.</p>
+<blockquote class="blockquote">
+<p><strong>Why this matters for deep networks:</strong> Some activation functions (like sigmoid) squash their output into a narrow range. When you stack many layers, these small values get multiplied together and shrink toward zero — meaning early layers barely get updated during training. This is called the <strong>vanishing gradient</strong> problem (more on gradients in the Backpropagation section below). ReLU largely avoids this issue, which is why it’s the default choice for hidden layers.</p>
+</blockquote>
+<section id="reference-card-activation-functions" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-activation-functions">Reference Card: Activation Functions</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Function</th>
+<th style="text-align: left;">Formula</th>
+<th style="text-align: left;">Range</th>
+<th style="text-align: left;">Pros</th>
+<th style="text-align: left;">Cons</th>
+<th style="text-align: left;">Use Cases</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>ReLU</strong></td>
+<td style="text-align: left;"><span class="math inline">\(\max(0, x)\)</span></td>
+<td style="text-align: left;"><span class="math inline">\([0, \infty)\)</span></td>
+<td style="text-align: left;">Fast, mitigates vanishing gradients</td>
+<td style="text-align: left;">Dying ReLU problem</td>
+<td style="text-align: left;">Hidden layers (default)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Sigmoid</strong></td>
+<td style="text-align: left;"><span class="math inline">\(\frac{1}{1 + e^{-x}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\((0, 1)\)</span></td>
+<td style="text-align: left;">Outputs probability</td>
+<td style="text-align: left;">Vanishing gradients, not zero-centered</td>
+<td style="text-align: left;">Binary output layer</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Tanh</strong></td>
+<td style="text-align: left;"><span class="math inline">\(\frac{e^x - e^{-x}}{e^x + e^{-x}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\((-1, 1)\)</span></td>
+<td style="text-align: left;">Zero-centered</td>
+<td style="text-align: left;">Vanishing gradients</td>
+<td style="text-align: left;">Hidden layers (RNNs)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Leaky ReLU</strong></td>
+<td style="text-align: left;"><span class="math inline">\(\max(0.01x, x)\)</span></td>
+<td style="text-align: left;"><span class="math inline">\((-\infty, \infty)\)</span></td>
+<td style="text-align: left;">No dying neurons</td>
+<td style="text-align: left;">Small negative gradient</td>
+<td style="text-align: left;">When dying ReLU is a concern</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Softmax</strong></td>
+<td style="text-align: left;"><span class="math inline">\(\frac{e^{x_i}}{\sum e^{x_j}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\((0, 1)\)</span></td>
+<td style="text-align: left;">Multi-class probabilities</td>
+<td style="text-align: left;">Computationally expensive</td>
+<td style="text-align: left;">Multi-class output layer</td>
+</tr>
+</tbody>
+</table>
+<p><img src="media/relu.png" class="img-fluid"></p>
+<p><img src="media/xkcd_machine_learning.png" class="img-fluid"></p>
+</section>
+</section>
+<section id="how-neural-networks-learn" class="level1">
+<h1>How Neural Networks Learn</h1>
+<p>In the last lecture, we trained classifiers — logistic regression, random forests, XGBoost — with a single call to <code>.fit()</code> and evaluated them with train/test splits, cross-validation, and metrics like precision, recall, and AUC. Neural networks follow the same high-level pattern — split your data, fit on training, evaluate on validation — and the same evaluation metrics apply. But the <em>training process itself</em> is more involved.</p>
+<p>Instead of a closed-form solution, neural networks learn iteratively: make a prediction, measure the error, adjust weights, repeat. Three concepts work together: a <strong>cost function</strong> measures error, <strong>backpropagation</strong> distributes that error to each weight, and <strong>gradient descent</strong> updates weights to reduce error.</p>
+<blockquote class="blockquote">
+<p><strong>Remember from last lecture:</strong> Always split your data before training. Fit preprocessors (like <code>StandardScaler</code>) on training data only to prevent data leakage. Use <code>stratify=y</code> when splitting classification datasets.</p>
+</blockquote>
+<section id="cost-functions" class="level2">
+<h2 class="anchored" data-anchor-id="cost-functions">Cost Functions</h2>
+<p>The cost function (or loss function) quantifies how wrong the model’s predictions are. Training minimizes this value.</p>
+<p>Consider a concrete example: your model predicts a 30% chance of disease for a patient who actually has the disease. How bad is that mistake? What about predicting 90% for a healthy patient? The cost function answers these questions with a single number — and different cost functions answer them differently. Cross-entropy penalizes confident wrong answers harshly, while MSE treats all errors more uniformly.</p>
+<p>The choice of loss function depends on your task — just like choosing between accuracy, precision, and recall in the last lecture, different loss functions emphasize different kinds of errors.</p>
+<section id="reference-card-cost-functions" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-cost-functions">Reference Card: Cost Functions</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Function</th>
+<th style="text-align: left;">Formula</th>
+<th style="text-align: left;">Best For</th>
+<th style="text-align: left;">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>MSE</strong></td>
+<td style="text-align: left;"><span class="math inline">\(\frac{1}{n}\sum(y - \hat{y})^2\)</span></td>
+<td style="text-align: left;">Regression</td>
+<td style="text-align: left;">Penalizes large errors heavily</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Cross-Entropy</strong></td>
+<td style="text-align: left;"><span class="math inline">\(-\sum y \log(\hat{y})\)</span></td>
+<td style="text-align: left;">Multi-class classification</td>
+<td style="text-align: left;">Works with softmax output</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Binary Cross-Entropy</strong></td>
+<td style="text-align: left;"><span class="math inline">\(-[y\log(\hat{y}) + (1-y)\log(1-\hat{y})]\)</span></td>
+<td style="text-align: left;">Binary classification</td>
+<td style="text-align: left;">Works with sigmoid output</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Huber Loss</strong></td>
+<td style="text-align: left;">MSE when small, MAE when large</td>
+<td style="text-align: left;">Robust regression</td>
+<td style="text-align: left;">Less sensitive to outliers than MSE</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="backpropagation" class="level2">
+<h2 class="anchored" data-anchor-id="backpropagation">Backpropagation</h2>
+<p><strong>Backpropagation</strong> is the algorithm that makes neural network training possible. A neural network might have thousands or millions of weights — backpropagation efficiently computes how much each one contributed to the overall error, then distributes that error backward through the network.</p>
+<p>You don’t need to implement this yourself (Keras handles it inside <code>model.fit()</code>), but understanding the idea helps you diagnose training problems.</p>
+<p><img src="media/backpropagation.png" class="img-fluid"></p>
+<p>The process:</p>
+<ol type="1">
+<li><strong>Forward pass</strong> — input flows through the network, producing a prediction</li>
+<li><strong>Compute loss</strong> — compare prediction to true label using the cost function</li>
+<li><strong>Backward pass</strong> — compute the gradient of the loss with respect to each weight using the <strong>chain rule</strong> of calculus</li>
+<li><strong>Update weights</strong> — adjust each weight proportionally to its gradient</li>
+</ol>
+<section id="reference-card-backpropagation" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-backpropagation">Reference Card: Backpropagation</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Component</th>
+<th style="text-align: left;">Details</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Purpose</strong></td>
+<td style="text-align: left;">Compute gradients of the loss with respect to every weight in the network</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Mechanism</strong></td>
+<td style="text-align: left;">Apply the chain rule layer-by-layer, from output back to input</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Forward Pass</strong></td>
+<td style="text-align: left;">Compute and cache activations at each layer</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Backward Pass</strong></td>
+<td style="text-align: left;">Propagate error gradients from output to input layers</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Key Insight</strong></td>
+<td style="text-align: left;">Each weight’s gradient tells us how much changing that weight would change the loss</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>In Keras</strong></td>
+<td style="text-align: left;">Handled automatically by <code>model.fit()</code> — no manual implementation needed</td>
+</tr>
+</tbody>
+</table>
+<p><img src="media/xkcd_optimization.png" class="img-fluid"></p>
+</section>
+</section>
+<section id="gradient-descent" class="level2">
+<h2 class="anchored" data-anchor-id="gradient-descent">Gradient Descent</h2>
+<p><strong>Gradient descent</strong> is the optimization algorithm that uses the gradients from backpropagation to update weights. Think of it as navigating a hilly landscape in fog — you can only feel the slope under your feet and step downhill. The “landscape” is the loss surface — a map of how the cost function changes as you adjust the network’s weights. The lowest point on that surface is the set of weights that makes your model’s predictions as close to the truth as possible.</p>
+<p><img src="media/gradient_descent.png" class="img-fluid"></p>
+<p>The <strong>learning rate</strong> (<span class="math inline">\(\alpha\)</span>) controls step size:</p>
+<ul>
+<li>Too large: overshoot the minimum, training diverges</li>
+<li>Too small: training is painfully slow, may get stuck in local minima</li>
+<li>Just right: converges efficiently to a good solution</li>
+</ul>
+<section id="reference-card-gradient-descent-variants" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-gradient-descent-variants">Reference Card: Gradient Descent Variants</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Variant</th>
+<th style="text-align: left;">Batch Size</th>
+<th style="text-align: left;">Pros</th>
+<th style="text-align: left;">Cons</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Batch GD</strong></td>
+<td style="text-align: left;">Entire dataset</td>
+<td style="text-align: left;">Stable convergence</td>
+<td style="text-align: left;">Slow, memory-intensive</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Stochastic GD (SGD)</strong></td>
+<td style="text-align: left;">Single sample</td>
+<td style="text-align: left;">Fast updates, can escape local minima</td>
+<td style="text-align: left;">Noisy, unstable</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Mini-batch GD</strong></td>
+<td style="text-align: left;">Small subset (32–512)</td>
+<td style="text-align: left;">Best of both worlds</td>
+<td style="text-align: left;">Requires batch size tuning</td>
+</tr>
+</tbody>
+</table>
+<p>Modern practice almost always uses <strong>mini-batch gradient descent</strong> — that’s what the <code>batch_size</code> parameter in <code>model.fit()</code> controls. The default is 32, which is a good starting point. Larger batches use more memory but give more stable gradients; smaller batches are noisier but can help escape local minima.</p>
+<p>The other key choice is the <strong>optimizer</strong>. <strong>Adam</strong> (the default in most Keras examples) automatically adjusts the learning rate for each parameter, so it works well out of the box. If you need more control, <strong>SGD</strong> with a tuned learning rate is the classic alternative.</p>
+</section>
+<section id="code-snippet-optimizers" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-optimizers">Code Snippet: Optimizers</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Adam — good default</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">compile</span>(optimizer<span class="op">=</span><span class="st">'adam'</span>, loss<span class="op">=</span><span class="st">'categorical_crossentropy'</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># SGD — when you want explicit control</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> keras.optimizers <span class="im">import</span> SGD</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">compile</span>(optimizer<span class="op">=</span>SGD(learning_rate<span class="op">=</span><span class="fl">0.01</span>), loss<span class="op">=</span><span class="st">'categorical_crossentropy'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="regularization" class="level2">
+<h2 class="anchored" data-anchor-id="regularization">Regularization</h2>
+<p><strong>Regularization</strong> is any technique that constrains a model to prevent it from fitting the training data <em>too</em> closely — trading a small increase in training error for much better performance on new data. The core idea: a model with fewer effective degrees of freedom is forced to learn general patterns rather than memorizing noise.</p>
+<p>Why does this matter for neural networks? We saw overfitting in the last lecture — a model that memorizes training data (including its noise) rather than learning general patterns. Neural networks are especially prone to this because they have so many parameters. The classic sign: training accuracy keeps climbing while validation accuracy plateaus or drops.</p>
+<p><img src="media/overfitting_curves.png" class="img-fluid"></p>
+<p>The tank detector parable from earlier is a perfect example: the network overfit to weather patterns in the training photos instead of learning what tanks actually look like. Regularization techniques — adding penalties to large weights, randomly dropping neurons, or stopping training early — push the model toward simpler, more generalizable solutions.</p>
+<section id="reference-card-regularization-techniques" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-regularization-techniques">Reference Card: Regularization Techniques</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Technique</th>
+<th style="text-align: left;">How It Works</th>
+<th style="text-align: left;">Keras Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>L1 Regularization</strong></td>
+<td style="text-align: left;">Adds sum of absolute weights to loss; encourages sparsity</td>
+<td style="text-align: left;"><code>Dense(64, kernel_regularizer='l1')</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>L2 Regularization</strong></td>
+<td style="text-align: left;">Adds sum of squared weights to loss; penalizes large weights</td>
+<td style="text-align: left;"><code>Dense(64, kernel_regularizer='l2')</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Dropout</strong></td>
+<td style="text-align: left;">Randomly zeros a fraction of neurons during training</td>
+<td style="text-align: left;"><code>Dropout(0.5)</code> layer</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Early Stopping</strong></td>
+<td style="text-align: left;">Stops training when validation loss stops improving</td>
+<td style="text-align: left;"><code>EarlyStopping</code> callback</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Data Augmentation</strong></td>
+<td style="text-align: left;">Applies random transformations to training data (rotation, flip, etc.)</td>
+<td style="text-align: left;"><code>keras.layers.RandomFlip</code>, <code>RandomRotation</code>, etc.</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="preparing-data-for-neural-networks" class="level2">
+<h2 class="anchored" data-anchor-id="preparing-data-for-neural-networks">Preparing Data for Neural Networks</h2>
+<p>Neural networks are sensitive to input scale. Features with large values will dominate training, so normalizing or standardizing inputs is essential — not optional. You already know <code>StandardScaler</code> from last lecture — the same tool applies here, along with a few neural-network-specific steps.</p>
+<section id="reference-card-data-preparation" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-data-preparation">Reference Card: Data Preparation</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Step</th>
+<th style="text-align: left;">What to Do</th>
+<th style="text-align: left;">Why</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Split first</strong></td>
+<td style="text-align: left;">Train/validation/test split before any preprocessing</td>
+<td style="text-align: left;">Prevents data leakage — validation data must never influence preprocessing</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Normalize</strong></td>
+<td style="text-align: left;">Scale features to [0, 1] with <code>MinMaxScaler</code></td>
+<td style="text-align: left;">Good for bounded data (e.g., pixel values)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Standardize</strong></td>
+<td style="text-align: left;">Center to mean=0, std=1 with <code>StandardScaler</code></td>
+<td style="text-align: left;">Good default for most tabular features</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Encode labels</strong></td>
+<td style="text-align: left;">One-hot encode with <code>to_categorical()</code> or <code>LabelEncoder</code></td>
+<td style="text-align: left;">Neural networks need numeric targets</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Reshape</strong></td>
+<td style="text-align: left;">Match expected input shape (e.g., <code>(28, 28, 1)</code> for images)</td>
+<td style="text-align: left;">Layers expect specific tensor dimensions</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-preparing-inputs" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-preparing-inputs">Code Snippet: Preparing Inputs</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> keras.utils <span class="im">import</span> to_categorical</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Scale features (fit on training data only)</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>scaler <span class="op">=</span> StandardScaler()</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>X_train <span class="op">=</span> scaler.fit_transform(X_train)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>X_val <span class="op">=</span> scaler.transform(X_val)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># One-hot encode labels for multi-class</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>y_train <span class="op">=</span> to_categorical(y_train, num_classes<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>y_val <span class="op">=</span> to_categorical(y_val, num_classes<span class="op">=</span><span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="keras-the-framework-well-use" class="level2">
+<h2 class="anchored" data-anchor-id="keras-the-framework-well-use">Keras: The Framework We’ll Use</h2>
+<p>Now that you understand what cost functions, backpropagation, gradient descent, and regularization do, here’s how you use them in practice. <strong>Keras</strong> is a high-level deep learning API that gives you the same define-compile-fit workflow you saw with scikit-learn, but with more control over model architecture.</p>
+<blockquote class="blockquote">
+<p><strong>Import styles:</strong> You’ll see two import patterns in the wild: <code>from keras import Sequential</code> (standalone Keras) and <code>from tensorflow.keras import Sequential</code> (TensorFlow-bundled). Both work. Standalone <code>keras</code> is the modern default (Keras 3+); <code>tensorflow.keras</code> is common in older tutorials. Either is fine for this course.</p>
+</blockquote>
+<p>The basic workflow:</p>
+<ol type="1">
+<li><strong>Define</strong> the model — stack layers using <code>Sequential</code></li>
+<li><strong>Compile</strong> — specify the optimizer, loss function, and metrics</li>
+<li><strong>Fit</strong> — train on data with <code>model.fit()</code></li>
+<li><strong>Evaluate / Predict</strong> — test on new data</li>
+</ol>
+<section id="code-snippet-keras-workflow" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-keras-workflow">Code Snippet: Keras Workflow</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> keras <span class="im">import</span> Sequential</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> keras.layers <span class="im">import</span> Dense</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Define</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> Sequential([</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    Dense(<span class="dv">64</span>, activation<span class="op">=</span><span class="st">'relu'</span>, input_shape<span class="op">=</span>(<span class="dv">10</span>,)),</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    Dense(<span class="dv">3</span>, activation<span class="op">=</span><span class="st">'softmax'</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Compile</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">compile</span>(optimizer<span class="op">=</span><span class="st">'adam'</span>,</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>              loss<span class="op">=</span><span class="st">'categorical_crossentropy'</span>,</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>              metrics<span class="op">=</span>[<span class="st">'accuracy'</span>])</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Fit</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>history <span class="op">=</span> model.fit(X_train, y_train,</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>                    validation_data<span class="op">=</span>(X_val, y_val),</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>                    epochs<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Predict</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>predictions <span class="op">=</span> model.predict(X_new)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="reference-card-model.compile" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-model.compile">Reference Card: <code>model.compile()</code></h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Component</th>
+<th style="text-align: left;">Details</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Function</strong></td>
+<td style="text-align: left;"><code>model.compile(optimizer, loss, metrics)</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Purpose</strong></td>
+<td style="text-align: left;">Configure the model for training</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Key Parameters</strong></td>
+<td style="text-align: left;">• <code>optimizer</code>: Which optimizer to use — <code>'adam'</code> (good default) or <code>'sgd'</code> (more control)<br>• <code>loss</code>: Loss function — <code>'categorical_crossentropy'</code>, <code>'binary_crossentropy'</code>, <code>'mse'</code>, etc.<br>• <code>metrics</code>: List of metrics to track, e.g.&nbsp;<code>['accuracy']</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="reference-card-model.fit" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-model.fit">Reference Card: <code>model.fit()</code></h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Component</th>
+<th style="text-align: left;">Details</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Function</strong></td>
+<td style="text-align: left;"><code>model.fit(x, y, ...)</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Purpose</strong></td>
+<td style="text-align: left;">Train the model for a fixed number of epochs on the given data</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Key Parameters</strong></td>
+<td style="text-align: left;">• <code>x, y</code>: Training data and labels<br>• <code>epochs</code>: Number of passes through the full dataset<br>• <code>batch_size</code>: Samples per gradient update (default 32)<br>• <code>validation_data</code>: Tuple <code>(X_val, y_val)</code> for monitoring<br>• <code>callbacks</code>: List of callback objects (EarlyStopping, etc.)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Returns</strong></td>
+<td style="text-align: left;"><code>History</code> object with loss/metric values per epoch</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-choosing-a-loss-function" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-choosing-a-loss-function">Code Snippet: Choosing a Loss Function</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Binary classification — sigmoid output + binary cross-entropy</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">compile</span>(optimizer<span class="op">=</span><span class="st">'adam'</span>, loss<span class="op">=</span><span class="st">'binary_crossentropy'</span>, metrics<span class="op">=</span>[<span class="st">'accuracy'</span>])</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Multi-class classification — softmax output + categorical cross-entropy</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">compile</span>(optimizer<span class="op">=</span><span class="st">'adam'</span>, loss<span class="op">=</span><span class="st">'categorical_crossentropy'</span>, metrics<span class="op">=</span>[<span class="st">'accuracy'</span>])</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Regression — linear output + MSE</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">compile</span>(optimizer<span class="op">=</span><span class="st">'adam'</span>, loss<span class="op">=</span><span class="st">'mse'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="code-snippet-regularization-in-practice" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-regularization-in-practice">Code Snippet: Regularization in Practice</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> keras <span class="im">import</span> Sequential</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> keras.layers <span class="im">import</span> Dense, Dropout</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> Sequential([</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    Dense(<span class="dv">128</span>, activation<span class="op">=</span><span class="st">'relu'</span>, input_shape<span class="op">=</span>(<span class="dv">784</span>,),</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>          kernel_regularizer<span class="op">=</span><span class="st">'l2'</span>),</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    Dropout(<span class="fl">0.5</span>),</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    Dense(<span class="dv">64</span>, activation<span class="op">=</span><span class="st">'relu'</span>, kernel_regularizer<span class="op">=</span><span class="st">'l2'</span>),</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    Dropout(<span class="fl">0.3</span>),</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    Dense(<span class="dv">10</span>, activation<span class="op">=</span><span class="st">'softmax'</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+</section>
+<section id="live-demo-1" class="level1">
+<h1>LIVE DEMO!!</h1>
+</section>
+<section id="model-architecture" class="level1">
+<h1>Model Architecture</h1>
+<p>The architecture of a neural network — its layers, connections, and shapes — defines what it can learn. We’ll start by building simple networks from Dense layers, then see why specialized layers like Conv2D and LSTM exist.</p>
+<section id="starting-simple-dense-networks" class="level2">
+<h2 class="anchored" data-anchor-id="starting-simple-dense-networks">Starting Simple: Dense Networks</h2>
+<p>The simplest neural network is a stack of <strong>Dense</strong> (fully connected) layers. Every neuron in one layer connects to every neuron in the next.</p>
+<section id="reference-card-dense" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-dense">Reference Card: <code>Dense</code></h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Component</th>
+<th style="text-align: left;">Details</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Function</strong></td>
+<td style="text-align: left;"><code>keras.layers.Dense(units, activation=None)</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Purpose</strong></td>
+<td style="text-align: left;">Fully connected layer — every input connects to every output</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Key Parameters</strong></td>
+<td style="text-align: left;">• <code>units</code>: Number of output neurons<br>• <code>activation</code>: Activation function (<code>'relu'</code>, <code>'sigmoid'</code>, <code>'softmax'</code>, etc.)<br>• <code>input_shape</code>: Required on the first layer only<br>• <code>kernel_regularizer</code>: Optional weight regularization (<code>'l1'</code>, <code>'l2'</code>)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Use Cases</strong></td>
+<td style="text-align: left;">Hidden layers in any network, output layers for classification/regression</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-dense-network-for-image-classification" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-dense-network-for-image-classification">Code Snippet: Dense Network for Image Classification</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> keras <span class="im">import</span> Sequential</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> keras.layers <span class="im">import</span> Dense, Flatten, Dropout</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Classify 28x28 grayscale images using only Dense layers</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> Sequential([</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    Flatten(input_shape<span class="op">=</span>(<span class="dv">28</span>, <span class="dv">28</span>, <span class="dv">1</span>)),  <span class="co"># Flatten 2D image into 1D vector (784 values)</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    Dense(<span class="dv">128</span>, activation<span class="op">=</span><span class="st">'relu'</span>),</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    Dropout(<span class="fl">0.3</span>),</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    Dense(<span class="dv">64</span>, activation<span class="op">=</span><span class="st">'relu'</span>),</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    Dense(<span class="dv">10</span>, activation<span class="op">=</span><span class="st">'softmax'</span>)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">compile</span>(optimizer<span class="op">=</span><span class="st">'adam'</span>, loss<span class="op">=</span><span class="st">'categorical_crossentropy'</span>, metrics<span class="op">=</span>[<span class="st">'accuracy'</span>])</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>model.summary()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This works, but it has limitations: <code>Flatten</code> destroys spatial structure. The model sees 784 independent numbers — it doesn’t know which pixels are neighbors. For images, we need layers that understand spatial relationships.</p>
+</section>
+</section>
+<section id="common-layer-types" class="level2">
+<h2 class="anchored" data-anchor-id="common-layer-types">Common Layer Types</h2>
+<p>Beyond Dense layers, Keras provides specialized layers for different data types. Here’s a quick overview — we’ll cover the most important ones (Conv2D and LSTM) in detail below.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Layer Type</th>
+<th style="text-align: left;">Purpose</th>
+<th style="text-align: left;">When to Use</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Dense</strong></td>
+<td style="text-align: left;">Fully connected layer</td>
+<td style="text-align: left;">Final layers, tabular data</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>BatchNorm</strong></td>
+<td style="text-align: left;">Normalize layer inputs</td>
+<td style="text-align: left;">Deep networks, unstable training</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Dropout</strong></td>
+<td style="text-align: left;">Prevent overfitting</td>
+<td style="text-align: left;">After Dense or Conv layers</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Embedding</strong></td>
+<td style="text-align: left;">Map indices to dense vectors</td>
+<td style="text-align: left;">Text, categorical data</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Conv2D</strong></td>
+<td style="text-align: left;">Spatial feature extraction</td>
+<td style="text-align: left;">Images, medical imaging</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>LSTM/GRU</strong></td>
+<td style="text-align: left;">Sequential data with memory</td>
+<td style="text-align: left;">Time series, clinical notes</td>
+</tr>
+</tbody>
+</table>
+<section id="reference-card-dropout" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-dropout">Reference Card: <code>Dropout</code></h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Component</th>
+<th style="text-align: left;">Details</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Function</strong></td>
+<td style="text-align: left;"><code>keras.layers.Dropout(rate)</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Purpose</strong></td>
+<td style="text-align: left;">Randomly set a fraction of input units to zero during training to prevent overfitting</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Key Parameters</strong></td>
+<td style="text-align: left;"><code>rate</code>: Fraction of inputs to drop (e.g., 0.5 = 50%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Behavior</strong></td>
+<td style="text-align: left;">Active during training only — at inference, all neurons are used (with scaled outputs)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Placement</strong></td>
+<td style="text-align: left;">After Dense or Conv layers, before the next layer</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="reference-card-batchnormalization" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-batchnormalization">Reference Card: <code>BatchNormalization</code></h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Component</th>
+<th style="text-align: left;">Details</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Function</strong></td>
+<td style="text-align: left;"><code>keras.layers.BatchNormalization()</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Purpose</strong></td>
+<td style="text-align: left;">Normalize each layer’s inputs to zero mean and unit variance, stabilizing and accelerating training</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Key Parameters</strong></td>
+<td style="text-align: left;">• <code>momentum</code>: Running mean/variance update rate (default 0.99)<br>• <code>epsilon</code>: Small constant for numerical stability</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Behavior</strong></td>
+<td style="text-align: left;">Uses batch statistics during training; uses running averages during inference</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Placement</strong></td>
+<td style="text-align: left;">Typically after a Dense or Conv layer, before the activation function</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="convolutional-neural-networks-cnns" class="level2">
+<h2 class="anchored" data-anchor-id="convolutional-neural-networks-cnns">Convolutional Neural Networks (CNNs)</h2>
+<p>Dense layers treat every input pixel independently — <code>Flatten</code> turns a 28x28 image into 784 numbers and the network has no idea which pixels are neighbors. A <strong>convolutional layer</strong> instead slides a small filter (kernel) across the image, detecting local patterns — edges, textures, shapes — regardless of where they appear.</p>
+<p>Imagine a tiny 3x3 window scanning across a chest X-ray. At each position, the filter multiplies its 9 learned values against the 9 pixels it overlaps, producing a single output number. A filter tuned to detect horizontal edges will “light up” wherever the image has a horizontal edge — whether that’s in the top-left corner or bottom-right. This is why CNNs are so powerful for medical imaging: the same tumor edge pattern gets detected no matter where it appears in the scan.</p>
+<p><img src="media/cat_dog_panda.png" class="img-fluid"></p>
+<p>CNNs learn hierarchical features: early layers detect edges and textures, deeper layers combine those into shapes and objects — much like how the visual cortex processes information in stages.</p>
+<section id="building-a-cnn-step-by-step" class="level3">
+<h3 class="anchored" data-anchor-id="building-a-cnn-step-by-step">Building a CNN Step by Step</h3>
+<p>Start with the same image classification task, but replace the Dense-only approach:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Step</th>
+<th style="text-align: left;">Layer</th>
+<th style="text-align: left;">Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;"><strong>Conv2D</strong></td>
+<td style="text-align: left;">Scan the image with learnable filters to detect local patterns</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2</td>
+<td style="text-align: left;"><strong>MaxPooling2D</strong></td>
+<td style="text-align: left;">Shrink the feature maps, keeping the strongest signals</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3</td>
+<td style="text-align: left;"><strong>Repeat</strong></td>
+<td style="text-align: left;">Stack more Conv2D + Pooling to learn higher-level features</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">4</td>
+<td style="text-align: left;"><strong>Flatten + Dense</strong></td>
+<td style="text-align: left;">Convert the feature maps to a classification</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="reference-card-conv2d" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-conv2d">Reference Card: <code>Conv2D</code></h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Component</th>
+<th style="text-align: left;">Details</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Function</strong></td>
+<td style="text-align: left;"><code>keras.layers.Conv2D()</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Purpose</strong></td>
+<td style="text-align: left;">Apply learnable filters to extract spatial features from images</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Key Parameters</strong></td>
+<td style="text-align: left;">• <code>filters</code>: Number of output filters<br>• <code>kernel_size</code>: Size of convolution window (e.g., 3 or (3,3))<br>• <code>strides</code>: Step size for sliding window<br>• <code>padding</code>: <code>'valid'</code> (no padding) or <code>'same'</code> (preserve dimensions)<br>• <code>activation</code>: Activation function</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Output Shape</strong></td>
+<td style="text-align: left;">(batch, height, width, filters)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="reference-card-maxpooling2d" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-maxpooling2d">Reference Card: <code>MaxPooling2D</code></h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Component</th>
+<th style="text-align: left;">Details</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Function</strong></td>
+<td style="text-align: left;"><code>keras.layers.MaxPooling2D()</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Purpose</strong></td>
+<td style="text-align: left;">Downsample by taking maximum value in each window</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Key Parameters</strong></td>
+<td style="text-align: left;">• <code>pool_size</code>: Window size (e.g., (2,2))<br>• <code>strides</code>: Step size (defaults to pool_size)<br>• <code>padding</code>: <code>'valid'</code> or <code>'same'</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Effect</strong></td>
+<td style="text-align: left;">Reduces spatial dimensions; helps detect features regardless of exact position</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="reference-card-flatten" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-flatten">Reference Card: <code>Flatten</code></h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Component</th>
+<th style="text-align: left;">Details</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Function</strong></td>
+<td style="text-align: left;"><code>keras.layers.Flatten(input_shape=None)</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Purpose</strong></td>
+<td style="text-align: left;">Reshape a multi-dimensional tensor into a 1D vector so it can be fed to Dense layers</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Key Parameters</strong></td>
+<td style="text-align: left;"><code>input_shape</code>: Required only on the first layer (e.g., <code>(28, 28, 1)</code> for grayscale images)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Typical Placement</strong></td>
+<td style="text-align: left;">Between Conv2D/Pooling layers and Dense classification layers</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Note</strong></td>
+<td style="text-align: left;">Destroys spatial structure — use only when transitioning from feature extraction to classification</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-building-a-cnn" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-building-a-cnn">Code Snippet: Building a CNN</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> keras <span class="im">import</span> Sequential</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> keras.layers <span class="im">import</span> Conv2D, MaxPooling2D, Flatten, Dense, Dropout</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Same task as the Dense model, but now using spatial structure</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> Sequential([</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Layer 1: detect simple patterns (edges, textures)</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    Conv2D(<span class="dv">32</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>, input_shape<span class="op">=</span>(<span class="dv">28</span>, <span class="dv">28</span>, <span class="dv">1</span>)),</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>)),</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Layer 2: combine simple patterns into complex features</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    Conv2D(<span class="dv">64</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>),</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>)),</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Classification head: same Dense layers as before</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    Flatten(),       <span class="co"># Reshape 2D feature maps into a 1D vector for Dense layers</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    Dropout(<span class="fl">0.5</span>),</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    Dense(<span class="dv">64</span>, activation<span class="op">=</span><span class="st">'relu'</span>),</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    Dense(<span class="dv">10</span>, activation<span class="op">=</span><span class="st">'softmax'</span>)</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Compare this to the Dense-only model: the first half (Conv2D + Pooling) extracts spatial features that the Dense layers can then classify. This typically improves accuracy on image tasks significantly.</p>
+<p><img src="media/xkcd_trained_neural_net.png" class="img-fluid"></p>
+</section>
+</section>
+<section id="recurrent-neural-networks-rnns" class="level2">
+<h2 class="anchored" data-anchor-id="recurrent-neural-networks-rnns">Recurrent Neural Networks (RNNs)</h2>
+<p>Every model we’ve seen so far — from logistic regression in the last lecture to CNNs above — treats each input as independent. A blood pressure reading is just a number; a pixel is just a value. But some data has a meaningful <strong>order</strong> — a patient’s vital signs over 24 hours, words in a clinical note, beats in an ECG trace. The order carries information, and ignoring it throws away signal. A blood pressure of 180 means something very different if the previous reading was 120 (sudden spike) versus 175 (stable-high).</p>
+<p>RNNs maintain a <strong>hidden state</strong> that carries information from previous time steps, so the network can “remember” what it has seen.</p>
+<p><img src="media/rnn.png" class="img-fluid"></p>
+<p>A basic RNN (<code>SimpleRNN</code>) processes sequences one step at a time, but struggles with long sequences — gradients vanish over many time steps. <strong>LSTM</strong> fixes this with a gating mechanism that controls what information to keep, forget, and output. We’ll see both side-by-side in the demo.</p>
+<section id="long-short-term-memory-lstm" class="level3">
+<h3 class="anchored" data-anchor-id="long-short-term-memory-lstm">Long Short-Term Memory (LSTM)</h3>
+<p><strong>Three gates control information flow:</strong></p>
+<ol type="1">
+<li><strong>Forget Gate:</strong> What information to discard from the cell state</li>
+<li><strong>Input Gate:</strong> What new information to store in the cell state</li>
+<li><strong>Output Gate:</strong> What information to output from the cell state</li>
+</ol>
+</section>
+<section id="reference-card-lstm" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-lstm">Reference Card: <code>LSTM</code></h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Component</th>
+<th style="text-align: left;">Details</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Function</strong></td>
+<td style="text-align: left;"><code>keras.layers.LSTM()</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Purpose</strong></td>
+<td style="text-align: left;">Process sequential data with long-term memory</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Key Parameters</strong></td>
+<td style="text-align: left;">• <code>units</code>: Dimensionality of output space<br>• <code>return_sequences</code>: Return full sequence (<code>True</code>) or just last output (<code>False</code>)<br>• <code>dropout</code>: Fraction of units to drop for inputs<br>• <code>recurrent_dropout</code>: Fraction to drop for recurrent state</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Use Cases</strong></td>
+<td style="text-align: left;">Time series forecasting, text generation, clinical sequence data</td>
+</tr>
+</tbody>
+</table>
+<p><img src="media/LSTMvsGRU.png" class="img-fluid"></p>
+<p>The internal architecture shows how LSTM’s three gates (forget, input, output) and GRU’s simpler two-gate design (reset, update) control information flow. GRU is faster to train with fewer parameters, while LSTM is more expressive for complex sequences:</p>
+<p><img src="media/lstmvsgru2.png" class="img-fluid"></p>
+</section>
+<section id="code-snippet-lstm-for-time-series" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-lstm-for-time-series">Code Snippet: LSTM for Time Series</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> keras <span class="im">import</span> Sequential</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> keras.layers <span class="im">import</span> LSTM, Dense, Dropout</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Classify ECG recordings: 140 time steps, 1 feature (voltage)</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> Sequential([</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    LSTM(<span class="dv">64</span>, input_shape<span class="op">=</span>(<span class="dv">140</span>, <span class="dv">1</span>)),</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    Dropout(<span class="fl">0.2</span>),</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    Dense(<span class="dv">32</span>, activation<span class="op">=</span><span class="st">'relu'</span>),</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    Dense(<span class="dv">5</span>, activation<span class="op">=</span><span class="st">'softmax'</span>)  <span class="co"># 5 heartbeat classes</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">compile</span>(optimizer<span class="op">=</span><span class="st">'adam'</span>, loss<span class="op">=</span><span class="st">'categorical_crossentropy'</span>, metrics<span class="op">=</span>[<span class="st">'accuracy'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="embeddings" class="level2">
+<h2 class="anchored" data-anchor-id="embeddings">Embeddings</h2>
+<p>Neural networks need numeric inputs, but many real-world features are categorical — words, diagnosis codes, medication names. One-hot encoding works for a handful of categories, but a vocabulary of 10,000 words would produce 10,000-dimensional sparse vectors where each word is equally “distant” from every other word. That’s wasteful and misses relationships: “aspirin” and “ibuprofen” should be closer together than “aspirin” and “stethoscope.”</p>
+<p>An <strong>embedding layer</strong> solves this by learning a compact, dense vector for each category. Instead of a 10,000-element one-hot vector, each word gets mapped to (say) a 64-dimensional vector — and the network learns those vectors during training so that similar items end up with similar representations. Embeddings are the standard first layer for any model that processes text or high-cardinality categorical data.</p>
+<section id="reference-card-embedding" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-embedding">Reference Card: <code>Embedding</code></h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Component</th>
+<th style="text-align: left;">Details</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Function</strong></td>
+<td style="text-align: left;"><code>keras.layers.Embedding(input_dim, output_dim, input_length=None)</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Purpose</strong></td>
+<td style="text-align: left;">Map integer indices (e.g., word IDs) to dense vectors the network can learn from</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Key Parameters</strong></td>
+<td style="text-align: left;">• <code>input_dim</code>: Size of the vocabulary (max integer index + 1)<br>• <code>output_dim</code>: Dimension of the dense embedding vectors<br>• <code>input_length</code>: Length of input sequences (required for downstream Dense layers)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Output Shape</strong></td>
+<td style="text-align: left;">(batch_size, input_length, output_dim)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Use Cases</strong></td>
+<td style="text-align: left;">Text inputs for LSTM/GRU, categorical features with many levels</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-embedding-lstm-for-text-classification" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-embedding-lstm-for-text-classification">Code Snippet: Embedding + LSTM for Text Classification</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> keras <span class="im">import</span> Sequential</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> keras.layers <span class="im">import</span> Embedding, LSTM, Dense</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Classify patient reviews as satisfied/unsatisfied</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Input: sequences of word IDs, padded to 200 tokens</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> Sequential([</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    Embedding(input_dim<span class="op">=</span><span class="dv">10000</span>, output_dim<span class="op">=</span><span class="dv">64</span>, input_length<span class="op">=</span><span class="dv">200</span>),</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    LSTM(<span class="dv">64</span>),</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    Dense(<span class="dv">1</span>, activation<span class="op">=</span><span class="st">'sigmoid'</span>)  <span class="co"># Output: probability between 0 and 1</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">compile</span>(optimizer<span class="op">=</span><span class="st">'adam'</span>, loss<span class="op">=</span><span class="st">'binary_crossentropy'</span>, metrics<span class="op">=</span>[<span class="st">'accuracy'</span>])</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co"># The labels define the task — the architecture just defines the shape</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="co"># X_train: array of word ID sequences, shape (num_reviews, 200)</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co"># y_train: array of 0s and 1s (unsatisfied/satisfied)</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>model.fit(X_train, y_train, validation_data<span class="op">=</span>(X_val, y_val), epochs<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Predict on a new review (preprocessed to word IDs, padded to 200 tokens)</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>model.predict(new_review)  <span class="co"># e.g., 0.87 → 87% chance satisfied</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+</section>
+<section id="training-in-practice" class="level1">
+<h1>Training in Practice</h1>
+<p>Building a model is only half the job — you also need to manage the training process. This section covers the tools Keras provides for monitoring, saving, and controlling training runs.</p>
+<section id="training-callbacks" class="level2">
+<h2 class="anchored" data-anchor-id="training-callbacks">Training Callbacks</h2>
+<p>Neural network training can take minutes to hours. You don’t want to babysit it — and you definitely don’t want to lose your best model because training ran too long and started overfitting. Callbacks hook into the training loop to save checkpoints, stop early, or log metrics — without modifying your training code.</p>
+<p><img src="media/early_stopping_curves.png" class="img-fluid"></p>
+<section id="reference-card-modelcheckpoint" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-modelcheckpoint">Reference Card: <code>ModelCheckpoint</code></h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Component</th>
+<th style="text-align: left;">Details</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Function</strong></td>
+<td style="text-align: left;"><code>keras.callbacks.ModelCheckpoint()</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Purpose</strong></td>
+<td style="text-align: left;">Save model weights or full model during training</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Key Parameters</strong></td>
+<td style="text-align: left;">• <code>filepath</code>: Path to save (can include <code>{epoch}</code>, <code>{val_loss}</code>)<br>• <code>save_best_only</code>: Only save when monitored metric improves<br>• <code>monitor</code>: Metric to monitor (e.g., <code>'val_loss'</code>)<br>• <code>save_weights_only</code>: Save weights only or full model</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Use Case</strong></td>
+<td style="text-align: left;">Keep best model for deployment, resume training after interruption</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="reference-card-earlystopping" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-earlystopping">Reference Card: <code>EarlyStopping</code></h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Component</th>
+<th style="text-align: left;">Details</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Function</strong></td>
+<td style="text-align: left;"><code>keras.callbacks.EarlyStopping()</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Purpose</strong></td>
+<td style="text-align: left;">Stop training when monitored metric stops improving</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Key Parameters</strong></td>
+<td style="text-align: left;">• <code>monitor</code>: Metric to monitor (e.g., <code>'val_loss'</code>)<br>• <code>patience</code>: Epochs to wait before stopping<br>• <code>restore_best_weights</code>: Restore weights from best epoch<br>• <code>min_delta</code>: Minimum change to qualify as improvement</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Use Case</strong></td>
+<td style="text-align: left;">Prevent overfitting, save compute time</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-snippet-training-callbacks" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-training-callbacks">Code Snippet: Training Callbacks</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> keras.callbacks <span class="im">import</span> ModelCheckpoint, EarlyStopping</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>callbacks <span class="op">=</span> [</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Save only the best model (overwrites the file each time the metric improves)</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    ModelCheckpoint(</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">'best_model.keras'</span>,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>        save_best_only<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>        monitor<span class="op">=</span><span class="st">'val_accuracy'</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Save every epoch (useful for resuming interrupted training)</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    ModelCheckpoint(</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>        <span class="st">'checkpoints/epoch_</span><span class="sc">{epoch:02d}</span><span class="st">.keras'</span>  <span class="co"># epoch_01.keras, epoch_02.keras, ...</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    EarlyStopping(</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>        monitor<span class="op">=</span><span class="st">'val_loss'</span>,</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>        patience<span class="op">=</span><span class="dv">5</span>,              <span class="co"># Stop if val_loss doesn't improve for 5 epochs</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>        restore_best_weights<span class="op">=</span><span class="va">True</span>  <span class="co"># Roll back to the best epoch's weights</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="co"># With both callbacks: training stops before overfitting gets bad,</span></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a><span class="co"># and the saved file always contains the best model seen during training</span></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>history <span class="op">=</span> model.fit(X_train, y_train,</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>                    validation_data<span class="op">=</span>(X_val, y_val),</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>                    epochs<span class="op">=</span><span class="dv">100</span>,</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>                    callbacks<span class="op">=</span>callbacks)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="saving-and-loading-models" class="level2">
+<h2 class="anchored" data-anchor-id="saving-and-loading-models">Saving and Loading Models</h2>
+<p>Training can take hours — save checkpoints so you can resume or deploy without retraining. The <code>ModelCheckpoint</code> callback (above) handles this during training. For manual save/load:</p>
+<section id="code-snippet-save-and-resume" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-save-and-resume">Code Snippet: Save and Resume</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save after training</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>model.save(<span class="st">'my_model.keras'</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Resume later</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> keras.models <span class="im">import</span> load_model</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> load_model(<span class="st">'my_model.keras'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="keras-vs.-pytorch" class="level2">
+<h2 class="anchored" data-anchor-id="keras-vs.-pytorch">Keras vs.&nbsp;PyTorch</h2>
+<p>So far we’ve used Keras for everything. But you’ll encounter <strong>PyTorch</strong> in many tutorials, papers, and production systems. The core ideas are the same — layers, loss functions, optimizers, backpropagation — but the API style is different.</p>
+<p>PyTorch offers a more explicit approach where you define the forward pass directly and write your own training loop. Here’s a preview to see how the same model looks in both frameworks.</p>
+<section id="code-snippet-pytorch-model" class="level3">
+<h3 class="anchored" data-anchor-id="code-snippet-pytorch-model">Code Snippet: PyTorch Model</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn <span class="im">as</span> nn</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> SimpleNN(nn.Module):</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.fc1 <span class="op">=</span> nn.Linear(<span class="dv">784</span>, <span class="dv">128</span>)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.fc2 <span class="op">=</span> nn.Linear(<span class="dv">128</span>, <span class="dv">10</span>)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x):</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> torch.relu(<span class="va">self</span>.fc1(x))</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.fc2(x)</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> SimpleNN()</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>loss_fn <span class="op">=</span> nn.CrossEntropyLoss()</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>optimizer <span class="op">=</span> torch.optim.Adam(model.parameters(), lr<span class="op">=</span><span class="fl">1e-3</span>)</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Training loop (explicit — you control every step)</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> inputs, targets <span class="kw">in</span> train_loader:</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>    optimizer.zero_grad()</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>    loss <span class="op">=</span> loss_fn(model(inputs), targets)</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>    loss.backward()</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>    optimizer.step()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<blockquote class="blockquote">
+<p><strong>Keras vs.&nbsp;PyTorch:</strong> Keras provides high-level APIs (<code>model.fit()</code>) that handle the training loop for you. PyTorch gives you explicit control over every step. Both are widely used — Keras for rapid prototyping, PyTorch for research flexibility.</p>
+</blockquote>
+<p><img src="media/xkcd_tasks.png" class="img-fluid"></p>
+</section>
+</section>
+</section>
+<section id="neural-networks-in-practice" class="level1">
+<h1>Neural Networks in Practice</h1>
+<p>Neural networks are powerful but not magic. Knowing when to use them — and when a simpler model from last lecture will do — is an important skill. Last week you compared logistic regression, random forests, XGBoost, and a simple neural network on handwritten digits — and the classical models held their own. A random forest on well-engineered features often beats a poorly configured neural network, and it’s far easier to explain to a clinician.</p>
+<section id="reference-card-when-to-use-neural-networks" class="level3">
+<h3 class="anchored" data-anchor-id="reference-card-when-to-use-neural-networks">Reference Card: When to Use Neural Networks</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Scenario</th>
+<th style="text-align: left;">Neural Network?</th>
+<th style="text-align: left;">Better Alternative</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Tabular data, &lt;10k rows</strong></td>
+<td style="text-align: left;">Probably not</td>
+<td style="text-align: left;">Random Forest, XGBoost</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Image classification</strong></td>
+<td style="text-align: left;">Yes (CNN)</td>
+<td style="text-align: left;">—</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Time series / sequential data</strong></td>
+<td style="text-align: left;">Yes (LSTM/RNN)</td>
+<td style="text-align: left;">ARIMA for simple forecasts</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Text / NLP</strong></td>
+<td style="text-align: left;">Yes (Transformers)</td>
+<td style="text-align: left;">Bag-of-words + LogReg for simple tasks</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Structured data, interpretability required</strong></td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">Decision trees, logistic regression</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Small labeled dataset</strong></td>
+<td style="text-align: left;">Transfer learning</td>
+<td style="text-align: left;">Fine-tune a pre-trained model (e.g., ImageNet → your X-rays) instead of training from scratch</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="live-demo-2" class="level1">
+<h1>LIVE DEMO!!!</h1>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/christopherseaman\.github\.io\/datasci_223");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
