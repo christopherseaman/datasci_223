@@ -53,3 +53,4 @@ format:
 
 filters:
   - _filters/obsidian-callouts.lua
+

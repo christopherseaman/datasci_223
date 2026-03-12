@@ -5,6 +5,7 @@ permalink: /
 # Applied Data Science with Python
 
 > [!INFO] Course Information
+>
 > - **Instructor:** Christopher Seaman
 > - **EA's:** Samantha Chan & Eric Yang
 > - **Dates:** January 15th - March 11th, 2026 _(10 class meetings)_
