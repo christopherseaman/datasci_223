@@ -3,7 +3,8 @@ module.exports = {
   pages: [
     { url: "/", label: "Overview" },
     { label: "GitHub", url: "https://github.com/christopherseaman/datasci_223" },
-    { label: "Discord", url: "https://discord.gg/QdTYgR45er" },
+    // { label: "Discord", url: "https://discord.gg/QdTYgR45er" },
+    { label: "UCSF Courses", url: "https://courses.ucsf.edu/" },
   ],
   lectures: [
     { id: "01", label: "Debugging", track: "Foundational" },
