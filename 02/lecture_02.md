@@ -1,8 +1,3 @@
----
-lecture_number: 02
-pdf: true
----
-
 02: Scaling Tabular Workflows with Polars ⚡
 
 - hw02 - #FIXME add GitHub Classroom link once ready

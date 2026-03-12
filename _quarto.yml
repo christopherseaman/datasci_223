@@ -1,0 +1,64 @@
+project:
+  type: website
+  output-dir: _site
+  render:
+    - index.md
+    - "*/lecture_*.md"
+    - "!lectures_24/"
+    - "!lectures_25/"
+    - "!refs/"
+    - "!scripts/"
+    - "!overrides/"
+    - "!.tmp/"
+    - "!logs/"
+
+website:
+  title: "DataSci-223"
+  site-url: https://christopherseaman.github.io/datasci_223
+  repo-url: https://github.com/christopherseaman/datasci_223
+  sidebar:
+    style: docked
+    background: dark
+    search: true
+    contents:
+      - text: "Overview"
+        href: index.md
+      - text: "GitHub"
+        href: https://github.com/christopherseaman/datasci_223
+      - text: "Discord"
+        href: https://discord.gg/QdTYgR45er
+      - section: "Foundation"
+        contents:
+          - text: "01. Debugging"
+            href: 01/lecture_01.md
+          - text: "02. Polars"
+            href: 02/lecture_02.md
+          - text: "03. SQL"
+            href: 03/lecture_03.md
+          - text: "04. NLP"
+            href: 04/lecture_04.md
+      - section: "Machine Learning"
+        contents:
+          - text: "05. Classification"
+            href: 05/lecture_05.md
+          - text: "06. Neural Networks"
+            href: 06/lecture_06.md
+          - text: "07. Transformers"
+            href: 07/lecture_07.md
+          - text: "08. LLM Workflows"
+            href: 08/lecture_08.md
+      - section: "Applications"
+        contents:
+          - text: "09. Computer Vision"
+            href: 09/lecture_09.md
+          - text: "10. A/B Testing"
+            href: 10/lecture_10.md
+
+format:
+  html:
+    theme: cyborg
+    toc: true
+    code-overflow: wrap
+
+filters:
+  - _filters/obsidian-callouts.lua

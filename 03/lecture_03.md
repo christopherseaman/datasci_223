@@ -1,8 +1,3 @@
----
-lecture_number: 03
-pdf: true
----
-
 03: Join the DISTINCT with SQL
 
 - [hw03](https://classroom.github.com/a/Rn7-jPaj)
