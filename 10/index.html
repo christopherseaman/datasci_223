@@ -71,22 +71,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-c58a5418216061a8b0ce0e5845a41534.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-dark-c58a5418216061a8b0ce0e5845a41534.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-c58a5418216061a8b0ce0e5845a41534.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="dark">
-<script src="../site_libs/quarto-dashboard/quarto-dashboard.js"></script>
-<script src="../site_libs/quarto-dashboard/stickythead.js"></script>
-
-
-
-<script src="../site_libs/quarto-dashboard/web-components.js" type="module"></script>
-<script src="../site_libs/quarto-dashboard/components.js"></script>
-
+<link href="../site_libs/bootstrap/bootstrap-c58a5418216061a8b0ce0e5845a41534.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -118,44 +106,120 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
 </head>
 
-<body class="quarto-dashboard dashboard-fill fullcontent quarto-light">
+<body class="quarto-light">
 
-<header id="quarto-dashboard-header">
-<nav class="navbar navbar-expand-md slim" data-bs-theme="dark">
-  <div class="navbar-container container-fluid">
-    <button class="navbar-toggler hidden" type="button" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-controls="dashboard-collapse" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>    
-
-
-</div></nav>
-</header>
 <div id="quarto-search-results"></div>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-layout-custom quarto-dashboard-content bslib-gap-spacing html-fill-container bslib-page-fill">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
 <!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#ab-testing-and-causal-inference" id="toc-ab-testing-and-causal-inference" class="nav-link active" data-scroll-target="#ab-testing-and-causal-inference">A/B Testing and Causal Inference</a>
+  <ul class="collapse">
+  <li><a href="#theory-to-practice-with-dr.-demetri-pananos" id="toc-theory-to-practice-with-dr.-demetri-pananos" class="nav-link" data-scroll-target="#theory-to-practice-with-dr.-demetri-pananos">Theory to Practice with Dr.&nbsp;Demetri Pananos</a></li>
+  <li><a href="#who-am-i" id="toc-who-am-i" class="nav-link" data-scroll-target="#who-am-i">Who Am I?</a></li>
+  <li><a href="#causal-inference-in-this-economy" id="toc-causal-inference-in-this-economy" class="nav-link" data-scroll-target="#causal-inference-in-this-economy">Causal Inference? In This Economy?</a></li>
+  <li><a href="#causal-inference-for-cheap" id="toc-causal-inference-for-cheap" class="nav-link" data-scroll-target="#causal-inference-for-cheap">Causal Inference for Cheap</a></li>
+  <li><a href="#agenda" id="toc-agenda" class="nav-link" data-scroll-target="#agenda">Agenda</a></li>
+  </ul></li>
+  <li><a href="#stats-refresher" id="toc-stats-refresher" class="nav-link" data-scroll-target="#stats-refresher">Stats Refresher</a>
+  <ul class="collapse">
+  <li><a href="#the-central-limit-theorem" id="toc-the-central-limit-theorem" class="nav-link" data-scroll-target="#the-central-limit-theorem">The Central Limit Theorem</a></li>
+  <li><a href="#thought-exercise-calculus-grades" id="toc-thought-exercise-calculus-grades" class="nav-link" data-scroll-target="#thought-exercise-calculus-grades">Thought Exercise: Calculus Grades</a></li>
+  <li><a href="#example-of-clt-in-action" id="toc-example-of-clt-in-action" class="nav-link" data-scroll-target="#example-of-clt-in-action">Example of CLT in Action</a></li>
+  <li><a href="#hypothesis-tests-for-means" id="toc-hypothesis-tests-for-means" class="nav-link" data-scroll-target="#hypothesis-tests-for-means">Hypothesis Tests For Means</a></li>
+  <li><a href="#confidence-intervals-p-values" id="toc-confidence-intervals-p-values" class="nav-link" data-scroll-target="#confidence-intervals-p-values">Confidence Intervals &amp; P Values</a></li>
+  </ul></li>
+  <li><a href="#pokemon-and-causal-inference" id="toc-pokemon-and-causal-inference" class="nav-link" data-scroll-target="#pokemon-and-causal-inference">Pokemon and Causal Inference</a>
+  <ul class="collapse">
+  <li><a href="#fossils-at-mt.-moon" id="toc-fossils-at-mt.-moon" class="nav-link" data-scroll-target="#fossils-at-mt.-moon">Fossils at Mt. Moon</a></li>
+  <li><a href="#rubins-causal-model-potential-outcomes" id="toc-rubins-causal-model-potential-outcomes" class="nav-link" data-scroll-target="#rubins-causal-model-potential-outcomes">Rubin’s Causal Model &amp; Potential Outcomes</a></li>
+  <li><a href="#we-never-see-both-potential-outcomes" id="toc-we-never-see-both-potential-outcomes" class="nav-link" data-scroll-target="#we-never-see-both-potential-outcomes">We Never See Both Potential Outcomes</a></li>
+  <li><a href="#causal-effects" id="toc-causal-effects" class="nav-link" data-scroll-target="#causal-effects">Causal Effects</a></li>
+  <li><a href="#average-causal-effects" id="toc-average-causal-effects" class="nav-link" data-scroll-target="#average-causal-effects">Average Causal Effects</a></li>
+  <li><a href="#how-can-we-estimate-causal-effects" id="toc-how-can-we-estimate-causal-effects" class="nav-link" data-scroll-target="#how-can-we-estimate-causal-effects">How Can We Estimate Causal Effects?</a></li>
+  <li><a href="#confounding" id="toc-confounding" class="nav-link" data-scroll-target="#confounding">Confounding</a></li>
+  <li><a href="#confounding-example" id="toc-confounding-example" class="nav-link" data-scroll-target="#confounding-example">Confounding Example</a></li>
+  <li><a href="#how-can-we-do-causal-inference-at-all" id="toc-how-can-we-do-causal-inference-at-all" class="nav-link" data-scroll-target="#how-can-we-do-causal-inference-at-all">How Can We Do Causal Inference At All?</a></li>
+  <li><a href="#assumptions-for-causal-inference" id="toc-assumptions-for-causal-inference" class="nav-link" data-scroll-target="#assumptions-for-causal-inference">3 Assumptions for Causal Inference</a></li>
+  <li><a href="#randomization-gives-us-all-3" id="toc-randomization-gives-us-all-3" class="nav-link" data-scroll-target="#randomization-gives-us-all-3">Randomization Gives Us All 3!</a></li>
+  <li><a href="#sounds-simple-right" id="toc-sounds-simple-right" class="nav-link" data-scroll-target="#sounds-simple-right">Sounds Simple, Right?</a></li>
+  </ul></li>
+  <li><a href="#break" id="toc-break" class="nav-link" data-scroll-target="#break">Break</a></li>
+  <li><a href="#practical-ab-testing" id="toc-practical-ab-testing" class="nav-link" data-scroll-target="#practical-ab-testing">Practical A/B Testing</a>
+  <ul class="collapse">
+  <li><a href="#steps-to-an-ab-test" id="toc-steps-to-an-ab-test" class="nav-link" data-scroll-target="#steps-to-an-ab-test">Steps To an A/B Test</a></li>
+  <li><a href="#a-real-example" id="toc-a-real-example" class="nav-link" data-scroll-target="#a-real-example">A “Real Example”</a></li>
+  <li><a href="#convince-people-to-run-an-ab-test" id="toc-convince-people-to-run-an-ab-test" class="nav-link" data-scroll-target="#convince-people-to-run-an-ab-test">Convince People To Run an A/B Test</a></li>
+  <li><a href="#get-specific" id="toc-get-specific" class="nav-link" data-scroll-target="#get-specific">Get Specific!</a></li>
+  <li><a href="#determine-how-long-the-test-should-run" id="toc-determine-how-long-the-test-should-run" class="nav-link" data-scroll-target="#determine-how-long-the-test-should-run">Determine How Long the Test Should Run</a></li>
+  <li><a href="#align-with-engineering" id="toc-align-with-engineering" class="nav-link" data-scroll-target="#align-with-engineering">Align With Engineering</a></li>
+  <li><a href="#run-the-test-and-monitor" id="toc-run-the-test-and-monitor" class="nav-link" data-scroll-target="#run-the-test-and-monitor">Run The Test and Monitor</a></li>
+  <li><a href="#run-the-test-and-monitor-1" id="toc-run-the-test-and-monitor-1" class="nav-link" data-scroll-target="#run-the-test-and-monitor-1">Run The Test and Monitor</a></li>
+  <li><a href="#analyze-the-test" id="toc-analyze-the-test" class="nav-link" data-scroll-target="#analyze-the-test">Analyze The Test</a></li>
+  <li><a href="#analyze-the-test-1" id="toc-analyze-the-test-1" class="nav-link" data-scroll-target="#analyze-the-test-1">Analyze The Test</a></li>
+  <li><a href="#communicate-results" id="toc-communicate-results" class="nav-link" data-scroll-target="#communicate-results">Communicate Results</a></li>
+  <li><a href="#communicate-results-1" id="toc-communicate-results-1" class="nav-link" data-scroll-target="#communicate-results-1">Communicate Results</a></li>
+  <li><a href="#the-peeking-problem" id="toc-the-peeking-problem" class="nav-link" data-scroll-target="#the-peeking-problem">The Peeking Problem</a></li>
+  <li><a href="#always-valid-confidence-intervals" id="toc-always-valid-confidence-intervals" class="nav-link" data-scroll-target="#always-valid-confidence-intervals">Always Valid Confidence Intervals</a></li>
+  <li><a href="#pms-want-to-go-fast" id="toc-pms-want-to-go-fast" class="nav-link" data-scroll-target="#pms-want-to-go-fast">PMs Want To Go Fast</a></li>
+  <li><a href="#cuped" id="toc-cuped" class="nav-link" data-scroll-target="#cuped">CUPED</a></li>
+  <li><a href="#cuped-how-it-works" id="toc-cuped-how-it-works" class="nav-link" data-scroll-target="#cuped-how-it-works">CUPED: How It Works</a></li>
+  <li><a href="#cuped-illustration" id="toc-cuped-illustration" class="nav-link" data-scroll-target="#cuped-illustration">CUPED: Illustration</a></li>
+  <li><a href="#cuped-takeaways" id="toc-cuped-takeaways" class="nav-link" data-scroll-target="#cuped-takeaways">CUPED: Takeaways</a></li>
+  <li><a href="#a-lot-to-learn" id="toc-a-lot-to-learn" class="nav-link" data-scroll-target="#a-lot-to-learn">A Lot To Learn</a></li>
+  </ul></li>
+  <li><a href="#fin" id="toc-fin" class="nav-link" data-scroll-target="#fin">Fin</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
-<div class="bslib-grid-item html-fill-item bslib-grid" data-layout="fill" style="display: grid; grid-template-rows: minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
-<div class="bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, 1fr);
-grid-auto-rows: minmax(0, 1fr);">
-<div class="bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
-<div class="card bslib-card html-fill-container" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
-<div class="card-body html-fill-item html-fill-container">
+
+
+
+<section id="ab-testing-and-causal-inference" class="level2">
+<h2 class="anchored" data-anchor-id="ab-testing-and-causal-inference">A/B Testing and Causal Inference</h2>
+<section id="theory-to-practice-with-dr.-demetri-pananos" class="level3">
+<h3 class="anchored" data-anchor-id="theory-to-practice-with-dr.-demetri-pananos">Theory to Practice with Dr.&nbsp;Demetri Pananos</h3>
 <p>(<a href="media/ab_testing_lecture.pdf">pdf</a>)</p>
-</div>
-<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-    <template>Expand</template>
-    <span class="bslib-full-screen-enter badge rounded-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
-    </span>
-</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
-</div><div class="bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
-<div class="card bslib-card html-fill-container" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
-<div class="card-body html-fill-item html-fill-container">
+</section>
+<section id="who-am-i" class="level3">
+<h3 class="anchored" data-anchor-id="who-am-i">Who Am I?</h3>
 <ul>
 <li><p>Dr.&nbsp;Demetri Pananos</p></li>
 <li><p>Late 2016 Data Analyst Working in A/B Testing</p></li>
@@ -164,16 +228,9 @@ grid-auto-rows: minmax(0, 1fr);">
 <li><p>Late 2023 - Late 2024: A foray into Media Mixed Modelling</p></li>
 <li><p>Late 2024 - Now: Statistics Engineer at Eppo/Datadog.</p></li>
 </ul>
-</div>
-<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-    <template>Expand</template>
-    <span class="bslib-full-screen-enter badge rounded-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
-    </span>
-</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
-</div><div class="bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
-<div class="card bslib-card html-fill-container" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
-<div class="card-body html-fill-item html-fill-container">
+</section>
+<section id="causal-inference-in-this-economy" class="level3">
+<h3 class="anchored" data-anchor-id="causal-inference-in-this-economy">Causal Inference? In This Economy?</h3>
 <ul>
 <li><p>Hot take: <em>All business questions are causal.</em></p></li>
 <li><p>We don’t just need data, we need the <em>right data</em></p></li>
@@ -184,16 +241,9 @@ grid-auto-rows: minmax(0, 1fr);">
 <li>Thinking we are pulling a lever when we aren’t</li>
 </ul></li>
 </ul>
-</div>
-<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-    <template>Expand</template>
-    <span class="bslib-full-screen-enter badge rounded-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
-    </span>
-</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
-</div><div class="bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
-<div class="card bslib-card html-fill-container" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
-<div class="card-body html-fill-item html-fill-container">
+</section>
+<section id="causal-inference-for-cheap" class="level3">
+<h3 class="anchored" data-anchor-id="causal-inference-for-cheap">Causal Inference for Cheap</h3>
 <ul>
 <li>A/B tests are the easiest way to answer causal questions.</li>
 <li>Much to know!
@@ -203,166 +253,94 @@ grid-auto-rows: minmax(0, 1fr);">
 <li>When you need more math and when you don’t</li>
 </ul></li>
 </ul>
-</div>
-<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-    <template>Expand</template>
-    <span class="bslib-full-screen-enter badge rounded-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
-    </span>
-</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
-</div><div class="bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
-<div class="card bslib-card html-fill-container" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
-<div class="card-body html-fill-item html-fill-container">
+</section>
+<section id="agenda" class="level3">
+<h3 class="anchored" data-anchor-id="agenda">Agenda</h3>
 <ul>
 <li>Stats refresher</li>
 <li>Pokemon and Causal Inference</li>
 <li>Confounding &amp; Assumptions for Causal Inference</li>
 </ul>
-<em>Break</em>
+<p><em>Break</em></p>
 <ul>
 <li>Practical Guidance for Running A/B Tests</li>
 </ul>
-</div>
-<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-    <template>Expand</template>
-    <span class="bslib-full-screen-enter badge rounded-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
-    </span>
-</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
-</div>
-</div>
-<div class="bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, 1fr);
-grid-auto-rows: minmax(0, 1fr);">
-<div class="bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
-<div class="card bslib-card html-fill-container" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
-<div class="card-body html-fill-item html-fill-container">
+</section>
+</section>
+<section id="stats-refresher" class="level2">
+<h2 class="anchored" data-anchor-id="stats-refresher">Stats Refresher</h2>
+<section id="the-central-limit-theorem" class="level3">
+<h3 class="anchored" data-anchor-id="the-central-limit-theorem">The Central Limit Theorem</h3>
 <p>The Central Limit Theorem tells us that the sample mean can be thought of as a normal random variable. Let <span class="math inline">\(Y_1, \cdots, Y_n\)</span> be i.i.d random variables so that <span class="math inline">\(E[Y] = \mu\)</span> and <span class="math inline">\(\operatorname{Var}(Y) = \sigma^2\)</span>.</p>
 <p>Recall that <span class="math display">\[ \bar Y = \dfrac{1}{n} \sum_{i=1}^n Y_i \]</span></p>
 <p>CLT says <span class="math display">\[ \bar Y \sim \operatorname{Normal}(\mu, \tfrac{\sigma^2}{n}) \]</span></p>
 <p>This means that <span class="math inline">\(E[\bar Y] =  \mu\)</span> and <span class="math inline">\(\operatorname{Var}(\bar Y) = \tfrac{\sigma^2}{n}\)</span>.</p>
-</div>
-<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-    <template>Expand</template>
-    <span class="bslib-full-screen-enter badge rounded-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
-    </span>
-</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
-</div><div class="bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
-<div class="card bslib-card html-fill-container" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
-<div class="card-body html-fill-item html-fill-container">
+</section>
+<section id="thought-exercise-calculus-grades" class="level3">
+<h3 class="anchored" data-anchor-id="thought-exercise-calculus-grades">Thought Exercise: Calculus Grades</h3>
 <p>I want you to imagine:</p>
 <ul>
 <li>You sit out on the quad and ask students what grade they got in Calculus.</li>
 <li>After every <span class="math inline">\(N\)</span> students, you calculate the sample mean and start again.</li>
 <li>You do this <em>for a very very long time</em>.</li>
 </ul>
-Consider:
+<p>Consider:</p>
 <ul>
 <li>What would the histogram of of sample averages look like?</li>
 <li>What happens as <span class="math inline">\(N\)</span> gets bigger and bigger?</li>
 <li>Does the distribution of the actual grades matter for the answer above?</li>
 </ul>
-</div>
-<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-    <template>Expand</template>
-    <span class="bslib-full-screen-enter badge rounded-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
-    </span>
-</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
-</div><div class="bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
-<div class="card bslib-card html-fill-container" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
-<div class="card-body html-fill-item html-fill-container">
-<img src="media/clt_example.png" class="img-fluid">
-</div>
-<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-    <template>Expand</template>
-    <span class="bslib-full-screen-enter badge rounded-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
-    </span>
-</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
-</div><div class="bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
-<div class="card bslib-card html-fill-container" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
-<div class="card-body html-fill-item html-fill-container">
+</section>
+<section id="example-of-clt-in-action" class="level3">
+<h3 class="anchored" data-anchor-id="example-of-clt-in-action">Example of CLT in Action</h3>
+<p><img src="media/clt_example.png" class="img-fluid"></p>
+</section>
+<section id="hypothesis-tests-for-means" class="level3">
+<h3 class="anchored" data-anchor-id="hypothesis-tests-for-means">Hypothesis Tests For Means</h3>
 <p>We can perform a hypothesis test for the mean by computing the following test statistic</p>
-<span class="math display">\[ Z = \dfrac{\bar y - \mu_0}{\sqrt{\dfrac{s^2}{n}}} \]</span>
+<p><span class="math display">\[ Z = \dfrac{\bar y - \mu_0}{\sqrt{\dfrac{s^2}{n}}} \]</span></p>
 <p>The test statistic for two means being equal is</p>
-<span class="math display">\[ Z = \dfrac{\bar x - \bar y}{\sqrt{\tfrac{s^2_x}{n_x}  + \tfrac{s^2_y}{n_y}}} \]</span>
-</div>
-<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-    <template>Expand</template>
-    <span class="bslib-full-screen-enter badge rounded-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
-    </span>
-</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
-</div><div class="bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
-<div class="card bslib-card html-fill-container" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
-<div class="card-body html-fill-item html-fill-container">
+<p><span class="math display">\[ Z = \dfrac{\bar x - \bar y}{\sqrt{\tfrac{s^2_x}{n_x}  + \tfrac{s^2_y}{n_y}}} \]</span></p>
+</section>
+<section id="confidence-intervals-p-values" class="level3">
+<h3 class="anchored" data-anchor-id="confidence-intervals-p-values">Confidence Intervals &amp; P Values</h3>
 <p>Two ways to talk about a hypothesis test:</p>
 <ul>
 <li><p>P Value: Probability we see a result more extreme than what we say assuming the null is true and our background assumptions about the data are true.</p></li>
 <li><p>Confidence Intervals: <span class="math inline">\(100\% \times (1-\alpha)\)</span> probability of containing the mean upon repeated construction.</p></li>
 </ul>
-<img src="media/ci_diagram.png" class="img-fluid">
-</div>
-<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-    <template>Expand</template>
-    <span class="bslib-full-screen-enter badge rounded-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
-    </span>
-</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
-</div>
-</div>
-<div class="bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, 1fr);
-grid-auto-rows: minmax(0, 1fr);">
-<div class="bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
-<div class="card bslib-card html-fill-container" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
-<div class="card-body html-fill-item html-fill-container">
-<img src="media/mtmoon.png" class="img-fluid">
+<p><img src="media/ci_diagram.png" class="img-fluid"></p>
+</section>
+</section>
+<section id="pokemon-and-causal-inference" class="level2">
+<h2 class="anchored" data-anchor-id="pokemon-and-causal-inference">Pokemon and Causal Inference</h2>
+<section id="fossils-at-mt.-moon" class="level3">
+<h3 class="anchored" data-anchor-id="fossils-at-mt.-moon">Fossils at Mt. Moon</h3>
+<p><img src="media/mtmoon.png" class="img-fluid"></p>
 <ul>
 <li>Players must choose either the dome fossil or the helix fossil.</li>
 <li>Once the choice is made, the other fossil is never attainable – effectively gone forever.</li>
 <li>Hypothetically two possible games! One in which you take dome fossil and one in which you take helix.</li>
 <li>What can Pokemon teach us about causal inference?</li>
 </ul>
-</div>
-<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-    <template>Expand</template>
-    <span class="bslib-full-screen-enter badge rounded-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
-    </span>
-</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
-</div><div class="bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
-<div class="card bslib-card html-fill-container" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
-<div class="card-body html-fill-item html-fill-container">
+</section>
+<section id="rubins-causal-model-potential-outcomes" class="level3">
+<h3 class="anchored" data-anchor-id="rubins-causal-model-potential-outcomes">Rubin’s Causal Model &amp; Potential Outcomes</h3>
 <p>Let <span class="math inline">\(A_i=0, 1\)</span> be an indicator for some treatment. Then <span class="math inline">\(Y_i(A_i)\)</span> is the potential outcome under that treatment.</p>
 <p>Example: “<em>My headache went away because I took an aspirin</em>”</p>
 <ul>
 <li><span class="math inline">\(A_i=0\)</span> means not taking the aspirin, and <span class="math inline">\(Y_i(A_i=0)\)</span> is my headache status having not taken the aspirin.</li>
 <li><span class="math inline">\(A_i=1\)</span> means taking the aspirin, and <span class="math inline">\(Y(A_i=1)\)</span> is my headache status having taken the aspirin.</li>
 </ul>
-</div>
-<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-    <template>Expand</template>
-    <span class="bslib-full-screen-enter badge rounded-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
-    </span>
-</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
-</div><div class="bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
-<div class="card bslib-card html-fill-container" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
-<div class="card-body html-fill-item html-fill-container">
+</section>
+<section id="we-never-see-both-potential-outcomes" class="level3">
+<h3 class="anchored" data-anchor-id="we-never-see-both-potential-outcomes">We Never See Both Potential Outcomes</h3>
 <p>In reality, we never know both <span class="math inline">\(Y_i(A_i=0)\)</span> and <span class="math inline">\(Y_i(A_i=1)\)</span> – we can only ever see one.</p>
 <p>We can relate the observed data to the potential outcomes via the <em>switching equation</em></p>
-<span class="math display">\[ Y_i = A_i Y_i(A_i=1) + (1-A_i) Y_i(A_i=0) \]</span>
-</div>
-<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-    <template>Expand</template>
-    <span class="bslib-full-screen-enter badge rounded-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
-    </span>
-</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
-</div><div class="bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
-<div class="card bslib-card html-fill-container" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
-<div class="card-body html-fill-item html-fill-container">
+<p><span class="math display">\[ Y_i = A_i Y_i(A_i=1) + (1-A_i) Y_i(A_i=0) \]</span></p>
+</section>
+<section id="causal-effects" class="level3">
+<h3 class="anchored" data-anchor-id="causal-effects">Causal Effects</h3>
 <p>If I knew both potential outcomes, I could compute the casual effect of the action</p>
 <p><span class="math display">\[ \tau_i = Y_i(A_i=1) - Y_i(A_i=0) \]</span> Let’s assume <span class="math inline">\(Y_i(A)\)</span> can be 0 (no headache) or 1 (headache). What each of these mean about the treatment effect?</p>
 <ul>
@@ -370,31 +348,17 @@ grid-auto-rows: minmax(0, 1fr);">
 <li><span class="math inline">\(\tau_i = 1\)</span></li>
 <li><span class="math inline">\(\tau_i = -1\)</span></li>
 </ul>
-</div>
-<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-    <template>Expand</template>
-    <span class="bslib-full-screen-enter badge rounded-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
-    </span>
-</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
-</div><div class="bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
-<div class="card bslib-card html-fill-container" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
-<div class="card-body html-fill-item html-fill-container">
+</section>
+<section id="average-causal-effects" class="level3">
+<h3 class="anchored" data-anchor-id="average-causal-effects">Average Causal Effects</h3>
 <p>We can talk about the average potential outcome <span class="math inline">\(E[Y(A)]\)</span>. This is different than <span class="math inline">\(E[Y\mid A]\)</span>!</p>
 <p>Often, want to know how things change on average, so could compute</p>
-<span class="math display">\[ \tau = E[Y_i(A_i=1)] - E[Y_i(A_i=0)] \]</span>
-or
-<span class="math display">\[ \lambda = \dfrac{E[Y_i(A_i=1)]}{E[Y_i(A_i=0)]} - 1 \]</span>
-</div>
-<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-    <template>Expand</template>
-    <span class="bslib-full-screen-enter badge rounded-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
-    </span>
-</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
-</div><div class="bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
-<div class="card bslib-card html-fill-container" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
-<div class="card-body html-fill-item html-fill-container">
+<p><span class="math display">\[ \tau = E[Y_i(A_i=1)] - E[Y_i(A_i=0)] \]</span></p>
+<p>or</p>
+<p><span class="math display">\[ \lambda = \dfrac{E[Y_i(A_i=1)]}{E[Y_i(A_i=0)]} - 1 \]</span></p>
+</section>
+<section id="how-can-we-estimate-causal-effects" class="level3">
+<h3 class="anchored" data-anchor-id="how-can-we-estimate-causal-effects">How Can We Estimate Causal Effects?</h3>
 <p>If we can only ever see one potential outcome, how can we ever estimate causal effects?</p>
 <p>Can’t we just look at people who took aspirin and did not take aspirin and see what the difference was?</p>
 <p>What if:</p>
@@ -402,31 +366,17 @@ or
 <li>Only people with chronic headaches chose to use aspirin?</li>
 <li>People randomly chose aspirin?</li>
 </ul>
-Discuss
-</div>
-<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-    <template>Expand</template>
-    <span class="bslib-full-screen-enter badge rounded-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
-    </span>
-</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
-</div><div class="bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
-<div class="card bslib-card html-fill-container" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
-<div class="card-body html-fill-item html-fill-container">
+<p>Discuss</p>
+</section>
+<section id="confounding" class="level3">
+<h3 class="anchored" data-anchor-id="confounding">Confounding</h3>
 <p>Confounding: type of bias that occurs when the association you observe between an exposure and an outcome is distorted by a third variable</p>
 <p>Note that <strong>generally</strong> <span class="math inline">\(E[Y(A)] \neq E[Y|A]\)</span>! This is a subtle distinction here and you should make sure you understand this part.</p>
 <p>Let’s look at an example</p>
-</div>
-<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-    <template>Expand</template>
-    <span class="bslib-full-screen-enter badge rounded-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
-    </span>
-</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
-</div><div class="bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
-<div class="card bslib-card html-fill-container" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
-<div class="card-body html-fill-item html-fill-container">
-<div class="code-copy-outer-scaffold html-fill-item html-fill-container"><div class="sourceCode html-fill-item html-fill-container" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">## True causal effect:</span></span>
+</section>
+<section id="confounding-example" class="level3">
+<h3 class="anchored" data-anchor-id="confounding-example">Confounding Example</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">## True causal effect:</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Aspirin relieves headache</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">#  = 2/5 - 3/5</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(d<span class="sc">$</span>y1) <span class="sc">-</span> <span class="fu">mean</span>(d<span class="sc">$</span>y0)</span>
@@ -435,31 +385,17 @@ Discuss
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Aspirin increases headache</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># = 2/3 - 1/2</span></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(d<span class="sc">$</span>y[d<span class="sc">$</span>a<span class="sc">==</span><span class="dv">1</span>]) <span class="sc">-</span> <span class="fu">mean</span>(d<span class="sc">$</span>y[d<span class="sc">$</span>a<span class="sc">==</span><span class="dv">0</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-    <template>Expand</template>
-    <span class="bslib-full-screen-enter badge rounded-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
-    </span>
-</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
-</div><div class="bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
-<div class="card bslib-card html-fill-container" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
-<div class="card-body html-fill-item html-fill-container">
+</section>
+<section id="how-can-we-do-causal-inference-at-all" class="level3">
+<h3 class="anchored" data-anchor-id="how-can-we-do-causal-inference-at-all">How Can We Do Causal Inference At All?</h3>
 <ul>
 <li>Never observe the two potential outcomes</li>
 <li>Confounding means we can’t just look at data</li>
 </ul>
 <p>How can we ever do causal inference at all? Is this hopeless?</p>
-</div>
-<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-    <template>Expand</template>
-    <span class="bslib-full-screen-enter badge rounded-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
-    </span>
-</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
-</div><div class="bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
-<div class="card bslib-card html-fill-container" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
-<div class="card-body html-fill-item html-fill-container">
+</section>
+<section id="assumptions-for-causal-inference" class="level3">
+<h3 class="anchored" data-anchor-id="assumptions-for-causal-inference">3 Assumptions for Causal Inference</h3>
 <p>I said <strong>generally</strong> <span class="math inline">\(E[Y(A)] \neq E[Y|A]\)</span>, but under these 3 assumptions <span class="math inline">\(E[Y(A)] = E[Y|A]\)</span>, and we can do causal inference!</p>
 <ul>
 <li><strong>Consistency</strong>: That when we do <span class="math inline">\(A=a\)</span> we observe <span class="math inline">\(Y_i = Y(A_i)\)</span>.</li>
@@ -467,16 +403,9 @@ Discuss
 <li><strong>Exchangeability</strong>: This is perhaps the most important assumption… that <span class="math inline">\(Y(1), Y(0) \perp A\)</span>.</li>
 </ul>
 <p>If we have consistency, positivity, and exchangeability, then it is safe to assume <span class="math inline">\(E[Y_i \mid A=a] = E[Y_i(A=a)]\)</span>.</p>
-</div>
-<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-    <template>Expand</template>
-    <span class="bslib-full-screen-enter badge rounded-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
-    </span>
-</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
-</div><div class="bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
-<div class="card bslib-card html-fill-container" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
-<div class="card-body html-fill-item html-fill-container">
+</section>
+<section id="randomization-gives-us-all-3" class="level3">
+<h3 class="anchored" data-anchor-id="randomization-gives-us-all-3">Randomization Gives Us All 3!</h3>
 <p>The easiest way to achieve all 3 is via randomization.</p>
 <ul>
 <li>Randomization gives us consistency so long as the implementation works (more on this later)</li>
@@ -484,35 +413,23 @@ Discuss
 <li>Randomization gives us exchangeability by design.</li>
 </ul>
 <p>So long as we can randomize, we can compare group means and that is a valid estimate of the causal effect!</p>
-</div>
-<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-    <template>Expand</template>
-    <span class="bslib-full-screen-enter badge rounded-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
-    </span>
-</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
-</div><div class="bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
-<div class="card bslib-card html-fill-container" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
-<div class="card-body html-fill-item html-fill-container">
+</section>
+<section id="sounds-simple-right" class="level3">
+<h3 class="anchored" data-anchor-id="sounds-simple-right">Sounds Simple, Right?</h3>
 <ul>
 <li>Just randomize and run a z-test and we’re good?</li>
 <li>“<em>Experimentation is not a math problem; it is a people problem</em>” – Demetri Pananos, Ph.D.</li>
 <li>In the next section, we will discuss what it means to run A/B tests in real life. As we will see, it is much different than a statistics class may make it seem.</li>
 </ul>
-</div>
-<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-    <template>Expand</template>
-    <span class="bslib-full-screen-enter badge rounded-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
-    </span>
-</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
-</div>
-</div>
-<div class="bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, 1fr);
-grid-auto-rows: minmax(0, 1fr);">
-<div class="bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
-<div class="card bslib-card html-fill-container" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
-<div class="card-body html-fill-item html-fill-container">
+</section>
+</section>
+<section id="break" class="level2">
+<h2 class="anchored" data-anchor-id="break">Break</h2>
+</section>
+<section id="practical-ab-testing" class="level2">
+<h2 class="anchored" data-anchor-id="practical-ab-testing">Practical A/B Testing</h2>
+<section id="steps-to-an-ab-test" class="level3">
+<h3 class="anchored" data-anchor-id="steps-to-an-ab-test">Steps To an A/B Test</h3>
 <ol type="1">
 <li>Convince people to run an A/B test</li>
 <li>Get Specific!</li>
@@ -522,48 +439,27 @@ grid-auto-rows: minmax(0, 1fr);">
 <li>Analyze the test</li>
 <li>Communicate results</li>
 </ol>
-</div>
-<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-    <template>Expand</template>
-    <span class="bslib-full-screen-enter badge rounded-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
-    </span>
-</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
-</div><div class="bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
-<div class="card bslib-card html-fill-container" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
-<div class="card-body html-fill-item html-fill-container">
+</section>
+<section id="a-real-example" class="level3">
+<h3 class="anchored" data-anchor-id="a-real-example">A “Real Example”</h3>
 <ul>
 <li>You’re a DS at a company.</li>
 <li>New idea to increase upgrades &amp; retention.</li>
 <li>You think randomizing newly signed up users is a good way to test this.</li>
 <li>Let’s put these into action.</li>
 </ul>
-</div>
-<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-    <template>Expand</template>
-    <span class="bslib-full-screen-enter badge rounded-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
-    </span>
-</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
-</div><div class="bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
-<div class="card bslib-card html-fill-container" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
-<div class="card-body html-fill-item html-fill-container">
+</section>
+<section id="convince-people-to-run-an-ab-test" class="level3">
+<h3 class="anchored" data-anchor-id="convince-people-to-run-an-ab-test">Convince People To Run an A/B Test</h3>
 <ul>
 <li>A/B Tests take time, teams want to make decisions now.</li>
 <li>“Can’t we roll out and compare before and after?” – think about exchangeability here.</li>
 <li>Benefits to experimentation: Avoiding bias in decision making (HiPPO principle) and evidenced based decision making.</li>
 <li>Your job is to improve decision making, not force statistics on people. Be compassionate and listen to people’s fears and desires.</li>
 </ul>
-</div>
-<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-    <template>Expand</template>
-    <span class="bslib-full-screen-enter badge rounded-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
-    </span>
-</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
-</div><div class="bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
-<div class="card bslib-card html-fill-container" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
-<div class="card-body html-fill-item html-fill-container">
+</section>
+<section id="get-specific" class="level3">
+<h3 class="anchored" data-anchor-id="get-specific">Get Specific!</h3>
 <ul>
 <li>“We think this will increase upgrades”
 <ul>
@@ -577,31 +473,17 @@ grid-auto-rows: minmax(0, 1fr);">
 <li>Ensure your organization aligns with metric definitions.</li>
 <li>When are we going to run the test?</li>
 </ul>
-</div>
-<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-    <template>Expand</template>
-    <span class="bslib-full-screen-enter badge rounded-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
-    </span>
-</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
-</div><div class="bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
-<div class="card bslib-card html-fill-container" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
-<div class="card-body html-fill-item html-fill-container">
+</section>
+<section id="determine-how-long-the-test-should-run" class="level3">
+<h3 class="anchored" data-anchor-id="determine-how-long-the-test-should-run">Determine How Long the Test Should Run</h3>
 <ul>
 <li>Run a power calculation. To do this, you need to know your metric’s mean and standard error.</li>
 <li>Express the MDE (minimal detectable effect) as a function of run time.</li>
 <li>If you’re doing a 50/50 split and using <span class="math inline">\(\alpha = 0.05\)</span> and <span class="math inline">\(1-\beta = 0.8\)</span>, then <span class="math inline">\(MDE \approx \dfrac{2.8 \sqrt{2 \tfrac{\sigma^2}{N}}}{\mu}\)</span></li>
 </ul>
-</div>
-<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-    <template>Expand</template>
-    <span class="bslib-full-screen-enter badge rounded-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
-    </span>
-</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
-</div><div class="bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
-<div class="card bslib-card html-fill-container" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
-<div class="card-body html-fill-item html-fill-container">
+</section>
+<section id="align-with-engineering" class="level3">
+<h3 class="anchored" data-anchor-id="align-with-engineering">Align With Engineering</h3>
 <ul>
 <li>Assignments are created using feature flags, data are created from events.
 <ul>
@@ -610,16 +492,9 @@ grid-auto-rows: minmax(0, 1fr);">
 <li>Are we firing <em>counterfactual events</em>?</li>
 </ul></li>
 </ul>
-</div>
-<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-    <template>Expand</template>
-    <span class="bslib-full-screen-enter badge rounded-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
-    </span>
-</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
-</div><div class="bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
-<div class="card bslib-card html-fill-container" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
-<div class="card-body html-fill-item html-fill-container">
+</section>
+<section id="run-the-test-and-monitor" class="level3">
+<h3 class="anchored" data-anchor-id="run-the-test-and-monitor">Run The Test and Monitor</h3>
 <ul>
 <li>Stuff Breaks! It is best to catch it early if possible. Try to check:
 <ul>
@@ -628,44 +503,23 @@ grid-auto-rows: minmax(0, 1fr);">
 <li>You have metric data for both groups</li>
 </ul></li>
 </ul>
-</div>
-<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-    <template>Expand</template>
-    <span class="bslib-full-screen-enter badge rounded-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
-    </span>
-</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
-</div><div class="bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
-<div class="card bslib-card html-fill-container" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
-<div class="card-body html-fill-item html-fill-container">
+</section>
+<section id="run-the-test-and-monitor-1" class="level3">
+<h3 class="anchored" data-anchor-id="run-the-test-and-monitor-1">Run The Test and Monitor</h3>
 <ul>
 <li>Sample Ratio Mismatch: When observed fractions allocated to treatment/control do not match intended.</li>
 </ul>
-<div class="code-copy-outer-scaffold html-fill-item html-fill-container"><div class="sourceCode html-fill-item html-fill-container" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(<span class="fu">c</span>(<span class="dv">34603</span>, <span class="dv">34583</span>), <span class="at">p =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-    <template>Expand</template>
-    <span class="bslib-full-screen-enter badge rounded-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
-    </span>
-</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
-</div><div class="bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
-<div class="card bslib-card html-fill-container" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
-<div class="card-body html-fill-item html-fill-container">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(<span class="fu">c</span>(<span class="dv">34603</span>, <span class="dv">34583</span>), <span class="at">p =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="analyze-the-test" class="level3">
+<h3 class="anchored" data-anchor-id="analyze-the-test">Analyze The Test</h3>
 <ul>
 <li>If all looks good and you hit your sample size, you can analyze the test.</li>
 <li>A z-test is perfectly fine in most cases*</li>
 </ul>
-</div>
-<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-    <template>Expand</template>
-    <span class="bslib-full-screen-enter badge rounded-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
-    </span>
-</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
-</div><div class="bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
-<div class="card bslib-card html-fill-container" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
-<div class="card-body html-fill-item html-fill-container">
+</section>
+<section id="analyze-the-test-1" class="level3">
+<h3 class="anchored" data-anchor-id="analyze-the-test-1">Analyze The Test</h3>
 <ul>
 <li>A lot of places report “The Lift”, which is estimated as</li>
 </ul>
@@ -673,7 +527,7 @@ grid-auto-rows: minmax(0, 1fr);">
 <ul>
 <li>A confidence interval for this quantity is <span class="math inline">\(\hat \lambda \pm z_{1-\alpha/2} \sqrt{\widehat{\mathrm{Var}}(\hat{\lambda})}\)</span> obtained via the Delta Method</li>
 </ul>
-<span class="math display">\[
+<p><span class="math display">\[
 \widehat{\mathrm{Var}}(\hat{\lambda})
 \;=\;
 \left(\frac{\bar{y}_t}{\bar{y}_c}\right)^2
@@ -682,34 +536,20 @@ grid-auto-rows: minmax(0, 1fr);">
 \;+\;
 \frac{s_c^2}{n_c\,\bar{y}_c^{2}}
 \right)
-\]</span>
-</div>
-<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-    <template>Expand</template>
-    <span class="bslib-full-screen-enter badge rounded-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
-    </span>
-</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
-</div><div class="bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
-<div class="card bslib-card html-fill-container" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
-<div class="card-body html-fill-item html-fill-container">
+\]</span></p>
+</section>
+<section id="communicate-results" class="level3">
+<h3 class="anchored" data-anchor-id="communicate-results">Communicate Results</h3>
 <ul>
 <li>Point estimates are not enough, always report a confidence interval. In our case</li>
 </ul>
-<img src="media/lift_ci.png" class="img-fluid">
-</div>
-<div class="card-footer">
+<p><img src="media/lift_ci.png" class="img-fluid"></p>
+<blockquote class="blockquote">
 <p>“The treatment had an estimated lift of 4.31%. If we had run this test at a different time, or on a different group of users, we would expect the lift would be between -0.58% and 9.2%. Since the confidence interval contains negative lifts, my recommendation would be to ship control”</p>
-</div>
-<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-    <template>Expand</template>
-    <span class="bslib-full-screen-enter badge rounded-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
-    </span>
-</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
-</div><div class="bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
-<div class="card bslib-card html-fill-container" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
-<div class="card-body html-fill-item html-fill-container">
+</blockquote>
+</section>
+<section id="communicate-results-1" class="level3">
+<h3 class="anchored" data-anchor-id="communicate-results-1">Communicate Results</h3>
 <ul>
 <li><em>Most</em> AB tests are not winners.</li>
 <li>Twyman’s law:
@@ -721,16 +561,9 @@ grid-auto-rows: minmax(0, 1fr);">
 <li>Statistically significant results are often over estimates of the true effect</li>
 </ul></li>
 </ul>
-</div>
-<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-    <template>Expand</template>
-    <span class="bslib-full-screen-enter badge rounded-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
-    </span>
-</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
-</div><div class="bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
-<div class="card bslib-card html-fill-container" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
-<div class="card-body html-fill-item html-fill-container">
+</section>
+<section id="the-peeking-problem" class="level3">
+<h3 class="anchored" data-anchor-id="the-peeking-problem">The Peeking Problem</h3>
 <ul>
 <li><p>Many of the statistical guarantees only apply if you look once.</p></li>
 <li><p><strong>Peeking</strong>: Taking many looks at the data and actioning whenever there is statistical significance.</p></li>
@@ -738,16 +571,9 @@ grid-auto-rows: minmax(0, 1fr);">
 <li><p>Example: Consider collecting half the planned sample, then testing each half. If any of the 2 are stat sig, ship.</p></li>
 <li><p>Under the null, this results in a false positive rate of ~8.2%. Should be around 5%!</p></li>
 </ul>
-</div>
-<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-    <template>Expand</template>
-    <span class="bslib-full-screen-enter badge rounded-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
-    </span>
-</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
-</div><div class="bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
-<div class="card bslib-card html-fill-container" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
-<div class="card-body html-fill-item html-fill-container">
+</section>
+<section id="always-valid-confidence-intervals" class="level3">
+<h3 class="anchored" data-anchor-id="always-valid-confidence-intervals">Always Valid Confidence Intervals</h3>
 <ul>
 <li>There exist “always valid” (<a href="https://docs.geteppo.com/statistics/confidence-intervals/analysis-methods/#sequential-analysis">sequential</a>) methods.</li>
 <li>Pros:
@@ -763,84 +589,49 @@ grid-auto-rows: minmax(0, 1fr);">
 <li>You trade power for flexibility.</li>
 </ul></li>
 </ul>
-<a href="https://docs.geteppo.com/statistics/confidence-intervals/statistical-nitty-gritty/#sequential">Link: https://docs.geteppo.com/statistics/confidence-intervals/statistical-nitty-gritty/#sequential</a>
-</div>
-<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-    <template>Expand</template>
-    <span class="bslib-full-screen-enter badge rounded-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
-    </span>
-</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
-</div><div class="bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
-<div class="card bslib-card html-fill-container" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
-<div class="card-body html-fill-item html-fill-container">
+<p><a href="https://docs.geteppo.com/statistics/confidence-intervals/statistical-nitty-gritty/#sequential">Link: https://docs.geteppo.com/statistics/confidence-intervals/statistical-nitty-gritty/#sequential</a></p>
+</section>
+<section id="pms-want-to-go-fast" class="level3">
+<h3 class="anchored" data-anchor-id="pms-want-to-go-fast">PMs Want To Go Fast</h3>
 <ul>
 <li>Time is always the biggest constraint/scarcest resource.</li>
 </ul>
-<span class="math display">\[ MDE \approx  \dfrac{2.8 \sqrt{2 \dfrac{\sigma^2}{N}}}{\mu}\]</span>
+<p><span class="math display">\[ MDE \approx  \dfrac{2.8 \sqrt{2 \dfrac{\sigma^2}{N}}}{\mu}\]</span></p>
 <ul>
 <li>Samples = Time. “We Need this <span class="math inline">\(N\)</span> samples” – not actually! What other lever can we pull?</li>
 </ul>
-</div>
-<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-    <template>Expand</template>
-    <span class="bslib-full-screen-enter badge rounded-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
-    </span>
-</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
-</div><div class="bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
-<div class="card bslib-card html-fill-container" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
-<div class="card-body html-fill-item html-fill-container">
+</section>
+<section id="cuped" class="level3">
+<h3 class="anchored" data-anchor-id="cuped">CUPED</h3>
 <ul>
 <li>CUPED is a technique for <em>variance reduction</em> (essentially making <span class="math inline">\(\sigma^2\)</span> smaller).</li>
 <li>Idea: Find something that is correlated with <span class="math inline">\(y\)</span>, but is not affected by the treatment.</li>
 </ul>
-<span class="math display">\[\operatorname{Var}(\tilde Y) = \operatorname{Var}(Y)(1-\rho^2) \]</span>
+<p><span class="math display">\[\operatorname{Var}(\tilde Y) = \operatorname{Var}(Y)(1-\rho^2) \]</span></p>
 <ul>
 <li>Easiest thing to do: Use the outcome (e.g.&nbsp;past revenue) from before the experiment?</li>
 <li>Rationale: People who spent a lot before the period are likely to spend a lot again! Hence, correlation!</li>
 </ul>
-</div>
-<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-    <template>Expand</template>
-    <span class="bslib-full-screen-enter badge rounded-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
-    </span>
-</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
-</div><div class="bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
-<div class="card bslib-card html-fill-container" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
-<div class="card-body html-fill-item html-fill-container">
+</section>
+<section id="cuped-how-it-works" class="level3">
+<h3 class="anchored" data-anchor-id="cuped-how-it-works">CUPED: How It Works</h3>
 <ol type="1">
 <li>Pick a pre-experiment covariate <span class="math inline">\(X\)</span> (e.g.&nbsp;total revenue in the 28 days <em>before</em> the test).</li>
 <li>Compute the adjusted outcome for each user:</li>
 </ol>
-<span class="math display">\[\tilde Y_i = Y_i - \theta (X_i - \bar X)\]</span>
+<p><span class="math display">\[\tilde Y_i = Y_i - \theta (X_i - \bar X)\]</span></p>
 <p>where <span class="math inline">\(\theta = \operatorname{Cov}(Y, X) / \operatorname{Var}(X)\)</span> (i.e.&nbsp;a regression coefficient).</p>
 <ol start="3" type="1">
 <li>Run your usual z-test on <span class="math inline">\(\tilde Y\)</span> instead of <span class="math inline">\(Y\)</span>.</li>
 </ol>
 <p>Because <span class="math inline">\(\operatorname{Var}(\tilde Y) = \operatorname{Var}(Y)(1 - \rho^2)\)</span>, a correlation of <span class="math inline">\(\rho = 0.5\)</span> cuts variance by 25%.</p>
-</div>
-<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-    <template>Expand</template>
-    <span class="bslib-full-screen-enter badge rounded-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
-    </span>
-</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
-</div><div class="bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
-<div class="card bslib-card html-fill-container" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
-<div class="card-body html-fill-item html-fill-container">
-<img src="media/cuped_comparison.png" class="img-fluid">
-</div>
-<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-    <template>Expand</template>
-    <span class="bslib-full-screen-enter badge rounded-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
-    </span>
-</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
-</div><div class="bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
-<div class="card bslib-card html-fill-container" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
-<div class="card-body html-fill-item html-fill-container">
+</section>
+<section id="cuped-illustration" class="level3">
+<h3 class="anchored" data-anchor-id="cuped-illustration">CUPED: Illustration</h3>
+<p><img src="media/cuped_comparison.png" class="img-fluid"></p>
+</section>
+<section id="cuped-takeaways" class="level3">
+<h3 class="anchored" data-anchor-id="cuped-takeaways">CUPED: Takeaways</h3>
 <ul>
 <li>CUPED is like regression adjustment.</li>
 <li>The higher <span class="math inline">\(\rho\)</span> between pre-experiment covariate and outcome, the bigger the variance reduction.</li>
@@ -852,38 +643,22 @@ grid-auto-rows: minmax(0, 1fr);">
 <li>Most A/B testing platforms (Eppo, Statsig, etc.) support CUPED and can use <em>multiple</em> pre experiment variables to reduce variance even further!</li>
 </ul></li>
 </ul>
-</div>
-<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-    <template>Expand</template>
-    <span class="bslib-full-screen-enter badge rounded-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
-    </span>
-</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
-</div><div class="bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
-<div class="card bslib-card html-fill-container" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
-<div class="card-body html-fill-item html-fill-container">
+</section>
+<section id="a-lot-to-learn" class="level3">
+<h3 class="anchored" data-anchor-id="a-lot-to-learn">A Lot To Learn</h3>
 <ul>
 <li>Don’t be discouraged, there is a lot to learn!</li>
 <li>Don’t try to be perfect, try to make justifiable decisions.</li>
 </ul>
-</div>
-<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-    <template>Expand</template>
-    <span class="bslib-full-screen-enter badge rounded-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
-    </span>
-</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
-</div>
-</div>
-<div class="bslib-grid" style="display: grid; grid-template-columns: ;
-grid-auto-rows: minmax(0, 1fr);">
-<div id="3ade8a4a-fb1d-4a6c-8409-ac45482d5fc9" class="hidden">
-
-</div>
-</div>
-</div>
+</section>
+</section>
+<section id="fin" class="level2">
+<h2 class="anchored" data-anchor-id="fin">Fin</h2>
 
 
+</section>
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -1286,14 +1061,6 @@ grid-auto-rows: minmax(0, 1fr);">
   </script>
 </div> <!-- /content -->
 
-<script type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (_event) {
-  if (window.bslib.Card) {
-    window.bslib.Card.initializeAllCards();
-  }
-}); 
-</script>
-  
 
 
 
