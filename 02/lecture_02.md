@@ -1,6 +1,4 @@
-02: Scaling Tabular Workflows with Polars ⚡
-
-- hw02 - #FIXME add GitHub Classroom link once ready
+# 02: Scaling Tabular Workflows with Polars ⚡
 
 ## Links & Self-Guided Review
 

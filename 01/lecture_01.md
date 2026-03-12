@@ -1,6 +1,4 @@
-01: Defensive Programming and Debugging 🐛
-
-- hw01 - <https://classroom.github.com/a/UIovekSt>
+# 01: Defensive Programming and Debugging 🐛
 
 ## Links & Self-Guided Review
 

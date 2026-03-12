@@ -1,6 +1,4 @@
-LLM Applications & Workflows
-
-- hw08 #FIXME:URL
+# 08: LLM Applications & Workflows
 
 ## Links
 

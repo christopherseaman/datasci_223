@@ -1,8 +1,4 @@
-Reading Rocks!
-
-(Natural Language Processing)
-
-- [https://classroom.github.com/a/78aoV6u5](https://classroom.github.com/a/78aoV6u5)
+# 04: Reading Rocks! (Natural Language Processing)
 
 ## Links & Self-Guided Review
 

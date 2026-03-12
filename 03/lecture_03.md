@@ -1,6 +1,4 @@
-03: Join the DISTINCT with SQL
-
-- [hw03](https://classroom.github.com/a/Rn7-jPaj)
+# 03: Join the DISTINCT with SQL
 
 ## Links & Self-Guided Review
 

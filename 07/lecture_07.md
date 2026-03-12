@@ -1,6 +1,4 @@
-Transformers: More than Meets the Eye
-
-- hw07 #FIXME:URL
+# 07: Transformers: More than Meets the Eye
 
 ## Links
 

@@ -1,6 +1,4 @@
-Neural Networks: If I Only Had a Brain
-
-- hw06 #FIXME:URL
+# 06: Neural Networks: If I Only Had a Brain
 
 ## Links
 

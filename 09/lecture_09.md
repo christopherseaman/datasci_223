@@ -1,9 +1,4 @@
----
-lecture_number: 09
-pdf: false
----
-
-Computer Vision: Mirrorshades
+# 09: Computer Vision: Mirrorshades
 
 ## Links
 

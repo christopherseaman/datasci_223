@@ -1,6 +1,4 @@
-Classification: Putting a Label on Things
-
-- hw05 #FIXME
+# 05: Classification: Putting a Label on Things
 
 ## References
 
