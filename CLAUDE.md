@@ -24,7 +24,7 @@ Applied Data Science with Python course materials (UCSF DataSci 223, Spring 2025
 - `package.json`: Node dependencies (Eleventy, syntax highlighting, markdown-it plugins).
 - `refs/`: Reference material — prior year lectures (`refs/lectures_24/`, `refs/lectures_25/`), data links, PhysioNet notes, SQL guide, debugging tips, etc.
 - `scripts/`: Utilities (e.g., `fetch_xkcd_2x.py` for downloading XKCD comics).
-- `all_xkcd.html` / `all_xkcd.csv`: Index of available XKCD comics for reference.
+- `refs/all_xkcd.csv`: Index of available XKCD comics for reference.
 
 ## Build and preview
 
