@@ -2,7 +2,7 @@ module.exports = {
   project: "DataSci-223",
   pages: [
     { url: "/", label: "Overview" },
-    { label: "GitHub", url: "https://github.com/christopherseaman/datasci_223" },
+    { label: "GitHub", url: "https://github.com/christopherseaman/datasci_223", icon: "fa-brands fa-github" },
     // { label: "Discord", url: "https://discord.gg/QdTYgR45er" },
     { label: "UCSF Courses", url: "https://courses.ucsf.edu/" },
   ],
