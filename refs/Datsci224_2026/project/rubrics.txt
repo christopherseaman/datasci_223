@@ -1,0 +1,20 @@
+Presentations are out of 100
+* -2 for not answering questions correctly
+* -5 for unclear slides, didn't explain the method well
+* -5 for teaching something we was already taught in class in depth
+
+Final writeup out of 100
+* -5 for teaching something we was already taught in class in depth
+* -5 for not clear enough math description of the algorithm
+* -5 for not clear introduction motivating the use of the algorithm
+* -5 for incorrect application of the algorithm
+* -5 for incorrect conclusions/results from applying the algorithm
+===============
+
+Assess this writeup. Acting as a professor, write a very brief two-four sentence feedback. No need to summarize the writeup. Use a supportive and casual tone, like "Nice job! ..." From a total 100 points, dock 5 points for each of the following:
+* -5 for unclear math description of the algorithm
+* -5 for unclear introduction motivating the use of the algorithm
+* -5 for incorrect application of the algorithm
+* -5 for incorrect conclusions/results from applying the algorithm
+
+Provide clear quotes if docking for any these reasons. No need to use full sentences. Just brief notes to the student. Generally be lenient with grading. If the writeup is good, just write something like "Nice job! Great description of <ML procedure the student leveraged>. <Congratulate the student for their interesting finding or something they did particularly well in their writeup.>"

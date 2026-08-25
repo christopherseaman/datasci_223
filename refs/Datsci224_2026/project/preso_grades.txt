@@ -1,0 +1,117 @@
+6/1/2026 presos
+
+1: Emma
+* preso: 8/10
+* My Question: 1/1
+* Student QA: 0/1
+
+2: Chrissie 
+* Preso: 8/10
+* My question: 1/1
+* Student QA: 1/1
+
+3: siddarth 
+* preso: 8/10
+* My question: .5/1
+* Student QA: 0/1
+
+4: Kathryn
+* preso 7/10
+* My question: 0.5/1
+* Student QA: 1/1
+
+6: sin U
+* 9/10
+* My qa 1/1
+* Student qa 0.5/1
+
+7: Oscar 
+* 10/10
+* My QA: skip
+* Student QA: 1/1
+
+8: Thomas 
+* 10/10
+* My QA: how are splits done in a causal tree? 1/1
+* Student QA: 1/1
+
+9: bob Ho
+* 10/10
+* My QA: How to interpret the states? 1/1
+* Student QA: 1/1
+
+10: won-hee
+* preso: 9/10
+* My QA: 1/1
+* Student QA 0.75?/1
+
+11: manal 
+* preso 10/10
+* My: How is NSP involved to reason Bert ? 
+* Student 0/1
+
+6/8/2026 presos
+
+1. Derek
+* preso 10/10
+* My 1/1
+* Student 0.5/1
+* Why use GMM on this dataset vs classsification model
+
+2-Chemia
+* preso 8/10
+* My 0/1
+* Student 1/1
+
+3-Jazmine 
+* Preso 10/10
+* My 1/1
+* Student 1/1
+
+4-jack
+* preso 9/10
+* My 1/1
+    * Student .5/1
+
+5-Audrey 
+* preso 10/10
+* My 1/1
+* Student 1/1
+
+6-Tara 
+* preso 10/10
+* My 0.5/1
+* Student 0.5/1
+
+7-zefan
+* Preso 8/10?
+* My 1/1
+* Student 0.5/1
+
+8-grace
+* preso 8/10
+* My 1/1
+* Student .5/1
+
+9-Brian
+* preso 10/10
+* My 1/1
+* Student 1/1
+
+10-Rebekah
+* 10/10
+* My 1/1
+* Student 1/1
+
+11-jiaxin 
+* preso 9/10
+* My 1/1
+* Student 1/1
+
+12- sarah
+* preso: 10/10
+* My questions:
+    * Doesn’t know what exact procedure she used for Fine tuning? 0/1
+    * Overlapping squares? 0.25/1
+* (No students)
+

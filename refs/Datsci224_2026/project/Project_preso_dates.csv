@@ -1,0 +1,24 @@
+,Full name,Q00_ML algorithm for project,Presentation Focus
+6/1,Emma Chang,SVM,Primal Formulation and Margins
+6/1,Chrissie Lok,SVM,Dual Problem and Lagrange Multipliers
+6/1,Siddharth Kaipa,Support Vector Machine (SVM),Kernel Trick and RBF Functions
+6/1,Kathryn Reid,Support vector machine with a radial basis function kernel to classify Parkinson's disease status from biomedical voice features.,Soft Margin Classification and Penalty Parameters
+6/1,Deborah Adeyemi,Bayesian Additive Regression Trees (BART),BART
+6/1,Sin U Choi,Random Survival Forest with log-rank splitting against Cox PH model as baseline,Random Survival Forest
+6/1,Oscar Peng,Gradient Boosted Survival,Gradient Boosted Survival
+6/1,Thomas Blakely,Causal Forest,Causal Forest
+6/1,Bob Ho,HIdden Markov model,HMM: Model structure and the Viterbi algorithm for sequence decoding
+6/1,Wonhee Lee,"HMM: The Baum–Welch algorithm, the expectation–maximization (EM) algorithm used to find the unknown parameters of a hidden Markov model (HMM).",HMM: Baum-Welch algorithm for parameter estimation via EM
+6/1,Manal Ahmed,Neural Networks! (most likely),What aspects of Neural Networks?
+6/8,Derek Malvin,Gaussian Mixture Model (GMM),GMM
+6/8,Jazmine Haratani,Gaussian Process Classification,Gaussian Process Classification
+6/8,Chemia Moayyed,Gaussian process regression,Gaussian Process Regression
+6/8,Jack Neary,"xgboost -- predicting stress using associated activity monitor (fitbit and omron) data: hr, bp, steps, spo2 etc.",XGBoost: Second-order optimization vs first-order optimization
+6/8,Audrey Su,XGBoost (eXtreme Gradient Boosting) ,XGBoost: Regularization framework—tree complexity penalties
+6/8,Tara Hosseini,Neural Networks: autoencoders,Autoencoders
+6/8,Zefan Huang,Neural network thing: 1. Edge-Guided Adaptive Feature Extraction for CNN Image Classification. OR 2.  A Hebbian-SPRT memory layer for continuous Learning,CNN or memory in NNs
+6/8,Grace Reed,Graph neural networks,GNN
+6/8,Brian Nishimine,Bertopic,BERTopic
+6/8,Rebekah Xing,Joint Embedding Predictive Architecture (JEPA),JEPA
+6/8,Jiaxin Su,piecewise-linear recurrent neural network (PLRNN),PLRNN
+6/8,Sarah Mughal,Vision Transformer (ViT),ViT
