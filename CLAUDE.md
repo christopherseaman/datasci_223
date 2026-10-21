@@ -94,7 +94,7 @@ Two standard formats for reference cards:
 - Assets live alongside their lecture folder (e.g., `01/media/...`).
 - Images use relative paths from the referring document (e.g., `media/xkcd_selection_bias.png` from `03/lecture_03.md`), NOT absolute paths.
 - Prefer local comics/images. If reusing from elsewhere, copy into the lecture's `media/` subdir first.
-- XKCD helper: `scripts/fetch_xkcd_2x.py` downloads comics via explainxkcd file pages (2x "Original file" links). Usage: `./scripts/fetch_xkcd_2x.py 1597:Git 1722:Debugging:xkcd_debugging.png`
+- XKCD helper: shark-repellent's `xkcd.py` (`X=https://raw.githubusercontent.com/christopherseaman/shark-repellent/main/xkcd/xkcd.py`). `uv run $X index` caches the archive once; `uv run $X search merge database --root .` ranks comics by title, alt text, and transcript and marks ones this repo already uses; `uv run $X used --root .` lists every comic in use and flags one shared across lecture folders; `uv run $X fetch 1597 --outdir 02/media` saves the 2x image as `xkcd_1597.png`. Name comic files `xkcd_NNNN.png` so `used` finds them. `scripts/fetch_xkcd_2x.py` remains for the existing lecture reference.
 
 ### Notes
 
