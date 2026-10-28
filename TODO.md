@@ -1,6 +1,8 @@
 # Interactive demos
 
+- [ ] Expand open data listings: aws open data, kaggle, huggingface, TF/Torch datasets, data.gov, data.sf.gov, data.ca.gov, physionet, data.ucsf.edu. Maybe FHIR example server?
 - [ ] Adapt demos to open in Google Colab (add "Open in Colab" links to demo pages or lecture nav)
+    - See ../datasci_217 demos for examples of working Colab links (lectures 03+ once jupyter notebooks are added)
     - Include output from previous execution so students can read without running
     - Remove/stub external dependencies (local files, API keys, etc.) so notebooks are self-contained
     - Demos that are scripts (not notebooks) could use a Pyodide-based embed (e.g., PyScript or a JS-fiddle-style Python runner) instead of Colab
@@ -28,7 +30,7 @@ Two questions that I would have liked to address further from lecture:
 
 Depth creates compositional features while width adds more detectors/features at a single level.
 
-- **Width** (more neurons per layer): universal approximation theorem says one wide hidden layer *can* approximate any function, but may need exponentially many neurons. Easier to train (less vanishing gradient), but less parameter-efficient.
+- **Width** (more neurons per layer): universal approximation theorem says one wide hidden layer _can_ approximate any function, but may need exponentially many neurons. Easier to train (less vanishing gradient), but less parameter-efficient.
 - **Depth** (more layers): learns hierarchical/compositional representations - each layer builds abstractions on the previous. More parameter-efficient for complex functions, but harder to train (vanishing gradients, need skip connections/BatchNorm/etc.).
 
 Interactive resources:
@@ -46,7 +48,7 @@ An LSTM cell has three gates — **forget** (what to discard from cell state),
 
 **Why tanh specifically:**
 
-- **Gates use sigmoid** (0-1 range) - they're *multipliers*, so you want a smooth switch between "block" and "pass"
+- **Gates use sigmoid** (0-1 range) - they're _multipliers_, so you want a smooth switch between "block" and "pass"
 - **Cell state update and output use tanh** (-1 to +1 range):
     - **Zero-centered outputs** prevent systematic bias in gradient updates (sigmoid outputs are always positive → gradients always same sign → inefficient zigzag optimization)
     - **Negative values matter** for representing "decrease" vs. "increase" in the cell state
